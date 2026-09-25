@@ -73,3 +73,31 @@ def test_review_note_keeps_flagged_company_visible(tmp_path):
     rows = [{h: ws.cell(row=r, column=i + 1).value for i, h in enumerate(head)} for r in (2, 3)]
     assert rows[0]["Company_Name"] == "Fictional Tyres" and rows[0]["Fit"] == "Good"
     assert rows[1]["Fit"] == "Check" and "REVIEW: Legacy stake" in rows[1]["Screen_Check"]
+
+
+def test_enrichment_adds_site_directors_and_ranked_contact_pages(tmp_path):
+    data = {"candidates": [{"company_name": "Fictional Gears Ltd", "is_manufacturer": "Yes", "revenue_cr": 120,
+                            "revenue_fy": "FY2025", "popularity_or_group_flags": "None found"}], "screened_out": []}
+    enrich = [{"company_name": "Fictional Gears Limited", "website": "fictionalgears.example",
+               "directors": [{"name": "A. Fictional", "designation": "Managing Director", "appointed": "1995"},
+                             {"name": "B. Fictional", "designation": "Director", "appointed": "2021",
+                              "note": "next-gen (probable)"}],
+               "owner_contact_pages": [
+                   {"type": "Company contact page", "url": "https://fictionalgears.example/contact"},
+                   {"type": "Other", "url": "https://rocketreach.co/fictional-gears"},
+                   {"type": "IndiaMART", "url": "https://www.indiamart.com/fictional-gears/",
+                    "listed_contact_person": "A. Fictional (MD)"}]}]
+    (tmp_path / "c.json").write_text(json.dumps(data))
+    (tmp_path / "e.json").write_text(json.dumps(enrich))
+    X.build([tmp_path / "c.json"], "Ludhiana", "Punjab", "LDH", tmp_path / "e.xlsx", use_db=False, today=TODAY,
+            enrich=[tmp_path / "e.json"])
+    ws = load_workbook(tmp_path / "e.xlsx")["Candidates"]
+    head = [c.value for c in ws[1]]
+    col = {h: i + 1 for i, h in enumerate(head)}
+    assert ws.cell(row=2, column=col["Website_URL"]).value == "fictionalgears.example"
+    assert "B. Fictional (Director), since 2021" == ws.cell(row=2, column=col["Next_Gen"]).value
+    first = ws.cell(row=2, column=col["Contact_Page_1"])
+    assert first.value == "IndiaMART: A. Fictional (MD)" and first.hyperlink.target == "https://www.indiamart.com/fictional-gears/"
+    assert ws.cell(row=2, column=col["Contact_Page_2"]).value == "Company contact page"
+    assert not ws.cell(row=2, column=col["Contact_Page_3"]).value          # the data-broker link was dropped
+    assert "owner or a director" in ws.cell(row=2, column=col["Owner_Mobile"]).value

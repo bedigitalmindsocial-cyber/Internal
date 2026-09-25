@@ -36,14 +36,15 @@ RATING_HOSTS = ("acuite", "careratings", "careedge", "icra", "indiaratings", "cr
 SIGNAL_SCORE = {t: s for t, (s, _) in C.TRIGGER_TYPES.items()}
 FIT_FILL = {"Strong": "E2F0D9", "Good": "FFF2CC", "Check": "EDEDED"}
 COLUMNS = [
-    ("Cand_ID", 10), ("Fit", 8), ("Company_Name", 30), ("Industry", 20), ("Key_Products", 32), ("Area", 18),
-    ("Website_URL", 26), ("Revenue_Cr", 10), ("Revenue_FY", 10), ("Revenue_Source", 30), ("Revenue_Source_URL", 30),
+    ("Cand_ID", 10), ("Fit", 8), ("Company_Name", 30), ("Website_URL", 24), ("Directors", 34), ("Next_Gen", 24),
+    ("Owner_Mobile", 26), ("Contact_Page_1", 30), ("Contact_Page_2", 30), ("Contact_Page_3", 30),
+    ("Industry", 20), ("Key_Products", 32), ("Area", 18), ("Revenue_Cr", 10), ("Revenue_FY", 10), ("Revenue_Source", 30), ("Revenue_Source_URL", 30),
     ("Size_Confidence", 22), ("Rating", 26), ("Signal_Type", 16), ("Signal_Detail", 36), ("Signal_Date", 12),
     ("Signal_Source_URL", 30), ("Other_Signals", 30), ("Promoters", 26), ("Year_Established", 10),
     ("Exports", 22), ("Screen_Check", 26), ("Likely_Offer", 22), ("Likely_Segments", 24), ("Still_To_Verify", 40),
     ("Notes", 40), ("All_Source_URLs", 50),
 ]
-WRAP = {"Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
+WRAP = {"Directors", "Next_Gen", "Owner_Mobile", "Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
         "Other_Signals", "Promoters", "Exports", "Screen_Check", "Still_To_Verify", "Notes", "All_Source_URLs",
         "Likely_Offer", "Likely_Segments"}
 URL_COLS = {"Website_URL", "Revenue_Source_URL", "Signal_Source_URL"}
@@ -246,6 +247,40 @@ def screen(c: dict, today: date) -> tuple[str | None, str]:
     return None, ""
 
 
+PAGE_PRIORITY = ["IndiaMART", "TradeIndia", "Justdial", "ExportersIndia", "Exhibitor page",
+                 "Association directory", "Google Business", "Company contact page", "Other"]
+BROKER_RE = re.compile(r"rocketreach|zoominfo|easyleadz|lusha|apollo\.io|signalhire|contactout|truecaller|"
+                       r"leadiq|seamless\.ai|datanyze|slintel", re.I)
+
+
+def enrich_fields(c: dict) -> dict:
+    """Directors, next-gen and owner contact pages from the enrichment sweep (never data brokers)."""
+    e = c.get("_enrich") or {}
+    dirs = [d for d in e.get("directors") or [] if isinstance(d, dict) and not _blank(d.get("name"))]
+    fmt = lambda d: d["name"] + (f" ({d['designation']})" if not _blank(d.get("designation")) else "") + (
+        f", since {d['appointed']}" if not _blank(d.get("appointed")) else "")
+    nextgen = [fmt(d) for d in dirs if "next-gen" in str(d.get("note", "")).lower()]
+    pages = [pg for pg in e.get("owner_contact_pages") or []
+             if isinstance(pg, dict) and C.first_url(pg.get("url")) and not BROKER_RE.search(pg.get("url", ""))]
+    rank = {t.lower(): i for i, t in enumerate(PAGE_PRIORITY)}
+    pages.sort(key=lambda pg: rank.get(str(pg.get("type", "Other")).lower(), len(PAGE_PRIORITY)))
+    out = {"Directors": "; ".join(fmt(d) for d in dirs) or "Not found",
+           "Next_Gen": "; ".join(nextgen) or "Not found",
+           "Owner_Mobile": ("Not captured yet: open Contact_Page_1-3 and use the number only if the listed contact "
+                            "is the owner or a director" if pages else "Not found yet: no self-published listing found")}
+    for i in range(3):
+        if i < len(pages):
+            pg = pages[i]
+            who = "" if _blank(pg.get("listed_contact_person")) else f": {pg['listed_contact_person']}"
+            out[f"Contact_Page_{i + 1}"] = (f"{pg.get('type') or 'Page'}{who}", C.first_url(pg["url"]))
+        else:
+            out[f"Contact_Page_{i + 1}"] = ""
+    site = e.get("website")
+    if not _blank(site) and not C.is_shared_platform(site):
+        out["_website"] = site
+    return out
+
+
 def assess(c: dict, today: date) -> dict:
     valid, other, seen = [], [], set()
     for s in c["signals"]:
@@ -277,14 +312,17 @@ def assess(c: dict, today: date) -> dict:
         size_conf = "Medium (self-declared turnover band)"
     else:
         size_conf = "Medium (search extract)"
-    todo = ["website decay audit", "owner mobile (self-published only)", "MCA status and holding company"]
+    ex = enrich_fields(c)
+    site_found = not _blank(c.get("website")) or "_website" in ex
+    todo = ["website decay audit", "owner mobile from the contact pages (owner or director only)",
+            "MCA status and holding company"]
     if rev is None:
         todo.insert(0, "turnover")
     elif not in_band:
         todo.insert(0, f"turnover (₹{rev:g} Cr is outside ₹50-500 Cr or dated)")
     if not manuf:
         todo.insert(0, "confirm own plant (manufacturer)")
-    if _blank(c.get("website")):
+    if not site_found:
         todo.append("find website, or confirm none (SEG-NOWEB)")
     segs = [C.INDUSTRY_SEGMENT[c["industry"]]] if C.INDUSTRY_SEGMENT.get(c.get("industry")) else []
     if any(s["type"] == "Trade fair" for s in valid):
@@ -301,7 +339,9 @@ def assess(c: dict, today: date) -> dict:
         "Industry": c.get("industry") if c.get("industry") in C.INDUSTRIES else (c.get("industry") or "Not found"),
         "Key_Products": c.get("products") or "Not found",
         "Area": c.get("city_area") or "Ludhiana",
-        "Website_URL": c.get("website") if not _blank(c.get("website")) else "Not found",
+        "Website_URL": (c.get("website") if not _blank(c.get("website")) and not C.is_shared_platform(c.get("website"))
+                        else ex.get("_website") or "Not found"),
+        **{k: v for k, v in ex.items() if not k.startswith("_")},
         "Revenue_Cr": rev if rev is not None else "Not found",
         "Revenue_FY": c.get("revenue_fy") or ("Not found" if rev is None else ""),
         "Revenue_Source": c.get("revenue_source") or "Not found",
@@ -341,17 +381,20 @@ def _write(ws, headers, rows, widths, fill_key=None, fills=None, url_cols=(), wr
         fill = PatternFill("solid", fgColor=fills[row[fill_key]]) if fill_key and row.get(fill_key) in (fills or {}) else None
         for i, h in enumerate(headers, 1):
             v = row.get(h)
+            link = None
+            if isinstance(v, tuple):
+                v, link = v
             cell = ws.cell(row=r, column=i, value=C.sanitize_text(v) if isinstance(v, str) else v)
             cell.alignment = Alignment(wrap_text=h in wrap, vertical="top")
             cell.border = Border(bottom=THIN)
             if fill:
                 cell.fill = fill
-            target = C.first_url(v) if isinstance(v, str) else None
+            target = link or (C.first_url(v) if isinstance(v, str) else None)
             if not target and h in url_cols and isinstance(v, str) and "." in v and " " not in v and not C.is_blank(v):
                 target = "http://" + v
             if target:
                 cell.hyperlink = target
-                cell.font = Font(color="1F4E79", underline="single" if h in url_cols else None)
+                cell.font = Font(color="1F4E79", underline="single" if (h in url_cols or link) else None)
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{max(len(rows) + 1, 2)}"
 
 
@@ -372,8 +415,14 @@ def coverage_line(path) -> str:
 
 
 def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, use_db: bool = True,
-          today: date | None = None) -> dict:
+          today: date | None = None, enrich: list[Path] | None = None) -> dict:
     today = today or date.today()
+    enrich_map = {}
+    for path in enrich or []:
+        for e in json.loads(Path(path).read_text(encoding="utf-8")):
+            for nm in re.split(r"\s+and\s+(?=[A-Z])", e.get("company_name", "")):   # "Osho Forge Limited and Emson Gears Limited"
+                if name_key(nm):
+                    enrich_map.setdefault(name_key(nm), e)
     cands, screened = [], []
     for path in inputs:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -385,6 +434,8 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
             screened.append({"Company_Name": s.get("company_name"), "Reject_Code": reason_code(s.get("reason")),
                              "Reason": s.get("reason"), "Source_URL": s.get("url"), "Found_By": label})
     merged = merge(cands)
+    for c in merged:
+        c["_enrich"] = enrich_map.get(name_key(c.get("company_name")))
     rows, follow = [], []
     for path in inputs:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -441,7 +492,7 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
     ws.title = "Candidates"
     headers = [h for h, _ in COLUMNS]
     _write(ws, headers, rows, dict(COLUMNS), "Fit", FIT_FILL, URL_COLS, WRAP)
-    ws.freeze_panes = "D2"
+    ws.freeze_panes = "D2"   # ID, fit and company stay visible while scrolling
     ws4 = wb.create_sheet("Follow_Up")
     _write(ws4, ["Lead", "Detail", "Source_URL", "Found_By"], follow,
            {"Lead": 60, "Detail": 70, "Source_URL": 50, "Found_By": 22}, url_cols={"Source_URL"},
@@ -464,8 +515,17 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
         [""],
         ["WHAT IS SOLID"],
         ["Each company name, product line, revenue figure, rating and signal carries the URL it came from. Nothing "
-         "was estimated: 'Not found' means search did not show it. No phone numbers or emails are listed, because "
-         "numbers read from search summaries cannot be checked against the source page."],
+         "was estimated: 'Not found' means search did not show it. No phone numbers are written into this sheet, "
+         "because numbers read from search summaries cannot be checked against the source page; the Contact_Page "
+         "links take you to the page itself."],
+        [""],
+        ["HOW TO GET THE OWNER'S MOBILE"],
+        ["Open Contact_Page_1 to 3. They are the company's own listings (IndiaMART, TradeIndia, Justdial, exhibitor "
+         "or association pages), where owners often publish their own mobile. Use a number only if the listing names "
+         "the owner or a director as the contact person; an office line or a sales executive's number is a company "
+         "line, not the owner's. Never use data-broker sites (RocketReach, ZoomInfo and similar), Truecaller or bought "
+         "lists: CLAUDE.md Section 8 rules them out. Directors come from MCA records via public aggregators; Next_Gen "
+         "is a probable family successor, not confirmed."],
         [""],
         ["FIT"],
         [f"Strong ({counts['Strong']}): manufacturer, ₹50-500 Cr from a stated figure, no popularity or group flag, "
@@ -522,9 +582,11 @@ def main(argv=None) -> int:
     p.add_argument("--prefix", required=True)
     p.add_argument("--out")
     p.add_argument("--no-db", action="store_true")
+    p.add_argument("--enrich", nargs="*", default=[], help="website/directors/contact-page JSON files")
     args = p.parse_args(argv)
     out = Path(args.out or C.OUTPUT_DIR / f"Candidates_{args.cluster.replace(' ', '_')}_UNVERIFIED.xlsx")
-    res = build([Path(x) for x in args.inputs], args.cluster, args.state, args.prefix, out, not args.no_db)
+    res = build([Path(x) for x in args.inputs], args.cluster, args.state, args.prefix, out, not args.no_db,
+                enrich=[Path(x) for x in args.enrich])
     print(f"{res['candidates']} candidates (Strong {res['Strong']}, Good {res['Good']}, Check {res['Check']}), "
           f"{res['screened_out']} screened out -> {res['out']}")
     return 0
