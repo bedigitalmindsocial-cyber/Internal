@@ -1,0 +1,9 @@
+# Existing Giraffe clients and manual exclusions (reject code R10).
+# One company per line. Lines starting with # are ignored.
+# Matching is on the normalised company name (legal suffixes such as
+# Pvt Ltd / Limited / LLP are stripped), so "Neev Seeds" also blocks
+# "Neev Seeds Private Limited".
+Neev Seeds
+Kasturi India
+MW Wiretec
+PJS Commodities

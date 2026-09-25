@@ -1,0 +1,2012 @@
+{
+  "states": {
+    "Punjab": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Ludhiana": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Jalandhar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mandi Gobindgarh and Khanna": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Batala": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Amritsar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Rajpura, Mohali and Derabassi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Phagwara": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bathinda, Abohar, Fazilka and Moga": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Haryana": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Faridabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Gurugram, Manesar, Bawal and Dharuhera": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Panipat": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sonipat, Kundli and Rai": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bahadurgarh": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Yamunanagar and Jagadhri": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Karnal": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ambala": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Hisar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Delhi": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Bawana": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Narela": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Okhla": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mayapuri": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Wazirpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Naraina": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Chandigarh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Industrial Area Phase I and II": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Rajasthan": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Jaipur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bhiwadi, Neemrana and Alwar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Jodhpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bhilwara": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kishangarh, Makrana and Udaipur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kota": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Balotra": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sri Ganganagar and Bikaner": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Himachal Pradesh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Baddi-Barotiwala-Nalagarh": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kala Amb": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Paonta Sahib": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Parwanoo": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Uttarakhand": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Haridwar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Rudrapur and Pantnagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kashipur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Selaqui": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sitarganj": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Uttar Pradesh (West and NCR belt)": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Noida and Greater Noida": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ghaziabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Meerut": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Muzaffarnagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Saharanpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Aligarh": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Moradabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Agra": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Khurja": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Firozabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Jammu & Kashmir": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Jammu": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bari Brahmana": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kathua": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Samba": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Gujarat": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Rajkot": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Morbi, Wankaner and Thangadh": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Jamnagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ahmedabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Vapi, Ankleshwar, Bharuch and Dahej": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Surat": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Vadodara": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bhavnagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mehsana and Kadi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Gandhidham": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Maharashtra": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Pune": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Chhatrapati Sambhajinagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Nashik": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kolhapur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ichalkaranji, Bhiwandi and Solapur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Thane, Taloja, Tarapur and Palghar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Nagpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Jalgaon": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sangli and Satara": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Tamil Nadu": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Coimbatore": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Tiruppur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Karur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Erode": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Salem and Namakkal": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Hosur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Chennai belt": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sivakasi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ranipet, Vellore, Ambur and Vaniyambadi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Madurai": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Rajapalayam": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Karnataka": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Bengaluru": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Belagavi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Hubballi-Dharwad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mysuru": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Tumakuru": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Davanagere": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mangaluru": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Telangana": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Hyderabad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sangareddy": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Medak": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Madhya Pradesh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Indore, Pithampur and Dewas": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Mandideep (Bhopal)": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Malanpur (Gwalior)": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Jabalpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ratlam": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Neemuch": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Uttar Pradesh (rest)": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Kanpur and Unnao": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Lucknow": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Varanasi, Bhadohi and Mirzapur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Gorakhpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Prayagraj": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Dadra & Nagar Haveli and Daman & Diu": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Silvassa": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Daman": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Andhra Pradesh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Visakhapatnam": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Sri City": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Nellore": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Vijayawada": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Guntur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kakinada": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Anantapur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "West Bengal": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Howrah": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kolkata": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Durgapur and Asansol": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Haldia": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Siliguri": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Odisha": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Jharsuguda": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Angul": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Rourkela": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kalinga Nagar": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Cuttack": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Balasore": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Khordha": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Jharkhand": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Jamshedpur and Adityapur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Ranchi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bokaro": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Dhanbad": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Chhattisgarh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Raipur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bhilai": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Korba": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Kerala": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Kochi": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kollam": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Alappuzha": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kozhikode": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kannur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Goa": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Verna": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Kundaim": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Bihar": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Patna": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Hajipur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Muzaffarpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Bhagalpur": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Begusarai": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Puducherry": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Industrial estates": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Assam": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Guwahati": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        },
+        "Tinsukia": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Meghalaya": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Byrnihat": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Tripura": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Sikkim": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Arunachal Pradesh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Manipur": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Mizoram": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Nagaland": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Ladakh": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Andaman & Nicobar Islands": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    },
+    "Lakshadweep": {
+      "status": "Not Started",
+      "notes": "",
+      "last_updated": null,
+      "clusters": {
+        "Statewide": {
+          "ratings": false,
+          "ec_cte": false,
+          "expos": false,
+          "associations": false,
+          "regional_news": false,
+          "marketplaces": false,
+          "jobs": false,
+          "done": false,
+          "notes": ""
+        }
+      }
+    }
+  }
+}

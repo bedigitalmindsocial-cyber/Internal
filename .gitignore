@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# PUBLIC-REPO GUARD
+# This repository is PUBLIC on GitHub (checked 25-Sep-2026). Lead data holds
+# owner names and mobile numbers, which CLAUDE.md Section 8 restricts to
+# Giraffe's own one-to-one outreach. Keep it out of git until the repo is
+# made private. Once it is private, delete this block so the database and
+# outputs persist between cloud sessions.
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/work/
+output/*
+!output/.gitkeep
+input/*
+!input/.gitkeep
+# ---------------------------------------------------------------------------
+
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/_tmp/

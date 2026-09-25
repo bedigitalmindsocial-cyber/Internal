@@ -1,0 +1,1798 @@
+{
+  "source": "CLAUDE.md Section 7 (clusters and industries) and Section 4.1 (regional keywords)",
+  "wave_order_rationale": {
+    "1": "Within driving distance of Abohar and Delhi: factory visits possible",
+    "2": "Densest manufacturing states",
+    "3": "Mid-density states",
+    "4": "Quick scan only; mark N/A if nothing qualifies"
+  },
+  "wave_max_active_per_state": {
+    "1": 40,
+    "2": 30,
+    "3": 15,
+    "4": 5
+  },
+  "wave_priority_bonus": {
+    "1": 3,
+    "2": 1,
+    "3": 0,
+    "4": 0
+  },
+  "cluster_stop_rule": "Move on after 3 consecutive discovery queries with no new qualifying candidate, or 30 candidates screened",
+  "lead_id_codes": [
+    "PB",
+    "HR",
+    "DL",
+    "CH",
+    "RJ",
+    "HP",
+    "UK",
+    "UP",
+    "JK",
+    "GJ",
+    "MH",
+    "TN",
+    "KA",
+    "TG",
+    "MP",
+    "DD",
+    "AP",
+    "WB",
+    "OD",
+    "JH",
+    "CG",
+    "KL",
+    "GA",
+    "BR",
+    "PY",
+    "AS",
+    "ML",
+    "TR",
+    "SK",
+    "AR",
+    "MN",
+    "MZ",
+    "NL",
+    "LA",
+    "AN",
+    "LD"
+  ],
+  "states": [
+    {
+      "wave": 1,
+      "state": "Punjab",
+      "code": "PB",
+      "regional_language": "Punjabi",
+      "regional_keywords": [
+        "ਨਵਾਂ ਪਲਾਂਟ",
+        "ਨਿਵੇਸ਼"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "PSIEC"
+      ],
+      "clusters": [
+        {
+          "name": "Ludhiana",
+          "areas": [],
+          "industries": [
+            "hosiery",
+            "bicycles and parts",
+            "auto parts",
+            "hand tools",
+            "sewing machines"
+          ]
+        },
+        {
+          "name": "Jalandhar",
+          "areas": [],
+          "industries": [
+            "sports goods",
+            "hand tools",
+            "rubber",
+            "pipe fittings",
+            "leather"
+          ]
+        },
+        {
+          "name": "Mandi Gobindgarh and Khanna",
+          "areas": [],
+          "industries": [
+            "steel re-rolling",
+            "agri processing"
+          ]
+        },
+        {
+          "name": "Batala",
+          "areas": [],
+          "industries": [
+            "foundry",
+            "agri implements",
+            "machine tools"
+          ]
+        },
+        {
+          "name": "Amritsar",
+          "areas": [],
+          "industries": [
+            "textiles",
+            "food processing"
+          ]
+        },
+        {
+          "name": "Rajpura, Mohali and Derabassi",
+          "areas": [],
+          "industries": [
+            "pharma",
+            "chemicals",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Phagwara",
+          "areas": [],
+          "industries": [
+            "auto parts"
+          ]
+        },
+        {
+          "name": "Bathinda, Abohar, Fazilka and Moga",
+          "areas": [],
+          "industries": [
+            "cotton ginning",
+            "agri processing",
+            "dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Haryana",
+      "code": "HR",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "HSIIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Faridabad",
+          "areas": [],
+          "industries": [
+            "auto components",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Gurugram, Manesar, Bawal and Dharuhera",
+          "areas": [],
+          "industries": [
+            "auto components"
+          ]
+        },
+        {
+          "name": "Panipat",
+          "areas": [],
+          "industries": [
+            "textiles",
+            "home furnishings",
+            "blankets"
+          ]
+        },
+        {
+          "name": "Sonipat, Kundli and Rai",
+          "areas": [],
+          "industries": [
+            "food",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Bahadurgarh",
+          "areas": [],
+          "industries": [
+            "footwear"
+          ]
+        },
+        {
+          "name": "Yamunanagar and Jagadhri",
+          "areas": [],
+          "industries": [
+            "plywood",
+            "utensils",
+            "metals"
+          ]
+        },
+        {
+          "name": "Karnal",
+          "areas": [],
+          "industries": [
+            "agri implements",
+            "rice"
+          ]
+        },
+        {
+          "name": "Ambala",
+          "areas": [],
+          "industries": [
+            "scientific instruments"
+          ]
+        },
+        {
+          "name": "Hisar",
+          "areas": [],
+          "industries": [
+            "steel products"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Delhi",
+      "code": "DL",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "DSIIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Bawana",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Narela",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Okhla",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Mayapuri",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Wazirpur",
+          "areas": [],
+          "industries": [
+            "steel"
+          ]
+        },
+        {
+          "name": "Naraina",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Chandigarh",
+      "code": "CH",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Industrial Area Phase I and II",
+          "areas": [
+            "Industrial Area Phase I",
+            "Industrial Area Phase II"
+          ],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Rajasthan",
+      "code": "RJ",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "RIICO"
+      ],
+      "clusters": [
+        {
+          "name": "Jaipur",
+          "areas": [
+            "Sitapura",
+            "VKI"
+          ],
+          "industries": [
+            "engineering",
+            "textiles",
+            "gems"
+          ]
+        },
+        {
+          "name": "Bhiwadi, Neemrana and Alwar",
+          "areas": [],
+          "industries": [
+            "auto",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Jodhpur",
+          "areas": [],
+          "industries": [
+            "handicrafts",
+            "guar gum",
+            "steel"
+          ]
+        },
+        {
+          "name": "Bhilwara",
+          "areas": [],
+          "industries": [
+            "textiles"
+          ]
+        },
+        {
+          "name": "Kishangarh, Makrana and Udaipur",
+          "areas": [],
+          "industries": [
+            "marble",
+            "minerals"
+          ]
+        },
+        {
+          "name": "Kota",
+          "areas": [],
+          "industries": [
+            "stone",
+            "chemicals"
+          ]
+        },
+        {
+          "name": "Balotra",
+          "areas": [],
+          "industries": [
+            "textile processing"
+          ]
+        },
+        {
+          "name": "Sri Ganganagar and Bikaner",
+          "areas": [],
+          "industries": [
+            "edible oils",
+            "agri processing",
+            "namkeen"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Himachal Pradesh",
+      "code": "HP",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "HPSIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Baddi-Barotiwala-Nalagarh",
+          "areas": [],
+          "industries": [
+            "pharma",
+            "FMCG"
+          ]
+        },
+        {
+          "name": "Kala Amb",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Paonta Sahib",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Parwanoo",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Uttarakhand",
+      "code": "UK",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "SIDCUL"
+      ],
+      "clusters": [
+        {
+          "name": "Haridwar",
+          "areas": [
+            "SIDCUL Haridwar"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Rudrapur and Pantnagar",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Kashipur",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Selaqui",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Sitarganj",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 1,
+      "state": "Uttar Pradesh (West and NCR belt)",
+      "code": "UP",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "UPSIDA"
+      ],
+      "clusters": [
+        {
+          "name": "Noida and Greater Noida",
+          "areas": [],
+          "industries": [
+            "electronics",
+            "garments",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Ghaziabad",
+          "areas": [],
+          "industries": [
+            "engineering"
+          ]
+        },
+        {
+          "name": "Meerut",
+          "areas": [],
+          "industries": [
+            "sports goods"
+          ]
+        },
+        {
+          "name": "Muzaffarnagar",
+          "areas": [],
+          "industries": [
+            "paper",
+            "jaggery"
+          ]
+        },
+        {
+          "name": "Saharanpur",
+          "areas": [],
+          "industries": [
+            "wood craft"
+          ]
+        },
+        {
+          "name": "Aligarh",
+          "areas": [],
+          "industries": [
+            "locks",
+            "hardware"
+          ]
+        },
+        {
+          "name": "Moradabad",
+          "areas": [],
+          "industries": [
+            "brassware"
+          ]
+        },
+        {
+          "name": "Agra",
+          "areas": [],
+          "industries": [
+            "footwear",
+            "foundry"
+          ]
+        },
+        {
+          "name": "Khurja",
+          "areas": [],
+          "industries": [
+            "ceramics"
+          ]
+        },
+        {
+          "name": "Firozabad",
+          "areas": [],
+          "industries": [
+            "glass"
+          ]
+        }
+      ],
+      "note": "Shares the UP Lead_ID sequence with Uttar Pradesh (rest) in Wave 2."
+    },
+    {
+      "wave": 1,
+      "state": "Jammu & Kashmir",
+      "code": "JK",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "SIDCO J&K"
+      ],
+      "clusters": [
+        {
+          "name": "Jammu",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Bari Brahmana",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Kathua",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Samba",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Gujarat",
+      "code": "GJ",
+      "regional_language": "Gujarati",
+      "regional_keywords": [
+        "નવો પ્લાન્ટ",
+        "કરોડનું રોકાણ"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "GIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Rajkot",
+          "areas": [],
+          "industries": [
+            "pumps",
+            "engines",
+            "auto parts",
+            "machine tools"
+          ]
+        },
+        {
+          "name": "Morbi, Wankaner and Thangadh",
+          "areas": [],
+          "industries": [
+            "ceramic tiles",
+            "sanitaryware",
+            "clocks"
+          ]
+        },
+        {
+          "name": "Jamnagar",
+          "areas": [],
+          "industries": [
+            "brass parts"
+          ]
+        },
+        {
+          "name": "Ahmedabad",
+          "areas": [
+            "Naroda",
+            "Vatva",
+            "Changodar",
+            "Sanand"
+          ],
+          "industries": [
+            "pharma",
+            "textiles",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Vapi, Ankleshwar, Bharuch and Dahej",
+          "areas": [],
+          "industries": [
+            "chemicals",
+            "dyes"
+          ]
+        },
+        {
+          "name": "Surat",
+          "areas": [],
+          "industries": [
+            "textiles"
+          ]
+        },
+        {
+          "name": "Vadodara",
+          "areas": [],
+          "industries": [
+            "engineering",
+            "chemicals"
+          ]
+        },
+        {
+          "name": "Bhavnagar",
+          "areas": [],
+          "industries": [
+            "plastics",
+            "ship-recycling linked"
+          ]
+        },
+        {
+          "name": "Mehsana and Kadi",
+          "areas": [],
+          "industries": [
+            "cotton",
+            "edible oil"
+          ]
+        },
+        {
+          "name": "Gandhidham",
+          "areas": [],
+          "industries": [
+            "timber",
+            "salt"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Maharashtra",
+      "code": "MH",
+      "regional_language": "Marathi",
+      "regional_keywords": [
+        "नवीन प्रकल्प",
+        "कोटींची गुंतवणूक"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "MIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Pune",
+          "areas": [
+            "Chakan",
+            "Bhosari",
+            "Talegaon",
+            "Ranjangaon"
+          ],
+          "industries": [
+            "auto",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Chhatrapati Sambhajinagar",
+          "areas": [
+            "Waluj",
+            "Shendra"
+          ],
+          "industries": [
+            "auto",
+            "pharma"
+          ]
+        },
+        {
+          "name": "Nashik",
+          "areas": [
+            "Ambad",
+            "Satpur"
+          ],
+          "industries": [
+            "engineering",
+            "electrical"
+          ]
+        },
+        {
+          "name": "Kolhapur",
+          "areas": [],
+          "industries": [
+            "foundry",
+            "auto"
+          ]
+        },
+        {
+          "name": "Ichalkaranji, Bhiwandi and Solapur",
+          "areas": [],
+          "industries": [
+            "textiles",
+            "powerloom",
+            "towels"
+          ]
+        },
+        {
+          "name": "Thane, Taloja, Tarapur and Palghar",
+          "areas": [],
+          "industries": [
+            "chemicals",
+            "pharma"
+          ]
+        },
+        {
+          "name": "Nagpur",
+          "areas": [
+            "Butibori",
+            "Hingna"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Jalgaon",
+          "areas": [],
+          "industries": [
+            "PVC pipes",
+            "dal mills",
+            "irrigation"
+          ]
+        },
+        {
+          "name": "Sangli and Satara",
+          "areas": [],
+          "industries": [
+            "agri processing",
+            "engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Tamil Nadu",
+      "code": "TN",
+      "regional_language": "Tamil",
+      "regional_keywords": [
+        "புதிய தொழிற்சாலை"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "SIPCOT",
+        "SIDCO"
+      ],
+      "clusters": [
+        {
+          "name": "Coimbatore",
+          "areas": [],
+          "industries": [
+            "pumps",
+            "motors",
+            "textile machinery",
+            "wet grinders",
+            "foundry"
+          ]
+        },
+        {
+          "name": "Tiruppur",
+          "areas": [],
+          "industries": [
+            "knitwear"
+          ]
+        },
+        {
+          "name": "Karur",
+          "areas": [],
+          "industries": [
+            "home textiles"
+          ]
+        },
+        {
+          "name": "Erode",
+          "areas": [],
+          "industries": [
+            "textiles"
+          ]
+        },
+        {
+          "name": "Salem and Namakkal",
+          "areas": [],
+          "industries": [
+            "steel",
+            "sago",
+            "truck body building"
+          ]
+        },
+        {
+          "name": "Hosur",
+          "areas": [],
+          "industries": [
+            "auto",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Chennai belt",
+          "areas": [
+            "Ambattur",
+            "Guindy",
+            "Sriperumbudur",
+            "Oragadam"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Sivakasi",
+          "areas": [],
+          "industries": [
+            "printing",
+            "packaging"
+          ]
+        },
+        {
+          "name": "Ranipet, Vellore, Ambur and Vaniyambadi",
+          "areas": [],
+          "industries": [
+            "leather",
+            "footwear"
+          ]
+        },
+        {
+          "name": "Madurai",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Rajapalayam",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Karnataka",
+      "code": "KA",
+      "regional_language": "Kannada",
+      "regional_keywords": [
+        "ಹೊಸ ಕಾರ್ಖಾನೆ"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "KIADB"
+      ],
+      "clusters": [
+        {
+          "name": "Bengaluru",
+          "areas": [
+            "Peenya",
+            "Bommasandra",
+            "Jigani"
+          ],
+          "industries": [
+            "machine tools",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Belagavi",
+          "areas": [],
+          "industries": [
+            "foundry"
+          ],
+          "note": "Skip aerospace (R8)."
+        },
+        {
+          "name": "Hubballi-Dharwad",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Mysuru",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Tumakuru",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Davanagere",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Mangaluru",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Telangana",
+      "code": "TG",
+      "regional_language": "Telugu",
+      "regional_keywords": [
+        "కొత్త పరిశ్రమ"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "TGIIC (formerly TSIIC)"
+      ],
+      "clusters": [
+        {
+          "name": "Hyderabad",
+          "areas": [
+            "Jeedimetla",
+            "Patancheru",
+            "Balanagar",
+            "Cherlapally"
+          ],
+          "industries": [
+            "pharma",
+            "bulk drugs",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Sangareddy",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Medak",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Madhya Pradesh",
+      "code": "MP",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "MPIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Indore, Pithampur and Dewas",
+          "areas": [],
+          "industries": [
+            "auto",
+            "pharma",
+            "engineering",
+            "food"
+          ]
+        },
+        {
+          "name": "Mandideep (Bhopal)",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Malanpur (Gwalior)",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Jabalpur",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Ratlam",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Neemuch",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "state": "Uttar Pradesh (rest)",
+      "code": "UP",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "UPSIDA",
+        "GIDA"
+      ],
+      "clusters": [
+        {
+          "name": "Kanpur and Unnao",
+          "areas": [],
+          "industries": [
+            "leather",
+            "textiles"
+          ]
+        },
+        {
+          "name": "Lucknow",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Varanasi, Bhadohi and Mirzapur",
+          "areas": [],
+          "industries": [
+            "carpets"
+          ]
+        },
+        {
+          "name": "Gorakhpur",
+          "areas": [
+            "GIDA"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Prayagraj",
+          "areas": [],
+          "industries": []
+        }
+      ],
+      "note": "Shares the UP Lead_ID sequence with Uttar Pradesh (West and NCR belt) in Wave 1."
+    },
+    {
+      "wave": 2,
+      "state": "Dadra & Nagar Haveli and Daman & Diu",
+      "code": "DD",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Silvassa",
+          "areas": [],
+          "industries": [
+            "plastics",
+            "textiles",
+            "packaging",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Daman",
+          "areas": [],
+          "industries": [
+            "plastics",
+            "textiles",
+            "packaging",
+            "engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Andhra Pradesh",
+      "code": "AP",
+      "regional_language": "Telugu",
+      "regional_keywords": [
+        "కొత్త పరిశ్రమ"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "APIIC"
+      ],
+      "clusters": [
+        {
+          "name": "Visakhapatnam",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Sri City",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Nellore",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Vijayawada",
+          "areas": [
+            "Auto Nagar"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Guntur",
+          "areas": [],
+          "industries": [
+            "chilli",
+            "spices"
+          ]
+        },
+        {
+          "name": "Kakinada",
+          "areas": [],
+          "industries": [
+            "aqua feed",
+            "seafood"
+          ]
+        },
+        {
+          "name": "Anantapur",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "West Bengal",
+      "code": "WB",
+      "regional_language": "Bengali",
+      "regional_keywords": [
+        "নতুন কারখানা"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "WBIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Howrah",
+          "areas": [],
+          "industries": [
+            "engineering",
+            "foundry"
+          ]
+        },
+        {
+          "name": "Kolkata",
+          "areas": [
+            "Bantala"
+          ],
+          "industries": [
+            "leather"
+          ]
+        },
+        {
+          "name": "Durgapur and Asansol",
+          "areas": [],
+          "industries": [
+            "steel",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Haldia",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Siliguri",
+          "areas": [],
+          "industries": [
+            "tea processing"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Odisha",
+      "code": "OD",
+      "regional_language": "Odia",
+      "regional_keywords": [
+        "ନୂଆ କାରଖାନା"
+      ],
+      "fallback_languages": [
+        "Hindi",
+        "English"
+      ],
+      "industrial_agencies": [
+        "IDCO"
+      ],
+      "clusters": [
+        {
+          "name": "Jharsuguda",
+          "areas": [],
+          "industries": [
+            "metals",
+            "ancillaries"
+          ]
+        },
+        {
+          "name": "Angul",
+          "areas": [],
+          "industries": [
+            "metals",
+            "ancillaries"
+          ]
+        },
+        {
+          "name": "Rourkela",
+          "areas": [],
+          "industries": [
+            "metals",
+            "ancillaries"
+          ]
+        },
+        {
+          "name": "Kalinga Nagar",
+          "areas": [],
+          "industries": [
+            "metals",
+            "ancillaries"
+          ]
+        },
+        {
+          "name": "Cuttack",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Balasore",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Khordha",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Jharkhand",
+      "code": "JH",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "JIADA"
+      ],
+      "clusters": [
+        {
+          "name": "Jamshedpur and Adityapur",
+          "areas": [],
+          "industries": [
+            "auto components"
+          ]
+        },
+        {
+          "name": "Ranchi",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Bokaro",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Dhanbad",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Chhattisgarh",
+      "code": "CG",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "CSIDC"
+      ],
+      "clusters": [
+        {
+          "name": "Raipur",
+          "areas": [
+            "Urla",
+            "Siltara"
+          ],
+          "industries": [
+            "steel",
+            "sponge iron",
+            "rolling"
+          ]
+        },
+        {
+          "name": "Bhilai",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Korba",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Kerala",
+      "code": "KL",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "KSIDC",
+        "KINFRA"
+      ],
+      "clusters": [
+        {
+          "name": "Kochi",
+          "areas": [
+            "Kalamassery"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Kollam",
+          "areas": [],
+          "industries": [
+            "cashew"
+          ]
+        },
+        {
+          "name": "Alappuzha",
+          "areas": [],
+          "industries": [
+            "coir"
+          ]
+        },
+        {
+          "name": "Kozhikode",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Kannur",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Goa",
+      "code": "GA",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Verna",
+          "areas": [],
+          "industries": [
+            "pharma",
+            "engineering"
+          ]
+        },
+        {
+          "name": "Kundaim",
+          "areas": [],
+          "industries": [
+            "pharma",
+            "engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Bihar",
+      "code": "BR",
+      "regional_language": "Hindi",
+      "regional_keywords": [
+        "नई यूनिट",
+        "नया प्लांट",
+        "करोड़ का निवेश",
+        "विस्तार"
+      ],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "BIADA"
+      ],
+      "clusters": [
+        {
+          "name": "Patna",
+          "areas": [
+            "Fatuha"
+          ],
+          "industries": []
+        },
+        {
+          "name": "Hajipur",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Muzaffarpur",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Bhagalpur",
+          "areas": [],
+          "industries": [
+            "silk"
+          ]
+        },
+        {
+          "name": "Begusarai",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 3,
+      "state": "Puducherry",
+      "code": "PY",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [
+        "PIPDIC"
+      ],
+      "clusters": [
+        {
+          "name": "Industrial estates",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Assam",
+      "code": "AS",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Guwahati",
+          "areas": [],
+          "industries": []
+        },
+        {
+          "name": "Tinsukia",
+          "areas": [],
+          "industries": []
+        }
+      ],
+      "state_focus": [
+        "tea"
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Meghalaya",
+      "code": "ML",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Byrnihat",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Tripura",
+      "code": "TR",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": [
+            "rubber"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Sikkim",
+      "code": "SK",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": [
+            "pharma"
+          ]
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Arunachal Pradesh",
+      "code": "AR",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Manipur",
+      "code": "MN",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Mizoram",
+      "code": "MZ",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Nagaland",
+      "code": "NL",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Ladakh",
+      "code": "LA",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Andaman & Nicobar Islands",
+      "code": "AN",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    },
+    {
+      "wave": 4,
+      "state": "Lakshadweep",
+      "code": "LD",
+      "regional_language": null,
+      "regional_keywords": [],
+      "fallback_languages": [
+        "English"
+      ],
+      "industrial_agencies": [],
+      "clusters": [
+        {
+          "name": "Statewide",
+          "areas": [],
+          "industries": []
+        }
+      ]
+    }
+  ]
+}
