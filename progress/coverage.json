@@ -14,7 +14,7 @@
           "marketplaces": false,
           "jobs": false,
           "done": false,
-          "notes": "Search-only pass 25-Sep-2026: 30 unverified candidates in output/Candidates_Ludhiana_UNVERIFIED.xlsx (3 Strong, 5 Good, 22 Check). Sweeps cut short by the session search limit; nothing verified yet"
+          "notes": "Search-only pass 25-Sep-2026: 24 unverified candidates with websites, directors and owner contact pages in output/Candidates_Ludhiana_UNVERIFIED.xlsx (2 Strong, 9 Good, 13 Check). Owner mobiles not captured (page fetches blocked)"
         },
         "Jalandhar": {
           "ratings": false,

@@ -100,4 +100,22 @@ def test_enrichment_adds_site_directors_and_ranked_contact_pages(tmp_path):
     assert first.value == "IndiaMART: A. Fictional (MD)" and first.hyperlink.target == "https://www.indiamart.com/fictional-gears/"
     assert ws.cell(row=2, column=col["Contact_Page_2"]).value == "Company contact page"
     assert not ws.cell(row=2, column=col["Contact_Page_3"]).value          # the data-broker link was dropped
-    assert "owner or a director" in ws.cell(row=2, column=col["Owner_Mobile"]).value
+    assert ws.cell(row=2, column=col["Owner_Mobile"]).value.startswith(
+        "Likely on Contact_Page_1 (IndiaMART), which names A. Fictional (MD)")
+
+
+def test_doubtful_director_label_is_not_treated_as_owner(tmp_path):
+    data = {"candidates": [{"company_name": "Fictional Looms Ltd", "is_manufacturer": "Yes", "revenue_cr": 90,
+                            "revenue_fy": "FY2025", "popularity_or_group_flags": "None found"}], "screened_out": []}
+    enrich = [{"company_name": "Fictional Looms Ltd", "website": "Not found",
+               "directors": [{"name": "C. Fictional", "designation": "Director", "note": "not next-gen: status unverified"}],
+               "owner_contact_pages": [{"type": "TradeIndia", "url": "https://www.tradeindia.com/fictional-looms/",
+                                        "listed_contact_person": "Mr. X, Director (not an MCA director, likely staff)"}]}]
+    (tmp_path / "c.json").write_text(json.dumps(data))
+    (tmp_path / "e.json").write_text(json.dumps(enrich))
+    X.build([tmp_path / "c.json"], "Ludhiana", "Punjab", "LDH", tmp_path / "d.xlsx", use_db=False, today=TODAY,
+            enrich=[tmp_path / "e.json"])
+    ws = load_workbook(tmp_path / "d.xlsx")["Candidates"]
+    col = {c.value: i + 1 for i, c in enumerate(ws[1])}
+    assert ws.cell(row=2, column=col["Owner_Mobile"]).value.startswith("Open Contact_Page_1-3")
+    assert ws.cell(row=2, column=col["Next_Gen"]).value == "Not found"

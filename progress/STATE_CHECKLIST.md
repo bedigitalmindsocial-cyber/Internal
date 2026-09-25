@@ -22,7 +22,7 @@ GENERATED markers). Everything above the markers is kept by hand.
 <!-- BEGIN GENERATED: scripts/progress.py render -->
 ## Wave 1
 ### Punjab [IN PROGRESS] screened: 0 | A: 0 | B: 0 | C: 0 | longterm: 0 | rejected: 0
-- [ ] Ludhiana: [ ] ratings [ ] EC/CTE [ ] expos [ ] associations [ ] regional news [ ] marketplaces [ ] jobs (Search-only pass 25-Sep-2026: 30 unverified candidates in output/Candidates_Ludhiana_UNVERIFIED.xlsx (3 Strong, 5 Good, 22 Check). Sweeps cut short by the session search limit; nothing verified yet)
+- [ ] Ludhiana: [ ] ratings [ ] EC/CTE [ ] expos [ ] associations [ ] regional news [ ] marketplaces [ ] jobs (Search-only pass 25-Sep-2026: 24 unverified candidates with websites, directors and owner contact pages in output/Candidates_Ludhiana_UNVERIFIED.xlsx (2 Strong, 9 Good, 13 Check). Owner mobiles not captured (page fetches blocked))
 - [ ] Jalandhar: [ ] ratings [ ] EC/CTE [ ] expos [ ] associations [ ] regional news [ ] marketplaces [ ] jobs
 - [ ] Mandi Gobindgarh and Khanna: [ ] ratings [ ] EC/CTE [ ] expos [ ] associations [ ] regional news [ ] marketplaces [ ] jobs
 - [ ] Batala: [ ] ratings [ ] EC/CTE [ ] expos [ ] associations [ ] regional news [ ] marketplaces [ ] jobs

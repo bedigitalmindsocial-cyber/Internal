@@ -44,7 +44,7 @@ COLUMNS = [
     ("Exports", 22), ("Screen_Check", 26), ("Likely_Offer", 22), ("Likely_Segments", 24), ("Still_To_Verify", 40),
     ("Notes", 40), ("All_Source_URLs", 50),
 ]
-WRAP = {"Directors", "Next_Gen", "Owner_Mobile", "Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
+WRAP = {"Directors", "Next_Gen", "Owner_Mobile", "Contact_Page_1", "Contact_Page_2", "Contact_Page_3", "Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
         "Other_Signals", "Promoters", "Exports", "Screen_Check", "Still_To_Verify", "Notes", "All_Source_URLs",
         "Likely_Offer", "Likely_Segments"}
 URL_COLS = {"Website_URL", "Revenue_Source_URL", "Signal_Source_URL"}
@@ -53,6 +53,11 @@ THIN = Side(style="thin", color="D9D9D9")
 
 def _blank(v) -> bool:
     return C.is_blank(v) or str(v).strip().lower() in {"none", "none found", "no"}
+
+
+def _nf(v) -> bool:
+    """Blank, or a researcher's 'Not found (...)' note rather than a value."""
+    return _blank(v) or str(v).strip().lower().startswith("not found")
 
 
 def flags_clear(v) -> bool:
@@ -249,6 +254,11 @@ def screen(c: dict, today: date) -> tuple[str | None, str]:
 
 PAGE_PRIORITY = ["IndiaMART", "TradeIndia", "Justdial", "ExportersIndia", "Exhibitor page",
                  "Association directory", "Google Business", "Company contact page", "Other"]
+NEXTGEN_RE = re.compile(r"next-gen \(probable|possible next-gen|^next-gen:", re.I)
+OWNER_ROLE_RE = re.compile(r"director|chairman|\bcmd\b|\bmd\b|managing|owner|proprietor|promoter|partner|\bceo\b|"
+                           r"founder|president", re.I)
+DOUBT_RE = re.compile(r"not an mca director|not on (the )?mca board|likely staff|placeholder|unreliable|dealer|"
+                      r"another firm|not an owner|directors page|profile page|published by the company", re.I)
 BROKER_RE = re.compile(r"rocketreach|zoominfo|easyleadz|lusha|apollo\.io|signalhire|contactout|truecaller|"
                        r"leadiq|seamless\.ai|datanyze|slintel", re.I)
 
@@ -259,19 +269,42 @@ def enrich_fields(c: dict) -> dict:
     dirs = [d for d in e.get("directors") or [] if isinstance(d, dict) and not _blank(d.get("name"))]
     fmt = lambda d: d["name"] + (f" ({d['designation']})" if not _blank(d.get("designation")) else "") + (
         f", since {d['appointed']}" if not _blank(d.get("appointed")) else "")
-    nextgen = [fmt(d) for d in dirs if "next-gen" in str(d.get("note", "")).lower()]
+    nextgen = [fmt(d) for d in dirs if NEXTGEN_RE.search(str(d.get("note", "")))]
     pages = [pg for pg in e.get("owner_contact_pages") or []
              if isinstance(pg, dict) and C.first_url(pg.get("url")) and not BROKER_RE.search(pg.get("url", ""))]
     rank = {t.lower(): i for i, t in enumerate(PAGE_PRIORITY)}
-    pages.sort(key=lambda pg: rank.get(str(pg.get("type", "Other")).lower(), len(PAGE_PRIORITY)))
+
+    def person(pg) -> str:
+        t = str(pg.get("listed_contact_person") or "").strip()
+        return "" if not t or re.match(r"not (found|shown|named)", t, re.I) else t
+
+    def owner_named(pg) -> bool:
+        t = person(pg)
+        return bool(t) and bool(OWNER_ROLE_RE.search(t)) and not DOUBT_RE.search(t)
+
+    # Owner-named listings first, then one page per type in priority order, then the rest.
+    ordered, seen_types = [], set()
+    by_rank = sorted(pages, key=lambda pg: rank.get(str(pg.get("type", "Other")).lower(), len(PAGE_PRIORITY)))
+    for pg in [x for x in by_rank if owner_named(x)]:
+        ordered.append(pg)
+    for pg in by_rank:
+        t = str(pg.get("type", "Other")).lower()
+        if pg not in ordered and t not in seen_types:
+            ordered.append(pg)
+            seen_types.add(t)
+    ordered += [pg for pg in by_rank if pg not in ordered]
+    pages = ordered
     out = {"Directors": "; ".join(fmt(d) for d in dirs) or "Not found",
            "Next_Gen": "; ".join(nextgen) or "Not found",
-           "Owner_Mobile": ("Not captured yet: open Contact_Page_1-3 and use the number only if the listed contact "
-                            "is the owner or a director" if pages else "Not found yet: no self-published listing found")}
+           "Owner_Mobile": ("Open Contact_Page_1-3; use a number only if it belongs to the owner or a director"
+                            if pages else "Not found yet: no self-published listing found")}
+    if pages and owner_named(pages[0]):
+        out["Owner_Mobile"] = (f"Likely on Contact_Page_1 ({pages[0].get('type')}), which names "
+                               f"{person(pages[0])[:70]}. Confirm the number is theirs before calling")
     for i in range(3):
         if i < len(pages):
             pg = pages[i]
-            who = "" if _blank(pg.get("listed_contact_person")) else f": {pg['listed_contact_person']}"
+            who = f": {person(pg)[:70]}" if person(pg) else ""
             out[f"Contact_Page_{i + 1}"] = (f"{pg.get('type') or 'Page'}{who}", C.first_url(pg["url"]))
         else:
             out[f"Contact_Page_{i + 1}"] = ""
@@ -313,7 +346,7 @@ def assess(c: dict, today: date) -> dict:
     else:
         size_conf = "Medium (search extract)"
     ex = enrich_fields(c)
-    site_found = not _blank(c.get("website")) or "_website" in ex
+    site_found = not _nf(c.get("website")) or "_website" in ex
     todo = ["website decay audit", "owner mobile from the contact pages (owner or director only)",
             "MCA status and holding company"]
     if rev is None:
@@ -339,7 +372,7 @@ def assess(c: dict, today: date) -> dict:
         "Industry": c.get("industry") if c.get("industry") in C.INDUSTRIES else (c.get("industry") or "Not found"),
         "Key_Products": c.get("products") or "Not found",
         "Area": c.get("city_area") or "Ludhiana",
-        "Website_URL": (c.get("website") if not _blank(c.get("website")) and not C.is_shared_platform(c.get("website"))
+        "Website_URL": (c.get("website") if not _nf(c.get("website")) and not C.is_shared_platform(c.get("website"))
                         else ex.get("_website") or "Not found"),
         **{k: v for k, v in ex.items() if not k.startswith("_")},
         "Revenue_Cr": rev if rev is not None else "Not found",

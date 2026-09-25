@@ -38,3 +38,22 @@ sources that worked best, next step.
 - **Next step:** in a session with Full network access, verify the 8 Strong and Good candidates first (website audit,
   turnover from the source document, owner mobile, MCA status), then work through the Check rows and the follow-ups.
   Ludhiana's source checkboxes stay unticked because the sweeps were incomplete.
+
+### 25-Sep-2026 (same session, later): Ludhiana contact enrichment
+- **Why:** the user asked for website links and the owners' own phone numbers, not the website numbers.
+- **Done:** three parallel search sweeps for all 30 candidates: official websites (21 of 24 remaining candidates
+  found), current directors from MCA aggregators (23 of 24), probable next-gen directors, and the company's own
+  listing pages (IndiaMART, TradeIndia, Justdial, ExportersIndia, exhibitor and association entries) where owners
+  publish their mobiles. 6 listings name the owner or a director as the contact (Shingora, Rex Sewing, Shiva Texfabs,
+  Surindera Cycles, Vidhata, Yerik).
+- **Owner mobiles:** not written into the sheet. Page fetches are still blocked, and numbers read from search summaries
+  cannot be checked against the source page. The sheet links each listing so the team can read the number directly.
+  Data brokers, Truecaller-style lookups and bought lists stay excluded (Section 8).
+- **Changed by the new evidence:** screened out Sobhagia Sales (Sportking group, R4), Eastman Cast and Forge (Eastman
+  Group, R4), Aarti Steels (above Rs 500 Cr, R1), Falcon Garden Tools, Lotus Cycles and Upper India Steel (below
+  Rs 50 Cr, R2). Vallabh Textiles moved from Strong to Check: after insolvency it is controlled by listed Sabrimala
+  Industries (possible R4, user to decide). Shah Foils flagged for Wave 2 (Gujarat head office). Bansal Spinning
+  (Rs 391 Cr) and Jawandsons (Rs 417 Cr) upgraded to Good.
+- **Result:** 24 candidates (Strong 2, Good 9, Check 13), 64 screened out. Metro Tyres not researched (search
+  allowance ran out again).
+- **Next step:** unchanged: Full network access, then verify and capture owner mobiles from the linked listings.
