@@ -38,9 +38,10 @@ def test_merge_screen_and_workbook(tmp_path):
     (tmp_path / "b.json").write_text(json.dumps(B))
     res = X.build([tmp_path / "a.json", tmp_path / "b.json"], "Ludhiana", "Punjab", "LDH",
                   tmp_path / "c.xlsx", use_db=False, today=TODAY)
-    assert (res["candidates"], res["Strong"], res["Good"], res["Check"]) == (3, 1, 1, 1)
+    assert (res["candidates"], res["Strong"], res["Good"], res["Check"]) == (2, 1, 1, 0)
     wb = load_workbook(tmp_path / "c.xlsx")
-    assert wb.sheetnames == ["Read_Me", "Candidates", "Screened_Out"]
+    assert wb.sheetnames == ["Read_Me", "Candidates", "Follow_Up", "Screened_Out"]
+    assert [r[0].value for r in wb["Follow_Up"].iter_rows(min_row=2)] == ["Fictional Tools"]
     ws = wb["Candidates"]
     head = [c.value for c in ws[1]]
     first = {h: ws.cell(row=2, column=i + 1).value for i, h in enumerate(head)}
@@ -54,3 +55,21 @@ def test_merge_screen_and_workbook(tmp_path):
     reasons = {r[0].value: r[1].value for r in wb["Screened_Out"].iter_rows(min_row=2)}
     assert reasons == {"Fictional Listed Forge Ltd": "R5", "Fictional Big Steel Pvt Ltd": "R1",
                        "Fictional Traders": "R7", "Fictional Hotels Pvt Ltd": "R7"}
+
+
+def test_review_note_keeps_flagged_company_visible(tmp_path):
+    data = {"candidates": [{"company_name": "Fictional Springs Ltd", "is_manufacturer": "Yes", "revenue_cr": 114,
+                            "revenue_fy": "FY2025", "popularity_or_group_flags": "A venture capital firm holds 20%",
+                            "review_note": "Legacy stake: decide R4"},
+                           {"company_name": "Fictional Tyres", "is_manufacturer": "Yes", "revenue_cr": 325,
+                            "revenue_fy": "FY2023",
+                            "popularity_or_group_flags": "No stock listing, large-group link or Wikipedia page found"}],
+            "screened_out": []}
+    (tmp_path / "r.json").write_text(json.dumps(data))
+    res = X.build([tmp_path / "r.json"], "Ludhiana", "Punjab", "LDH", tmp_path / "r.xlsx", use_db=False, today=TODAY)
+    assert (res["candidates"], res["Good"], res["Check"]) == (2, 1, 1)
+    ws = load_workbook(tmp_path / "r.xlsx")["Candidates"]
+    head = [c.value for c in ws[1]]
+    rows = [{h: ws.cell(row=r, column=i + 1).value for i, h in enumerate(head)} for r in (2, 3)]
+    assert rows[0]["Company_Name"] == "Fictional Tyres" and rows[0]["Fit"] == "Good"
+    assert rows[1]["Fit"] == "Check" and "REVIEW: Legacy stake" in rows[1]["Screen_Check"]

@@ -1,9 +1,9 @@
 {
   "states": {
     "Punjab": {
-      "status": "Not Started",
+      "status": "In Progress",
       "notes": "",
-      "last_updated": null,
+      "last_updated": "25-Sep-2026",
       "clusters": {
         "Ludhiana": {
           "ratings": false,
@@ -14,7 +14,7 @@
           "marketplaces": false,
           "jobs": false,
           "done": false,
-          "notes": ""
+          "notes": "Search-only pass 25-Sep-2026: 30 unverified candidates in output/Candidates_Ludhiana_UNVERIFIED.xlsx (3 Strong, 5 Good, 22 Check). Sweeps cut short by the session search limit; nothing verified yet"
         },
         "Jalandhar": {
           "ratings": false,

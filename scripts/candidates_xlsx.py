@@ -40,16 +40,24 @@ COLUMNS = [
     ("Website_URL", 26), ("Revenue_Cr", 10), ("Revenue_FY", 10), ("Revenue_Source", 30), ("Revenue_Source_URL", 30),
     ("Size_Confidence", 22), ("Rating", 26), ("Signal_Type", 16), ("Signal_Detail", 36), ("Signal_Date", 12),
     ("Signal_Source_URL", 30), ("Other_Signals", 30), ("Promoters", 26), ("Year_Established", 10),
-    ("Exports", 22), ("Screen_Check", 26), ("Still_To_Verify", 40), ("Notes", 40), ("All_Source_URLs", 50),
+    ("Exports", 22), ("Screen_Check", 26), ("Likely_Offer", 22), ("Likely_Segments", 24), ("Still_To_Verify", 40),
+    ("Notes", 40), ("All_Source_URLs", 50),
 ]
 WRAP = {"Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
-        "Other_Signals", "Promoters", "Exports", "Screen_Check", "Still_To_Verify", "Notes", "All_Source_URLs"}
+        "Other_Signals", "Promoters", "Exports", "Screen_Check", "Still_To_Verify", "Notes", "All_Source_URLs",
+        "Likely_Offer", "Likely_Segments"}
 URL_COLS = {"Website_URL", "Revenue_Source_URL", "Signal_Source_URL"}
 THIN = Side(style="thin", color="D9D9D9")
 
 
 def _blank(v) -> bool:
     return C.is_blank(v) or str(v).strip().lower() in {"none", "none found", "no"}
+
+
+def flags_clear(v) -> bool:
+    """Researchers write 'None found (...)' or 'No stock listing, group link or Wikipedia page found'."""
+    t = str(v or "").strip().lower()
+    return _blank(v) or t.startswith("none found") or (t.startswith("no ") and "found" in t)
 
 
 def flexible_date(value) -> tuple[date | None, str]:
@@ -85,7 +93,8 @@ def signal_type_for(kind: str, url: str) -> str:
 
 
 def extract_signals(c: dict) -> list[dict]:
-    out = []
+    # Explicit typed signals (researcher-curated) come first; field-derived ones follow.
+    out = [dict(sig) for sig in c.get("signals_explicit", []) if isinstance(sig, dict)]
     if not _blank(c.get("expansion_signal")):
         kind = c.get("expansion_type") or ""
         out.append({"type": signal_type_for(kind, c.get("expansion_url", "")), "detail": c["expansion_signal"],
@@ -100,6 +109,10 @@ def extract_signals(c: dict) -> list[dict]:
     return out
 
 
+def when_text(d: date, prec: str) -> str:
+    return C.fmt_date(d) if prec == "day" else f"{C.MONTHS[d.month - 1]}-{d.year}" if prec == "month" else str(d.year)
+
+
 def signal_valid(sig: dict, today: date) -> tuple[bool, str]:
     d, prec = flexible_date(sig.get("date"))
     if not C.first_url(sig.get("url")):
@@ -107,36 +120,74 @@ def signal_valid(sig: dict, today: date) -> tuple[bool, str]:
     if d is None:
         return False, "date unclear"
     if sig["type"] == "Trade fair":
-        return (d.year >= today.year - 1), f"{d.year} edition"
-    if sig["type"] == "Pvt to Public or SME IPO":
-        return C.months_between(d, today) <= 18, C.fmt_date(d) if prec == "day" else str(d.year)
-    return C.months_between(d, today) <= 18, (C.fmt_date(d) if prec == "day" else f"{C.MONTHS[d.month - 1]}-{d.year}")
+        return (d.year >= today.year - 1), f"{when_text(d, prec)} ({d.year} edition)"
+    # Year-only dates start on 1 Jan, so they pass only when the whole year sits inside the window.
+    return C.months_between(d, today) <= 18, when_text(d, prec)
+
+
+FIELD_GROUPS = [  # fields that must travel together when two sweeps disagree
+    ("revenue_cr", "revenue_fy", "revenue_source", "revenue_url"),
+    ("promoters", "promoters_url"),
+    ("rating", "rating_url"),
+]
+
+
+def name_key(name) -> str:
+    return C.norm_company_name(re.sub(r"\(.*?\)", " ", str(name or "")))
+
+
+def _fy_rank(fy) -> str:
+    m = re.search(r"(20\d{2})", str(fy or ""))
+    return m.group(1) if m else ""
 
 
 def merge(records: list[dict]) -> list[dict]:
     by_key: dict[str, dict] = {}
     for rec in records:
-        key = C.norm_company_name(rec.get("company_name"))
+        key = name_key(rec.get("company_name"))
         if not key:
             continue
         if key not in by_key:
             base = dict(rec)
+            base["company_name"] = re.sub(r"\s*\(.*?\)\s*", " ", str(rec["company_name"])).strip()
             base["signals"] = extract_signals(rec)
             base["sources"] = set()
             base["found_by"] = {rec.get("_found_by", "")}
             by_key[key] = base
         else:
             base = by_key[key]
+            grouped = {f for g in FIELD_GROUPS for f in g}
+            special = grouped | {"is_manufacturer", "manufacturer_evidence", "popularity_or_group_flags",
+                                 "flags_url", "review_note", "company_name", "signals_explicit"}
             for k, v in rec.items():
-                if k.startswith("_"):
+                if k.startswith("_") or k in special:
                     continue
                 if _blank(base.get(k)) and not _blank(v):
                     base[k] = v
-            # Prefer the most recent revenue year when two sources disagree.
-            fy_new, fy_old = str(rec.get("revenue_fy") or ""), str(base.get("revenue_fy") or "")
-            if rec.get("revenue_cr") not in (None, "") and fy_new > fy_old:
-                for k in ("revenue_cr", "revenue_fy", "revenue_source", "revenue_url"):
+            # Revenue: take the other sweep's figure when ours is missing or older (whole group moves).
+            new_rev = isinstance(rec.get("revenue_cr"), (int, float))
+            old_rev = isinstance(base.get("revenue_cr"), (int, float))
+            if new_rev and (not old_rev or _fy_rank(rec.get("revenue_fy")) > _fy_rank(base.get("revenue_fy"))):
+                for k in FIELD_GROUPS[0]:
                     base[k] = rec.get(k)
+            for group in FIELD_GROUPS[1:]:
+                if _blank(base.get(group[0])) and not _blank(rec.get(group[0])):
+                    for k in group:
+                        base[k] = rec.get(k)
+            # Manufacturer: evidenced "Yes" beats "Unclear".
+            if (str(base.get("is_manufacturer", "")).lower() != "yes"
+                    and str(rec.get("is_manufacturer", "")).lower() == "yes"):
+                base["is_manufacturer"] = "Yes"
+                base["manufacturer_evidence"] = rec.get("manufacturer_evidence")
+            # Flags: a real flag from any sweep is kept; "none found" never overwrites it.
+            f_old, f_new = base.get("popularity_or_group_flags"), rec.get("popularity_or_group_flags")
+            if not flags_clear(f_new):
+                if flags_clear(f_old):
+                    base["popularity_or_group_flags"], base["flags_url"] = f_new, rec.get("flags_url")
+                elif str(f_new) != str(f_old):
+                    base["popularity_or_group_flags"] = f"{f_old} | {f_new}"
+            if not _blank(rec.get("review_note")):
+                base["review_note"] = "; ".join(x for x in [base.get("review_note"), rec["review_note"]] if not _blank(x))
             base["signals"] += extract_signals(rec)
             base["found_by"].add(rec.get("_found_by", ""))
         for v in rec.values():
@@ -148,6 +199,9 @@ def merge(records: list[dict]) -> list[dict]:
 
 def reason_code(reason: str) -> str:
     """Best-effort reject code for a researcher's free-text screen-out reason ('' when unclear)."""
+    explicit = re.search(r"\b(R1[0-2]|R[1-9])\b", reason or "")
+    if explicit:
+        return explicit.group(1)
     r = (reason or "").lower()
     rules = [("R10", r"existing client"), ("R5", r"main[\s-]*board|listed on (the )?(nse|bse)"),
              ("R4", r"subsidiary|group company|part of .* group|\bmnc\b|pe[/ -]?vc|private equity|venture"),
@@ -165,12 +219,14 @@ def reason_code(reason: str) -> str:
 
 def screen(c: dict, today: date) -> tuple[str | None, str]:
     """Return (reject_code, reason) when the brief's gates already rule the company out."""
+    if not _blank(c.get("review_note")):
+        return None, ""   # a researcher flagged this for a human decision: keep it visible as Check
     if str(c.get("is_manufacturer", "")).strip().lower() == "no":
         return "R7", f"not a manufacturer ({c.get('manufacturer_evidence') or 'per source'})"
     excl = C.match_exclusion(c.get("company_name", ""))
     if excl and excl[1] == "exact":
         return "R10", f"existing client ({excl[0]})"
-    flags = str(c.get("popularity_or_group_flags") or "")
+    flags = "" if flags_clear(c.get("popularity_or_group_flags")) else str(c.get("popularity_or_group_flags") or "")
     if re.search(r"main[\s-]*board", flags, re.I) or (re.search(r"listed on (the )?(nse|bse)\b", flags, re.I)
                                                       and not re.search(r"sme|emerge", flags, re.I)):
         return "R5", f"main-board listed ({flags})"
@@ -191,8 +247,12 @@ def screen(c: dict, today: date) -> tuple[str | None, str]:
 
 
 def assess(c: dict, today: date) -> dict:
-    valid, other = [], []
+    valid, other, seen = [], [], set()
     for s in c["signals"]:
+        key = (s.get("type"), C.first_url(s.get("url")) or s.get("detail"))
+        if key in seen:
+            continue
+        seen.add(key)
         ok, when = signal_valid(s, today)
         s["_when"] = when
         (valid if ok else other).append(s)
@@ -201,10 +261,10 @@ def assess(c: dict, today: date) -> dict:
     rev = c.get("revenue_cr") if isinstance(c.get("revenue_cr"), (int, float)) else None
     in_band = rev is not None and 50 <= rev <= 500
     manuf = str(c.get("is_manufacturer", "")).strip().lower() == "yes"
-    flags_clear = _blank(c.get("popularity_or_group_flags"))
-    if in_band and manuf and flags_clear and best and SIGNAL_SCORE.get(best["type"], 0) >= 3:
+    clear = flags_clear(c.get("popularity_or_group_flags")) and _blank(c.get("review_note"))
+    if in_band and manuf and clear and best and SIGNAL_SCORE.get(best["type"], 0) >= 3:
         fit = "Strong"
-    elif in_band and manuf and flags_clear:
+    elif in_band and manuf and clear:
         fit = "Good"
     else:
         fit = "Check"
@@ -226,11 +286,15 @@ def assess(c: dict, today: date) -> dict:
         todo.insert(0, "confirm own plant (manufacturer)")
     if _blank(c.get("website")):
         todo.append("find website, or confirm none (SEG-NOWEB)")
-    segs = []
-    if best and best["type"] == "Trade fair":
+    segs = [C.INDUSTRY_SEGMENT[c["industry"]]] if C.INDUSTRY_SEGMENT.get(c.get("industry")) else []
+    if any(s["type"] == "Trade fair" for s in valid):
         segs.append("SEG-EXPO")
+    if not _blank(c.get("exports")) and not str(c.get("exports")).lower().startswith("not"):
+        segs.append("SEG-EXPORT")
     if any(s["type"] == "Pvt to Public or SME IPO" for s in c["signals"]):
         segs.append("CAPMKT")
+    import score as _score   # same Section 10.8 rule the Active pipeline uses
+    offer = _score.recommended_offer(set(segs), rev, False)
     return {
         "Fit": fit,
         "Company_Name": c.get("company_name"),
@@ -252,10 +316,12 @@ def assess(c: dict, today: date) -> dict:
         "Promoters": c.get("promoters") or "Not found",
         "Year_Established": c.get("year_established") or "Not found",
         "Exports": c.get("exports") or "Not found",
-        "Screen_Check": c.get("popularity_or_group_flags") or "None found",
+        "Likely_Offer": offer + " (provisional)",
+        "Likely_Segments": ", ".join(segs) or "Not found",
+        "Screen_Check": "; ".join(x for x in [c.get("popularity_or_group_flags") or "None found",
+                                              ("REVIEW: " + c["review_note"]) if not _blank(c.get("review_note")) else ""] if x),
         "Still_To_Verify": "; ".join(todo),
-        "Notes": "; ".join(x for x in [c.get("manufacturer_evidence") if manuf else "", c.get("notes") or "",
-                                       ("Segments: " + ", ".join(segs)) if segs else ""] if x),
+        "Notes": "; ".join(x for x in [c.get("manufacturer_evidence") if manuf else "", c.get("notes") or ""] if x),
         "All_Source_URLs": "\n".join(sorted(c["sources"])),
         "_score": SIGNAL_SCORE.get(best["type"], 0) if best else 0,
         "_rev": rev or 0,
@@ -289,6 +355,22 @@ def _write(ws, headers, rows, widths, fill_key=None, fills=None, url_cols=(), wr
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{max(len(rows) + 1, 2)}"
 
 
+SWEEP_LABELS = {"acuite": "Acuité ratings sweep", "agencies": "CARE, ICRA, CRISIL, Infomerics, India Ratings, Brickwork sweep",
+                "fairs": "Trade fairs and exporters sweep", "news_sme": "Expansion news and SME IPO sweep"}
+
+
+def coverage_line(path) -> str:
+    stem = Path(path).stem
+    label = next((v for k, v in SWEEP_LABELS.items() if stem.endswith(k)), stem)
+    st = json.loads(Path(path).read_text(encoding="utf-8")).get("sweep_status") or {}
+    parts = [("Complete" if st.get("complete") else "Incomplete") if "complete" in st else ""]
+    for key, name in (("reason", ""), ("covered", "Covered"), ("worked_best", "Worked best"), ("yield", "Yield"),
+                      ("not_covered", "Not covered")):
+        if st.get(key):
+            parts.append(f"{name}: {st[key]}" if name else str(st[key]))
+    return f"{label}: " + ". ".join(x.rstrip(".") for x in parts if x) + "."
+
+
 def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, use_db: bool = True,
           today: date | None = None) -> dict:
     today = today or date.today()
@@ -303,9 +385,36 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
             screened.append({"Company_Name": s.get("company_name"), "Reject_Code": reason_code(s.get("reason")),
                              "Reason": s.get("reason"), "Source_URL": s.get("url"), "Found_By": label})
     merged = merge(cands)
-    rows = []
+    rows, follow = [], []
+    for path in inputs:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        items = list(data.get("follow_ups", [])) + list((data.get("sweep_notes") or {}).get("unresolved_names_for_follow_up", []))
+        for f in items:
+            follow.append({"Lead": f, "Detail": "", "Source_URL": C.first_url(f) or "", "Found_By": Path(path).stem})
+        for u in data.get("unresolved_leads", []):
+            follow.append({"Lead": u.get("lead"), "Detail": u.get("detail"), "Source_URL": u.get("url"),
+                           "Found_By": Path(path).stem})
+    agent_rejects = {}
+    for srow in screened:
+        k = name_key(srow["Company_Name"])
+        if k and srow.get("Reject_Code") and srow["Reject_Code"] != "R12":
+            agent_rejects.setdefault(k, srow)
     for c in merged:
+        hit = agent_rejects.get(name_key(c.get("company_name")))
+        if hit and _blank(c.get("review_note")):
+            screened.append({"Company_Name": c.get("company_name"), "Reject_Code": hit["Reject_Code"],
+                             "Reason": f"{hit['Reason']} (from another sweep)", "Source_URL": hit["Source_URL"],
+                             "Found_By": ", ".join(sorted(c["found_by"]))})
+            continue
+        thin = (str(c.get("is_manufacturer", "")).strip().lower() != "yes"
+                and not isinstance(c.get("revenue_cr"), (int, float)) and not c["signals"])
         code, why = screen(c, today)
+        if not code and thin:
+            follow.append({"Lead": c.get("company_name"), "Detail": f"Manufacturer status and size unknown. "
+                           f"{c.get('products') or ''}. {c.get('notes') or ''}".strip(),
+                           "Source_URL": c.get("rating_url") or c.get("revenue_url") or "",
+                           "Found_By": ", ".join(sorted(c["found_by"]))})
+            continue
         if code:
             screened.append({"Company_Name": c.get("company_name"), "Reject_Code": code, "Reason": why,
                              "Source_URL": c.get("revenue_url") or c.get("flags_url") or c.get("rating_url") or "",
@@ -313,10 +422,10 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
         else:
             rows.append(assess(c, today))
     # Drop screened-out duplicates of names that survived, and repeat rejections.
-    kept = {C.norm_company_name(r["Company_Name"]) for r in rows}
+    kept = {name_key(r["Company_Name"]) for r in rows}
     seen, uniq = set(), []
     for s in screened:
-        k = C.norm_company_name(s["Company_Name"])
+        k = name_key(s["Company_Name"])
         if not k or k in kept or k in seen:
             continue
         seen.add(k)
@@ -333,6 +442,11 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
     headers = [h for h, _ in COLUMNS]
     _write(ws, headers, rows, dict(COLUMNS), "Fit", FIT_FILL, URL_COLS, WRAP)
     ws.freeze_panes = "D2"
+    ws4 = wb.create_sheet("Follow_Up")
+    _write(ws4, ["Lead", "Detail", "Source_URL", "Found_By"], follow,
+           {"Lead": 60, "Detail": 70, "Source_URL": 50, "Found_By": 22}, url_cols={"Source_URL"},
+           wrap={"Lead", "Detail"})
+    ws4.freeze_panes = "B2"
     ws2 = wb.create_sheet("Screened_Out")
     _write(ws2, ["Company_Name", "Reject_Code", "Reason", "Source_URL", "Found_By"], screened,
            {"Company_Name": 34, "Reject_Code": 10, "Reason": 60, "Source_URL": 50, "Found_By": 24},
@@ -362,6 +476,9 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
         ["SIGNAL WINDOW"],
         ["Triggers count only within 18 months of the build date; trade fairs count for the current or previous "
          "year's edition. Older signals are listed under Other_Signals for context."],
+        [""],
+        ["COVERAGE AND GAPS"],
+    ] + [[coverage_line(pth)] for pth in inputs] + [
         [""],
         ["NEXT STEP"],
         ["Once web pages can be opened: audit each website (decay score 3+ required), confirm turnover from the "
