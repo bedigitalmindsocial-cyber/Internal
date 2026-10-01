@@ -36,6 +36,8 @@ const scan = (n) => {
 scan(content.slides);
 scan(content.meta);
 const DRAFT = placeholderCount > 0;
+// NO_WATERMARK=1: clean editable copy (e.g. for Canva), placeholders stay highlighted
+const NO_WATERMARK = process.env.NO_WATERMARK === '1';
 
 // Split text into runs; placeholders get a lilac highlight so they are easy to spot.
 function runs(text, opts = {}) {
@@ -117,7 +119,7 @@ function footer(s, dark = false) {
   });
 }
 function watermark(s) {
-  if (!DRAFT) return;
+  if (!DRAFT || NO_WATERMARK) return;
   s.addText('DRAFT', {
     x: 2.2, y: 2.2, w: 9, h: 3, rotate: -28, align: 'center', valign: 'middle',
     fontFace: F.body, fontSize: 150, bold: true, color: C.primary, transparency: 90, isTextBox: true,
@@ -471,9 +473,9 @@ for (const sl of content.slides) {
   fn(sl);
 }
 
-const outName = DRAFT ? 'Yerik_Proposal_DRAFT.pptx' : 'Yerik_Proposal_v1.pptx';
+const outName = NO_WATERMARK ? 'Yerik_Proposal_Editable.pptx' : (DRAFT ? 'Yerik_Proposal_DRAFT.pptx' : 'Yerik_Proposal_v1.pptx');
 const out = path.join(ROOT, 'output', outName);
-for (const f of ['Yerik_Proposal_DRAFT.pptx', 'Yerik_Proposal_v1.pptx']) { const p = path.join(ROOT, 'output', f); if (fs.existsSync(p)) fs.unlinkSync(p); }
+for (const f of NO_WATERMARK ? [outName] : ['Yerik_Proposal_DRAFT.pptx', 'Yerik_Proposal_v1.pptx']) { const p = path.join(ROOT, 'output', f); if (fs.existsSync(p)) fs.unlinkSync(p); }
 pres.writeFile({ fileName: out }).then(() => {
   fs.writeFileSync(path.join(ROOT, 'output/.build.json'), JSON.stringify({ file: outName, draft: DRAFT, placeholders: placeholderCount, missingShots: [...missingShots] }, null, 2));
   console.log(`Wrote output/${outName} (${pageNo} slides, ${placeholderCount} placeholders, ${missingShots.size} screenshots missing)`);

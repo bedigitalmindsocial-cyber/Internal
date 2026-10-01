@@ -31,3 +31,4 @@ npm run deck                # builds output/*.pptx, then PDF via LibreOffice (ne
 - While any `[[PRICE]]` or `[[CONFIRM...]]` is left, the file is `Yerik_Proposal_DRAFT` with a DRAFT watermark and placeholders highlighted in lilac. With none left it becomes `Yerik_Proposal_v1`.
 - Screenshots: drop `01_home_desktop.jpg` etc. into `work/screenshots/annotated/` (or `raw/`, or `inputs/manual-screenshots/` for 08–10). Grey "Screenshot needed" boxes are replaced on the next build.
 - If bare `soffice` hangs, set `SOFFICE` to a wrapper command.
+- Clean editable copy with no watermark (for Canva): `NO_WATERMARK=1 node scripts/build_pptx.js` writes `output/Yerik_Proposal_Editable.pptx`. In Canva: Create a design → Import file → pick the .pptx.
