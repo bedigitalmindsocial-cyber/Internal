@@ -73,3 +73,9 @@ sources that worked best, next step.
   staff, site age) launched on the 9 open Check rows.
 - **Proposed brief change (awaiting approval):** make a next-gen director an alternative to the Trigger >= 3 condition
   for Tier A in Section 10.7.
+- **Deep check result (9 Check rows, 01-Oct-2026):** Saeco Strips up to Good (Rs 214 Cr FY23, no-year footer,
+  next-gen). Screened out: Metro Tyres (R1, Rs 525 Cr FY24), Rex Sewing (R2, CARE D), Asian Bikes (R2, Rs 10-25 Cr band),
+  Freemans Measures (R2, Rs 35.5 Cr), Vidhata (R2, FY25 about Rs 0.6 Cr). Still Check: Surindera (likely below Rs 50 Cr),
+  Jain Shawls (which entity runs the plant), Shiva Texfabs (NCLT-sanctioned merger with BSE-listed Rudra Ecovation:
+  user decision, R5 vs capital-markets prospect). New: FMI Limited (FREEMANS brand, Rs 347 Cr; 'Superbrand' claim).
+  Sheet now 20 candidates (Strong 3, Good 10, Check 7), 69 screened out. No second Yerik-type profile found.
