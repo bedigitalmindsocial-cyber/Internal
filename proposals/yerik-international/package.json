@@ -1,0 +1,13 @@
+{
+  "name": "yerik-proposal",
+  "private": true,
+  "scripts": {
+    "deck": "node scripts/build_pptx.js && python3 scripts/to_pdf.py",
+    "lint": "python3 scripts/lint_content.py",
+    "capture": "node scripts/capture.mjs"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "pptxgenjs": "^3.12.0"
+  }
+}

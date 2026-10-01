@@ -66,9 +66,9 @@ slides:
 
   - n: 5
     type: screenshot
-    title: "Most people open your site on a phone. There, it looks weaker still."
+    title: "Most people open your site on a phone."
     image: 02_home_mobile
-    body: "This is the first screen on a phone. [[CONFIRM: describe what the capture shows, e.g. small text, broken layout]]"   # F36 F37
+    body: "On a phone, it looks weaker than on desktop. [[CONFIRM: describe what the capture shows, e.g. small text, broken layout]]"   # F36 F37
     callouts:
       - "[[CONFIRM: issue seen on capture]]"
       - "[[CONFIRM: issue seen on capture]]"
@@ -133,8 +133,32 @@ slides:
   - n: 10
     type: sitemaps
     title: "Your website today, and after 30 days."
-    left: { label: "Today", source: work/sitemaps/current.md }
-    right: { label: "After 30 days", source: work/sitemaps/new.md }
+    left:
+      label: "Today"
+      root: "yerikindia.com · local server, Ludhiana"
+      rows:
+        - { page: "Home", sub: "No headline, old logos", marks: [1, 2, 3] }
+        - { page: "Infrastructure", sub: "Shows the plant as it was in 2015–16", marks: [] }
+        - { page: "Products", sub: "10–13 ranges [[CONFIRM: count]]. No product details", marks: [4] }
+        - { page: "Careers", sub: "Form does not check any field", marks: [5] }
+        - { page: "Contact", sub: "Phone does not connect. Enquiry not answered", marks: [3, 6] }
+      legend:
+        - "No headline"
+        - "Old logos"
+        - "Phone does not connect"
+        - "No product details, “tweet” label"
+        - "Form takes wrong entries"
+        - "Enquiry not answered"
+    right:
+      label: "After 30 days"
+      root: "yerikindia.com · secure hosting, same domain"
+      rows:
+        - { page: "Home", sub: "One-line headline, key numbers, product range, November show" }
+        - { page: "About Us", sub: "Since 1991, new infrastructure, quality, markets" }
+        - { page: "Products", sub: "One card per range. Existing pages move across, old links work" }
+        - { page: "Careers", sub: "Open roles. Every form field checked" }
+        - { page: "Contact Us", sub: "Working phone, WhatsApp, enquiries to a named person" }
+      footnote: "Every page: same menu, footer with address and links, built for phone first."
 
   - n: 11
     type: columns5

@@ -1,4 +1,4 @@
-# TODO before sending (status: checkpoint, deck not built yet)
+# TODO before sending (status: DRAFT deck built)
 
 ## Blockers
 - [ ] **Network access.** This cloud session's egress policy blocked yerikindia.com, both competitor sites, web.archive.org and all directories. Either allow these hosts in the environment settings, or run `node scripts/capture.mjs` on a local machine. Until then there are no screenshots and no page counts.
@@ -22,8 +22,10 @@
 ## Other inputs missing
 - [ ] `inputs/OPR_Yerik.pdf` (to confirm D01 2/10 and D02 1.5/10 scores)
 - [ ] Giraffe Partners logo in `brand/`. The logo in giraffe-website/public/logo.png is **Life With Giraffe**: do not use.
-- [ ] Fonts in `brand/`: Coolvetica, PP Editorial New, Neue Montreal. Otherwise fallbacks: Archivo, Fraunces, Inter.
+- [ ] Fonts: the .pptx uses **Cambria** (titles, display) and **Calibri** (body) as fallbacks for PP Editorial New / Coolvetica / Neue Montreal, because those must be installed on every machine that opens a .pptx. Swap the `F` map in `scripts/build_pptx.js` if you want the brand fonts and they are installed.
+- [ ] Slide 12 wireframe uses a placeholder orange (`E8772E`) for the dot accent. Replace with Yerik's exact orange once the brand sheet fixes it.
+- [ ] Slide 16 due days for items 3 to 10 were proposed by Claude. Check them.
 - [ ] Neev Seeds before/after images in `inputs/neev/` (optional)
 
 ## Placeholders in work/deck-content.yaml
-Run `python3 scripts/lint_content.py` for the live list. At checkpoint: 7 `[[PRICE]]`, 24 `[[CONFIRM]]`.
+Run `python3 scripts/lint_content.py` for the live list. Current build: 7 `[[PRICE]]` and 28 `[[CONFIRM]]` (shown highlighted in lilac in the deck).
