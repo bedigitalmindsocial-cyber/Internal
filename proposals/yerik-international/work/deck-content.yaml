@@ -1,0 +1,290 @@
+# Yerik International: 30-day proposal deck content
+# ALL slide text and ALL prices live here. Edit this file, then rebuild.
+# Placeholders: [[PRICE]] and [[CONFIRM: ...]]. While any remain, the build
+# exports Yerik_Proposal_DRAFT.pdf with a DRAFT watermark.
+# Fact references (F#, C#) point to work/facts.md. They are never printed.
+
+meta:
+  client: Yerik International
+  prepared_for: Rajveer Singh, Manager
+  date: "[[CONFIRM: send date, e.g. 01-Oct-2026]]"
+  footer: "Giraffe Partners × Yerik International · Proposal · Confidential"
+  website: "www.yerikindia.com [[CONFIRM: domain]]"
+  contact_name: Disha Arora
+  contact_phone: "[[CONFIRM: Disha phone]]"
+  contact_email: "[[CONFIRM: Disha email]]"
+
+prices:
+  A: "[[PRICE]]"
+  B: "[[PRICE]]"
+  C: "[[PRICE]]"
+  D: "[[PRICE]]"
+  phase1_total: "[[PRICE]]"
+  E: "[[PRICE]]"
+  F: "[[PRICE]]"
+
+slides:
+
+  - n: 1
+    type: cover
+    title: "Yerik International: ready for the November show."
+    subtitle: "A 30-day plan for your website and online presence."
+    byline: "Prepared for Rajveer Singh, Manager · Giraffe Partners · {meta.date}"
+
+  - n: 2
+    type: points
+    title: "You asked for a website that shows Yerik as it is today."
+    kicker: "What you told us"
+    points:                                   # F14 F15 F17 F18 F19 F21
+      - "Capacity is full. Not looking for new buyers."
+      - "Website is 10 years old. The plant has grown since."
+      - "Current information and a cleaner LinkedIn."
+      - "Live before the November show."
+    closing: "This plan does exactly that. No ads. No marketing push."   # C13
+
+  - n: 3
+    type: screenshot
+    title: "This is what a buyer sees first."
+    image: 01_home_desktop
+    callouts:                                 # F31 F34 F35 F32
+      - "Design dates from 2015–16."
+      - "No line that says what Yerik makes."
+      - "Old logos."
+      - "The phone number does not connect."
+
+  - n: 4
+    type: panels4
+    title: "A buyer who tries to reach you hits four dead ends."
+    panels:
+      - image: 03_phone_number
+        caption: "The phone number does not connect."          # F32
+      - text_card: "Enquiry sent through the website on [[CONFIRM: date, about 10 days before the call]]. No reply by the call date."   # F33
+      - image: 04_product_page
+        caption: "Product pages: no details, and a stray “tweet” label."  # F38
+      - image: 05_careers_form
+        caption: "Careers form takes a wrong email and blank phone."   # F42
+
+  - n: 5
+    type: screenshot
+    title: "Most people open your site on a phone. There, it looks weaker still."
+    image: 02_home_mobile
+    body: "This is the first screen on a phone. [[CONFIRM: describe what the capture shows, e.g. small text, broken layout]]"   # F36 F37
+    callouts:
+      - "[[CONFIRM: issue seen on capture]]"
+      - "[[CONFIRM: issue seen on capture]]"
+
+  - n: 6
+    type: panels3
+    title: "Google and LinkedIn tell a mixed story."
+    panels:
+      - image: 08_google_profile
+        caption: "Google profile: photos that are not your plant or products. Some videos lower trust."   # F39
+      - image: 09_linkedin_pages
+        caption: "Two pages carry the Yerik International name. Which is official?"   # F40
+      - image: 10_hiring_post
+        caption: "Hiring posts miss Yerik's orange and font. A fake would look the same."   # F41
+
+  - n: 7
+    type: compare3
+    title: "Other Ludhiana sites say who they are in the first line."
+    panels:
+      - image: 06_competitor_jrs
+        label: "JRS Farm Parts"
+        caption: "“ISO-certified tractor parts supplier in Ludhiana, exporting to USA.”"   # F44
+      - image: 07_competitor_machineparts
+        label: "Machine Parts"
+        caption: "A clear tagline and a working WhatsApp chat button."   # F45
+      - image: 01_home_desktop
+        label: "Yerik International"
+        caption: "No headline. The visitor has to work it out."   # F35
+
+  - n: 8
+    type: bignumber
+    title: "Your show costs at least ₹4–5 lakh. The follow-up happens on your website."
+    number: "₹4–5 lakh"                       # F46
+    number_label: "minimum cost of one show"
+    body: "After the show, people look you up. Today, the website does not match the company they met at your stall."   # F47
+
+  - n: 9
+    type: plan
+    title: "The plan: 4 pieces of work in 30 days."
+    core:
+      - code: A
+        name: "Brand consistency fix"
+        line: "One logo set, one orange, one font, used everywhere."
+      - code: B
+        name: "New 5-page website"
+        line: "Built for phone first. Existing product pages move across."
+      - code: C
+        name: "Google profile fix"
+        line: "Correct details and real photos of your plant and products."
+      - code: D
+        name: "Hosting move support"
+        line: "Secure hosting. Same domain name."
+    options:
+      - code: E
+        name: "LinkedIn clean-up (optional)"
+        line: "One official page. Hiring posts in Yerik's colours."
+      - code: F
+        name: "Photo shoot at Doraha (optional)"
+        line: "One day. Only if current photos are not available."
+    not_included: "Not in this plan: ads, paid promotion, finding new buyers, a new logo, other group companies, monthly management."
+
+  - n: 10
+    type: sitemaps
+    title: "Your website today, and after 30 days."
+    left: { label: "Today", source: work/sitemaps/current.md }
+    right: { label: "After 30 days", source: work/sitemaps/new.md }
+
+  - n: 11
+    type: columns5
+    title: "Each page has one clear job."
+    columns:
+      - head: "Home"
+        lines:
+          - "One line: what Yerik makes, since 1991"
+          - "Key numbers [[CONFIRM]]"
+          - "Product range and new plant"
+          - "Your November show, stall number"
+      - head: "About Us"
+        lines:
+          - "The story since 1991"
+          - "Infrastructure and new machines"
+          - "Quality and certifications [[CONFIRM]]"
+          - "Markets served [[CONFIRM]]"
+      - head: "Products"
+        lines:
+          - "One card per product range"
+          - "Each card opens the existing page"
+          - "Old links keep working"
+      - head: "Careers"
+        lines:
+          - "Why work at Yerik"
+          - "Open roles"
+          - "Form with every field checked"
+      - head: "Contact Us"
+        lines:
+          - "One phone number that works"
+          - "WhatsApp button"
+          - "Enquiries go to a named person"
+          - "Plant address and map"
+
+  - n: 12
+    type: wireframe
+    title: "The new homepage says what Yerik makes in one line."
+    wireframe:
+      nav: "Home · About Us · Products · Careers · Contact Us"
+      headline: "Tractor and farm machinery parts. Made in Doraha, Punjab, since 1991."
+      subline: "Hydraulic cylinders, 3-point linkage and more, for [[CONFIRM: who buys, e.g. dealers and OEMs in 10+ countries]]."
+      show_banner: "Meet us at [[CONFIRM: show name]], [[CONFIRM: dates]], Stall [[CONFIRM: no.]]"
+      cards: ["3 Point Linkage", "Hydraulic Cylinders", "Towing Parts", "Combine Parts"]   # [[CONFIRM: ranges from crawl]]
+      whatsapp: "Chat on WhatsApp"
+    label: "Rough layout to show structure. Final design agreed with your team."
+
+  - n: 13
+    type: twocol
+    title: "Two fixes make Yerik look the same everywhere."
+    left:
+      head: "A. Brand consistency fix"
+      lines:
+        - "Pick one clean logo version: colour, white and black files."
+        - "Fix the exact Yerik orange and one font."
+        - "A one-page brand sheet."
+        - "2 post templates: hiring and announcement."
+        - "An email signature."
+      note: "This is not a new logo or a new brand identity. It makes what you already have look the same everywhere."   # C13
+    right:
+      head: "C. Google profile fix"
+      lines:
+        - "Correct phone, hours, address pin, categories and description."
+        - "Add real plant and product photos."
+        - "Report unrelated photos uploaded by others. Owners can report these, not delete them."
+        - "Link to the new website."
+        - "One post about the November show."
+
+  - n: 14
+    type: table
+    title: "What changes by launch day."
+    columns: ["What", "Today", "At launch"]
+    rows:
+      - ["First impression (our audit score)", "2/10", "8+/10 [[CONFIRM]]"]
+      - ["Clear message (our audit score)", "1.5/10", "8+/10 [[CONFIRM]]"]
+      - ["Phone number on website", "Does not connect", "Connects, with a named person"]
+      - ["Website enquiries", "No reply after about 10 days", "Reach a named person. Yerik replies within 1 working day"]
+      - ["Careers and enquiry forms", "Accept blank and wrong entries", "Every field checked. Spam blocked"]
+      - ["Homepage headline", "None", "One line: what Yerik makes, for whom, since 1991"]
+      - ["Product pages", "No details. Stray “tweet” label", "Clear range on new Products page. Label removed"]
+      - ["On a phone", "Weaker than desktop", "Checked on phone before launch"]
+      - ["Hosting", "Local server in Ludhiana", "Secure hosting, same domain"]
+      - ["Google profile", "Unrelated photos and videos", "Correct details, real plant and product photos"]
+      - ["LinkedIn (if E is chosen)", "Two pages, same name. Off-brand posts", "One official page. Posts in Yerik's colours"]
+      - ["Launch", "Not live", "Live before the November show"]
+
+  - n: 15
+    type: table
+    title: "30 days, week by week."
+    columns: ["Week", "Giraffe does", "Yerik gives"]
+    rows:
+      - ["Week 1 (Days 1–7)", "Kick-off call. Lock brand sheet. Agree hosting and domain plan with Yerik IT. Write page text.", "Coordinator name, IT contact, logo files, photos, product list"]
+      - ["Week 2 (Days 8–14)", "Design all 5 pages for desktop and phone. Start the Google profile fix.", "One round of combined feedback"]
+      - ["Week 3 (Days 15–21)", "Build the site on new hosting (preview link). Move old product pages. Set up forms and WhatsApp.", "Final text approval"]
+      - ["Week 4 (Days 22–30)", "Test on phone and desktop. Point the domain. Go live. Update the Google profile link. Handover: who owns the phone, who answers enquiries.", "Final sign-off"]
+    note: "Option E runs alongside in weeks 1 to 3."
+    deadline: "To be live before the show, we need the go-ahead by [[CONFIRM: show date minus 35 days]]."
+
+  - n: 16
+    type: checklist
+    title: "What we need from Yerik to hold the date."
+    items:
+      - ["Content coordinator name and phone", "Day 2"]
+      - ["IT contact for hosting and domain, and cooperation from the current Ludhiana host", "Day 2"]
+      - ["Best-quality logo files", "Day 3"]
+      - ["Photos of the plant, new machines and products, or choose option F", "Day 5"]
+      - ["Product range list, plus the top [[CONFIRM: number]] priority products", "Day 5"]
+      - ["Certifications, markets served and key numbers you are happy to show publicly", "Day 5"]
+      - ["One phone number with an owner, one email on Yerik's domain, one person who replies to enquiries", "Day 7"]
+      - ["Show name, dates and stall number", "Day 7"]
+      - ["Feedback within 2 working days at each step, so the date holds", "Each step"]
+      - ["Final sign-off before launch", "Day 28"]
+
+  - n: 17
+    type: pricing
+    title: "Investment: A to D is the core. E and F are your choice."
+    lead: "A to D work together. E and F you can add or skip."
+    columns: ["Item", "What you get", "Price (₹)"]
+    rows:
+      - ["A. Brand consistency fix", "One logo set, colours, font, brand sheet, 2 post templates, email signature", "{prices.A}"]
+      - ["B. New 5-page website", "Home, About Us, Products, Careers, Contact Us. Includes moving existing product pages", "{prices.B}"]
+      - ["C. Google profile fix", "Correct details, real photos, link to new website, one show post", "{prices.C}"]
+      - ["D. Hosting move support", "Work with Yerik IT to move to secure hosting, same domain", "{prices.D}"]
+      - ["Phase 1 total (A to D)", "", "{prices.phase1_total}"]
+      - ["Optional E. LinkedIn clean-up", "One official page fixed, hiring post templates, profile audit form", "{prices.E}"]
+      - ["Optional F. Photo shoot at the Doraha plant", "One day: plant, new machines and products", "{prices.F}"]
+    notes:
+      - "Prices exclude GST."
+      - "Hosting, domain and email renewals are paid by Yerik directly to the provider [[CONFIRM]]."
+      - "Payment: [[CONFIRM: e.g. 50% to start, 50% at launch]]."
+      - "Includes [[CONFIRM: 2]] rounds of changes."
+      - "Quote valid for 30 days."
+    later: "Phase 2, priced later: rebuild product pages one by one with full details."
+
+  - n: 18
+    type: closing
+    title: "Who we are, and what happens next."
+    left:
+      lines:
+        - "Giraffe Partners works with manufacturing and industrial businesses."
+        - "50+ manufacturing and industrial brands [[CONFIRM]]."
+        - "Offices in Delhi, Chandigarh, Dehradun and Abohar."
+      quote: "We work with businesses that are better than they look."
+      example_head: "Neev Seeds (agri)"
+      example: "Over 3 years: new packaging, logo and trademark, website, distributor forms, and one consistent look at every expo."
+      images: inputs/neev/      # optional
+    right:
+      head: "Next steps"
+      steps:
+        - "Yerik IT confirms domain and hosting"
+        - "Management approval"
+        - "Go-ahead by [[CONFIRM: date]]"
+        - "Kick-off call within 2 days"
+      contact: "Disha Arora · {meta.contact_phone} · {meta.contact_email}"
