@@ -119,3 +119,28 @@ def test_doubtful_director_label_is_not_treated_as_owner(tmp_path):
     col = {c.value: i + 1 for i, c in enumerate(ws[1])}
     assert ws.cell(row=2, column=col["Owner_Mobile"]).value.startswith("Open Contact_Page_1-3")
     assert ws.cell(row=2, column=col["Next_Gen"]).value == "Not found"
+
+
+def test_user_review_and_nextgen_ranking(tmp_path):
+    base = {"is_manufacturer": "Yes", "revenue_fy": "FY2025", "popularity_or_group_flags": "None found"}
+    data = {"candidates": [
+        dict(base, company_name="Fictional Alpha Ltd", revenue_cr=300),
+        dict(base, company_name="Fictional Beta Ltd", revenue_cr=60),
+        dict(base, company_name="Fictional Gamma Ltd", revenue_cr=None, employees="800",
+             user_review={"fit": "Strong", "date": "01-Oct-2026", "by": "Lovish", "note": "Near-perfect"})],
+        "screened_out": []}
+    enrich = [{"company_name": "Fictional Beta Ltd", "website": "beta.example",
+               "directors": [{"name": "B. Junior", "designation": "Director", "note": "next-gen (probable)"}],
+               "owner_contact_pages": []}]
+    (tmp_path / "c.json").write_text(json.dumps(data))
+    (tmp_path / "e.json").write_text(json.dumps(enrich))
+    X.build([tmp_path / "c.json"], "Ludhiana", "Punjab", "LDH", tmp_path / "u.xlsx", use_db=False, today=TODAY,
+            enrich=[tmp_path / "e.json"])
+    ws = load_workbook(tmp_path / "u.xlsx")["Candidates"]
+    col = {c.value: i + 1 for i, c in enumerate(ws[1])}
+    order = [(ws.cell(row=r, column=col["Company_Name"]).value, ws.cell(row=r, column=col["Fit"]).value)
+             for r in range(2, 5)]
+    # Reviewed lead tops the list despite no turnover figure; next-gen Beta outranks the bigger Alpha.
+    assert order == [("Fictional Gamma Ltd", "Strong"), ("Fictional Beta Ltd", "Good"), ("Fictional Alpha Ltd", "Good")]
+    assert ws.cell(row=2, column=col["Employees"]).value == "800"
+    assert "USER REVIEW 01-Oct-2026 (Lovish): Near-perfect" in ws.cell(row=2, column=col["Notes"]).value

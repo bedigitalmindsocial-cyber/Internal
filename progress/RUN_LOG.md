@@ -57,3 +57,19 @@ sources that worked best, next step.
 - **Result:** 24 candidates (Strong 2, Good 9, Check 13), 64 screened out. Metro Tyres not researched (search
   allowance ran out again).
 - **Next step:** unchanged: Full network access, then verify and capture owner mobiles from the linked listings.
+
+## 01-Oct-2026: Session 2 (calibration feedback, Section 14 step 5)
+- **User feedback:** Yerik International rated a near-perfect lead: Rs 50-500 Cr, 50+ employees, founder and sons in
+  the business, a decade-old website with basic errors, weak social presence, strong ability to pay. The search-only
+  pass had ranked it last ("Check") because no turnover figure or trigger had been found.
+- **Verified by search (sources in the sheet):** CARE Apr-2025 release: TOI Rs 145.61 Cr FY23, Rs 107.29 Cr FY24,
+  Rs 100.54 Cr 9MFY25, PBILDT about 11%, BBB-/Stable. Exhibiting at EIMA International 2026, Bologna, 10 to 14 Nov 2026
+  (Hall 20, Stand D/52); exhibited at Agritechnica 2025. Footer reads '© 2015-16' per search (user observed 2010).
+  500 to 1,000 staff per listings. Now LDH-C01, Strong, EXPO KIT.
+- **Adjustments:** a user review overrides the computed fit and is recorded in Notes; within each fit level, rows with
+  a next-generation family member in the business rank higher (user criterion; CLAUDE.md 3.4 strong-fit signal); new
+  Employees column (user's 50+ test).
+- **Lesson:** thin first-pass data, not poor fit, pushed Yerik down. Deep check (rating revenue, 2025-26 trade fairs,
+  staff, site age) launched on the 9 open Check rows.
+- **Proposed brief change (awaiting approval):** make a next-gen director an alternative to the Trigger >= 3 condition
+  for Tier A in Section 10.7.

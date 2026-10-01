@@ -39,12 +39,12 @@ COLUMNS = [
     ("Cand_ID", 10), ("Fit", 8), ("Company_Name", 30), ("Website_URL", 24), ("Directors", 34), ("Next_Gen", 24),
     ("Owner_Mobile", 26), ("Contact_Page_1", 30), ("Contact_Page_2", 30), ("Contact_Page_3", 30),
     ("Industry", 20), ("Key_Products", 32), ("Area", 18), ("Revenue_Cr", 10), ("Revenue_FY", 10), ("Revenue_Source", 30), ("Revenue_Source_URL", 30),
-    ("Size_Confidence", 22), ("Rating", 26), ("Signal_Type", 16), ("Signal_Detail", 36), ("Signal_Date", 12),
+    ("Size_Confidence", 22), ("Employees", 18), ("Rating", 26), ("Signal_Type", 16), ("Signal_Detail", 36), ("Signal_Date", 12),
     ("Signal_Source_URL", 30), ("Other_Signals", 30), ("Promoters", 26), ("Year_Established", 10),
     ("Exports", 22), ("Screen_Check", 26), ("Likely_Offer", 22), ("Likely_Segments", 24), ("Still_To_Verify", 40),
     ("Notes", 40), ("All_Source_URLs", 50),
 ]
-WRAP = {"Directors", "Next_Gen", "Owner_Mobile", "Contact_Page_1", "Contact_Page_2", "Contact_Page_3", "Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
+WRAP = {"Employees", "Directors", "Next_Gen", "Owner_Mobile", "Contact_Page_1", "Contact_Page_2", "Contact_Page_3", "Company_Name", "Key_Products", "Revenue_Source", "Size_Confidence", "Rating", "Signal_Detail",
         "Other_Signals", "Promoters", "Exports", "Screen_Check", "Still_To_Verify", "Notes", "All_Source_URLs",
         "Likely_Offer", "Likely_Segments"}
 URL_COLS = {"Website_URL", "Revenue_Source_URL", "Signal_Source_URL"}
@@ -346,6 +346,7 @@ def assess(c: dict, today: date) -> dict:
     else:
         size_conf = "Medium (search extract)"
     ex = enrich_fields(c)
+    review = c.get("user_review") if isinstance(c.get("user_review"), dict) else {}
     site_found = not _nf(c.get("website")) or "_website" in ex
     todo = ["website decay audit", "owner mobile from the contact pages (owner or director only)",
             "MCA status and holding company"]
@@ -367,7 +368,7 @@ def assess(c: dict, today: date) -> dict:
     import score as _score   # same Section 10.8 rule the Active pipeline uses
     offer = _score.recommended_offer(set(segs), rev, False)
     return {
-        "Fit": fit,
+        "Fit": (review.get("fit") if review.get("fit") in FIT_FILL else fit),
         "Company_Name": c.get("company_name"),
         "Industry": c.get("industry") if c.get("industry") in C.INDUSTRIES else (c.get("industry") or "Not found"),
         "Key_Products": c.get("products") or "Not found",
@@ -380,6 +381,7 @@ def assess(c: dict, today: date) -> dict:
         "Revenue_Source": c.get("revenue_source") or "Not found",
         "Revenue_Source_URL": c.get("revenue_url") or "",
         "Size_Confidence": size_conf,
+        "Employees": c.get("employees") or "Not found",
         "Rating": c.get("rating") or "Not found",
         "Signal_Type": best["type"] if best else "None within window",
         "Signal_Detail": best["detail"] if best else "",
@@ -394,9 +396,14 @@ def assess(c: dict, today: date) -> dict:
         "Screen_Check": "; ".join(x for x in [c.get("popularity_or_group_flags") or "None found",
                                               ("REVIEW: " + c["review_note"]) if not _blank(c.get("review_note")) else ""] if x),
         "Still_To_Verify": "; ".join(todo),
-        "Notes": "; ".join(x for x in [c.get("manufacturer_evidence") if manuf else "", c.get("notes") or ""] if x),
+        "Notes": "; ".join(x for x in [
+            (f"USER REVIEW {review.get('date', '')} ({review.get('by', 'user')}): {review.get('note', '')}"
+             if review else ""),
+            c.get("manufacturer_evidence") if manuf else "", c.get("notes") or ""] if x),
         "All_Source_URLs": "\n".join(sorted(c["sources"])),
         "_score": SIGNAL_SCORE.get(best["type"], 0) if best else 0,
+        "_reviewed": 1 if review.get("fit") in FIT_FILL else 0,
+        "_nextgen": 0 if ex.get("Next_Gen", "Not found") == "Not found" else 1,
         "_rev": rev or 0,
     }
 
@@ -516,7 +523,8 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
         uniq.append(s)
     screened = uniq
     order = {"Strong": 0, "Good": 1, "Check": 2}
-    rows.sort(key=lambda r: (order[r["Fit"]], -r["_score"], -r["_rev"], r["Company_Name"] or ""))
+    rows.sort(key=lambda r: (order[r["Fit"]], -r["_reviewed"], -r["_nextgen"], -r["_score"], -r["_rev"],
+                             r["Company_Name"] or ""))
     for i, r in enumerate(rows, 1):
         r["Cand_ID"] = f"{prefix}-C{i:02d}"
 
@@ -561,6 +569,9 @@ def build(inputs: list[Path], cluster: str, state: str, prefix: str, out: Path, 
          "is a probable family successor, not confirmed."],
         [""],
         ["FIT"],
+        ["Within each level, rows confirmed by Giraffe's own review come first, then companies with a next-generation "
+         "family member in the business, then the strongest trigger, then turnover. A review recorded in Notes "
+         "overrides the computed fit."],
         [f"Strong ({counts['Strong']}): manufacturer, ₹50-500 Cr from a stated figure, no popularity or group flag, "
          "and a trigger within the brief's window (score 3 or more)."],
         [f"Good ({counts['Good']}): same, but no qualifying trigger found yet."],
