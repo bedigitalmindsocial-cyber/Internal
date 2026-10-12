@@ -1,0 +1,64 @@
+{
+ "_readme": "Mandatory questions by page type (red-team round 1). scripts/pack.py puts the sets that apply into each page's brief. Each page answers these PLUS at least 3 page-specific questions with a stated source (search query, user-group anxiety, Motilal teardown, client decision). A link to another page does not answer a MUST question.",
+ "every_page": [
+  "Which Aikyam company provides this, and which company receives my details if I act here?",
+  "What does it cost me (a figure, or a visible placeholder until the rate card is approved)?",
+  "What happens after I click the main button?"
+ ],
+ "account_opening": [
+  "Which account am I opening here: trading and demat (Aikyam Capital), investing (Aikyam Wealth), or both?",
+  "Which documents do I need?",
+  "How long does it take, and is it fully online?",
+  "What happens if my KYC fails or I stop halfway?",
+  "Is my data safe, and who is the KYC partner?"
+ ],
+ "trading_fo": [
+  "What can I lose? (the F&O risk box sits before the first F&O call to action)",
+  "Am I eligible for F&O, and what proof of income do I need?",
+  "What does each order cost (brokerage, statutory charges)?",
+  "Where do current lot sizes, margins and expiries come from? (link to the exchange; no figures from memory)"
+ ],
+ "mutual_funds": [
+  "Is this a regular plan through a distributor, and what does the distributor earn? (link to the commission disclosure)",
+  "Which ARN is the distributor registered under?",
+  "Are the returns shown assumptions or past data, and what is the risk?",
+  "Does the page suggest product categories only, never named schemes as advice?"
+ ],
+ "calculator": [
+  "What does this calculator assume (return rate, inflation, tax), and can I change it?",
+  "What is the formula, with a worked example?",
+  "What should I do next with this result?"
+ ],
+ "partner": [
+  "Who qualifies (certification, registration, experience)?",
+  "How are payouts worked out? (placeholder until Aikyam approves the payout grid)",
+  "What must partners never say or do (code of conduct)?",
+  "Which Aikyam company signs the agreement, and under which registration?",
+  "What are the steps from application to first client?"
+ ],
+ "pms": [
+  "Is PMS right for me (SEBI minimum ₹50 lakh, risk, lock-in, fees)?",
+  "Who manages the money (the third-party SEBI-registered portfolio manager), and what is Aikyam Wealth's role (empanelled distributor)?",
+  "What fees and exit loads apply? (placeholder until confirmed)"
+ ],
+ "coming_soon": [
+  "What is coming, and who is it for?",
+  "When will it be available, and how will I hear about it?",
+  "What can I do on ROOT today instead?"
+ ],
+ "legal": [
+  "When was this last updated, and which company does it apply to?",
+  "Where is the full official document (PDF download)?",
+  "Whom do I contact about it?"
+ ],
+ "data": [
+  "As of when is this data, and where does it come from?",
+  "What does each number mean (plain-English labels)?",
+  "How do I act on it on ROOT, and what does that cost?"
+ ],
+ "company": [
+  "Who is behind ROOT, and which licences does each company hold?",
+  "How can I verify these registrations myself?",
+  "How do I reach a real person?"
+ ]
+}

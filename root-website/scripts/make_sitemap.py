@@ -84,6 +84,22 @@ PAGES = [
  (74,"login","Login","/login","D",3,"Both","none",False,"U7 U6","Log in to the right desk","minimal_header added"),
  (75,"lp-open-account","Paid Campaign Landing Page","/lp/open-account","D",3,"Capital","none",False,"U2 U1","Get OTP","minimal_header noindex fo_risk regulated_numbers added"),
 ]
+# Red-team round 1 (12-Oct-2026) corrections, applied on top of PAGES
+OVERRIDES = {
+ 1:  {"flags+": "mf_risk distributor_disclaimer illustrative_data"},
+ 22: {"flags+": "fo_page"},
+ 37: {"primary_cta": "Open trading account", "flags+": "fo_page"},
+ 38: {"flags+": "fo_page"},
+ 46: {"primary_cta": "Open trading account", "flags+": "fo_page"},
+ 47: {"primary_cta": "Open trading account", "flags+": "fo_page"},
+ 48: {"primary_cta": "See product categories for your risk level"},
+ 57: {"flags+": "pms"}, 58: {"flags+": "pms"}, 59: {"flags+": "pms"}, 60: {"flags+": "pms"}, 67: {"flags+": "pms"},
+ 61: {"template": "P", "primary_cta": "Choose your partner programme", "flags+": "regulated_numbers"},
+ 62: {"template": "P", "golden": True, "flags+": "regulated_numbers"},
+ 63: {"template": "P", "flags+": "fo_risk"},
+ 69: {"flags+": "fo_page"},
+}
+
 TEMPLATES = {
  "HOME":"Home: hero with lead bar, ticker, trust pillars, products, pricing, steps, goals, calculator, features, markets, group, learn, FAQ, app band, final CTA, risk",
  "A":"Hub: breadcrumb + d1 + creds hero, sticky lead form right, product cards 3-up, pillars or steps, calculator teaser, FAQ, dark band (app or closing CTA), risk, footer",
@@ -94,15 +110,60 @@ TEMPLATES = {
  "F":"Company: d1 + lead, group root diagram, people grid, credential wall, closing CTA band",
  "G":"Legal: d2 + last updated, numbered clauses with sticky contents list, download PDF",
  "H":"Coming soon: d1 + Coming soon badge, what it is and who it is for, tell-me-when-live dialog, related live products",
+ "P":"Partner programme: d1 + who it is for + apply form right, eligibility and certifications, how it works (steps), what partners get (payouts as placeholders), partner obligations and code of conduct, which company signs the agreement, FAQ",
 }
+
+SITE = {"cta_label": "Open free account", "app_live": False, "pricing_approved": False,
+        "login_url_at_launch": "https://trade.rootbyaikyam.com/login"}
+
+
+def cta_for(url, tpl, ent, flags):
+    """Where the page's primary action goes, which company receives the data, and the event it fires."""
+    fe = "Aikyam Wealth" if ent == "Wealth" else "Aikyam Capital"
+    if url.startswith("/open-account/") or url == "/lp/open-account":
+        return {"href": "#s-open", "form_entity": fe, "event": "account_start"}
+    if "coming_soon" in flags:
+        return {"href": "#s-notify", "form_entity": fe, "event": "notify_signup"}
+    if tpl == "P":
+        return {"href": "#s-apply", "form_entity": fe, "event": "partner_lead"}
+    if url in ("/contact", "/help/raise-ticket"):
+        return {"href": "#s-form", "form_entity": "Aikyam Capital", "event": "ticket_raised" if "ticket" in url else "callback_request"}
+    if url == "/login":
+        return {"href": "#s-desks", "form_entity": None, "event": "login_click"}
+    if tpl == "G":
+        return {"href": "#s-contents", "form_entity": None, "event": "document_download"}
+    if ent == "Wealth":
+        return {"href": "/open-account/investing", "form_entity": "Aikyam Wealth", "event": "account_start"}
+    return {"href": "/open-account/trading", "form_entity": "Aikyam Capital", "event": "account_start"}
 pages=[]
 for n,pid,title,url,tpl,ph,ent,nav,golden,aud,cta,flags in PAGES:
+    o = OVERRIDES.get(n, {})
+    tpl = o.get("template", tpl); golden = o.get("golden", golden); cta = o.get("primary_cta", cta)
+    fl = flags.split() + [f for f in o.get("flags+", "").split() if f not in flags.split()]
     pages.append(dict(n=n,id=pid,file=f"{n:02d}-{pid}.html",title=title,url=url,template=tpl,phase=ph,
         entity=ent,nav=nav,mode="golden" if golden else "derivative",audiences=aud.split(),
-        primary_cta=cta,flags=flags.split(),status="todo"))
+        primary_cta=cta,cta=cta_for(url,tpl,ent,fl),flags=fl,status="todo"))
+urls = {p["url"] for p in pages}
+for p in pages:  # parent: the hub above this page (breadcrumbs, "back to" links, journey context)
+    u = p["url"]
+    if u == "/":
+        p["parent"] = None
+    elif u.startswith("/legal/"):
+        p["parent"] = "/" if u == "/legal/disclosures" else "/legal/disclosures"
+    elif u.startswith("/tools/"):
+        p["parent"] = "/tools"
+    elif u.startswith("/open-account/") or u in ("/login", "/lp/open-account", "/app"):
+        p["parent"] = "/"
+    else:
+        parts = u.strip("/").split("/")
+        p["parent"] = next(("/" + "/".join(parts[:i]) for i in range(len(parts) - 1, 0, -1)
+                            if "/" + "/".join(parts[:i]) in urls), "/")
+golden_of = {p["template"]: p["file"] for p in pages if p["mode"] == "golden"}
+for p in pages:
+    p["golden_file"] = None if p["mode"] == "golden" else golden_of[p["template"]]
 assert len(pages)==75 and len({p['url'] for p in pages})==75
 gold={p['template'] for p in pages if p['mode']=='golden'}
 assert gold==set(TEMPLATES), gold
-json.dump({"version":1,"source":"ROOT theme v1 (73-page plan, 3 phases) + 2 added pages (login, lp-open-account)",
+json.dump({"version":2,"site":SITE,"source":"ROOT theme v1 (73-page plan, 3 phases) + 2 added pages (login, lp-open-account)",
   "templates":TEMPLATES,"pages":pages}, open(os.path.join(HERE,"sitemap.json"),"w"), indent=1, ensure_ascii=False)
 print("wrote", len(pages), "pages;", sum(p['mode']=='golden' for p in pages), "golden")

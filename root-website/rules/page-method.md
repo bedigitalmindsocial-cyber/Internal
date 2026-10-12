@@ -1,58 +1,50 @@
-# The page method (every one of the 75 pages goes through this)
+# The page method (v2, after red-team round 1)
 
-Think like a product manager first, a UX designer second, a front-end builder third. Order matters: no layout before the page's questions are known; no HTML before a layout has beaten its alternatives.
+Think like a product manager first, a UX designer second, a front-end builder third. No layout before the page's questions are known; no HTML before a layout has beaten its alternatives.
 
-## Step 0. Read (budget: skim, do not paste whole files into your reply)
-1. `sitemap.json` entry for the page: template, entity, flags, primary CTA, audiences.
-2. `context/facts.md` (business, users, tasks, conversions, compliance traps, registration data).
-3. `rules/voice-and-claims.md`, `rules/compliance-blocks.md`, `rules/figma-html.md`.
-4. `memory/site.md` (site-wide decisions) and `memory/patterns.md` (the pattern library).
-5. If the page is a derivative: the golden page's memory for its template (`memory/pages/<golden>.md`) and its built source in `pages/src/`.
-6. Memory of journey neighbours if it exists (the parent hub, the page users go to next).
-7. Only the relevant sections of `theme/sections-reference.html`.
-8. `context/*.md` from earlier sessions (decisions, placeholders, Motilal patterns) where relevant.
+## Step 0. Read
+1. **`packs/NN-id.md`** (run `python3 scripts/pack.py NN` if it is missing). It holds the page card, journey neighbours, the mandatory questions for this page type, the compliance blocks for its flags, site values, site memory and the pattern library. Start here.
+2. Open other files only when the brief points to them: the golden page's memory and source (derivatives), journey neighbours' memories, `context/*.md`, the relevant sections of `theme/sections-reference.html`, and the craft checklists named at the end of the brief.
 
 ## Step 1. Understand the page and its place in the journey
-Write, in this order:
 - **Job** (one sentence): "This page exists so that [user] can [task], and leaves ready to [next step]."
-- **Arrival**: where people come from (nav, Google query, ad, internal link, app) and their awareness level (unaware, problem-aware, solution-aware, product-aware, ready to act).
-- **Journey stage**: Discover, Evaluate, Act, Onboard, Use, Get help, or Verify. Name the previous page and the next page(s) by URL.
-- **Users** (sitemap codes) and their top three anxieties or objections, in their words.
-- **Success**: the primary action (one), the secondary action (at most one), and the measurement event (account_start, otp_verified, app_install_click, partner_lead, wealth_lead, notify_signup, ticket_raised, calculator_used, document_download).
+- **Arrival**: where people come from (nav, a Google query you name, an ad, an internal link, the app) and their awareness level (unaware, problem-aware, solution-aware, product-aware, ready to act).
+- **Journey stage**: Discover, Evaluate, Act, Onboard, Use, Get help, or Verify. Previous page and next page(s) by URL. The primary action and its target are in the brief ("cta"); do not invent a different one.
+- **Users** (codes) and their top three anxieties, in their words.
+- **Success**: the primary action (one, marked `data-primary` on the page), at most one secondary action, and the measurement event.
+- **Search**: the main query this page should rank for, the title (70 characters or fewer) and the description (70 to 160).
 
-## Step 2. The questions the page must answer (the product manager's list)
-List 6 to 10 questions in the order the visitor would ask them. Tag each MUST or SHOULD. For every question say which section answers it.
-Always consider: What is this and is it for me? What does it cost? Who exactly am I dealing with (which Aikyam company, which licence)? Is it safe and regulated? How long does it take and what do I need? What happens next? What if something goes wrong? On product pages add: how is it different here, what are the risks?
-Also list **what the page must not say** (licence boundaries, claims ROOT cannot prove yet).
-Traceability rule: every MUST question is answered by a section; every section answers at least one question. Sections that answer nothing are cut.
+## Step 2. The questions the page must answer
+- All **mandatory questions** for the page type from the brief.
+- **At least three page-specific questions**, each with its source: a search query, a user-group anxiety, a Motilal Oswal pattern, or a client decision. A question that would be identical on every page does not count here.
+- Order them as the visitor would ask them. Tag MUST or SHOULD.
+- **What the page must not say** (licence boundaries, claims ROOT cannot prove yet; see `rules/claims.json`).
+- **Traceability**: in memory section 4, each question names the section id that answers it (`s-charges`) and quotes the answering sentence in a few words. A link to another page does not answer a MUST question. Lint checks the ids exist.
 
 ## Step 3. Section plan
-An ordered list of sections. For each: purpose (question ids), content outline (real headings and key copy points, not lorem), and the component it needs. Respect the template skeleton in `sitemap.json` "templates", deviating only with a stated reason.
+Ordered sections; each with its id (`s-<name>`), the question numbers it answers, a content outline (real headings and key copy points), and its component. Follow the template skeleton (brief) unless you state why not. Cut any section that answers nothing.
 
-## Step 4. Layout exploration (2 to 3 options per section, then choose one)
-- **Option A is always the baseline**: the theme or pattern-library layout for that kind of section.
-- **Options B and C must differ in structure** (information hierarchy, layout, density or interaction), not in colour or decoration.
-- Describe each option in at most three lines as a wireframe spec: columns, order, what is biggest, component used.
-- Score each option 1 to 5 on the rubric below; pick the winner; record one line on why the winner won and why each loser lost.
-- Derivative pages: inherit the golden page's section layouts by default ("inherit 09 §3"). Explore options only for sections that are new to this page or where the inherited layout fails this page's questions.
+## Step 4. Layout exploration, where it pays
+Explore options only for the sections that decide the page: the hero, any form, data displays, and the page's key block (pricing table, calculator, steps, eligibility, credential wall). Standard sections (FAQ, closing CTA, risk box, related links) use the pattern library directly.
+- **Option A** is the pattern-library layout. **B and C** differ in structure (hierarchy, layout, density or interaction), not decoration. All options use the ROOT theme.
+- Each option: a three-line wireframe spec plus a **conversion hypothesis** ("puts the OTP field in the first screen at 390, so more visitors start").
+- Score on the rubric, pick, and record one line on why the winner won and why each loser lost.
+- Derivatives inherit the golden page's layouts by default ("inherit 09 s-steps"); explore only sections that are new or where the inherited layout fails this page's questions. With no judge, write the strongest argument against each decision before keeping it.
 
 ### Rubric (weight)
 | Criterion | Weight |
 |---|---|
 | Answers its questions, in the order asked | 3 |
-| Moves the visitor to the next step (one clear primary action) | 3 |
-| Trust and compliance (claims rule, entity named, disclosures) | 3, and any failure is a veto |
-| Scannable hierarchy (a 5-second test: what is this, why here, what do I do) | 2 |
-| Theme fidelity and consistency with the pattern library | 2 |
-| Mobile at 390 px (stacks cleanly, CTA reachable) | 1 |
-| Figma editability (plain flex or grid, no tricks) | 1 |
-| Build cost (reuse beats novelty unless novelty wins on the top three) | 1 |
-Vetoes: an invented number or claim; a missing mandatory disclosure; content only visible through JavaScript; a layout that hides the primary action on mobile.
+| Moves the visitor to the next step (the primary action is visible on the first screen at 1440 and within 1.5 screens at 390) | 3 |
+| Trust and compliance (claims rule, company named, disclosures) | 3, and any failure is a veto |
+| Scannable hierarchy (5-second test: what is this, is it for me, what do I do) | 2 |
+| Mobile at 390 (stacks cleanly, nothing cut off, tables stack) | 2 |
+| Consistency with the pattern library | 1 |
+| Figma editability (flex stacks, no tricks) | 1 |
+Vetoes: an invented number or claim; a missing mandatory disclosure; content only visible through JavaScript; a primary action hidden on mobile.
 
-## Step 5. Build the page
-Follow `rules/figma-html.md`. Write `pages/src/NN-id.html`, then run from `root-website/`:
-`python3 scripts/build.py NN && python3 scripts/lint.py NN && python3 scripts/shoot.py NN`
-Fix every lint error and every overflow. Look at the desktop and mobile slices in `review/NN-id/` (at least the first two of each) and fix what looks wrong.
+## Step 5. Build
+Follow `rules/figma-html.md`. Write `pages/src/NN-id.html`, then run `python3 scripts/gate.py NN` (Bash timeout 300000). It builds, lints and screenshots, and prints one JSON line. Fix and re-run until `"ok": true`, **at most 3 loops**; if it still fails, stop, set memory status `needs-human`, and explain why in the memory change log. Then look at the screenshot slices in `review/NN-id/` and fix what looks wrong (each fix: run the gate again).
 
 ## Step 6. Save the page memory
-Write `memory/pages/NN-id.md` from `memory/pages/_TEMPLATE.md`. It is the page's permanent context: the next designer, the next agent and the client review all start from it. Keep it factual and short; no copy of the HTML.
+`memory/pages/NN-id.md` from `_TEMPLATE.md`: the page's permanent context for the designer, the next agent and the client review. Section 11 (designer notes) is a list of interaction states (each one either on the states board or described), sticky elements, imagery to source, and anything the static file cannot show. Keep it factual and short. Derivative pages may keep sections 1 to 3 to a few lines each.

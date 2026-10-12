@@ -21,3 +21,11 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - Data pages: every number shows an as-on date and its source; missing values show as a dash, never 0%; illustrative names only (Example Industries Ltd).
 - Giraffe writes marketing copy; the client supplies legal and regulatory text. Partner pages are marketing + lead form only.
 - Name and tagline per theme v1 ("ROOT by Aikyam", "Where your wealth begins.") until locked in writing.
+
+## Red-team round 1 (12-Oct-2026)
+- Primary action per page comes from sitemap.json "cta": Wealth pages go to /open-account/investing, Capital and Both pages to /open-account/trading; Home also offers "Only mutual funds? Start investing" as its secondary path. The header button and mobile bar follow the page's company automatically.
+- Registration numbers, CTA label, contacts and prices are `{{tokens}}` from memory/values.json; unknown ones render as placeholder chips. One edit there updates all 75 pages.
+- Partner pages use their own template P (golden: 62 Distributor Partner Programme).
+- F&O risk box: second section on F&O pages; above the dark band on every other page that promotes F&O.
+- Theme v1 claims that are not yet provable stay out of copy or inside placeholders: bank-grade security, fast or reliable execution, institutional-grade or open-architecture research, instant pledge, MTF (rules/claims.json).
+- The phone mockup illustration is used on Home and Get the App only; elsewhere use placeholders or theme rings.

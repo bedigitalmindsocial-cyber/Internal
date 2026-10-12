@@ -26,3 +26,74 @@
 
 /* shell: breadcrumb bar under the header (build renders it from front-matter "breadcrumb") */
 .crumbs-bar{padding-top:20px}
+
+/* ===== Figma-import mode (body.is-static). Red-team round 1, 12-Oct-2026 =====
+   The browser view is unchanged in spirit; these rules make the imported layer tree clean:
+   one-direction stacks become flex (auto layout), outlines become real borders (not inner shadows),
+   type sizes are whole pixels, line breaks are the browser's natural ones (Figma wraps the same way),
+   JS-only visuals get static equivalents, sticky/fixed bars sit in flow. */
+
+/* stacks: grid with one column -> flex column (imports as vertical auto layout) */
+.is-static :is(.stack,.head,.hero-copy,.fgroup,.pcard,.goal,.post,.fund,.idx,.calc-in,.calc-out,.calc-row,.mini,.fpanel,.foot-brand,.foot-legal,.modal-in,.drawer-cta,.steps li,.panel){display:flex; flex-direction:column; justify-content:flex-start}
+.is-static .final{display:flex; flex-direction:column; align-items:flex-start}
+.is-static .zero{display:flex; flex-direction:column; justify-content:space-between}
+.is-static .goal .link{margin-top:auto}
+
+/* outlines as borders, not inset shadows */
+.is-static .field{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .leadbar .field{border-color:transparent}
+.is-static .otp input{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .risk-box{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .chip--line{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .soon-tile{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .steps .dot{box-shadow:none; border:1.5px solid var(--gold)}
+.is-static .check input{box-shadow:none; border:1.5px solid var(--line-2)}
+.is-static .thumb.v3{box-shadow:none; border:1px solid var(--line)}
+.is-static .ph{box-shadow:none; border:1px solid rgba(193,156,47,.45)}
+.is-static .leadbar{box-shadow:var(--shadow-1); border:1px solid var(--line)}
+
+/* whole-pixel type at the two capture widths; natural wrapping */
+@media (min-width: 1100px){ .is-static{--fs-d1:64px; --fs-d2:42px; --fs-d3:28px; --fs-h3:19px; --fs-lead:19px} }
+@media (max-width: 640px){ .is-static{--fs-d1:40px; --fs-d2:30px; --fs-d3:23px; --fs-h3:19px; --fs-lead:18px} }
+.is-static :is(h1,h2,h3,h4,p){text-wrap:wrap}
+
+/* spine nodes as real elements (build inserts <i class="node-dot">) */
+.is-static .node::before{display:none}
+.node-dot{position:absolute; left:-36px; top:.5em; width:11px; height:11px; border-radius:50%; transform:translate(-50%,-50%); background:var(--gold); z-index:4}
+@media (max-width: 899px){ .node-dot{left:calc(8px - var(--gutter)); width:7px; height:7px} }
+
+/* JS-only visuals: static equivalents */
+.is-static .tab-ind{display:none}
+.is-static .tab[aria-selected="true"]{background:var(--paper); box-shadow:0 1px 2px rgba(28,15,47,.08), 0 2px 8px -2px rgba(28,15,47,.10); border-radius:9px}
+.is-static .band--mist .tab[aria-selected="true"]{background:var(--mist)}
+.is-static .pcard h3 a::after{display:none}
+.is-static .ticker-track{animation:none}
+.steps{grid-template-columns:repeat(var(--cols, 4), minmax(0,1fr))}
+.steps::before{right:calc(100% / var(--cols, 4) - 22px)}
+
+/* fixed and sticky bars sit in flow (the designer re-applies stickiness); data-sticky marks them */
+.is-static .mbar{position:static; box-shadow:0 -1px 0 var(--line)}
+@media (max-width: 640px){ .is-static{padding-bottom:0} }
+.is-static .site-head{position:relative}
+
+/* minimal header keeps Login on phones (template D has no mobile bar) */
+@media (max-width: 640px){
+  .site-head--min .head-actions .btn{display:inline-flex}
+  .site-head--min .head-help{display:none}
+}
+
+/* tables that stack on phones: <table class="data data--stack"> with <span class="td-label"> in each cell */
+.td-label{display:none}
+@media (max-width: 640px){
+  table.data--stack{min-width:0}
+  .data--stack thead{display:none}
+  .data--stack tr{display:block; padding:12px 16px; border-bottom:1px solid var(--line)}
+  .data--stack td{display:flex; justify-content:space-between; gap:12px; padding:5px 0; border:0; text-align:right}
+  .data--stack td:first-child{text-align:left}
+  .data--stack .td-label{display:block; color:var(--aub-60); font-size:var(--fs-xs); text-align:left}
+}
+
+/* states board (figma/NN-id.states.html): one labelled frame per interaction state */
+.state-frame{padding-block:40px; border-bottom:1px dashed var(--line-2)}
+.state-label{font:500 .8125rem/1.4 var(--mono); color:var(--aub-60); margin-bottom:20px}
+.state-label b{color:var(--aub); font-weight:600}

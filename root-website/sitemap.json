@@ -1,5 +1,11 @@
 {
- "version": 1,
+ "version": 2,
+ "site": {
+  "cta_label": "Open free account",
+  "app_live": false,
+  "pricing_approved": false,
+  "login_url_at_launch": "https://trade.rootbyaikyam.com/login"
+ },
  "source": "ROOT theme v1 (73-page plan, 3 phases) + 2 added pages (login, lp-open-account)",
  "templates": {
   "HOME": "Home: hero with lead bar, ticker, trust pillars, products, pricing, steps, goals, calculator, features, markets, group, learn, FAQ, app band, final CTA, risk",
@@ -10,7 +16,8 @@
   "E": "Article: thumbnail + d1 + read time, 66ch body with tables and callouts, inline calculator or CTA, related guides",
   "F": "Company: d1 + lead, group root diagram, people grid, credential wall, closing CTA band",
   "G": "Legal: d2 + last updated, numbered clauses with sticky contents list, download PDF",
-  "H": "Coming soon: d1 + Coming soon badge, what it is and who it is for, tell-me-when-live dialog, related live products"
+  "H": "Coming soon: d1 + Coming soon badge, what it is and who it is for, tell-me-when-live dialog, related live products",
+  "P": "Partner programme: d1 + who it is for + apply form right, eligibility and certifications, how it works (steps), what partners get (payouts as placeholders), partner obligations and code of conduct, which company signs the agreement, FAQ"
  },
  "pages": [
   {
@@ -32,11 +39,21 @@
     "U5"
    ],
    "primary_cta": "Open free account (mobile + OTP)",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "fo_risk",
-    "regulated_numbers"
+    "regulated_numbers",
+    "mf_risk",
+    "distributor_disclaimer",
+    "illustrative_data"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": null,
+   "golden_file": null
   },
   {
    "n": 2,
@@ -55,11 +72,18 @@
     "U5"
    ],
    "primary_cta": "Start investing",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 3,
@@ -77,10 +101,17 @@
     "U3"
    ],
    "primary_cta": "Start trading",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "fo_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": null
   },
   {
    "n": 4,
@@ -98,10 +129,17 @@
     "U4"
    ],
    "primary_cta": "Try the SIP calculator",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 5,
@@ -119,8 +157,15 @@
     "U2"
    ],
    "primary_cta": "Read the getting started guide",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 6,
@@ -138,11 +183,18 @@
     "U1"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "regulated_numbers",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 7,
@@ -161,10 +213,17 @@
     "U5"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": null
   },
   {
    "n": 8,
@@ -181,8 +240,15 @@
     "U7"
    ],
    "primary_cta": "Raise a ticket",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 9,
@@ -200,12 +266,19 @@
     "U1"
    ],
    "primary_cta": "Get OTP",
+   "cta": {
+    "href": "#s-open",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "minimal_header",
     "fo_risk",
     "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": null
   },
   {
    "n": 10,
@@ -223,12 +296,19 @@
     "U4"
    ],
    "primary_cta": "Get OTP",
+   "cta": {
+    "href": "#s-open",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "minimal_header",
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "09-start-trading.html"
   },
   {
    "n": 11,
@@ -247,11 +327,18 @@
     "U7"
    ],
    "primary_cta": "Tell me when the app is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "minimal_header",
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "09-start-trading.html"
   },
   {
    "n": 12,
@@ -268,10 +355,17 @@
     "U9"
    ],
    "primary_cta": "Open trading account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/about",
+   "golden_file": "07-about.html"
   },
   {
    "n": 13,
@@ -289,11 +383,18 @@
     "U5"
    ],
    "primary_cta": "Start investing",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "regulated_numbers",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/about",
+   "golden_file": "07-about.html"
   },
   {
    "n": 14,
@@ -311,8 +412,15 @@
     "U5"
    ],
    "primary_cta": "Contact us",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/about",
+   "golden_file": "07-about.html"
   },
   {
    "n": 15,
@@ -331,10 +439,17 @@
     "U6"
    ],
    "primary_cta": "Request a callback",
+   "cta": {
+    "href": "#s-form",
+    "form_entity": "Aikyam Capital",
+    "event": "callback_request"
+   },
    "flags": [
     "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "07-about.html"
   },
   {
    "n": 16,
@@ -351,11 +466,18 @@
     "U9"
    ],
    "primary_cta": "Download the investor charter",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "regulated_numbers",
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 17,
@@ -373,11 +495,18 @@
     "U9"
    ],
    "primary_cta": "Raise a complaint",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "regulated_numbers",
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": null
   },
   {
    "n": 18,
@@ -395,11 +524,18 @@
     "U9"
    ],
    "primary_cta": "Raise a complaint",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "regulated_numbers",
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 19,
@@ -416,10 +552,17 @@
     "U9"
    ],
    "primary_cta": "Download a policy",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 20,
@@ -437,11 +580,18 @@
     "U9"
    ],
    "primary_cta": "Copy account details",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "regulated_numbers",
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 21,
@@ -459,10 +609,17 @@
     "U9"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 22,
@@ -480,11 +637,19 @@
     "U9"
    ],
    "primary_cta": "Read the full document",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "fo_risk",
-    "legal_text_client_supplied"
+    "legal_text_client_supplied",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 23,
@@ -502,10 +667,17 @@
     "U7"
    ],
    "primary_cta": "Report a fraud attempt",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 24,
@@ -522,10 +694,17 @@
     "U9"
    ],
    "primary_cta": "Download PDF",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 25,
@@ -542,10 +721,17 @@
     "U9"
    ],
    "primary_cta": "Download PDF",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 26,
@@ -563,11 +749,18 @@
     "U4"
    ],
    "primary_cta": "Start a SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 27,
@@ -585,12 +778,19 @@
     "U4"
    ],
    "primary_cta": "View a scheme",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest/mutual-funds",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 28,
@@ -608,11 +808,18 @@
     "U4"
    ],
    "primary_cta": "Start a SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 29,
@@ -630,12 +837,19 @@
     "U4"
    ],
    "primary_cta": "Invest in this fund",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "mf_risk",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest/mutual-funds",
+   "golden_file": null
   },
   {
    "n": 30,
@@ -653,12 +867,19 @@
     "U1"
    ],
    "primary_cta": "Download the commission table",
+   "cta": {
+    "href": "#s-contents",
+    "form_entity": null,
+    "event": "document_download"
+   },
    "flags": [
     "regulated_numbers",
     "distributor_disclaimer",
     "legal_text_client_supplied"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/legal/disclosures",
+   "golden_file": "17-grievance-redressal.html"
   },
   {
    "n": 31,
@@ -675,10 +896,17 @@
     "U3"
    ],
    "primary_cta": "Apply for an IPO",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 32,
@@ -695,11 +923,18 @@
     "U3"
    ],
    "primary_cta": "Apply",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/ipo",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 33,
@@ -716,10 +951,17 @@
     "U3"
    ],
    "primary_cta": "Check allotment",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/ipo",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 34,
@@ -736,11 +978,18 @@
     "U3"
    ],
    "primary_cta": "Apply for this IPO",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/ipo",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 35,
@@ -758,8 +1007,15 @@
     "U1"
    ],
    "primary_cta": "Start trading",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/trade",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 36,
@@ -776,8 +1032,15 @@
     "U2"
    ],
    "primary_cta": "Start trading",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/trade",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 37,
@@ -793,11 +1056,19 @@
    "audiences": [
     "U2"
    ],
-   "primary_cta": "Activate F&O",
+   "primary_cta": "Open trading account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
-    "fo_risk"
+    "fo_risk",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/trade",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 38,
@@ -814,10 +1085,18 @@
     "U2"
    ],
    "primary_cta": "Start trading",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
-    "fo_risk"
+    "fo_risk",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/trade",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 39,
@@ -835,11 +1114,18 @@
     "U1"
    ],
    "primary_cta": "Buy on ROOT",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "licence_check"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 40,
@@ -856,11 +1142,18 @@
     "U2"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "illustrative_data",
     "licence_check"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "29-scheme-detail.html"
   },
   {
    "n": 41,
@@ -879,8 +1172,15 @@
     "U4"
    ],
    "primary_cta": "Use a calculator",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "03-trade.html"
   },
   {
    "n": 42,
@@ -898,10 +1198,17 @@
     "U4"
    ],
    "primary_cta": "Start a SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": null
   },
   {
    "n": 43,
@@ -919,10 +1226,17 @@
     "U4"
    ],
    "primary_cta": "Start investing",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 44,
@@ -939,10 +1253,17 @@
     "U4"
    ],
    "primary_cta": "Plan for retirement",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 45,
@@ -959,10 +1280,17 @@
     "U2"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 46,
@@ -978,11 +1306,19 @@
    "audiences": [
     "U2"
    ],
-   "primary_cta": "Activate F&O",
+   "primary_cta": "Open trading account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
-    "fo_risk"
+    "fo_risk",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 47,
@@ -998,11 +1334,19 @@
    "audiences": [
     "U2"
    ],
-   "primary_cta": "Activate F&O",
+   "primary_cta": "Open trading account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
-    "fo_risk"
+    "fo_risk",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 48,
@@ -1019,12 +1363,19 @@
     "U1",
     "U4"
    ],
-   "primary_cta": "See funds that match your profile",
+   "primary_cta": "See product categories for your risk level",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "licence_check",
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/tools",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 49,
@@ -1041,10 +1392,17 @@
     "U4"
    ],
    "primary_cta": "Start a retirement SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/plan",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 50,
@@ -1061,10 +1419,17 @@
     "U4"
    ],
    "primary_cta": "Start an education SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/plan",
+   "golden_file": "42-sip-calculator.html"
   },
   {
    "n": 51,
@@ -1081,10 +1446,17 @@
     "U8"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 52,
@@ -1101,10 +1473,17 @@
     "U8"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/insurance",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 53,
@@ -1121,10 +1500,17 @@
     "U8"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/insurance",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 54,
@@ -1141,10 +1527,17 @@
     "U8"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/insurance",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 55,
@@ -1161,11 +1554,18 @@
     "U5"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon",
     "distributor_disclaimer"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 56,
@@ -1182,10 +1582,17 @@
     "U4"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 57,
@@ -1202,12 +1609,20 @@
     "U5"
    ],
    "primary_cta": "Talk to the wealth team",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon",
     "distributor_disclaimer",
-    "licence_check"
+    "licence_check",
+    "pms"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest",
+   "golden_file": null
   },
   {
    "n": 58,
@@ -1224,12 +1639,20 @@
     "U5"
    ],
    "primary_cta": "Talk to the wealth team",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon",
     "distributor_disclaimer",
-    "licence_check"
+    "licence_check",
+    "pms"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest/pms",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 59,
@@ -1246,12 +1669,20 @@
     "U5"
    ],
    "primary_cta": "Talk to the wealth team",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon",
     "distributor_disclaimer",
-    "licence_check"
+    "licence_check",
+    "pms"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest/pms",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 60,
@@ -1268,11 +1699,19 @@
     "U5"
    ],
    "primary_cta": "Check if PMS suits you",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Wealth",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon",
-    "distributor_disclaimer"
+    "distributor_disclaimer",
+    "pms"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/invest/pms",
+   "golden_file": "57-pms.html"
   },
   {
    "n": 61,
@@ -1280,7 +1719,7 @@
    "file": "61-partner.html",
    "title": "Partner with ROOT",
    "url": "/partner",
-   "template": "F",
+   "template": "P",
    "phase": 3,
    "entity": "Both",
    "nav": "none",
@@ -1288,9 +1727,18 @@
    "audiences": [
     "U6"
    ],
-   "primary_cta": "Apply to partner",
-   "flags": [],
-   "status": "todo"
+   "primary_cta": "Choose your partner programme",
+   "cta": {
+    "href": "#s-apply",
+    "form_entity": "Aikyam Capital",
+    "event": "partner_lead"
+   },
+   "flags": [
+    "regulated_numbers"
+   ],
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "62-distributor-partner.html"
   },
   {
    "n": 62,
@@ -1298,19 +1746,27 @@
    "file": "62-distributor-partner.html",
    "title": "Distributor Partner Programme",
    "url": "/partner/distributor-programme",
-   "template": "F",
+   "template": "P",
    "phase": 3,
    "entity": "Wealth",
    "nav": "none",
-   "mode": "derivative",
+   "mode": "golden",
    "audiences": [
     "U6"
    ],
    "primary_cta": "Apply as a distributor partner",
+   "cta": {
+    "href": "#s-apply",
+    "form_entity": "Aikyam Wealth",
+    "event": "partner_lead"
+   },
    "flags": [
-    "distributor_disclaimer"
+    "distributor_disclaimer",
+    "regulated_numbers"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/partner",
+   "golden_file": null
   },
   {
    "n": 63,
@@ -1318,7 +1774,7 @@
    "file": "63-authorised-person.html",
    "title": "Authorised Person Programme",
    "url": "/partner/authorised-person",
-   "template": "F",
+   "template": "P",
    "phase": 3,
    "entity": "Capital",
    "nav": "none",
@@ -1327,10 +1783,18 @@
     "U6"
    ],
    "primary_cta": "Apply as an Authorised Person",
+   "cta": {
+    "href": "#s-apply",
+    "form_entity": "Aikyam Capital",
+    "event": "partner_lead"
+   },
    "flags": [
-    "regulated_numbers"
+    "regulated_numbers",
+    "fo_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/partner",
+   "golden_file": "62-distributor-partner.html"
   },
   {
    "n": 64,
@@ -1348,10 +1812,17 @@
     "U4"
    ],
    "primary_cta": "Start an ELSS SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/plan",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 65,
@@ -1368,8 +1839,15 @@
     "U1"
    ],
    "primary_cta": "Open free account",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": null
   },
   {
    "n": 66,
@@ -1387,10 +1865,17 @@
     "U4"
    ],
    "primary_cta": "Start a SIP",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "mf_risk"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 67,
@@ -1407,11 +1892,19 @@
     "U5"
    ],
    "primary_cta": "Talk to the wealth team",
+   "cta": {
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
+    "event": "account_start"
+   },
    "flags": [
     "distributor_disclaimer",
-    "licence_check"
+    "licence_check",
+    "pms"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 68,
@@ -1428,10 +1921,17 @@
     "U8"
    ],
    "primary_cta": "Tell me when it is live",
+   "cta": {
+    "href": "#s-notify",
+    "form_entity": "Aikyam Capital",
+    "event": "notify_signup"
+   },
    "flags": [
     "coming_soon"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 69,
@@ -1448,10 +1948,18 @@
     "U2"
    ],
    "primary_cta": "Start trading",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
-    "fo_risk"
+    "fo_risk",
+    "fo_page"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 70,
@@ -1468,8 +1976,15 @@
     "U1"
    ],
    "primary_cta": "Read the getting started guide",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/learn",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 71,
@@ -1486,8 +2001,15 @@
     "Talent"
    ],
    "primary_cta": "See open roles",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "07-about.html"
   },
   {
    "n": 72,
@@ -1504,8 +2026,15 @@
     "U9"
    ],
    "primary_cta": "Media contact",
+   "cta": {
+    "href": "/open-account/trading",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "65-guide-getting-started.html"
   },
   {
    "n": 73,
@@ -1522,8 +2051,15 @@
     "U7"
    ],
    "primary_cta": "Submit ticket",
+   "cta": {
+    "href": "#s-form",
+    "form_entity": "Aikyam Capital",
+    "event": "ticket_raised"
+   },
    "flags": [],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/help",
+   "golden_file": "07-about.html"
   },
   {
    "n": 74,
@@ -1541,11 +2077,18 @@
     "U6"
    ],
    "primary_cta": "Log in to the right desk",
+   "cta": {
+    "href": "#s-desks",
+    "form_entity": null,
+    "event": "login_click"
+   },
    "flags": [
     "minimal_header",
     "added"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "09-start-trading.html"
   },
   {
    "n": 75,
@@ -1563,6 +2106,11 @@
     "U1"
    ],
    "primary_cta": "Get OTP",
+   "cta": {
+    "href": "#s-open",
+    "form_entity": "Aikyam Capital",
+    "event": "account_start"
+   },
    "flags": [
     "minimal_header",
     "noindex",
@@ -1570,7 +2118,9 @@
     "regulated_numbers",
     "added"
    ],
-   "status": "todo"
+   "status": "todo",
+   "parent": "/",
+   "golden_file": "09-start-trading.html"
   }
  ]
 }

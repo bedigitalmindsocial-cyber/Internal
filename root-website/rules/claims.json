@@ -1,0 +1,102 @@
+{
+ "_readme": "Claims registry used by scripts/lint.py. 'blocked' = never allowed. 'unconfirmed' = allowed only inside a <mark class=\"ph\"> placeholder until Aikyam confirms it in writing (then move it to 'confirmed'). 'review' = allowed but the reviewer must check the context. Patterns are case-insensitive regular expressions matched against visible text, alt/aria-label/title attributes, and the page title and description.",
+ "blocked": [
+  [
+   "\\bzero commission\\b|\\bcommission[- ]free\\b|\\bno commission\\b",
+   "Aikyam Wealth earns commission on regular plans"
+  ],
+  [
+   "\\bIFA\\b|independent financial advis",
+   "Use 'Distributor Partner Programme', never IFA"
+  ],
+  [
+   "\\bguarantee(d|s)?\\b|\\bassured returns?\\b|\\brisk[- ]free\\b|\\bsure[- ]shot\\b|\\bcapital protection\\b",
+   "No guarantee or assurance language"
+  ],
+  [
+   "\\b(no\\.? ?1|number one|#1|best broker|best platform|lowest brokerage|cheapest|india's (best|leading|fastest))\\b",
+   "Superlative or comparative claim"
+  ],
+  [
+   "\\bunlike other\\b|\\bcompared (to|with) other brokers\\b|\\bzerodha\\b|\\bgroww\\b|\\bupstox\\b|\\bangel one\\b|\\bmotilal\\b",
+   "No comparison with other brokers"
+  ],
+  [
+   "\\btrusted by\\b|\\bhappy (investors|customers|clients)\\b|\\bmillions of\\b|\\blakhs of\\b",
+   "Borrowed-authority claim; ROOT is new"
+  ],
+  [
+   "\\bseamless(ly)?\\b|\\bunlock\\b|\\belevate\\b|\\bempower(s|ing)?\\b|\\brevolutioni[sz]e\\b|\\bnext[- ]gen\\b|\\bgame[- ]chang",
+   "House style: banned buzzword"
+  ],
+  [
+   "\\b(stock |trading )?tips\\b|\\bstock ideas?\\b|\\bresearch reports?\\b|\\btarget price\\b|\\bbuy call\\b|\\bsell call\\b|\\bAI[- ]led\\b|\\bmodel portfolios?\\b",
+   "Research or advice content needs an RA/IA licence"
+  ],
+  [
+   "\\bhandpicked\\b|\\bcurated funds?\\b|\\brecommended (funds?|schemes?|stocks?)\\b|\\bbest (funds?|schemes?|stocks?)\\b|\\btop[- ]rated\\b|\\bfunds? (we|you should) (pick|choose|recommend)",
+   "Implies scheme or stock advice"
+  ],
+  [
+   "\\bno hidden (charges|fees|costs)\\b|\\b99\\.9+%|\\buptime\\b",
+   "Absolute claim ROOT cannot prove"
+  ],
+  [
+   "★|\\b\\d(\\.\\d)? ?(stars?|/ ?5)\\b|\\brated\\b|\\baward[- ]?winning\\b|\\bawards?\\b",
+   "Ratings or awards ROOT does not have"
+  ],
+  [
+   "\\bact now\\b|\\blimited (period|time)\\b|\\bhurry\\b|\\bdon't miss\\b|\\blast chance\\b",
+   "No urgency devices"
+  ],
+  [
+   "\\bclick here\\b",
+   "Links must say where they go"
+  ],
+  [
+   "\\bdirect plans?\\b",
+   "An ARN distributor cannot deal in Direct Plans"
+  ]
+ ],
+ "unconfirmed": [
+  [
+   "\\bbank[- ]grade security\\b",
+   "Needs evidence (Placeholder Register)"
+  ],
+  [
+   "\\bfast(,)? reliable execution\\b|\\bfast execution\\b|\\blightning\\b|\\binstant execution\\b",
+   "Needs evidence"
+  ],
+  [
+   "\\binstitutional[- ]grade research\\b|\\bopen[- ]architecture research\\b",
+   "Research language: needs RA registration"
+  ],
+  [
+   "\\binstant pledge\\b|\\bpay later\\b",
+   "Feature not confirmed"
+  ],
+  [
+   "\\bmargin trading facility\\b|\\bMTF\\b",
+   "Confirm MTF is offered before promoting it"
+  ]
+ ],
+ "review": [
+  [
+   "\\badvis(e|or|ors|ory)\\b|\\badvice\\b",
+   "Implies IA/RA registration; acceptable only in 'not investment advice' disclaimers"
+  ],
+  [
+   "\\bfree\\b",
+   "Free claims (account opening, AMC) must match the confirmed rate card"
+  ],
+  [
+   "\\bone account\\b|\\bsingle account\\b",
+   "Two companies: one account for everything depends on Q7"
+  ],
+  [
+   "\\bsub[- ]?brokers?\\b",
+   "Only to explain that the category was replaced by Authorised Person"
+  ]
+ ],
+ "confirmed": []
+}
