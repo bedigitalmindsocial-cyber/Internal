@@ -134,8 +134,9 @@
 .side-door{display:flex; flex-direction:column; gap:6px}
 @media (max-width: 640px){ .form-card{padding:20px} }
 
-/* cost cred: a cred whose value is a charge plus a link spans both cred columns (from 09 Start Trading) */
-.creds .cred-cost{grid-column:1/-1}
+/* wide cred: a cred with a long value spans both cred columns. .cred-wide is the v3 name (09 v3); .cred-cost is the v2 name
+   for a charge plus a link (09 v2, still used by 10) */
+.creds .cred-cost,.creds .cred-wide{grid-column:1/-1}
 .creds .cost-line{display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px}
 
 /* wrapping link: inline, so the arrow follows the last word; .link-tail keeps the last word and the icon together (from 09; 01 reuses it) */
@@ -173,9 +174,12 @@
   .final .row .btn{width:100%}
 }
 
-/* dark band: copy, links and the illustrative label in on-dark colours (theme ink is invisible on the gradient). From 01 Home */
+/* dark band: copy, links, fine print, eyebrow and the illustrative labels in on-dark colours (theme ink is invisible on the gradient).
+   From 01 Home; .fine, .eyebrow from 01 v3 and 09 v3, .ui-caption and .fine a from 09 v3 */
 .band--dark .lead,.band--dark .handoff,.band--dark .illus{color:var(--on-dark-2)}
 .band--dark .link{color:var(--on-dark)}
+.band--dark .fine,.band--dark .eyebrow,.band--dark .ui-caption{color:var(--on-dark-2)}
+.band--dark .fine a{color:var(--on-dark)}
 
 /* disclosure band with the info icon (mutual fund and distribution disclosures): the risk-box pattern in ink, not warn (from 01) */
 .risk-box .i[data-icon="i-info"]{color:var(--aub)}
@@ -295,3 +299,258 @@ main .ph.ph--block{border:0; border-radius:var(--r-card); padding:20px; backgrou
 
 /* hero balance: centre the columns */
 .hero-grid{align-items:center}
+
+/* ===== v3 golden promotions (curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. Scoped where 01 and 09 use different conventions, so neither page changes. */
+
+/* Hero · product stage (from 01 Home s-hero): two equal columns from 900 px; inline bar form left, illustrative screens right */
+@media (min-width: 900px){ .hero-grid--stage{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--stage .hero-copy{gap:16px}
+.hero-visual{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0}
+.hero-stage{position:relative; display:flex; gap:24px; align-items:stretch; justify-content:center; width:100%}
+.hero-stage .rings{width:300px; top:-28px; right:0}
+.hero-stage .phone{flex:none; width:280px}
+.stage-cards{position:relative; z-index:1; flex:0 1 236px; min-width:0; display:flex; flex-direction:column; justify-content:space-around; gap:24px; padding-block:48px}
+/* stage card rows: label in aub-60, value bold and right-aligned (09's illustrative rows keep ink labels) */
+.stage-cards .ui-row span{color:var(--aub-60)}
+.stage-cards .ui-row b{font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+/* theme phone, Home screen parts at 280 px (theme .phone clips its tab bar below 256 px) */
+.hero-stage .ph-card .chg{font-size:11px}
+.hero-stage .ph-spark{margin-top:6px}
+.ph-hold{display:flex; flex-direction:column; gap:8px; padding:2px 2px 0}
+.ph-sip{padding:0 2px}
+.ph-sip .xs{display:block}
+@media (max-width: 640px){
+  .hero-stage{flex-direction:column; align-items:center; gap:20px}
+  .hero-stage .phone{width:256px}
+  .hero-stage .ph-spark{height:40px}
+  .hero-stage .ph-body{gap:8px}
+  .stage-cards{flex-direction:row; align-items:stretch; padding:0; width:100%; flex:none; gap:12px}
+  .stage-cards .ui-card{flex:1 1 0; padding:14px}
+  .stage-cards .ui-row{flex-direction:column; align-items:flex-start; gap:0}
+  .stage-cards .ui-row b{text-align:left}
+}
+
+/* Hero inline bar form (from 01 Home s-hero): theme .leadbar + consent + receiver and hand-off lines 6 px apart.
+   Error states wrap the bar or the consent box in .fgroup.is-error: the bar takes the red outline, the field drops its own */
+.hero-form{display:flex; flex-direction:column; gap:12px; max-width:560px}
+.hero-fine{display:flex; flex-direction:column; gap:6px}
+.hero-fine .fine + .fine{margin-top:0}
+.hero-form .leadbar{max-width:none}
+.hero-form .check{color:var(--aub-80)}
+.hero-form .check a{font-weight:600}
+.hero-form .fine{max-width:58ch}
+.hero-form .is-error .leadbar{border-color:var(--loss); box-shadow:var(--shadow-1), 0 0 0 1px var(--loss)}
+.hero-form .is-error .leadbar .field{box-shadow:none}
+.hero-form .is-error .check input{border-color:var(--loss)}
+/* the other company's door under the form, inside .hero-copy: link above its fine print */
+.hero-copy .hero-alt{flex-direction:column; align-items:flex-start; gap:4px}
+.hero-alt .fine{max-width:none}
+
+/* Proof row (from 01 Home s-hero): ul.creds.creds--row, three across from 900 px under a hairline, icon top-aligned */
+.creds--row{max-width:none; gap:14px 20px; padding-top:14px; border-top:1px solid var(--line)}
+.creds--row li{align-items:flex-start}
+.creds--row li > .i{margin-top:2px}
+@media (min-width: 900px){ .creds--row{grid-template-columns:repeat(3, minmax(0,1fr))} }
+
+/* Hero helper (from 09 v3): a link directly under the creds hugs its text instead of spanning the column */
+.hero-copy > .link{justify-self:start; align-self:flex-start}
+
+/* Hero with the onboarding stage (from 09 v3 s-hero): centre the columns. Outranks .hero-grid:has(> .hero-side){align-items:start},
+   which stays for the v2 form-card hero still used by 10 */
+.hero-grid:has(> .hero-side > .open-stage){align-items:center}
+
+/* Stage panel (from 09 v3): a Mist panel that holds a form card or illustrative UI on a white band */
+.ui-stage--panel{padding:24px; border-radius:24px; background:var(--mist)}
+@media (max-width: 640px){ .ui-stage--panel{padding:16px} }
+
+/* Onboarding stage + step tracker (from 09 v3 s-hero and the "verified" state): rings bottom right behind the card,
+   every other child above them. ol.track: four li segments, a 3 px top border plus a label; li.is-on gold (aria-current="step"),
+   li.is-done ink with an inline check; a span keeps "e-sign" together */
+.open-stage > :not(.rings){position:relative; z-index:1}
+.open-stage .rings{top:auto; bottom:-40px; right:-96px}
+.track{list-style:none; display:flex; gap:6px}
+.track li{flex:1 1 0; min-width:0; padding-top:8px; border-top:3px solid var(--line-2); font:500 var(--fs-xs)/1.3 var(--sans); color:var(--aub-60)}
+.track li.is-on{border-top-color:var(--gold); color:var(--aub); font-weight:600}
+.track li.is-done{border-top-color:var(--aub); color:var(--aub)}
+.track li .i{display:inline-block; vertical-align:-3px; margin-right:4px; width:15px; height:15px; color:var(--gain)}
+.track li span{white-space:nowrap}
+.states-board .open-stage{max-width:32rem}
+
+/* Parts for illustrative cards (01 v3 and 09 v3).
+   Small status chips inside .ui-card (09); .ui-cta keeps the full chip size as the card's action (01); ink chip; check icons in gain green */
+.ui-card .chip{min-height:22px; padding:0 9px; font-size:11px}
+.chip--ink{background:var(--aub); color:var(--paper)}
+.ui-row .i{color:var(--gain)}
+/* card head (01): 34 px icon tile + label, then a bold name */
+.ui-card .ui-head{display:flex; align-items:center; gap:10px}
+.ui-card .ui-tile{width:34px; height:34px; border-radius:10px; background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.ui-card .ui-tile .i{width:18px; height:18px}
+.ui-card .ui-name{font-weight:600; font-size:.9375rem; line-height:1.3}
+/* actions: .ui-cta an ink chip (01, a span, not a button); .ui-pill a full-width 38 px ink bar (09, a span, not a button) */
+.ui-card .ui-cta{min-height:28px; padding:0 11px; font-size:.8125rem; justify-content:center; background:var(--aub); color:var(--paper); font-weight:600}
+.ui-card .ui-pill{display:flex; justify-content:center; align-items:center; min-height:38px; border-radius:10px; background:var(--aub); color:var(--paper); font-weight:600; font-size:var(--fs-sm)}
+/* form-like parts (01 KYC card): a field with label and mono value, a gain-green "done" row */
+.ui-field{display:flex; flex-direction:column; gap:4px; padding:10px 14px; border-radius:var(--r-ctl); border:1px solid var(--line-2)}
+.ui-field .ui-flabel{font-size:11px; color:var(--aub-60)}
+.ui-field .ui-fval{font:500 15px/1.2 var(--mono); letter-spacing:.06em; color:var(--aub)}
+.ui-card .ui-ok{justify-content:flex-start; gap:8px; color:var(--gain); font-weight:500}
+.ui-card .ui-ok .i{width:16px; height:16px}
+.ui-card .ui-ok span{color:var(--gain)}
+
+/* Hairline row card (from 09 v3): .ui-card.ui-list, rows split by 1 px lines (segments, account status, order ticket) */
+.ui-card.ui-list{gap:0}
+.ui-list .ui-label{padding-bottom:10px}
+.ui-list .ui-big{padding-bottom:12px}
+.ui-list .ui-row{padding:11px 0; border-top:1px solid var(--line)}
+.ui-list .ui-pill{margin-top:12px}
+
+/* Receipt card (from 09 v3 s-charges): .ui-card.ui-receipt, a contract-note look for charges without figures */
+.ui-card.ui-receipt{padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ui-receipt .ui-label{padding-bottom:12px}
+.ui-receipt .ui-row{padding:12px 0; border-top:1px dashed var(--line-2); align-items:baseline}
+.ui-receipt .ui-row span + span{flex:none; color:var(--aub-60); text-align:right}
+.ui-receipt .small{padding-top:14px; border-top:1px dashed var(--line-2); color:var(--aub-60)}
+
+/* KYC step card (from 01 Home s-steps): .ui-stage.kyc-stage, a Mist panel with a taller top, holding .ui-card.kyc-card */
+.kyc-stage{align-items:center; padding:48px 32px 28px; border-radius:24px; background:var(--mist)}
+.kyc-card{width:min(340px, 100%); gap:14px; padding:22px}
+.kyc-progress{display:flex; gap:6px}
+.kyc-progress i{flex:1; height:4px; border-radius:4px; background:var(--line)}
+.kyc-progress i.on{background:var(--aub)}
+@media (max-width: 640px){ .kyc-stage{padding:28px 16px 20px} }
+
+/* Steps split (from 01 Home s-steps): steps 2 x 2, the docs strip (heading above a two-column list from 900 px) and the band CTA left (7),
+   a product visual right (5) */
+@media (min-width: 900px){ .split--steps{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.split--steps .docs{margin-top:36px; grid-template-columns:1fr; gap:14px}
+@media (min-width: 900px){ .split--steps .docs ul{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 24px} }
+.split--steps .band-cta{margin-top:32px}
+
+/* Step mini screens (from 09 v3 s-steps): .ui-card.ui-mini under each step, pinned to the foot of the row so all four line up */
+.steps li:has(.ui-mini){display:flex; flex-direction:column}
+.ui-card.ui-mini{margin-top:auto; padding:14px 16px; gap:8px; border-radius:14px; box-shadow:var(--shadow-1)}
+.ui-mini b{font-size:var(--fs-sm); font-weight:600; color:var(--aub)}
+.steps + .ui-caption{margin-top:28px}
+
+/* Documents strip with icon tiles (from 09 v3 s-steps): .docs.docs--tiles, 40 px Mist tiles; from 641 px the list is two
+   max-content columns, so four items read 2 x 2 */
+.docs--tiles li .tile{width:40px; height:40px; background:var(--mist)}
+.docs--tiles li .tile .i{width:20px; height:20px; color:var(--aub)}
+.docs--tiles ul{gap:12px 28px}
+@media (min-width: 641px){ .docs--tiles ul{display:grid; grid-template-columns:repeat(2, minmax(0, max-content)); column-gap:48px} }
+
+/* Info card tile (fix from 09 v3): the theme makes tiles white on Mist bands, which vanish inside white info cards */
+.info-card .tile{background:var(--mist)}
+
+/* Two-card row (from 09 v3): .cards.cards--2, two columns from 641 px, one below, 16 px under the block before it */
+.cards--2{margin-top:16px}
+@media (min-width: 641px){ .cards--2{grid-template-columns:repeat(2, minmax(0,1fr))} }
+
+/* F&O section (from 09 v3 s-fo): link 16 px under the inset risk box; a centred split below it; facts with a title;
+   the segments card centred on a stage panel */
+.risk-more{margin-top:16px}
+.fo-split{margin-top:clamp(40px, 5vw, 64px); align-items:center}
+.fo-split .facts{gap:24px}
+.fact-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.fact-text p{font-weight:400; color:var(--aub-80)}
+.fact-text .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+.seg-card{width:min(100%, 26rem); align-self:center; padding:20px 22px; font-size:var(--fs-sm)}
+.seg-card .chip{min-height:24px; font-size:12px}
+.seg-stage .ui-caption{align-self:center}
+
+/* Inset risk box inside a product door (from 01 Home s-products): icon and bullets in ink, an h4 under the door's h3.
+   09 keeps the warn icon in a stand-alone inset box */
+.door .risk-box--inset{margin:6px 0 2px}
+.door .risk-box--inset .i{color:var(--aub)}
+.door .risk-box--inset ul{color:var(--aub); line-height:1.5}
+.risk-box--inset .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+
+/* Door rows, wide text and goal chips (from 01 Home s-products): fine print inside a row; 2 x 2 Mist goal tiles, not links */
+.row-text--wide{flex:1}
+.row-text .fine{margin-top:4px; font-size:var(--fs-xs)}
+.door-foot .fine{max-width:52ch}
+.goal-chips{list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px}
+.goal-chips li{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:22px 18px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-size:var(--fs-sm); font-weight:600; line-height:1.3}
+.goal-chips .i{width:24px; height:24px}
+@media (max-width: 640px){ .goal-chips li{padding:14px 12px; gap:8px} }
+
+/* Coming-soon card (from 01 Home s-products): the right column of .doors stacks the second door and a hairline card that fills
+   the rest; one item per line with a small icon, no badges or links, outside the door so no company is implied */
+.doors-side{display:flex; flex-direction:column; gap:24px; min-width:0}
+.soon-card{flex:1; display:flex; flex-direction:column; gap:14px; padding:22px 28px; border-radius:var(--r-card); border:1px solid var(--line-2); color:var(--aub-80); font-size:var(--fs-sm)}
+.soon-card .label{color:var(--aub)}
+.soon-list{list-style:none; display:flex; flex-direction:column; gap:12px}
+.soon-item{display:flex; gap:10px; align-items:flex-start; line-height:1.4}
+.soon-item .i{flex:none; width:18px; height:18px; margin-top:1px; color:var(--aub-60)}
+@media (max-width: 640px){
+  .soon-card{padding:18px 20px}
+  .soon-list{gap:10px}
+}
+
+/* Stat tiles (01 v3 and 09 v3): an unconfirmed value sits at body size in a slot of numeral height (2rem x 1.05),
+   so a confirmed serif value fills it with no layout shift; .stat-tiles--3 adds an icon tile and roomier tiles; .num--word for a word */
+.stat-tile .num{display:flex; align-items:center; min-height:2.1rem}
+.stat-tile .num .ph{font:500 var(--fs-sm)/1.4 var(--sans); letter-spacing:0}
+.stat-tile .num--word{font-size:1.625rem; line-height:1.2}
+.stat-tile .tile{margin-bottom:10px}
+.stat-tile .link{margin-top:6px}
+.stat-tiles--3 .stat-tile{flex:1 1 260px; gap:8px; padding:26px}
+.price-notes{margin-top:24px}
+
+/* Row list (from 09 v3 s-charges): dl.kv-list.kv-list--row, no card frame, hairlines above the first and below the last row;
+   dt ink left, dd right at fs-sm; rows wrap on phones */
+.kv-list--row{padding:0; background:none; box-shadow:none; border-radius:0; border-top:1px solid var(--line)}
+.kv-list--row > div{flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px; padding:12px 0}
+.kv-list--row > div:last-child{border-bottom:1px solid var(--line)}
+.kv-list--row dt{color:var(--aub)}
+.kv-list--row dd{font-size:var(--fs-sm); text-align:right}
+
+/* Group map on a Mist band, and off-group branches with a hairline shell (they still read as branches at 640). From 01 v3 */
+.band--mist .is-on .gmap-card{background:var(--paper)}
+.band--mist .is-on .gmap-card .chip{background:var(--mist)}
+.gmap-branches li:not(.is-on) .gmap-card{border:1px solid var(--line-2)}
+
+/* Verify cards (from 01 Home s-group): the check-it-yourself ledger as three white cards; tile, bold role, company link,
+   .mono code above a hairline (balanced break at the middle dot), regulator link pinned to the foot; one column at 899 */
+.verify-head{display:flex; flex-direction:column; gap:6px}
+.verify-head p{color:var(--aub-60)}
+.verify-list--cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; border-top:0}
+.verify-list--cards .verify-row{display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:24px; border-bottom:0; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.verify-list--cards dt{gap:4px}
+.verify-list--cards dt .tile{margin-bottom:10px; background:var(--mist); color:var(--aub)}
+.verify-list--cards dt b{font-weight:600; color:var(--aub)}
+.verify-list--cards dt a{font-weight:500; font-size:var(--fs-sm)}
+.verify-list--cards dd.mono{padding-top:12px; border-top:1px solid var(--line); align-self:stretch; text-wrap:balance}
+.verify-list--cards dd:last-child{margin-top:auto}
+@media (max-width: 899px){ .verify-list--cards{grid-template-columns:1fr} }
+@media (max-width: 640px){ .verify-list--cards .verify-row{padding:20px} }
+
+/* FAQ split, left column (from 01 Home s-faq): the image slot gets a little air in the 18 px stack */
+.faq-side .img-slot{margin-block:4px}
+
+/* Dark closing band (01 v3 and 09 v3; on-dark copy colours are in the dark band block above).
+   01: buttons in a row, an app-soon block, a translucent image slot right. 09: a column of equal-width buttons, product cards right */
+.final-actions{display:flex; flex-wrap:wrap; gap:12px}
+.app-soon{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:22px; border-top:1px solid var(--dark-line)}
+.app-soon p{color:var(--on-dark)}
+.final-visual{justify-self:end; width:min(420px, 100%)}
+.band--dark .img-slot{background:linear-gradient(160deg, rgba(244,241,247,.16) 0%, rgba(244,241,247,.05) 100%); border:1px solid var(--dark-line); color:var(--on-dark-2)}
+.band--dark .img-slot b{color:var(--on-dark)}
+.band--dark .img-slot .i{color:var(--on-dark-2)}
+.app .row{display:flex; flex-direction:column; align-items:stretch; gap:12px; width:max-content; max-width:100%}
+.final-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.final-stage .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 899px){
+  .final-visual{justify-self:stretch; width:100%; max-width:420px}
+  .final-stage{padding:0}
+}
+@media (max-width: 640px){
+  .app-soon .stores{flex-wrap:nowrap; align-self:stretch}
+  .app-soon .store{flex:1 1 0; min-width:0; gap:10px; padding:10px 12px}
+  .app-soon .store b{white-space:nowrap}
+  .app .row{width:100%}
+  .app .row .btn{width:100%; white-space:normal; text-align:center; line-height:1.25; padding:12px 16px; font-size:1rem}
+  .final-stage .ui-card{width:100%}
+}

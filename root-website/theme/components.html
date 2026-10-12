@@ -1,10 +1,757 @@
 <!-- ROOT component markup library (curated from the golden pages; CSS in theme/patterns.css).
      Copy a block, keep the class names and structure, replace the copy for your page. Write it exactly as page sources are written:
      {{tokens}} for site values, <mark class="ph"> for anything unconfirmed, <svg class="i"><use href="#i-NAME"/></svg> icons, site URLs.
-     Verbatim compliance blocks (F&O risk box, MF risk line, distributor disclaimer) live in rules/compliance-blocks.md, not here.
-     Index: theme/components.md. Curated 12-Oct-2026 from 01 Home and 09 Start Trading. -->
+     Verbatim compliance blocks (F&O risk box, MF risk line, distributor disclaimer) live in rules/compliance-blocks.md: where a block
+     below needs one, it holds a comment naming the block instead of the text.
+     Nested <!-- COMPONENT --> comments mark parts that also work alone.
+     Index: theme/components.md. v3 blocks curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3; the legacy v2 blocks at the
+     end stay only for 10 Start Investing until it is rebuilt on v3. -->
 
-<!-- COMPONENT: Hero · form card (template D) | account-opening and lead pages: 09, 10 Start Investing, 11 Get the App (notify card), 75 paid landing; hero copy and creds left (cost cred spans both columns), form card + side door right | 09 Start Trading s-hero -->
+<!-- ===== v3 canonical components ===== -->
+
+<!-- COMPONENT: Hero · product stage + inline bar form (v3 hub hero) | Home and the hubs 02 Invest, 03 Trade, 04 Plan & Tools, 11 Get the App: .hero-grid--stage (two equal columns from 900 px), eyebrow naming both companies, inline bar form, side door, proof row; illustrative screens right | 01 Home v3 s-hero -->
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--stage">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Broking by Aikyam Capital · Mutual funds by Aikyam Wealth</span>
+      <h1 class="d1" id="h-hero">Stocks, IPOs and mutual funds, <em>in one place.</em></h1>
+      <p class="lead">Open your account online, know what you pay before you start, and invest at your own pace.</p>
+      <!-- COMPONENT: Hero inline bar form | the account start in its smallest form: every hub hero that starts an account (02, 03, 04) and 75; states below | 01 Home v3 s-hero -->
+      <form class="hero-form" id="open-form" action="/open-account/trading" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
+        <div class="leadbar">
+          <label class="field" for="home-mob"><span class="pre">+91</span><input id="home-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" required></label>
+          <button class="btn btn--lg" type="submit" data-primary>{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></button>
+        </div>
+        <label class="check"><input type="checkbox" name="consent" required><span><span data-draft="consent-mobile">I agree that Aikyam Capital may contact me about my account application.</span> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
+        <div class="hero-fine">
+          <p class="fine">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+          <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+        </div>
+      </form>
+      <div class="hero-alt">
+        <a class="link link--wrap" href="/open-account/investing" data-event="switch_to_investing">Only mutual funds? Start investing with Aikyam <span class="link-tail">Wealth<svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+      </div>
+      <!-- COMPONENT: Proof row | at most three proof points across from 900 px under a hairline: hub heroes | 01 Home v3 s-hero -->
+      <ul class="creds creds--row">
+        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="mono">{{reg.capital.sebi}}</span></div></li>
+        <li><svg class="i"><use href="#i-mf"/></svg><div>AMFI-registered mutual fund distributor<span>Aikyam Wealth</span></div></li>
+        <li><svg class="i"><use href="#i-sprout"/></svg><div>Backed by Aikyam Capital Group<span>Capital markets to asset management</span></div></li>
+      </ul>
+    </div>
+
+    <!-- COMPONENT: Product stage | theme phone (280 px) + two floating .ui-card screens (.ui-head, .ui-name, label-value rows, .ui-cta), rings behind, p.illus under it | 01 Home v3 s-hero -->
+    <div class="hero-visual">
+      <div class="hero-stage" role="img" aria-label="Illustrative ROOT screens: a portfolio overview, an IPO application and a SIP set-up">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-hero"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-hero)"/></svg>
+        <div class="phone">
+          <div class="ph-status"><span class="num">9:41</span><span>5G</span></div>
+          <div class="ph-top"><span class="wm"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 72.18"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></span><svg class="i i--sm"><use href="#i-bell"/></svg></div>
+          <div class="ph-body">
+            <div class="ph-card">
+              <div class="xs">Total value</div>
+              <div class="ph-val">₹4,82,310.50</div>
+              <div class="chg up">+₹1,240.20 today (+0.26%)</div>
+              <svg class="ph-spark" viewBox="0 0 240 60" width="100%" height="56" aria-hidden="true">
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9 L240 60 L0 60 Z" fill="#1C0F2F" fill-opacity=".06"/>
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9" fill="none" stroke="#1C0F2F" stroke-width="1.6"/>
+                <circle cx="238" cy="9" r="3.2" fill="#C19C2F"/>
+              </svg>
+              <div class="ph-seg"><span>1D</span><span>1W</span><span class="on">1M</span><span>1Y</span><span>All</span></div>
+            </div>
+            <div class="ph-hold">
+              <div class="ph-row"><span>Stocks</span><b>₹2,10,400</b></div><div class="ph-bar"><i style="--w:44%"></i></div>
+              <div class="ph-row"><span>Mutual funds</span><b>₹1,94,800</b></div><div class="ph-bar"><i style="--w:40%"></i></div>
+              <div class="ph-row"><span>ETFs and gold</span><b>₹77,110</b></div><div class="ph-bar"><i style="--w:16%"></i></div>
+            </div>
+            <div class="ph-row ph-sip"><span><span class="xs">Next SIP · 5 Nov</span>Example Flexi Cap Fund</span><b>₹5,000</b></div>
+          </div>
+          <div class="ph-tabs"><span class="on"><svg class="i"><use href="#i-home"/></svg>Home</span><span><svg class="i"><use href="#i-mf"/></svg>Invest</span><span><svg class="i"><use href="#i-stocks"/></svg>Trade</span><span><svg class="i"><use href="#i-user"/></svg>Profile</span></div>
+        </div>
+        <div class="stage-cards">
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-ipo"/></svg></span><span class="ui-label">IPO</span></div>
+            <b class="ui-name">Example Industries Ltd</b>
+            <div class="ui-row"><span>Price band</span><b>₹412 to ₹433</b></div>
+            <div class="ui-row"><span>Pay with</span><b>UPI</b></div>
+            <span class="chip ui-cta">Apply</span>
+          </div>
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-mf"/></svg></span><span class="ui-label">Start a SIP</span></div>
+            <b class="ui-name">Example Flexi Cap Fund</b>
+            <div class="ui-row"><span>Amount</span><b>₹5,000 a month</b></div>
+            <div class="ui-row"><span>Date</span><b>5th of every month</b></div>
+            <span class="chip ui-cta">Start SIP</span>
+          </div>
+        </div>
+      </div>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Hero inline bar form · state invalid number (error) | the .fgroup.is-error wraps the whole .leadbar: the bar takes the red outline, the field drops its own | 01 Home v3 -->
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<form class="hero-form">
+  <div class="fgroup is-error">
+    <div class="leadbar">
+      <label class="field" for="hs1-mob"><span class="pre">+91</span><input id="hs1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-label="Mobile number" aria-invalid="true" aria-describedby="hs1-err"></label>
+      <button class="btn btn--lg" type="submit">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></button>
+    </div>
+    <span class="fhelp" id="hs1-err">Enter a 10-digit mobile number.</span>
+  </div>
+  <label class="check"><input type="checkbox" checked><span><span data-draft="consent-mobile">I agree that Aikyam Capital may contact me about my account application.</span> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<!-- COMPONENT: Hero inline bar form · state consent missing (error) | the .fgroup.is-error wraps only the consent box (keep only if compliance makes the box required) | 01 Home v3 -->
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="hs2-mob"><span class="pre">+91</span><input id="hs2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg" type="submit">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <div class="fgroup is-error">
+    <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="hs2-err"><span><span data-draft="consent-mobile">I agree that Aikyam Capital may contact me about my account application.</span> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
+    <span class="fhelp" id="hs2-err">Tick the box to continue.</span>
+  </div>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<!-- COMPONENT: Hero · onboarding stage (template D v3) | account-opening and lead pages 09, 10, 11 (notify card), 75: copy, creds (li.cred-wide spans both columns) and a 'See what you pay' link left; onboarding stage with the form card right, side door under it; columns centred | 09 Start Trading v3 s-hero -->
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h1 class="d1" id="h-hero">Stocks, ETFs and IPOs, <em>a few steps away.</em></h1>
+      <p class="lead">Open your trading and demat account online with your PAN and Aadhaar, and add more segments when you're ready.</p>
+      <ul class="creds">
+        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="num mono">{{reg.capital.sebi}}</span></div></li>
+        <li><svg class="i"><use href="#i-chart"/></svg><div>Member of NSE, BSE, MCX and MSEI<span>Member codes in the footer</span></div></li>
+        <li class="cred-wide"><svg class="i"><use href="#i-lock"/></svg><div>NSDL depository participant<span class="num mono">{{reg.capital.dp}}</span></div></li>
+      </ul>
+      <a class="link" href="#s-charges">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="hero-side">
+      <!-- COMPONENT: Onboarding stage | .ui-stage.ui-stage--panel.open-stage (Mist panel, rings bottom right behind) holding ol.track + the form card: 09, 10, 11, 75 | 09 Start Trading v3 s-hero -->
+      <div class="ui-stage ui-stage--panel open-stage">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-open"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-open)"/></svg>
+        <!-- COMPONENT: Step tracker | ol.track: four li segments (3 px top border + label); li.is-on gold with aria-current="step", li.is-done ink with an inline check (see the verified state); a span keeps 'e-sign' together | 09 Start Trading v3 s-hero -->
+        <ol class="track" aria-label="Opening your account: step 1 of 4">
+          <li class="is-on" aria-current="step">Mobile</li>
+          <li>PAN</li>
+          <li>Aadhaar</li>
+          <li>Bank and <span>e-sign</span></li>
+        </ol>
+        <section class="form-card" id="s-open" aria-labelledby="h-open">
+          <h2 class="h3" id="h-open">Start with your mobile number</h2>
+          <form id="open-form" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
+            <div class="fgroup">
+              <label for="open-mob">Mobile number</label>
+              <span class="field"><span class="pre">+91</span><input id="open-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="open-mob-help" required></span>
+              <span class="fhelp" id="open-mob-help">We'll send a one-time password (OTP) to this number.</span>
+            </div>
+            <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+            <button class="btn btn--lg" type="submit" data-primary>Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+            <div class="stack" style="--gap:0px">
+              <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+              <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="hero-alt"><a class="link link--wrap" href="/open-account/investing" data-event="switch_to_investing">Investing only? Open an investing account with <span class="link-tail">Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Form card v3 · state OTP sent | every template D form: second screen, resend timer placeholder; also the landing state from a Home bar form | 09 Start Trading v3 -->
+<template data-state="otp-sent" data-label="OTP sent, resend timer running (also shown on arrival from Home with the number carried over)">
+<div class="form-card">
+  <h2 class="h3">Enter the OTP</h2>
+  <p class="small">We sent it to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+      <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
+    </div>
+    <p class="xs">Didn't get it? Resend in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </form>
+</div>
+</template>
+
+<!-- COMPONENT: Form card v3 · state invalid number (error) | every form card: field error on the mobile number | 09 Start Trading v3 -->
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<div class="form-card">
+  <h2 class="h3">Start with your mobile number</h2>
+  <form>
+    <div class="fgroup is-error">
+      <label for="st4-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st4-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st4-err"></span>
+      <span class="fhelp" id="st4-err">Enter a 10-digit mobile number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<!-- COMPONENT: Form card v3 · state consent missing (error) | form cards with a required consent box; label.check keeps body type inside the error fgroup | 09 Start Trading v3 -->
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<div class="form-card">
+  <h2 class="h3">Start with your mobile number</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st5-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st5-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+    </div>
+    <div class="fgroup is-error">
+      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st5-err"><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+      <span class="fhelp" id="st5-err">Tick the box to continue.</span>
+    </div>
+    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<!-- COMPONENT: Form card v3 · state wrong OTP (error) | every OTP form | 09 Start Trading v3 -->
+<template data-state="otp-wrong" data-label="Error: wrong or expired OTP">
+<div class="form-card">
+  <h2 class="h3">Enter the OTP</h2>
+  <div class="alert alert--err" role="alert"><svg class="i"><use href="#i-alert"/></svg><div><b>That OTP didn't match or has expired</b>Check the digits and try again, or ask for a new one.</div></div>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+    </div>
+    <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a> · <a href="#s-open">Change number</a></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </form>
+</div>
+</template>
+
+<!-- COMPONENT: Form card v3 · state verified (success, tracker advanced) | every OTP form: the stage with Mobile done and the next step active, naming the KYC partner and the company | 09 Start Trading v3 -->
+<template data-state="verified" data-label="Success: number verified; the tracker marks Mobile done and PAN active; next step is KYC">
+<div class="ui-stage ui-stage--panel open-stage">
+  <ol class="track" aria-label="Opening your account: step 2 of 4">
+    <li class="is-done"><svg class="i"><use href="#i-check"/></svg>Mobile</li>
+    <li class="is-on" aria-current="step">PAN</li>
+    <li>Aadhaar</li>
+    <li>Bank and <span>e-sign</span></li>
+  </ol>
+  <div class="form-card">
+    <h2 class="h3">Number verified</h2>
+    <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is verified</b>Next: your PAN and Aadhaar, with our KYC partner.</div></div>
+    <p class="fine">KYC partner: {{kyc.vendor}}, for {{reg.capital.name}}.</p>
+    <a class="btn btn--lg" href="#s-open">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></a>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</div>
+</template>
+
+<!-- COMPONENT: Form card v3 · state existing account | every account-start form: the number already has an account | 09 Start Trading v3 -->
+<template data-state="existing-account" data-label="This number already has an account">
+<div class="form-card">
+  <h2 class="h3">You already have an account</h2>
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number already has an Aikyam Capital account.</b>Log in, or use a different number.</div></div>
+  <a class="btn btn--lg" href="https://{{url.login}}">Log in<svg class="i"><use href="#i-arrow"/></svg></a>
+  <p class="xs"><a href="#s-open">Use a different number</a></p>
+</div>
+</template>
+
+<!-- COMPONENT: Entity doors v3 · products by company | pages that serve both companies (01, 02, 03 hubs, 06, 07): one article.door per company (label names the company, product rows, Trade door holds the inset F&O box), .doors-side with the second door and the coming-soon card | 01 Home v3 s-products -->
+<section class="band band--mist" id="s-products" aria-labelledby="h-products">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-products">What would you like to do?</h2>
+      <p>Pick what fits you today. You can add the other later.</p>
+    </div>
+    <div class="doors">
+      <article class="door" aria-labelledby="h-door-trade">
+        <div class="door-head">
+          <span class="label">Trade · {{reg.capital.name}}</span>
+          <h3 class="h3" id="h-door-trade">Buy shares and ETFs, apply for IPOs</h3>
+        </div>
+        <ul class="door-rows">
+          <li><span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span><div class="row-text"><a href="/trade/equity">Stocks and ETFs</a><p>Buy and sell on NSE and BSE, to hold or for the day.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-ipo"/></svg></span><div class="row-text"><a href="/ipo">IPOs</a><p>Apply for open IPOs with UPI, and see what is coming up.</p></div></li>
+        </ul>
+        <!-- COMPONENT: Inset risk box in a door | .risk-box.risk-box--inset inside the Trade door, icon and bullets in ink, h4 under the door's h3; verbatim fo_risk text; on fo_risk pages it is the page's #s-risk | 01 Home v3 s-products -->
+        <div class="risk-box risk-box--inset" id="s-risk" aria-labelledby="h-risk">
+          <svg class="i"><use href="#i-alert"/></svg>
+          <div class="stack" style="--gap:8px">
+            <h4 class="h4" id="h-risk">Risk disclosures on derivatives</h4>
+            <ul><!-- the four verbatim bullets of the fo_risk block in rules/compliance-blocks.md --></ul>
+            <p class="xs">Source: {{fo.risk_source}}. <mark class="ph" data-ph="fo-risk-current">current SEBI text to confirm</mark></p>
+          </div>
+        </div>
+        <ul class="door-rows">
+          <li><span class="tile"><svg class="i"><use href="#i-fo"/></svg></span><div class="row-text"><a href="/trade/futures-options">Futures and options</a><p>Optional. You switch it on after sharing proof of income.</p><p class="fine">Lot sizes, margins and expiries change often: check the current figures on the <a href="https://www.nseindia.com/" rel="noopener">NSE website</a>.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-commodity"/></svg></span><div class="row-text"><a href="/trade/currency-commodity">Currency and commodity</a><p>Currency contracts, and commodities such as gold and silver on MCX.</p></div></li>
+        </ul>
+        <div class="door-foot">
+          <a class="btn" href="/open-account/trading">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="link" href="/trade">See everything on Trade<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </article>
+      <div class="doors-side">
+      <article class="door" aria-labelledby="h-door-invest">
+        <div class="door-head">
+          <span class="label">Invest · {{reg.wealth.name}}</span>
+          <h3 class="h3" id="h-door-invest">Mutual funds, with a SIP or all at once</h3>
+        </div>
+        <ul class="door-rows">
+          <li><span class="tile"><svg class="i"><use href="#i-mf"/></svg></span><div class="row-text"><a href="/invest/mutual-funds">Mutual funds</a><p>Regular plans across equity, debt and hybrid categories. Start a SIP or invest once.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-sprout"/></svg></span><div class="row-text row-text--wide"><a href="/plan">Plan by goal</a><p>Not sure where to start? Begin with a goal.</p>
+            <!-- COMPONENT: Goal chips | 2 x 2 Mist tiles, icon above a short label, not links, inside a .row-text--wide door row: 02 Invest, 04 Plan & Tools until the goal pages go live | 01 Home v3 s-products -->
+            <ul class="goal-chips" aria-label="Goals you can plan for">
+              <li><svg class="i"><use href="#i-sun"/></svg>Retirement</li>
+              <li><svg class="i"><use href="#i-cap"/></svg>A child's education</li>
+              <li><svg class="i"><use href="#i-home"/></svg>A home</li>
+              <li><svg class="i"><use href="#i-rupee"/></svg>Saving tax</li>
+            </ul>
+          </div></li>
+        </ul>
+        <div class="door-foot">
+          <a class="btn btn--ghost" href="/open-account/investing" data-event="switch_to_investing">Only mutual funds? Start investing<svg class="i"><use href="#i-arrow"/></svg></a>
+          <p class="fine">Mutual funds are distributed by {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}. Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+          <a class="link" href="/invest">See everything on Invest<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </article>
+      <!-- COMPONENT: Coming-soon card | .doors-side stacks the second door and a hairline card that fills the rest; one line per item, small icons, no badges or links, outside the door so no company is implied: 02, 03, 51 | 01 Home v3 s-products -->
+      <div class="soon-card">
+        <span class="label">Coming soon</span>
+        <ul class="soon-list">
+          <li class="soon-item"><svg class="i"><use href="#i-pms"/></svg>PMS (third-party, empanelled for distribution)</li>
+          <li class="soon-item"><svg class="i"><use href="#i-bond"/></svg>Bonds and fixed income</li>
+          <li class="soon-item"><svg class="i"><use href="#i-nps"/></svg>NPS</li>
+          <li class="soon-item"><svg class="i"><use href="#i-shield"/></svg>Insurance</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Stat tiles · three across (cost summary) | cost summaries on hubs 02, 03, 07 and the 06 Pricing header: .stat-tiles--3 (icon tile, label naming the company, .num slot: an unconfirmed token renders at body size, a confirmed value fills the serif slot; .num--word for a word), .price-notes fine print, ghost button to Pricing | 01 Home v3 s-pricing -->
+<section class="band" id="s-pricing" aria-labelledby="h-pricing">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-pricing">What will I pay?</h2>
+      <p>Our charges are listed on one public page, so you can check what you pay before you start.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <span class="label">Account opening · Aikyam Capital</span>
+        <div class="num">{{pricing.account_opening}}</div>
+        <p>To open your trading and demat account.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span>
+        <span class="label">Equity delivery · Aikyam Capital</span>
+        <div class="num">{{pricing.delivery}}</div>
+        <p>Brokerage when you buy shares to hold. Other segment rates are on the Pricing page.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-mf"/></svg></span>
+        <span class="label">Mutual funds · Aikyam Wealth</span>
+        <div class="num num--word">Regular plans</div>
+        <p>Aikyam Wealth is paid a commission by the fund house. It is included in the plan's expense ratio.</p>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="price-notes">
+      <p class="fine">On top of brokerage, statutory and exchange charges apply: Securities Transaction Tax (STT) or Commodities Transaction Tax (CTT), exchange transaction charges, SEBI turnover fees, stamp duty and GST.</p>
+      <p class="fine">Brokerage will never exceed the limits prescribed by SEBI.</p>
+    </div>
+    <div class="band-cta"><a class="btn btn--ghost" href="/pricing">See all charges<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- COMPONENT: Group section v3 · who is behind ROOT | 01, 07 About, 12, 13: split of copy + facts list and the group map on a Mist band, then the verify cards (each part also works alone) | 01 Home v3 s-group -->
+<section class="band band--mist" id="s-group" aria-labelledby="h-group">
+  <div class="wrap">
+    <div class="split">
+      <div class="stack" style="--gap:20px">
+        <h2 class="d2 node" id="h-group">Who is behind ROOT?</h2>
+        <p>ROOT by Aikyam is the retail brand of Aikyam Capital Group. The group works across capital markets, wealth management, investment banking and asset management.</p>
+        <!-- COMPONENT: Facts list | claim-free proof lines in place of the theme pillars: 01, 07 About, Help Centre | 01 Home s-group -->
+        <ul class="facts">
+          <li><svg class="i"><use href="#i-shield"/></svg><span>Two regulated companies, each named where you act</span></li>
+          <li><svg class="i"><use href="#i-chart"/></svg><span>Member of NSE, BSE, MCX and MSEI, with member codes in the footer</span></li>
+          <li><svg class="i"><use href="#i-rupee"/></svg><span>Charges on one public page: <a href="/pricing">Pricing</a></span></li>
+          <li><svg class="i"><use href="#i-support"/></svg><span>A real person to talk to when you need one: <a href="/contact">Write to us</a></span></li>
+        </ul>
+        <a class="link" href="/about">About ROOT and the Aikyam Group<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <!-- COMPONENT: Group map | the group and its companies, HTML labels, 2 x 2 at 640; white branch cards on a Mist band, hairline shells for group lines: 01, 07, 12, 13 | 01 Home v3 s-group -->
+      <figure class="gmap" aria-label="Aikyam Capital Group, with its two companies on ROOT: Aikyam Capital Private Limited for broking and Aikyam Wealth Private Limited for mutual fund distribution, beside the group's investment banking and asset management lines">
+        <div class="gmap-root"><span class="label">The group</span><b>Aikyam Capital Group</b></div>
+        <svg class="gmap-lines" viewBox="0 0 400 72" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M200 0 C200 40 50 30 50 72" fill="none" stroke="#C19C2F" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+          <path d="M200 0 C200 40 150 30 150 72" fill="none" stroke="#C19C2F" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+          <path d="M200 0 C200 40 250 30 250 72" fill="none" stroke="#D1D6DD" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+          <path d="M200 0 C200 40 350 30 350 72" fill="none" stroke="#D1D6DD" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <ul class="gmap-branches">
+          <li class="is-on"><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>{{reg.capital.name}}</b><span>Stock broking and demat</span><span class="chip">On ROOT</span></div></li>
+          <li class="is-on"><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>{{reg.wealth.name}}</b><span>Mutual fund distribution</span><span class="chip">On ROOT</span></div></li>
+          <li><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>Investment banking</b><span>Group line</span></div></li>
+          <li><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>Asset management</b><span>Group line</span></div></li>
+        </ul>
+      </figure>
+    </div>
+    <!-- COMPONENT: Verify cards | check-it-yourself ledger as three white cards (.verify-head, dl.verify-list.verify-list--cards: tile, role, company link, .mono code, regulator link at the foot): 07, 12, 13, 15, 16 | 01 Home v3 s-group -->
+    <div class="verify">
+      <div class="verify-head">
+        <h3 class="h3" id="h-verify">Check it yourself</h3>
+        <p>Look us up on each regulator's own website.</p>
+      </div>
+      <dl class="verify-list verify-list--cards" aria-labelledby="h-verify">
+        <div class="verify-row">
+          <dt><span class="tile"><svg class="i"><use href="#i-shield"/></svg></span><b>Stock broker</b><a href="/about/aikyam-capital">{{reg.capital.name}}</a></dt>
+          <dd class="mono">{{reg.capital.sebi}}</dd>
+          <dd><a class="link" href="https://www.sebi.gov.in/" rel="noopener">Check on SEBI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
+        </div>
+        <div class="verify-row">
+          <dt><span class="tile"><svg class="i"><use href="#i-lock"/></svg></span><b>Depository participant (NSDL)</b><a href="/about/aikyam-capital">{{reg.capital.name}}</a></dt>
+          <dd class="mono">{{reg.capital.dp}}</dd>
+          <dd><a class="link" href="https://nsdl.co.in/" rel="noopener">Check on NSDL's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
+        </div>
+        <div class="verify-row">
+          <dt><span class="tile"><svg class="i"><use href="#i-mf"/></svg></span><b>Mutual fund distributor</b><a href="/about/aikyam-wealth">{{reg.wealth.name}}</a></dt>
+          <dd class="mono">ARN {{reg.wealth.arn}}</dd>
+          <dd><a class="link" href="https://www.amfiindia.com/" rel="noopener">Check on AMFI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
+        </div>
+      </dl>
+      <p class="fine">Exchange, clearing and company codes for both companies are in the footer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Steps split · KYC step card | how-to-open sections that sit beside a product visual (01, 10, 75): .split.split--steps (7/5 from 900 px), ol.steps --cols:2, docs strip with a two-column list, band CTA, KYC step card right | 01 Home v3 s-steps -->
+<section class="band" id="s-steps" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">Open your account in four steps.</h2>
+      <p>Your trading and demat account, online, on your phone or computer.</p>
+    </div>
+    <div class="split split--steps">
+      <div class="steps-side">
+        <ol class="steps" style="--cols:2">
+          <li><span class="dot">1</span><h3 class="h3">Enter your mobile number</h3><p>We send a one-time password to confirm it's you.</p></li>
+          <li><span class="dot">2</span><h3 class="h3">Verify your PAN</h3><p>Your PAN details are checked with the income tax records.</p></li>
+          <li><span class="dot">3</span><h3 class="h3">Share Aadhaar with DigiLocker</h3><p>Fetch your address from DigiLocker, with your consent.</p></li>
+          <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add a bank account, then sign with your Aadhaar OTP.</p></li>
+        </ol>
+        <div class="docs">
+          <h3 class="h3">Keep these ready</h3>
+          <ul>
+            <li><svg class="i"><use href="#i-check"/></svg>PAN card</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Aadhaar linked to your mobile</li>
+            <li><svg class="i"><use href="#i-check"/></svg>Bank account details</li>
+            <li><svg class="i"><use href="#i-check"/></svg>A photo of your signature</li>
+          </ul>
+        </div>
+        <div class="band-cta">
+          <a class="btn" href="/open-account/trading">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></a>
+          <p class="fine">Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+        </div>
+      </div>
+      <!-- COMPONENT: KYC step card | .ui-stage.kyc-stage (Mist panel) > .ui-card.kyc-card (step label, .kyc-progress, .ui-big, .ui-field, .ui-ok row, .ui-cta) + p.ui-caption: steps sections of 09, 10, 75, 21 | 01 Home v3 s-steps -->
+      <div class="ui-stage kyc-stage">
+        <div class="ui-card kyc-card">
+          <div class="ui-row"><span class="ui-label">Step 2 of 4</span><span class="xs">Trading and demat account</span></div>
+          <div class="kyc-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <b class="ui-big">Verify your PAN</b>
+          <div class="ui-field"><span class="ui-flabel">PAN</span><span class="ui-fval">ABCDE1234F</span></div>
+          <div class="ui-row ui-ok"><svg class="i"><use href="#i-check"/></svg><span>Mobile number verified</span></div>
+          <span class="chip ui-cta">Continue</span>
+        </div>
+        <p class="ui-caption">Illustrative screen. Our KYC partner runs the live flow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Process steps · mini screens + documents strip + two info cards | how-to-open sections on a Mist band (09, 10, 75): ol.steps with a mini screen under each step, p.ui-caption, docs strip with tiles, two info cards, steps note and a band link | 09 Start Trading v3 s-steps -->
+<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">Four steps, on your phone or computer.</h2>
+      <p>Set aside about <mark class="ph" data-ph="kyc-duration">time to confirm</mark>. The ROOT app is coming soon, and you can open your account on the web today.</p>
+    </div>
+    <ol class="steps">
+      <!-- COMPONENT: Step mini screen | .ui-card.ui-mini at the foot of each step li (ui-label + status chip, masked value in b.num), aligned across the row: any illustrated process (10, 75) | 09 Start Trading v3 s-steps -->
+      <li><span class="dot">1</span><h3 class="h3">Verify your mobile</h3><p>Enter your number and the OTP we send.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: mobile number verified"><div class="ui-row"><span class="ui-label">Mobile number</span><span class="chip chip--gain">Verified</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">Check your PAN</h3><p>We match it with income tax records.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: PAN matched"><div class="ui-row"><span class="ui-label">PAN</span><span class="chip chip--gain">Matched</span></div><b class="num">XXXXX1234X</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Share Aadhaar via DigiLocker</h3><p>Your address comes from DigiLocker, with your consent.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: address fetched from DigiLocker"><div class="ui-row"><span class="ui-label">DigiLocker</span><span class="chip chip--gain">Address fetched</span></div><b class="num">Aadhaar XXXX XXXX 1234</b></div></li>
+      <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add your bank account, then sign with an Aadhaar OTP.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: bank account added, ready to e-sign"><div class="ui-row"><span class="ui-label">Bank account</span><span class="chip chip--ink">e-sign</span></div><b class="num">XXXXXX4321</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+
+    <!-- COMPONENT: Documents strip with icon tiles | .docs.docs--tiles: 40 px Mist tiles, two max-content columns from 641 px: 10, 75 | 09 Start Trading v3 s-steps -->
+    <div class="docs docs--tiles">
+      <h3 class="h3">Keep these ready</h3>
+      <ul>
+        <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>PAN card</li>
+        <li><span class="tile"><svg class="i"><use href="#i-phone"/></svg></span>Aadhaar linked to your mobile (for the OTP)</li>
+        <li><span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>Bank account details</li>
+        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span>A photo of your signature</li>
+      </ul>
+    </div>
+
+    <!-- COMPONENT: Two-card row | .cards.cards--2 of .info-card blocks (tile, h3, copy, placeholders): any pair of cards | 09 Start Trading v3 s-steps -->
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <h3 class="h3">Stopped halfway?</h3>
+        <p>Come back with the same mobile number and <mark class="ph" data-ph="kyc-resume">pick up where you stopped</mark>.</p>
+        <p>If a PAN, Aadhaar or bank check doesn't go through: <mark class="ph" data-ph="kyc-fail">what to do next, to confirm with the KYC partner</mark>. You can always <a href="/contact">talk to us</a>.</p>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-lock"/></svg></span>
+        <h3 class="h3">Who handles your details?</h3>
+        <p>Our KYC partner, {{kyc.vendor}}, completes your KYC for {{reg.capital.name}}. Your details are used to open and run your account, as our <a href="/legal/privacy">Privacy Policy</a> explains.</p>
+        <p><mark class="ph" data-ph="data-security">How your data is protected, to confirm</mark></p>
+      </div>
+    </div>
+
+    <p class="small steps-note">Your account is ready to use once your KYC is verified and the exchanges approve it. Then log in at <a href="https://{{url.login}}">{{url.login}}</a>.</p>
+    <div class="band-cta"><a class="link" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- COMPONENT: F&O section · inset risk box + facts + segments card | F&O pages and fo_risk pages that offer F&O (09, 37, 38, 75): verbatim inset risk box (#s-risk), .risk-more link, .split.fo-split with facts with a title left and the segments card right; changing figures are linked to NSE, never printed | 09 Start Trading v3 s-fo -->
+<section class="band" id="s-fo" aria-labelledby="h-fo">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-fo">F&amp;O is optional. Know the risks first.</h2>
+    </div>
+    <div class="risk-box risk-box--inset" id="s-risk" role="note" aria-labelledby="h-risk">
+      <svg class="i i--lg"><use href="#i-alert"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h3 class="h3" id="h-risk">Risk disclosures on derivatives</h3>
+        <ul><!-- the four verbatim bullets of the fo_risk block in rules/compliance-blocks.md --></ul>
+        <p class="xs">Source: {{fo.risk_source}}. <mark class="ph" data-ph="fo-risk-current">Aikyam compliance to confirm this is the current prescribed text</mark></p>
+      </div>
+    </div>
+    <div class="risk-more"><a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a></div>
+
+    <div class="split fo-split">
+      <div class="stack" style="--gap:28px">
+        <p class="lead">Add futures and options (F&amp;O) <mark class="ph" data-ph="fo-activation-when">while you open your account or later, to confirm</mark>, once you share one proof of income.</p>
+        <!-- COMPONENT: Facts with a title | ul.facts > li > .tile + .fact-text (b, p, optional .links stack): 37, 38, 75 | 09 Start Trading v3 s-fo -->
+        <ul class="facts">
+          <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><div class="fact-text"><b>Proof of income</b><p>One recent document, such as <mark class="ph" data-ph="fo-income-proofs">a bank statement, ITR, salary slip or Form 16 (list to confirm)</mark>.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-chart"/></svg></span><div class="fact-text"><b>Lot sizes, margins and expiry dates</b><p>These change often, so check the current figures on NSE.</p>
+            <div class="links">
+              <a class="link link--wrap" href="https://www.nseindia.com/" rel="noopener">NSE: contract specifications and expiry <span class="link-tail">calendar<svg class="i"><use href="#i-ne"/></svg></span></a>
+              <a class="link" href="#s-charges">What each F&amp;O order costs<svg class="i"><use href="#i-arrow"/></svg></a>
+            </div></div></li>
+        </ul>
+      </div>
+      <!-- COMPONENT: Segments card | .ui-stage--panel.seg-stage > .ui-card.ui-list.seg-card (rows with status chips) + centred caption: 37, 38, 75 | 09 Start Trading v3 s-fo -->
+      <div class="ui-stage ui-stage--panel seg-stage">
+        <div class="ui-card ui-list seg-card" role="img" aria-label="Illustrative screen: account segments, equity on, others not added">
+          <span class="ui-label">Your segments</span>
+          <div class="ui-row"><span>Equity: shares and ETFs</span><span class="chip chip--gain">On</span></div>
+          <div class="ui-row"><span>Futures and options</span><span class="chip">Add with proof of income</span></div>
+          <div class="ui-row"><span>Currency</span><span class="chip">Add</span></div>
+          <div class="ui-row"><span>Commodity</span><span class="chip">Add</span></div>
+        </div>
+        <p class="ui-caption">Illustrative screen</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Charges · stat tiles + brokerage row list + contract-note receipt | charges on a Mist band (09, 06 Pricing header, 75): three stat tiles (tokens in the .num slot), .cards--2 with a brokerage info card and the receipt card | 09 Start Trading v3 s-charges -->
+<section class="band band--mist" id="s-charges" aria-labelledby="h-charges">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-charges">Know what you pay before you trade.</h2>
+      <p>Brokerage is set by us. Statutory charges are set by the government, the exchanges and SEBI. Both show on your contract note.</p>
+    </div>
+    <div class="stat-tiles">
+      <div class="stat-tile"><span class="label">Account opening</span><div class="num">{{pricing.account_opening}}</div><p>To open your trading and demat account</p></div>
+      <div class="stat-tile"><span class="label">Annual maintenance (AMC)</span><div class="num">{{pricing.amc}}</div><p>To keep your demat account running</p></div>
+      <div class="stat-tile"><span class="label">DP charge</span><div class="num">{{pricing.dp_charge}}</div><p>When you sell shares from your demat</p></div>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <h3 class="h3">Brokerage by segment</h3>
+        <!-- COMPONENT: Row list | dl.kv-list.kv-list--row: no frame, hairlines above the first and below the last row, dt left, dd right, wraps on phones: 06, 13, 30 | 09 Start Trading v3 s-charges -->
+        <dl class="kv-list kv-list--row">
+          <div><dt>Equity delivery</dt><dd>{{pricing.delivery}}</dd></div>
+          <div><dt>Equity intraday</dt><dd>{{pricing.intraday}}</dd></div>
+          <div><dt>Futures</dt><dd>{{pricing.futures}}</dd></div>
+          <div><dt>Options</dt><dd>{{pricing.options}}</dd></div>
+          <div><dt>Currency and commodity</dt><dd>{{pricing.currency_commodity}}</dd></div>
+        </dl>
+        <p class="fine">Brokerage will never exceed the limits prescribed by SEBI.</p>
+        <a class="link" href="/pricing">See the full list of charges<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <!-- COMPONENT: Receipt card | .ui-card.ui-receipt: contract-note look, dashed rows, who sets each charge in aub-60, no amounts: 06, 75 | 09 Start Trading v3 s-charges -->
+      <div class="ui-card ui-receipt">
+        <span class="ui-label">On your contract note</span>
+        <div class="ui-row"><span>Brokerage</span><span>Set by us</span></div>
+        <div class="ui-row"><span>Securities or commodities transaction tax (STT or CTT)</span><span>Government</span></div>
+        <div class="ui-row"><span>Exchange transaction charges</span><span>Exchanges</span></div>
+        <div class="ui-row"><span>SEBI turnover fees</span><span>SEBI</span></div>
+        <div class="ui-row"><span>Stamp duty</span><span>Government</span></div>
+        <div class="ui-row"><span>GST</span><span>Government</span></div>
+        <p class="small">Amounts depend on your trades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: FAQ split on a Mist band v3 | every product and onboarding page: left column h2, lead with a contact link, art-directed img-slot, Help Centre and guide links, grievance line in fine print; native details right, the first answers open (trimmed to two items here; 09 uses the same split on a white band) | 01 Home v3 s-faq -->
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions, answered.</h2>
+      <p class="lead">Can't find yours? <a href="/contact">Write to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the ROOT support team on a call at the Mumbai office</b><span>Real Aikyam staff, after a shoot. Daylight, candid, headset on, laptop open; aubergine and white in frame. Crop 4:3.</span></figure>
+      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="link link--wrap" href="/learn/guides/getting-started">New to investing? Start with the Getting started <span class="link-tail">guide<svg class="i"><use href="#i-arrow"/></svg></span></a>
+      <p class="fine">For complaints about securities broking: <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a></p>
+    </div>
+    <div class="faq">
+      <details open><summary>Where are my shares and money kept?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Your shares sit in your own demat account at NSDL, opened through {{reg.capital.name}} as a depository participant.</p>
+        <p>Pay only into the {{reg.capital.name}} bank accounts listed on the <a href="/legal/client-bank-accounts">Client bank accounts page</a>.</p>
+      </div></details>
+      <details open><summary>Can I trade F&amp;O as soon as my account opens?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>F&amp;O is an optional segment. Before it is switched on, you share one proof of income, such as <mark class="ph" data-ph="fo-income-proofs">a bank statement, ITR, salary slip or Form 16 (list to confirm)</mark>.</p>
+        <p>You can ask for it while you open your account <mark class="ph" data-ph="fo-activation-when">or later, to confirm</mark>.</p>
+        <p><a href="/legal/risk-disclosure">Read the full risk disclosure</a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Dark closing band · buttons row + app coming soon + image slot | the one dark band, closing pages that serve both companies (01, hubs): eyebrow, h2, .final-actions (light + outline-light), fine print, .app-soon with disabled store badges (two-up at 640), translucent .img-slot.final-visual right | 01 Home v3 s-final -->
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:22px">
+      <span class="eyebrow">Broking by Aikyam Capital · Mutual funds by Aikyam Wealth</span>
+      <h2 class="d2 node" id="h-final">Your account starts with a mobile number.</h2>
+      <div class="final-actions">
+        <a class="btn btn--light btn--lg" href="/open-account/trading">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/open-account/investing" data-event="switch_to_investing">Only mutual funds? Start investing</a>
+      </div>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+      <div class="app-soon">
+        <p>The ROOT app for iOS and Android is coming soon.</p>
+        <div class="stores">
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>App Store</b></span></span>
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>Google Play</b></span></span>
+        </div>
+        <a class="link" href="/app">Tell me when it is live<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <figure class="img-slot final-visual" style="--ar:4/5"><svg class="i"><use href="#i-user"/></svg><b>Photo: a 32-year-old professional at home in the evening, checking her phone on the sofa, at ease</b><span>Shot for ROOT. Screen turned away, or showing the illustrative ROOT screen only. Warm lamp light, soft background, aubergine accents. Crop 4:5. No trading terminals, no charts.</span></figure>
+  </div>
+</section>
+
+<!-- COMPONENT: Dark closing band · button column + product cards | the one dark band, closing account-opening pages (09, 10, 75): eyebrow, h2, lead, .app .row column of equal-width buttons (full width at 640), fine print, product cards right | 09 Start Trading v3 s-final -->
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h2 class="d2 node" id="h-final">Ready when you are.</h2>
+      <p class="lead">Open your account on your phone or computer, with your PAN and Aadhaar.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/open-account/investing" data-event="switch_to_investing">Investing only? Start with Aikyam Wealth</a>
+      </div>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+    </div>
+    <!-- COMPONENT: Hairline row cards on dark | .ui-stage.final-stage: rings--dark behind, two .ui-card.ui-list (status, order ticket with .ui-pill) staggered, caption on dark: 10, 75 | 09 Start Trading v3 s-final -->
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: account active">
+        <span class="ui-label">Account status</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>Trading and demat account</span><svg class="i i--sm"><use href="#i-check"/></svg></div>
+        <div class="ui-row"><span>Log in at</span><span>{{url.login}}</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative order ticket">
+        <span class="ui-label">Buy · NSE</span>
+        <span class="ui-big">Example Industries Ltd</span>
+        <div class="ui-row"><span>Product</span><b>Delivery</b></div>
+        <div class="ui-row"><span>Quantity</span><b>10</b></div>
+        <div class="ui-row"><span>Order type</span><b>Limit</b></div>
+        <span class="ui-pill">Buy</span>
+      </div>
+      <p class="ui-caption">Illustrative screens. Example names, not real securities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Disclosure band · mutual funds and distribution | closing disclosure band on Aikyam Wealth and mixed pages: risk-box with the info icon (ink, not warn), verbatim lines from rules/compliance-blocks.md | 01 Home s-disclosures -->
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Mutual fund and distribution disclosures</h2>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <div class="ph ph--block" data-ph="ipo-distributor-line">Line naming Aikyam Capital Private Limited as the trading member acting as distributor for IPOs: wording to confirm with Aikyam compliance</div>
+        <a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENT: Wrapping link | any long link label (side doors, external links): the arrow follows the last word; wrap the last word and the icon in .link-tail | 09 Start Trading -->
+<a class="link link--wrap" href="/open-account/investing" data-event="switch_to_investing">Investing only? Open an investing account with <span class="link-tail">Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></span></a>
+
+<!-- COMPONENT: Closing CTA · light, two buttons | end of a page whose one dark band is used elsewhere (10 today): the page's company in the h2, primary + other-company ghost button (full width on phones), handoff line; v3 goldens close on the dark band instead | 09 Start Trading s-final -->
+<section class="band" id="s-final" aria-labelledby="h-final">
+  <div class="wrap final">
+    <h2 class="d2 node" id="h-final">Open your account with Aikyam Capital.</h2>
+    <div class="row"><a class="btn btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a><a class="btn btn--ghost btn--lg" href="/open-account/investing">Investing only? Start with Aikyam Wealth</a></div>
+    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+  </div>
+</section>
+
+<!-- ===== Legacy v2 pilot components =====
+     Still on 10 Start Investing until its v3 rebuild (and the base of 06 Pricing's rate card). Do not start a new page from them:
+     use the v3 block named in each comment. The v1 Entity doors (with a shortened F&O strip) and the v2 form card states were removed. -->
+
+<!-- COMPONENT: LEGACY v2 · Hero · form card (template D) | 10 Start Investing today; new pages use 'Hero · onboarding stage (template D v3)'. Cost cred spans both columns (li.cred-cost) | 09 Start Trading s-hero -->
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -41,96 +788,7 @@
   </div>
 </section>
 
-<!-- COMPONENT: Form card · state OTP sent | every template D form: the second screen, with resend timer placeholder | 09 Start Trading -->
-<template data-state="otp-sent" data-label="OTP sent, resend timer running (also shown on arrival from Home with the number carried over)">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Enter the OTP</h2>
-  <p class="small">We sent a one-time password to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
-  <form>
-    <div class="fgroup">
-      <span class="flabel">One-time password</span>
-      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
-      <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
-    </div>
-    <p class="xs">Didn't get it? Resend OTP in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
-    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-  </form>
-</div>
-</template>
-
-<!-- COMPONENT: Form card · state invalid number (error) | every form card: field error on the mobile number | 09 Start Trading -->
-<template data-state="invalid-number" data-label="Error: number is not 10 digits">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Start with your mobile number</h2>
-  <form>
-    <div class="fgroup is-error">
-      <label for="st4-mob">Mobile number</label>
-      <span class="field"><span class="pre">+91</span><input id="st4-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st4-err"></span>
-      <span class="fhelp" id="st4-err">Enter a 10-digit mobile number.</span>
-    </div>
-    <label class="check"><input type="checkbox" checked><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
-    <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
-    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-  </form>
-</div>
-</template>
-
-<!-- COMPONENT: Form card · state consent missing (error) | form cards with a required consent box; the label.check keeps body type inside the error fgroup | 09 Start Trading -->
-<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Start with your mobile number</h2>
-  <form>
-    <div class="fgroup">
-      <label for="st5-mob">Mobile number</label>
-      <span class="field"><span class="pre">+91</span><input id="st5-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
-    </div>
-    <div class="fgroup is-error">
-      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st5-err"><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
-      <span class="fhelp" id="st5-err">Tick the box to continue.</span>
-    </div>
-    <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
-    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-  </form>
-</div>
-</template>
-
-<!-- COMPONENT: Form card · state wrong OTP (error) | every OTP form | 09 Start Trading -->
-<template data-state="otp-wrong" data-label="Error: wrong or expired OTP">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Enter the OTP</h2>
-  <div class="alert alert--err" role="alert"><svg class="i"><use href="#i-alert"/></svg><div><b>That OTP did not match or has expired</b>Check the digits and try again, or ask for a new OTP.</div></div>
-  <form>
-    <div class="fgroup">
-      <span class="flabel">One-time password</span>
-      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
-    </div>
-    <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a> · <a href="#s-open">Change number</a></p>
-    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-  </form>
-</div>
-</template>
-
-<!-- COMPONENT: Form card · state verified (success) | every OTP form: success and the next step, naming the KYC partner and the company | 09 Start Trading -->
-<template data-state="verified" data-label="Success: number verified, next step is KYC">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Number verified</h2>
-  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is confirmed</b>Next, verify your PAN and Aadhaar with our KYC partner.</div></div>
-  <p class="xs">KYC partner: {{kyc.vendor}}, on behalf of {{reg.capital.name}}.</p>
-  <a class="btn btn--lg" href="#s-open">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></a>
-  <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-</div>
-</template>
-
-<!-- COMPONENT: Form card · cost line + side door (Home variant) | a form card outside template D that must answer cost at the point of action (01, 75), with the other company's door and its risk line under it | 01 Home s-hero -->
+<!-- COMPONENT: LEGACY v2 · Form card · cost line + side door | a form card outside template D that must answer cost at the point of action (75 if it keeps a card); Home v3 replaced it with the inline bar form | 01 Home s-hero -->
 <div class="hero-side">
       <div class="form-card" id="open">
         <span class="label">Step 1 of 4 · Trading and demat account</span>
@@ -154,7 +812,7 @@
       </div>
     </div>
 
-<!-- COMPONENT: Process steps + docs strips | how-to-open sections: 09, 10, 75; ol.steps (set --cols when not 4), stacked .docs strips share one label column, .steps-note, band-cta | 09 Start Trading s-steps -->
+<!-- COMPONENT: LEGACY v2 · Process steps + docs strips | 10 Start Investing today; new pages use 'Process steps · mini screens + documents strip + two info cards' | 09 Start Trading s-steps -->
 <section class="band" id="s-steps" aria-labelledby="h-steps">
   <div class="wrap">
     <div class="head">
@@ -196,7 +854,7 @@
   </div>
 </section>
 
-<!-- COMPONENT: Charges block · placeholder numeral | charges on 06 Pricing, 09, 75: .zero.zero--top card (an unconfirmed value renders at body size in the numeral slot), captioned two-column data--stack table with td-label | 09 Start Trading s-charges -->
+<!-- COMPONENT: LEGACY v2 · Charges block · placeholder numeral | 06 Pricing rate card if it needs the serif zero card; account pages use 'Charges · stat tiles + brokerage row list + contract-note receipt' | 09 Start Trading s-charges -->
 <section class="band band--mist" id="s-charges" aria-labelledby="h-charges">
   <div class="wrap">
     <div class="head">
@@ -234,7 +892,7 @@
   </div>
 </section>
 
-<!-- COMPONENT: Info card split | eligibility or 'one more step' sections: 37 F&O, 38 Currency and Commodity, 75; lead left, .info-card blocks right, external figures linked not printed | 09 Start Trading s-fo -->
+<!-- COMPONENT: LEGACY v2 · Info card split | replaced on 09 by 'F&O section · inset risk box + facts + segments card'; the info card itself (.info-card) stays current | 09 Start Trading s-fo -->
 <section class="band" id="s-fo" aria-labelledby="h-fo">
   <div class="wrap split">
     <div class="stack" style="--gap:18px">
@@ -259,83 +917,7 @@
   </div>
 </section>
 
-<!-- COMPONENT: FAQ split on a Mist band | every product and onboarding page: intro, Help Centre and grievance link left; native details right, first item open (trimmed to two items here) | 09 Start Trading s-faq -->
-<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
-  <div class="wrap split">
-    <div class="stack" style="--gap:18px">
-      <h2 class="d2 node" id="h-faq">Questions before you start.</h2>
-      <p class="lead">Can't find yours? <a href="/contact">Talk to us</a> and a real person replies.</p>
-      <p class="small">For complaints about securities broking: <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a></p>
-      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
-    </div>
-    <div class="faq">
-      <details open><summary>Which company opens and holds my account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>{{reg.capital.name}}, a SEBI-registered stock broker ({{reg.capital.sebi}}) and NSDL depository participant ({{reg.capital.dp}}), opens your trading and demat account. ROOT by Aikyam is its retail brand. You can check this registration yourself on the <a href="https://www.sebi.gov.in/" rel="noopener">SEBI website</a>.</p>
-        <p>{{reg.capital.name}} is engaged in client based and proprietary trading on various exchanges.</p>
-      </div></details>
-      <details><summary>Is my data safe, and who is the KYC partner?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>KYC is completed with our KYC partner, {{kyc.vendor}}, on behalf of {{reg.capital.name}}. Your details are used to open and service your account, as set out in our <a href="/legal/privacy">Privacy Policy</a>.</p>
-        <div class="ph ph--block" data-ph="data-security">Security measures Aikyam can state, to confirm</div>
-      </div></details>
-    </div>
-  </div>
-</section>
-
-<!-- COMPONENT: Closing CTA · two buttons | end of every page: the page's company in the h2, primary + other-company ghost button (full width on phones), handoff line | 09 Start Trading s-final -->
-<section class="band" id="s-final" aria-labelledby="h-final">
-  <div class="wrap final">
-    <h2 class="d2 node" id="h-final">Open your account with Aikyam Capital.</h2>
-    <div class="row"><a class="btn btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a><a class="btn btn--ghost btn--lg" href="/open-account/investing">Investing only? Start with Aikyam Wealth</a></div>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
-  </div>
-</section>
-
-<!-- COMPONENT: Entity doors | pages that serve both companies: 01, Invest and Trade hubs, 06 Pricing, 07 About; one article.door per company with its registration, product rows, risk strip and action | 01 Home s-products -->
-<section class="band" id="s-products" aria-labelledby="h-products">
-  <div class="wrap">
-    <div class="head">
-      <h2 class="d2 node" id="h-products">Trade with Aikyam Capital. Invest with Aikyam Wealth.</h2>
-      <p>Each product names the company that provides it.</p>
-    </div>
-    <div class="doors">
-      <article class="door" aria-labelledby="h-door-trade">
-        <div class="door-head">
-          <span class="label">Trade</span>
-          <h3 class="h3" id="h-door-trade">{{reg.capital.name}}</h3>
-          <p class="door-reg">SEBI registration <span class="mono">{{reg.capital.sebi}}</span></p>
-        </div>
-        <ul class="door-rows">
-          <li><span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span><div class="row-text"><a href="/trade/equity">Stocks and ETFs</a><p>Shares and ETFs on NSE and BSE, for delivery or intraday.</p></div></li>
-          <li><span class="tile"><svg class="i"><use href="#i-ipo"/></svg></span><div class="row-text"><a href="/ipo">IPOs</a><p>Apply for upcoming and open IPOs with UPI.</p></div></li>
-          <li><span class="tile"><svg class="i"><use href="#i-fo"/></svg></span><div class="row-text"><a href="/trade/futures-options">Futures and options</a><p class="risk"><svg class="i"><use href="#i-alert"/></svg><span>9 out of 10 individual traders in equity F&amp;O incurred net losses. <a href="#s-risk">Read the risk disclosure</a></span></p></div></li>
-          <li><span class="tile"><svg class="i"><use href="#i-commodity"/></svg></span><div class="row-text"><a href="/trade/currency-commodity">Currency and commodity</a><p>Currency contracts, and commodities such as gold and silver on MCX.</p></div></li>
-        </ul>
-        <div class="door-foot">
-          <a class="btn" href="/open-account/trading">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></a>
-          <a class="link" href="/trade">See everything on Trade<svg class="i"><use href="#i-arrow"/></svg></a>
-        </div>
-      </article>
-      <article class="door" aria-labelledby="h-door-invest">
-        <div class="door-head">
-          <span class="label">Invest</span>
-          <h3 class="h3" id="h-door-invest">{{reg.wealth.name}}</h3>
-          <p class="door-reg">AMFI ARN <span class="mono">{{reg.wealth.arn}}</span></p>
-        </div>
-        <ul class="door-rows">
-          <li><span class="tile"><svg class="i"><use href="#i-mf"/></svg></span><div class="row-text"><a href="/invest/mutual-funds">Mutual funds</a><p>Plans across equity, debt and hybrid categories, as a SIP or a one-time investment. Regular plans, distributed by Aikyam Wealth.</p></div></li>
-          <li><span class="tile"><svg class="i"><use href="#i-sprout"/></svg></span><div class="row-text"><a href="/plan">Plan by goal</a><p>Not sure where to start? Start from a goal: retirement, a child's education, a home, saving tax.</p></div></li>
-        </ul>
-        <div class="door-foot">
-          <a class="btn btn--ghost" href="/open-account/investing" data-event="switch_to_investing">Only mutual funds? Start investing with Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></a>
-          <p class="xs">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
-          <a class="link" href="/invest">See everything on Invest<svg class="i"><use href="#i-arrow"/></svg></a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- COMPONENT: Two ledgers | charges by company: 01, 06 Pricing, 13 Aikyam Wealth, 30 commission disclosure; table.data--stack rows become one line on phones, dl.kv-list for terms that are not tabular | 01 Home s-pricing -->
+<!-- COMPONENT: LEGACY v1 · Two ledgers | charges by company in two columns (10 uses .ledger + dl.kv-list); Home v3 uses 'Stat tiles · three across' | 01 Home s-pricing -->
 <section class="band band--mist" id="s-pricing" aria-labelledby="h-pricing">
   <div class="wrap">
     <div class="head">
@@ -378,78 +960,25 @@
   </div>
 </section>
 
-<!-- COMPONENT: Group section · who is behind ROOT | split of copy + facts list and the group map, then the check-it-yourself ledger (each part also usable alone) | 01 Home s-group -->
-<section class="band" id="s-group" aria-labelledby="h-group">
-  <div class="wrap">
-    <div class="split">
-      <div class="stack" style="--gap:20px">
-        <h2 class="d2 node" id="h-group">Who is behind ROOT.</h2>
-        <p>ROOT by Aikyam is the retail brand of Aikyam Capital Group, which works across capital markets, wealth management, investment banking and asset management. Two of its companies serve you here: {{reg.capital.name}} for broking and {{reg.wealth.name}} for mutual fund distribution.</p>
-        <!-- COMPONENT: Facts list | claim-free proof lines in place of the theme pillars: 01, 07 About, Help Centre | 01 Home s-group -->
-        <ul class="facts">
-          <li><svg class="i"><use href="#i-shield"/></svg><span>Two regulated companies, each named where you act</span></li>
-          <li><svg class="i"><use href="#i-rupee"/></svg><span>Charges on one public page: <a href="/pricing">Pricing</a></span></li>
-          <li><svg class="i"><use href="#i-support"/></svg><span>A real person to talk to when you need one: write to <a href="mailto:{{contact.email}}">{{contact.email}}</a> or use the <a href="/contact">Contact page</a></span></li>
-        </ul>
-        <a class="link" href="/about">About ROOT and the Aikyam Group<svg class="i"><use href="#i-arrow"/></svg></a>
-      </div>
-      <!-- COMPONENT: Group map | the group and its companies, HTML labels: 01, 07 About, 12 Aikyam Capital, 13 Aikyam Wealth | 01 Home s-group -->
-      <figure class="gmap" aria-label="Aikyam Capital Group, with its two companies on ROOT: Aikyam Capital Private Limited for broking and Aikyam Wealth Private Limited for mutual fund distribution, beside the group's investment banking and asset management lines">
-        <div class="gmap-root"><span class="label">The group</span><b>Aikyam Capital Group</b></div>
-        <svg class="gmap-lines" viewBox="0 0 400 72" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M200 0 C200 40 50 30 50 72" fill="none" stroke="#C19C2F" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-          <path d="M200 0 C200 40 150 30 150 72" fill="none" stroke="#C19C2F" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-          <path d="M200 0 C200 40 250 30 250 72" fill="none" stroke="#D1D6DD" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-          <path d="M200 0 C200 40 350 30 350 72" fill="none" stroke="#D1D6DD" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-        </svg>
-        <ul class="gmap-branches">
-          <li class="is-on"><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>{{reg.capital.name}}</b><span>Stock broking and demat</span><span class="chip">On ROOT</span></div></li>
-          <li class="is-on"><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>{{reg.wealth.name}}</b><span>Mutual fund distribution</span><span class="chip">On ROOT</span></div></li>
-          <li><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>Investment banking</b><span>Group line</span></div></li>
-          <li><i class="gmap-dot" aria-hidden="true"></i><div class="gmap-card"><b>Asset management</b><span>Group line</span></div></li>
-        </ul>
-      </figure>
+<!-- COMPONENT: Check it yourself · rows (compact variant) | registration codes as hairline rows (company link + role, .mono code, regulator link; stacks at 640) where three cards are too heavy: 15 Contact, 16 Disclosures, footer-adjacent blocks; v3 default is 'Verify cards' | 01 Home v1 s-group -->
+<div class="verify">
+  <h3 class="h3" id="h-verify">Check it yourself</h3>
+  <dl class="verify-list" aria-labelledby="h-verify">
+    <div class="verify-row">
+      <dt><a href="/about/aikyam-capital">{{reg.capital.name}}</a><span>SEBI stock broker</span></dt>
+      <dd class="mono">{{reg.capital.sebi}}</dd>
+      <dd><a class="link" href="https://www.sebi.gov.in/" rel="noopener">Check on SEBI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
     </div>
-    <!-- COMPONENT: Check it yourself ledger | registration codes with regulator links: 01, 07 About, 12, 13, 15 Contact, 16 Disclosures | 01 Home s-group -->
-    <div class="verify">
-      <h3 class="h3" id="h-verify">Check it yourself</h3>
-      <dl class="verify-list" aria-labelledby="h-verify">
-        <div class="verify-row">
-          <dt><a href="/about/aikyam-capital">{{reg.capital.name}}</a><span>SEBI stock broker</span></dt>
-          <dd class="mono">{{reg.capital.sebi}}</dd>
-          <dd><a class="link" href="https://www.sebi.gov.in/" rel="noopener">Check on SEBI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
-        </div>
-        <div class="verify-row">
-          <dt><a href="/about/aikyam-capital">{{reg.capital.name}}</a><span>NSDL depository participant</span></dt>
-          <dd class="mono">{{reg.capital.dp}}</dd>
-          <dd><a class="link" href="https://nsdl.co.in/" rel="noopener">Check on NSDL's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
-        </div>
-        <div class="verify-row">
-          <dt><a href="/about/aikyam-wealth">{{reg.wealth.name}}</a><span>AMFI-registered mutual fund distributor</span></dt>
-          <dd class="mono">ARN {{reg.wealth.arn}}</dd>
-          <dd><a class="link" href="https://www.amfiindia.com/" rel="noopener">Check on AMFI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
-        </div>
-      </dl>
-      <p class="xs">Exchange, clearing and company codes for both companies are in the footer.</p>
+    <div class="verify-row">
+      <dt><a href="/about/aikyam-capital">{{reg.capital.name}}</a><span>NSDL depository participant</span></dt>
+      <dd class="mono">{{reg.capital.dp}}</dd>
+      <dd><a class="link" href="https://nsdl.co.in/" rel="noopener">Check on NSDL's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
     </div>
-  </div>
-</section>
-
-<!-- COMPONENT: Disclosure band · mutual funds and distribution | closing disclosure band on Aikyam Wealth and mixed pages: risk-box with the info icon (ink, not warn), verbatim lines from rules/compliance-blocks.md | 01 Home s-disclosures -->
-<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
-  <div class="wrap">
-    <div class="risk-box">
-      <svg class="i i--lg"><use href="#i-info"/></svg>
-      <div class="stack" style="--gap:10px">
-        <h2 class="h3" id="h-disclosures">Mutual fund and distribution disclosures</h2>
-        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
-        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
-        <div class="ph ph--block" data-ph="ipo-distributor-line">Line naming Aikyam Capital Private Limited as the trading member acting as distributor for IPOs: wording to confirm with Aikyam compliance</div>
-        <a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
-      </div>
+    <div class="verify-row">
+      <dt><a href="/about/aikyam-wealth">{{reg.wealth.name}}</a><span>AMFI-registered mutual fund distributor</span></dt>
+      <dd class="mono">ARN {{reg.wealth.arn}}</dd>
+      <dd><a class="link" href="https://www.amfiindia.com/" rel="noopener">Check on AMFI's website<svg class="i"><use href="#i-ne"/></svg></a></dd>
     </div>
-  </div>
-</section>
-
-<!-- COMPONENT: Wrapping link | any long link label (side doors, external links): the arrow follows the last word; wrap the last word and the icon in .link-tail | 09 Start Trading -->
-<a class="link link--wrap" href="/open-account/investing" data-event="switch_to_investing">Investing only? Open an investing account with <span class="link-tail">Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></span></a>
+  </dl>
+  <p class="xs">Exchange, clearing and company codes for both companies are in the footer.</p>
+</div>

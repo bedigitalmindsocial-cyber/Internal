@@ -3,8 +3,8 @@
  "verdict": "pass",
  "score": 88,
  "must_fix": [],
- "note": "Reviewer pass (88) carried after curator CSS promotion and ARN label fix; gate ok, slice counts unchanged",
+ "note": "v3 revision reviewer pass carried after curator CSS promotion / consent alignment; gate ok",
  "by": "orchestrator-carry",
- "sha": "5a54b8601ea3",
+ "sha": "39073253424c",
  "date": "12-Oct-2026"
 }

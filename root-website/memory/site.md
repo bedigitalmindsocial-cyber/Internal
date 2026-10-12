@@ -47,3 +47,4 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - Home F&O risk box: inside the Trade door, directly above the F&O row (verbatim, never collapsed; Aikyam compliance to confirm this placement is sufficient).
 - Repo: the user is making it private; keep pushing everything.
 - Pilot revision requested on all four fronts: less compliance-heavy feel, hero and first screen, copy and tone, visual richness. Response: rules/design-direction.md (v3) and a revise run of 01, 09, 10 before Wave 1.
+- Consent wording master (draft, pending compliance): 09's form card, `data-draft="consent"` "I agree to the Privacy Policy and allow Aikyam Capital to call, SMS or WhatsApp me about this application." (Aikyam Wealth forms: same with Aikyam Wealth, `data-draft="consent-wealth"`). Every lead form copies it verbatim, so one approval covers all.

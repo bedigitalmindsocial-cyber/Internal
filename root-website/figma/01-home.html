@@ -761,8 +761,9 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
 .side-door{display:flex; flex-direction:column; gap:6px}
 @media (max-width: 640px){ .form-card{padding:20px} }
 
-/* cost cred: a cred whose value is a charge plus a link spans both cred columns (from 09 Start Trading) */
-.creds .cred-cost{grid-column:1/-1}
+/* wide cred: a cred with a long value spans both cred columns. .cred-wide is the v3 name (09 v3); .cred-cost is the v2 name
+   for a charge plus a link (09 v2, still used by 10) */
+.creds .cred-cost,.creds .cred-wide{grid-column:1/-1}
 .creds .cost-line{display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px}
 
 /* wrapping link: inline, so the arrow follows the last word; .link-tail keeps the last word and the icon together (from 09; 01 reuses it) */
@@ -800,9 +801,12 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
   .final .row .btn{width:100%}
 }
 
-/* dark band: copy, links and the illustrative label in on-dark colours (theme ink is invisible on the gradient). From 01 Home */
+/* dark band: copy, links, fine print, eyebrow and the illustrative labels in on-dark colours (theme ink is invisible on the gradient).
+   From 01 Home; .fine, .eyebrow from 01 v3 and 09 v3, .ui-caption and .fine a from 09 v3 */
 .band--dark .lead,.band--dark .handoff,.band--dark .illus{color:var(--on-dark-2)}
 .band--dark .link{color:var(--on-dark)}
+.band--dark .fine,.band--dark .eyebrow,.band--dark .ui-caption{color:var(--on-dark-2)}
+.band--dark .fine a{color:var(--on-dark)}
 
 /* disclosure band with the info icon (mutual fund and distribution disclosures): the risk-box pattern in ink, not warn (from 01) */
 .risk-box .i[data-icon="i-info"]{color:var(--aub)}
@@ -881,27 +885,315 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
 .verify-row dd{margin:0; color:var(--aub)}
 @media (max-width: 640px){ .verify-row{grid-template-columns:1fr; gap:6px} }
 
-/* page: home */
-/* 01 home (golden, template HOME). Tokens only. Shared patterns (form card, doors, ledgers, group map, verify, facts) moved to theme/patterns.css on 12-Oct-2026; what is left is Home-only. */
-/* Coming soon row under the doors: label on its own line, four tiles; two-line tile names */
-.page-home .soon-row{margin-top:24px; grid-template-columns:repeat(4, minmax(0,1fr))}
-.page-home .soon-row > p{grid-column:1/-1}
-.soon-tile .soon-name{display:flex; flex-direction:column; gap:2px}
-.soon-tile .soon-name .xs{font-weight:400}
-/* Dark band (s-final) with the app phone */
-.final-actions{display:flex; flex-wrap:wrap; gap:12px}
-.app-soon{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:22px; border-top:1px solid var(--dark-line)}
-.app-soon p{color:var(--on-dark)}
-.ph-card .chg{font-size:11px}
-.ph-spark{margin-top:6px}
+/* ===== Design direction v3 (pilot feedback, 12-Oct-2026): quieter compliance, richer visuals ===== */
+
+/* placeholders: a quiet dashed underline instead of a filled chip; still impossible to miss on review */
+main .ph{background:transparent; border:0; box-shadow:none; border-bottom:1.5px dashed var(--gold); border-radius:0; padding:0 1px; color:var(--warn); white-space:normal; font-weight:500}
+.is-static main .ph{border:0; border-bottom:1.5px dashed var(--gold)}
+main .ph.ph--block{border:0; border-radius:var(--r-card); padding:20px; background:var(--gold-wash); color:var(--warn)}
+
+/* fine print: one-line disclosures under an action (MF risk line, hand-off, receiver line) */
+.fine{font-size:var(--fs-xs); line-height:1.5; color:var(--aub-60); max-width:62ch}
+.fine + .fine{margin-top:6px}
+.fine a{color:var(--aub-60)}
+.eyebrow{font:600 .75rem/1.2 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60)}
+
+/* art-directed image slot: where a real photo or illustration will go */
+.img-slot{display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:var(--ar, 4/3); margin:0; padding:20px; border-radius:var(--r-card); background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%); color:var(--aub-60); overflow:hidden}
+.img-slot .i{width:28px; height:28px; color:var(--aub-60); margin-bottom:auto}
+.img-slot b{color:var(--aub); font-weight:600; font-size:var(--fs-sm); line-height:1.35}
+.img-slot span{font-size:var(--fs-xs); line-height:1.45}
+.band--mist .img-slot{background:linear-gradient(160deg, var(--paper) 0%, var(--mist-2) 100%)}
+
+/* floating product UI card (illustrative app panel built from theme parts) */
+.ui-card{background:var(--paper); border-radius:20px; box-shadow:var(--shadow-pop); padding:16px 18px; display:flex; flex-direction:column; gap:10px; font-size:13px; color:var(--aub); min-width:0}
+.ui-card .ui-label{font:600 11px/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60)}
+.ui-card .ui-big{font:600 1.375rem/1.15 var(--sans); font-variant-numeric:tabular-nums}
+.ui-card .ui-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.ui-stage{position:relative; display:flex; flex-direction:column; gap:16px; padding:8px}
+.ui-caption{font-size:var(--fs-xs); color:var(--aub-60); display:flex; gap:6px; align-items:center}
+
+/* stat tiles: compact cost or fact summary on Home and hubs */
+.stat-tiles{display:flex; flex-wrap:wrap; gap:16px}
+.stat-tile{flex:1 1 200px; display:flex; flex-direction:column; gap:6px; padding:20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.stat-tile .num{font:400 2rem/1.05 var(--serif); color:var(--aub)}
+.stat-tile p{font-size:var(--fs-sm); color:var(--aub-60)}
+
+/* calm inset risk panel (F&O box in context): same verbatim text, quieter frame */
+.risk-box--inset{background:var(--warn-bg); border:0; padding:18px 20px; gap:12px 16px}
+.is-static .risk-box--inset{border:0}
+.risk-box--inset ul{font-size:var(--fs-sm)}
+
+/* hero balance: centre the columns */
+.hero-grid{align-items:center}
+
+/* ===== v3 golden promotions (curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. Scoped where 01 and 09 use different conventions, so neither page changes. */
+
+/* Hero · product stage (from 01 Home s-hero): two equal columns from 900 px; inline bar form left, illustrative screens right */
+@media (min-width: 900px){ .hero-grid--stage{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--stage .hero-copy{gap:16px}
+.hero-visual{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0}
+.hero-stage{position:relative; display:flex; gap:24px; align-items:stretch; justify-content:center; width:100%}
+.hero-stage .rings{width:300px; top:-28px; right:0}
+.hero-stage .phone{flex:none; width:280px}
+.stage-cards{position:relative; z-index:1; flex:0 1 236px; min-width:0; display:flex; flex-direction:column; justify-content:space-around; gap:24px; padding-block:48px}
+/* stage card rows: label in aub-60, value bold and right-aligned (09's illustrative rows keep ink labels) */
+.stage-cards .ui-row span{color:var(--aub-60)}
+.stage-cards .ui-row b{font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+/* theme phone, Home screen parts at 280 px (theme .phone clips its tab bar below 256 px) */
+.hero-stage .ph-card .chg{font-size:11px}
+.hero-stage .ph-spark{margin-top:6px}
 .ph-hold{display:flex; flex-direction:column; gap:8px; padding:2px 2px 0}
 .ph-sip{padding:0 2px}
 .ph-sip .xs{display:block}
-@media (max-width: 1100px){ .page-home .soon-row{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (max-width: 640px){
+  .hero-stage{flex-direction:column; align-items:center; gap:20px}
+  .hero-stage .phone{width:256px}
+  .hero-stage .ph-spark{height:40px}
+  .hero-stage .ph-body{gap:8px}
+  .stage-cards{flex-direction:row; align-items:stretch; padding:0; width:100%; flex:none; gap:12px}
+  .stage-cards .ui-card{flex:1 1 0; padding:14px}
+  .stage-cards .ui-row{flex-direction:column; align-items:flex-start; gap:0}
+  .stage-cards .ui-row b{text-align:left}
+}
+
+/* Hero inline bar form (from 01 Home s-hero): theme .leadbar + consent + receiver and hand-off lines 6 px apart.
+   Error states wrap the bar or the consent box in .fgroup.is-error: the bar takes the red outline, the field drops its own */
+.hero-form{display:flex; flex-direction:column; gap:12px; max-width:560px}
+.hero-fine{display:flex; flex-direction:column; gap:6px}
+.hero-fine .fine + .fine{margin-top:0}
+.hero-form .leadbar{max-width:none}
+.hero-form .check{color:var(--aub-80)}
+.hero-form .check a{font-weight:600}
+.hero-form .fine{max-width:58ch}
+.hero-form .is-error .leadbar{border-color:var(--loss); box-shadow:var(--shadow-1), 0 0 0 1px var(--loss)}
+.hero-form .is-error .leadbar .field{box-shadow:none}
+.hero-form .is-error .check input{border-color:var(--loss)}
+/* the other company's door under the form, inside .hero-copy: link above its fine print */
+.hero-copy .hero-alt{flex-direction:column; align-items:flex-start; gap:4px}
+.hero-alt .fine{max-width:none}
+
+/* Proof row (from 01 Home s-hero): ul.creds.creds--row, three across from 900 px under a hairline, icon top-aligned */
+.creds--row{max-width:none; gap:14px 20px; padding-top:14px; border-top:1px solid var(--line)}
+.creds--row li{align-items:flex-start}
+.creds--row li > .i{margin-top:2px}
+@media (min-width: 900px){ .creds--row{grid-template-columns:repeat(3, minmax(0,1fr))} }
+
+/* Hero helper (from 09 v3): a link directly under the creds hugs its text instead of spanning the column */
+.hero-copy > .link{justify-self:start; align-self:flex-start}
+
+/* Hero with the onboarding stage (from 09 v3 s-hero): centre the columns. Outranks .hero-grid:has(> .hero-side){align-items:start},
+   which stays for the v2 form-card hero still used by 10 */
+.hero-grid:has(> .hero-side > .open-stage){align-items:center}
+
+/* Stage panel (from 09 v3): a Mist panel that holds a form card or illustrative UI on a white band */
+.ui-stage--panel{padding:24px; border-radius:24px; background:var(--mist)}
+@media (max-width: 640px){ .ui-stage--panel{padding:16px} }
+
+/* Onboarding stage + step tracker (from 09 v3 s-hero and the "verified" state): rings bottom right behind the card,
+   every other child above them. ol.track: four li segments, a 3 px top border plus a label; li.is-on gold (aria-current="step"),
+   li.is-done ink with an inline check; a span keeps "e-sign" together */
+.open-stage > :not(.rings){position:relative; z-index:1}
+.open-stage .rings{top:auto; bottom:-40px; right:-96px}
+.track{list-style:none; display:flex; gap:6px}
+.track li{flex:1 1 0; min-width:0; padding-top:8px; border-top:3px solid var(--line-2); font:500 var(--fs-xs)/1.3 var(--sans); color:var(--aub-60)}
+.track li.is-on{border-top-color:var(--gold); color:var(--aub); font-weight:600}
+.track li.is-done{border-top-color:var(--aub); color:var(--aub)}
+.track li .i{display:inline-block; vertical-align:-3px; margin-right:4px; width:15px; height:15px; color:var(--gain)}
+.track li span{white-space:nowrap}
+.states-board .open-stage{max-width:32rem}
+
+/* Parts for illustrative cards (01 v3 and 09 v3).
+   Small status chips inside .ui-card (09); .ui-cta keeps the full chip size as the card's action (01); ink chip; check icons in gain green */
+.ui-card .chip{min-height:22px; padding:0 9px; font-size:11px}
+.chip--ink{background:var(--aub); color:var(--paper)}
+.ui-row .i{color:var(--gain)}
+/* card head (01): 34 px icon tile + label, then a bold name */
+.ui-card .ui-head{display:flex; align-items:center; gap:10px}
+.ui-card .ui-tile{width:34px; height:34px; border-radius:10px; background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.ui-card .ui-tile .i{width:18px; height:18px}
+.ui-card .ui-name{font-weight:600; font-size:.9375rem; line-height:1.3}
+/* actions: .ui-cta an ink chip (01, a span, not a button); .ui-pill a full-width 38 px ink bar (09, a span, not a button) */
+.ui-card .ui-cta{min-height:28px; padding:0 11px; font-size:.8125rem; justify-content:center; background:var(--aub); color:var(--paper); font-weight:600}
+.ui-card .ui-pill{display:flex; justify-content:center; align-items:center; min-height:38px; border-radius:10px; background:var(--aub); color:var(--paper); font-weight:600; font-size:var(--fs-sm)}
+/* form-like parts (01 KYC card): a field with label and mono value, a gain-green "done" row */
+.ui-field{display:flex; flex-direction:column; gap:4px; padding:10px 14px; border-radius:var(--r-ctl); border:1px solid var(--line-2)}
+.ui-field .ui-flabel{font-size:11px; color:var(--aub-60)}
+.ui-field .ui-fval{font:500 15px/1.2 var(--mono); letter-spacing:.06em; color:var(--aub)}
+.ui-card .ui-ok{justify-content:flex-start; gap:8px; color:var(--gain); font-weight:500}
+.ui-card .ui-ok .i{width:16px; height:16px}
+.ui-card .ui-ok span{color:var(--gain)}
+
+/* Hairline row card (from 09 v3): .ui-card.ui-list, rows split by 1 px lines (segments, account status, order ticket) */
+.ui-card.ui-list{gap:0}
+.ui-list .ui-label{padding-bottom:10px}
+.ui-list .ui-big{padding-bottom:12px}
+.ui-list .ui-row{padding:11px 0; border-top:1px solid var(--line)}
+.ui-list .ui-pill{margin-top:12px}
+
+/* Receipt card (from 09 v3 s-charges): .ui-card.ui-receipt, a contract-note look for charges without figures */
+.ui-card.ui-receipt{padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ui-receipt .ui-label{padding-bottom:12px}
+.ui-receipt .ui-row{padding:12px 0; border-top:1px dashed var(--line-2); align-items:baseline}
+.ui-receipt .ui-row span + span{flex:none; color:var(--aub-60); text-align:right}
+.ui-receipt .small{padding-top:14px; border-top:1px dashed var(--line-2); color:var(--aub-60)}
+
+/* KYC step card (from 01 Home s-steps): .ui-stage.kyc-stage, a Mist panel with a taller top, holding .ui-card.kyc-card */
+.kyc-stage{align-items:center; padding:48px 32px 28px; border-radius:24px; background:var(--mist)}
+.kyc-card{width:min(340px, 100%); gap:14px; padding:22px}
+.kyc-progress{display:flex; gap:6px}
+.kyc-progress i{flex:1; height:4px; border-radius:4px; background:var(--line)}
+.kyc-progress i.on{background:var(--aub)}
+@media (max-width: 640px){ .kyc-stage{padding:28px 16px 20px} }
+
+/* Steps split (from 01 Home s-steps): steps 2 x 2, the docs strip (heading above a two-column list from 900 px) and the band CTA left (7),
+   a product visual right (5) */
+@media (min-width: 900px){ .split--steps{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.split--steps .docs{margin-top:36px; grid-template-columns:1fr; gap:14px}
+@media (min-width: 900px){ .split--steps .docs ul{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 24px} }
+.split--steps .band-cta{margin-top:32px}
+
+/* Step mini screens (from 09 v3 s-steps): .ui-card.ui-mini under each step, pinned to the foot of the row so all four line up */
+.steps li:has(.ui-mini){display:flex; flex-direction:column}
+.ui-card.ui-mini{margin-top:auto; padding:14px 16px; gap:8px; border-radius:14px; box-shadow:var(--shadow-1)}
+.ui-mini b{font-size:var(--fs-sm); font-weight:600; color:var(--aub)}
+.steps + .ui-caption{margin-top:28px}
+
+/* Documents strip with icon tiles (from 09 v3 s-steps): .docs.docs--tiles, 40 px Mist tiles; from 641 px the list is two
+   max-content columns, so four items read 2 x 2 */
+.docs--tiles li .tile{width:40px; height:40px; background:var(--mist)}
+.docs--tiles li .tile .i{width:20px; height:20px; color:var(--aub)}
+.docs--tiles ul{gap:12px 28px}
+@media (min-width: 641px){ .docs--tiles ul{display:grid; grid-template-columns:repeat(2, minmax(0, max-content)); column-gap:48px} }
+
+/* Info card tile (fix from 09 v3): the theme makes tiles white on Mist bands, which vanish inside white info cards */
+.info-card .tile{background:var(--mist)}
+
+/* Two-card row (from 09 v3): .cards.cards--2, two columns from 641 px, one below, 16 px under the block before it */
+.cards--2{margin-top:16px}
+@media (min-width: 641px){ .cards--2{grid-template-columns:repeat(2, minmax(0,1fr))} }
+
+/* F&O section (from 09 v3 s-fo): link 16 px under the inset risk box; a centred split below it; facts with a title;
+   the segments card centred on a stage panel */
+.risk-more{margin-top:16px}
+.fo-split{margin-top:clamp(40px, 5vw, 64px); align-items:center}
+.fo-split .facts{gap:24px}
+.fact-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.fact-text p{font-weight:400; color:var(--aub-80)}
+.fact-text .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+.seg-card{width:min(100%, 26rem); align-self:center; padding:20px 22px; font-size:var(--fs-sm)}
+.seg-card .chip{min-height:24px; font-size:12px}
+.seg-stage .ui-caption{align-self:center}
+
+/* Inset risk box inside a product door (from 01 Home s-products): icon and bullets in ink, an h4 under the door's h3.
+   09 keeps the warn icon in a stand-alone inset box */
+.door .risk-box--inset{margin:6px 0 2px}
+.door .risk-box--inset .i{color:var(--aub)}
+.door .risk-box--inset ul{color:var(--aub); line-height:1.5}
+.risk-box--inset .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+
+/* Door rows, wide text and goal chips (from 01 Home s-products): fine print inside a row; 2 x 2 Mist goal tiles, not links */
+.row-text--wide{flex:1}
+.row-text .fine{margin-top:4px; font-size:var(--fs-xs)}
+.door-foot .fine{max-width:52ch}
+.goal-chips{list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px}
+.goal-chips li{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:22px 18px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-size:var(--fs-sm); font-weight:600; line-height:1.3}
+.goal-chips .i{width:24px; height:24px}
+@media (max-width: 640px){ .goal-chips li{padding:14px 12px; gap:8px} }
+
+/* Coming-soon card (from 01 Home s-products): the right column of .doors stacks the second door and a hairline card that fills
+   the rest; one item per line with a small icon, no badges or links, outside the door so no company is implied */
+.doors-side{display:flex; flex-direction:column; gap:24px; min-width:0}
+.soon-card{flex:1; display:flex; flex-direction:column; gap:14px; padding:22px 28px; border-radius:var(--r-card); border:1px solid var(--line-2); color:var(--aub-80); font-size:var(--fs-sm)}
+.soon-card .label{color:var(--aub)}
+.soon-list{list-style:none; display:flex; flex-direction:column; gap:12px}
+.soon-item{display:flex; gap:10px; align-items:flex-start; line-height:1.4}
+.soon-item .i{flex:none; width:18px; height:18px; margin-top:1px; color:var(--aub-60)}
+@media (max-width: 640px){
+  .soon-card{padding:18px 20px}
+  .soon-list{gap:10px}
+}
+
+/* Stat tiles (01 v3 and 09 v3): an unconfirmed value sits at body size in a slot of numeral height (2rem x 1.05),
+   so a confirmed serif value fills it with no layout shift; .stat-tiles--3 adds an icon tile and roomier tiles; .num--word for a word */
+.stat-tile .num{display:flex; align-items:center; min-height:2.1rem}
+.stat-tile .num .ph{font:500 var(--fs-sm)/1.4 var(--sans); letter-spacing:0}
+.stat-tile .num--word{font-size:1.625rem; line-height:1.2}
+.stat-tile .tile{margin-bottom:10px}
+.stat-tile .link{margin-top:6px}
+.stat-tiles--3 .stat-tile{flex:1 1 260px; gap:8px; padding:26px}
+.price-notes{margin-top:24px}
+
+/* Row list (from 09 v3 s-charges): dl.kv-list.kv-list--row, no card frame, hairlines above the first and below the last row;
+   dt ink left, dd right at fs-sm; rows wrap on phones */
+.kv-list--row{padding:0; background:none; box-shadow:none; border-radius:0; border-top:1px solid var(--line)}
+.kv-list--row > div{flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px; padding:12px 0}
+.kv-list--row > div:last-child{border-bottom:1px solid var(--line)}
+.kv-list--row dt{color:var(--aub)}
+.kv-list--row dd{font-size:var(--fs-sm); text-align:right}
+
+/* Group map on a Mist band, and off-group branches with a hairline shell (they still read as branches at 640). From 01 v3 */
+.band--mist .is-on .gmap-card{background:var(--paper)}
+.band--mist .is-on .gmap-card .chip{background:var(--mist)}
+.gmap-branches li:not(.is-on) .gmap-card{border:1px solid var(--line-2)}
+
+/* Verify cards (from 01 Home s-group): the check-it-yourself ledger as three white cards; tile, bold role, company link,
+   .mono code above a hairline (balanced break at the middle dot), regulator link pinned to the foot; one column at 899 */
+.verify-head{display:flex; flex-direction:column; gap:6px}
+.verify-head p{color:var(--aub-60)}
+.verify-list--cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; border-top:0}
+.verify-list--cards .verify-row{display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:24px; border-bottom:0; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.verify-list--cards dt{gap:4px}
+.verify-list--cards dt .tile{margin-bottom:10px; background:var(--mist); color:var(--aub)}
+.verify-list--cards dt b{font-weight:600; color:var(--aub)}
+.verify-list--cards dt a{font-weight:500; font-size:var(--fs-sm)}
+.verify-list--cards dd.mono{padding-top:12px; border-top:1px solid var(--line); align-self:stretch; text-wrap:balance}
+.verify-list--cards dd:last-child{margin-top:auto}
+@media (max-width: 899px){ .verify-list--cards{grid-template-columns:1fr} }
+@media (max-width: 640px){ .verify-list--cards .verify-row{padding:20px} }
+
+/* FAQ split, left column (from 01 Home s-faq): the image slot gets a little air in the 18 px stack */
+.faq-side .img-slot{margin-block:4px}
+
+/* Dark closing band (01 v3 and 09 v3; on-dark copy colours are in the dark band block above).
+   01: buttons in a row, an app-soon block, a translucent image slot right. 09: a column of equal-width buttons, product cards right */
+.final-actions{display:flex; flex-wrap:wrap; gap:12px}
+.app-soon{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:22px; border-top:1px solid var(--dark-line)}
+.app-soon p{color:var(--on-dark)}
+.final-visual{justify-self:end; width:min(420px, 100%)}
+.band--dark .img-slot{background:linear-gradient(160deg, rgba(244,241,247,.16) 0%, rgba(244,241,247,.05) 100%); border:1px solid var(--dark-line); color:var(--on-dark-2)}
+.band--dark .img-slot b{color:var(--on-dark)}
+.band--dark .img-slot .i{color:var(--on-dark-2)}
+.app .row{display:flex; flex-direction:column; align-items:stretch; gap:12px; width:max-content; max-width:100%}
+.final-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.final-stage .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 899px){
+  .final-visual{justify-self:stretch; width:100%; max-width:420px}
+  .final-stage{padding:0}
+}
+@media (max-width: 640px){
+  .app-soon .stores{flex-wrap:nowrap; align-self:stretch}
+  .app-soon .store{flex:1 1 0; min-width:0; gap:10px; padding:10px 12px}
+  .app-soon .store b{white-space:nowrap}
+  .app .row{width:100%}
+  .app .row .btn{width:100%; white-space:normal; text-align:center; line-height:1.25; padding:12px 16px; font-size:1rem}
+  .final-stage .ui-card{width:100%}
+}
+
+/* page: home */
+/* 01 Home v3 (golden, template HOME). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026
+   (curator, v3 golden promotions); only Home-specific rhythm stays here. */
+/* Home hero rhythm: no breadcrumb above it */
+.page-home .hero{padding-block:32px 72px}
+/* phones: wrapping full-width buttons and risk boxes with the icon above the text. Home only for now: as site rules they would
+   change 09 and 10 (proposed as site decisions in the curation notes) */
 @media (max-width: 640px){
   .page-home main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
-  .page-home .soon-row{grid-template-columns:1fr}
-  .soon-tile{align-items:flex-start}
+  .page-home .hero{padding-block:32px 56px}
+  .page-home .risk-box{grid-template-columns:1fr; padding:20px}
+  .page-home .risk-box--inset{padding:18px}
 }
 </style>
 </head>
@@ -990,79 +1282,114 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
 <main class="spine" id="main">
 <div class="root-line" aria-hidden="true"><i></i></div>
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
-  <div class="wrap hero-grid">
+  <div class="wrap hero-grid hero-grid--stage">
     <div class="hero-copy">
       <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Broking by Aikyam Capital · Mutual funds by Aikyam Wealth</span>
       <h1 class="d1" id="h-hero">Stocks, IPOs and mutual funds, <em>in one place.</em></h1>
-      <p class="lead">Open a trading and demat account with Aikyam Capital, or invest in mutual funds through Aikyam Wealth.</p>
-      <ul class="creds">
+      <p class="lead">Open your account online, know what you pay before you start, and invest at your own pace.</p>
+      <form class="hero-form" id="open-form" action="/open-account/trading" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
+        <div class="leadbar">
+          <label class="field" for="home-mob"><span class="pre">+91</span><input id="home-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" required></label>
+          <button class="btn btn--lg" type="submit" data-primary>Open free account<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+        </div>
+        <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent">I agree to the <a href="25-privacy.html">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+        <div class="hero-fine">
+          <p class="fine">Your number goes to Aikyam Capital Private Limited, SEBI registration INZ000321232. It is used to send your OTP and continue your application.</p>
+          <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+        </div>
+      </form>
+      <div class="hero-alt">
+        <a class="link link--wrap" href="10-start-investing.html" data-event="switch_to_investing">Only mutual funds? Start investing with Aikyam <span class="link-tail">Wealth<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></span></a>
+        <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+      </div>
+      <ul class="creds creds--row">
         <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg><div>SEBI-registered stock broker<span class="mono">INZ000321232</span></div></li>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chart" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16.5h16.5"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg><div>Member of NSE, BSE, MCX and MSEI<span>Member codes in the footer</span></div></li>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg><div>AMFI-registered mutual fund distributor<span class="mono">ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></span></div></li>
+        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg><div>AMFI-registered mutual fund distributor<span>Aikyam Wealth</span></div></li>
         <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-sprout" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 15.5c0-3.2-2.5-5.6-6-5.6 0 3.2 2.6 5.6 6 5.6z"/></svg><div>Backed by Aikyam Capital Group<span>Capital markets to asset management</span></div></li>
       </ul>
     </div>
 
-    <div class="hero-side">
-      <div class="form-card" id="open">
-        <span class="label">Step 1 of 4 · Trading and demat account</span>
-        <h2 class="h3" id="h-open">Start with your mobile number</h2>
-        <form id="open-form" action="/open-account/trading" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
-          <div class="fgroup">
-            <label for="home-mob">Mobile number</label>
-            <span class="field"><span class="pre">+91</span><input id="home-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="home-mob-help" required></span>
-            <span class="fhelp" id="home-mob-help">We send a one-time password (OTP) to this number.</span>
+    <div class="hero-visual">
+      <div class="hero-stage" role="img" aria-label="Illustrative ROOT screens: a portfolio overview, an IPO application and a SIP set-up">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-hero"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-hero)"/></svg>
+        <div class="phone">
+          <div class="ph-status"><span class="num">9:41</span><span>5G</span></div>
+          <div class="ph-top"><span class="wm"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 72.18"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></span><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-bell" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div>
+          <div class="ph-body">
+            <div class="ph-card">
+              <div class="xs">Total value</div>
+              <div class="ph-val">₹4,82,310.50</div>
+              <div class="chg up">+₹1,240.20 today (+0.26%)</div>
+              <svg class="ph-spark" viewBox="0 0 240 60" width="100%" height="56" aria-hidden="true">
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9 L240 60 L0 60 Z" fill="#1C0F2F" fill-opacity=".06"/>
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9" fill="none" stroke="#1C0F2F" stroke-width="1.6"/>
+                <circle cx="238" cy="9" r="3.2" fill="#C19C2F"/>
+              </svg>
+              <div class="ph-seg"><span>1D</span><span>1W</span><span class="on">1M</span><span>1Y</span><span>All</span></div>
+            </div>
+            <div class="ph-hold">
+              <div class="ph-row"><span>Stocks</span><b>₹2,10,400</b></div><div class="ph-bar"><i style="--w:44%"></i></div>
+              <div class="ph-row"><span>Mutual funds</span><b>₹1,94,800</b></div><div class="ph-bar"><i style="--w:40%"></i></div>
+              <div class="ph-row"><span>ETFs</span><b>₹77,110</b></div><div class="ph-bar"><i style="--w:16%"></i></div>
+            </div>
+            <div class="ph-row ph-sip"><span><span class="xs">Next SIP · 5 Nov</span>Example Flexi Cap Fund</span><b>₹5,000</b></div>
           </div>
-          <label class="check"><input type="checkbox" name="consent" required><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="25-privacy.html">Privacy Policy</a>.</span></label>
-          <p class="xs">Your number goes to Aikyam Capital Private Limited, SEBI registration INZ000321232. It is used to send your OTP and continue your application.</p>
-          <button class="btn btn--lg" type="submit" data-primary>Open free account<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
-          <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-        </form>
-        <p class="small cost-line"><span>Account opening: <mark class="ph" data-ph="pricing.account_opening">account opening charge to confirm</mark></span><a href="#s-pricing">See all charges</a></p>
+          <div class="ph-tabs"><span class="on"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-home" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M6 9.6V20h12V9.6"/><path d="M10 20v-5h4v5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.2" r="1.3"/></svg>Home</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg>Invest</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg>Trade</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-user" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"/></svg>Profile</span></div>
+        </div>
+        <div class="stage-cards">
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ipo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 21V3.5"/><path d="M5.5 4h12l-2.5 4.5 2.5 4.5h-12"/><circle class="sp" fill="#C19C2F" stroke="none" cx="18.5" cy="18.5" r="1.9"/></svg></span><span class="ui-label">IPO</span></div>
+            <b class="ui-name">Example Industries Ltd</b>
+            <div class="ui-row"><span>Price band</span><b>₹412 to ₹433</b></div>
+            <div class="ui-row"><span>Pay with</span><b>UPI</b></div>
+            <span class="chip ui-cta">Apply</span>
+          </div>
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg></span><span class="ui-label">Start a SIP</span></div>
+            <b class="ui-name">Example Flexi Cap Fund</b>
+            <div class="ui-row"><span>Amount</span><b>₹5,000 a month</b></div>
+            <div class="ui-row"><span>Date</span><b>5th of every month</b></div>
+            <span class="chip ui-cta">Start SIP</span>
+          </div>
+        </div>
       </div>
-      <div class="side-door">
-        <a class="link link--wrap" href="10-start-investing.html" data-event="switch_to_investing">Only mutual funds? Start investing with Aikyam Wealth<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
-        <p class="xs">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
-      </div>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
     </div>
   </div>
 </section>
 
-<section class="band band--mist band--tight" id="s-risk" aria-labelledby="h-risk">
-  <div class="wrap">
-    <div class="risk-box">
-      <svg class="i i--lg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-alert" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17.2v.2"/></svg>
-      <div class="stack" style="--gap:10px">
-        <h2 class="h3" id="h-risk">Risk disclosures on derivatives</h2>
-        <ul>
-          <li>9 out of 10 individual traders in equity Futures and Options Segment incurred net losses.</li>
-          <li>On an average, loss makers registered net trading loss close to Rs. 50,000.</li>
-          <li>Over and above net trading losses, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
-          <li>Those making net trading profits incurred between 15% to 50% of such profit as transaction cost.</li>
-        </ul>
-        <p class="xs">Source: SEBI circular of 19 May 2023. <mark class="ph" data-ph="fo-risk-current">Aikyam compliance to confirm this is the current prescribed text</mark></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="s-products" aria-labelledby="h-products">
+<section class="band band--mist" id="s-products" aria-labelledby="h-products">
   <div class="wrap">
     <div class="head">
-      <h2 class="d2 node" id="h-products"><i class="node-dot" aria-hidden="true"></i>Trade with Aikyam Capital. Invest with Aikyam Wealth.</h2>
-      <p>Each product names the company that provides it.</p>
+      <h2 class="d2 node" id="h-products"><i class="node-dot" aria-hidden="true"></i>What would you like to do?</h2>
+      <p>Pick what fits you today. You can add the other later.</p>
     </div>
     <div class="doors">
       <article class="door" aria-labelledby="h-door-trade">
         <div class="door-head">
-          <span class="label">Trade</span>
-          <h3 class="h3" id="h-door-trade">Aikyam Capital Private Limited</h3>
-          <p class="door-reg">SEBI registration <span class="mono">INZ000321232</span></p>
+          <span class="label">Trade · Aikyam Capital Private Limited</span>
+          <h3 class="h3" id="h-door-trade">Buy shares and ETFs, apply for IPOs</h3>
         </div>
         <ul class="door-rows">
-          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg></span><div class="row-text"><a href="35-equity.html">Stocks and ETFs</a><p>Shares and ETFs on NSE and BSE, for delivery or intraday.</p></div></li>
-          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ipo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 21V3.5"/><path d="M5.5 4h12l-2.5 4.5 2.5 4.5h-12"/><circle class="sp" fill="#C19C2F" stroke="none" cx="18.5" cy="18.5" r="1.9"/></svg></span><div class="row-text"><a href="31-ipo.html">IPOs</a><p>Apply for upcoming and open IPOs with UPI.</p></div></li>
-          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-fo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4v15"/><path d="M4 15.5 7.5 19l3.5-3.5"/><path d="M16.5 20V5"/><path d="M13 8.5 16.5 5 20 8.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="12" r="1.7"/></svg></span><div class="row-text"><a href="37-futures-options.html">Futures and options</a><p class="risk"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-alert" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17.2v.2"/></svg><span>9 out of 10 individual traders in equity F&amp;O incurred net losses. <a href="#s-risk">Read the risk disclosure</a></span></p></div></li>
+          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg></span><div class="row-text"><a href="35-equity.html">Stocks and ETFs</a><p>Buy and sell on NSE and BSE, to hold or for the day.</p></div></li>
+          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ipo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 21V3.5"/><path d="M5.5 4h12l-2.5 4.5 2.5 4.5h-12"/><circle class="sp" fill="#C19C2F" stroke="none" cx="18.5" cy="18.5" r="1.9"/></svg></span><div class="row-text"><a href="31-ipo.html">IPOs</a><p>Apply for open IPOs with UPI, and see what is coming up.</p></div></li>
+        </ul>
+        <div class="risk-box risk-box--inset" id="s-risk" aria-labelledby="h-risk">
+          <svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-alert" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17.2v.2"/></svg>
+          <div class="stack" style="--gap:8px">
+            <h4 class="h4" id="h-risk">Risk disclosures on derivatives</h4>
+            <ul>
+              <li>9 out of 10 individual traders in equity Futures and Options Segment incurred net losses.</li>
+              <li>On an average, loss makers registered net trading loss close to Rs. 50,000.</li>
+              <li>Over and above net trading losses, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
+              <li>Those making net trading profits incurred between 15% to 50% of such profit as transaction cost.</li>
+            </ul>
+            <p class="xs">Source: SEBI circular of 19 May 2023. <mark class="ph" data-ph="fo-risk-current">current SEBI text to confirm</mark></p>
+          </div>
+        </div>
+        <ul class="door-rows">
+          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-fo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4v15"/><path d="M4 15.5 7.5 19l3.5-3.5"/><path d="M16.5 20V5"/><path d="M13 8.5 16.5 5 20 8.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="12" r="1.7"/></svg></span><div class="row-text"><a href="37-futures-options.html">Futures and options</a><p>Optional. You switch it on after sharing proof of income.</p><p class="fine">Lot sizes, margins and expiries change often: check the current figures on the <a href="https://www.nseindia.com/" rel="noopener">NSE website</a>.</p></div></li>
           <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-commodity" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 19h17l-3.2-7.5H6.7z"/><path class="sp" fill="#C19C2F" stroke="none" d="M9.3 11.5 10.6 6.5h2.8l1.3 5z"/><path d="M9.3 11.5 10.6 6.5h2.8l1.3 5"/></svg></span><div class="row-text"><a href="38-currency-commodity.html">Currency and commodity</a><p>Currency contracts, and commodities such as gold and silver on MCX.</p></div></li>
         </ul>
         <div class="door-foot">
@@ -1070,85 +1397,89 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
           <a class="link" href="03-trade.html">See everything on Trade<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
         </div>
       </article>
+      <div class="doors-side">
       <article class="door" aria-labelledby="h-door-invest">
         <div class="door-head">
-          <span class="label">Invest</span>
-          <h3 class="h3" id="h-door-invest">Aikyam Wealth Private Limited</h3>
-          <p class="door-reg">AMFI ARN <span class="mono"><mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></span></p>
+          <span class="label">Invest · Aikyam Wealth Private Limited</span>
+          <h3 class="h3" id="h-door-invest">Mutual funds, with a SIP or all at once</h3>
         </div>
         <ul class="door-rows">
-          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg></span><div class="row-text"><a href="26-mutual-funds.html">Mutual funds</a><p>Plans across equity, debt and hybrid categories, as a SIP or a one-time investment. Regular plans, distributed by Aikyam Wealth.</p></div></li>
-          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-sprout" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 15.5c0-3.2-2.5-5.6-6-5.6 0 3.2 2.6 5.6 6 5.6z"/></svg></span><div class="row-text"><a href="04-plan-and-tools.html">Plan by goal</a><p>Not sure where to start? Start from a goal: retirement, a child's education, a home, saving tax.</p></div></li>
+          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg></span><div class="row-text"><a href="26-mutual-funds.html">Mutual funds</a><p>Regular plans across equity, debt and hybrid categories. Start a SIP or invest once.</p></div></li>
+          <li><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-sprout" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 12.5c0-4.3 3-7.5 7.5-7.5 0 4.3-3.2 7.5-7.5 7.5z"/><path d="M12 15.5c0-3.2-2.5-5.6-6-5.6 0 3.2 2.6 5.6 6 5.6z"/></svg></span><div class="row-text row-text--wide"><a href="04-plan-and-tools.html">Plan by goal</a><p>Not sure where to start? Begin with a goal.</p>
+            <ul class="goal-chips" aria-label="Goals you can plan for">
+              <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-sun" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18.5h18"/><path d="M6.8 18.5a5.2 5.2 0 0 1 10.4 0"/><path d="M12 6.5v2M5.8 9.8l1.4 1.4M18.2 9.8l-1.4 1.4"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="15.6" r="1.5"/></svg>Retirement</li>
+              <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-cap" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.6c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3V11"/><path d="M21.5 9v5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="21.5" cy="15.6" r="1.3"/></svg>A child's education</li>
+              <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-home" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M6 9.6V20h12V9.6"/><path d="M10 20v-5h4v5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.2" r="1.3"/></svg>A home</li>
+              <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-rupee" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10M7 8.5h10"/><path d="M8.5 4.5c4.5 0 6 2 6 4s-2 4-6 4H7l7.5 7"/></svg>Saving tax</li>
+            </ul>
+          </div></li>
         </ul>
         <div class="door-foot">
-          <a class="btn btn--ghost" href="10-start-investing.html" data-event="switch_to_investing">Only mutual funds? Start investing with Aikyam Wealth<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
-          <p class="xs">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+          <a class="btn btn--ghost" href="10-start-investing.html" data-event="switch_to_investing">Only mutual funds? Start investing<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+          <p class="fine">Mutual funds are distributed by Aikyam Wealth Private Limited, AMFI ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>. Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
           <a class="link" href="02-invest.html">See everything on Invest<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
         </div>
       </article>
-    </div>
-    <div class="soon-row">
-      <p>Coming soon</p>
-      <div class="soon-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-pms" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3.5 12.5h17"/><rect class="sp" fill="#C19C2F" stroke="none" x="10.8" y="11.3" width="2.4" height="2.4" rx=".6"/></svg><span class="soon-name">PMS<span class="xs">Third-party, empanelled for distribution</span></span><span class="soon">Soon</span></div>
-      <div class="soon-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-bond" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="13.5" rx="2"/><path d="M7 9.5h7M7 13h4.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16.5" cy="14" r="1.8"/></svg><span class="soon-name">Bonds and fixed income</span><span class="soon">Soon</span></div>
-      <div class="soon-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-nps" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5a9 9 0 0 1 18 0z"/><path d="M12 12.5v6a2 2 0 0 1-4 0"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="3.2" r="1.3"/></svg><span class="soon-name">NPS</span><span class="soon">Soon</span></div>
-      <div class="soon-tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg><span class="soon-name">Insurance</span><span class="soon">Soon</span></div>
+      <div class="soon-card">
+        <span class="label">Coming soon</span>
+        <ul class="soon-list">
+          <li class="soon-item"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-pms" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3.5 12.5h17"/><rect class="sp" fill="#C19C2F" stroke="none" x="10.8" y="11.3" width="2.4" height="2.4" rx=".6"/></svg>PMS (third-party, empanelled for distribution)</li>
+          <li class="soon-item"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-bond" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="13.5" rx="2"/><path d="M7 9.5h7M7 13h4.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16.5" cy="14" r="1.8"/></svg>Bonds and fixed income</li>
+          <li class="soon-item"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-nps" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5a9 9 0 0 1 18 0z"/><path d="M12 12.5v6a2 2 0 0 1-4 0"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="3.2" r="1.3"/></svg>NPS</li>
+          <li class="soon-item"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg>Insurance</li>
+        </ul>
+      </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="band band--mist" id="s-pricing" aria-labelledby="h-pricing">
+<section class="band" id="s-pricing" aria-labelledby="h-pricing">
   <div class="wrap">
     <div class="head">
-      <h2 class="d2 node" id="h-pricing"><i class="node-dot" aria-hidden="true"></i>Know what you pay before you start.</h2>
-      <p>Aikyam Capital sets the charges for trading and demat. Aikyam Wealth is paid by the fund house for the mutual funds it distributes.</p>
+      <h2 class="d2 node" id="h-pricing"><i class="node-dot" aria-hidden="true"></i>What will I pay?</h2>
+      <p>Our charges are listed on one public page, so you can check what you pay before you start.</p>
     </div>
-    <div class="ledgers">
-      <div class="ledger">
-        <div class="ledger-head"><h3 class="h3">Trading and demat</h3><p class="door-reg">Aikyam Capital Private Limited</p></div>
-        <div class="tablewrap">
-          <table class="data data--stack">
-            <caption>Account and brokerage charges (rate card to be confirmed)</caption>
-            <thead><tr><th scope="col">Charge</th><th scope="col">Rate</th></tr></thead>
-            <tbody>
-              <tr><td>Account opening</td><td><mark class="ph" data-ph="pricing.account_opening">account opening charge to confirm</mark></td></tr>
-              <tr><td>Equity delivery</td><td><mark class="ph" data-ph="pricing.delivery">Rate card to confirm</mark></td></tr>
-              <tr><td>Equity intraday</td><td><mark class="ph" data-ph="pricing.intraday">Rate card to confirm</mark></td></tr>
-              <tr><td>Futures</td><td><mark class="ph" data-ph="pricing.futures">Rate card to confirm</mark></td></tr>
-              <tr><td>Options</td><td><mark class="ph" data-ph="pricing.options">Rate card to confirm</mark></td></tr>
-              <tr><td>Currency and commodity</td><td><mark class="ph" data-ph="pricing.currency_commodity">Rate card to confirm</mark></td></tr>
-              <tr><td>Annual maintenance charge (AMC)</td><td><mark class="ph" data-ph="pricing.amc">AMC to confirm</mark></td></tr>
-              <tr><td>DP charge when you sell shares from your demat</td><td><mark class="ph" data-ph="pricing.dp_charge">DP charge to confirm</mark></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="small">On top of brokerage, statutory and exchange charges apply: Securities Transaction Tax (STT) or Commodities Transaction Tax (CTT), exchange transaction charges, SEBI turnover fees, stamp duty and GST.</p>
-        <p class="xs">Brokerage will never exceed the limits prescribed by SEBI.</p>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-rupee" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10M7 8.5h10"/><path d="M8.5 4.5c4.5 0 6 2 6 4s-2 4-6 4H7l7.5 7"/></svg></span>
+        <span class="label">Account opening · Aikyam Capital</span>
+        <div class="num"><mark class="ph" data-ph="pricing.account_opening">account opening charge to confirm</mark></div>
+        <p>To open your trading and demat account.</p>
       </div>
-      <div class="ledger">
-        <div class="ledger-head"><h3 class="h3">Mutual funds</h3><p class="door-reg">Aikyam Wealth Private Limited</p></div>
-        <dl class="kv-list">
-          <div><dt>What you buy</dt><dd>Regular plans</dd></div>
-          <div><dt>How Aikyam Wealth is paid</dt><dd>A commission from the fund house, included in the plan's expense ratio</dd></div>
-          <div><dt>Transaction charge</dt><dd><mark class="ph" data-ph="mf-transaction-charge">to confirm with Aikyam Wealth</mark></dd></div>
-        </dl>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg></span>
+        <span class="label">Equity delivery · Aikyam Capital</span>
+        <div class="num"><mark class="ph" data-ph="pricing.delivery">Rate card to confirm</mark></div>
+        <p>Brokerage when you buy shares to hold. Other segment rates are on the Pricing page.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg></span>
+        <span class="label">Mutual funds · Aikyam Wealth</span>
+        <div class="num num--word">Regular plans</div>
+        <p>Aikyam Wealth is paid a commission by the fund house. It is included in the plan's expense ratio.</p>
         <a class="link" href="30-distribution-commission.html">Read the commission disclosure<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
       </div>
     </div>
-    <div class="band-cta"><a class="link" href="06-pricing.html">See the full list of charges<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+    <div class="price-notes">
+      <p class="fine">On top of brokerage, statutory and exchange charges apply: Securities Transaction Tax (STT) or Commodities Transaction Tax (CTT), exchange transaction charges, SEBI turnover fees, stamp duty and GST.</p>
+      <p class="fine">Brokerage will never exceed the limits prescribed by SEBI.</p>
+    </div>
+    <div class="band-cta"><a class="btn btn--ghost" href="06-pricing.html">See all charges<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
-<section class="band" id="s-group" aria-labelledby="h-group">
+<section class="band band--mist" id="s-group" aria-labelledby="h-group">
   <div class="wrap">
     <div class="split">
       <div class="stack" style="--gap:20px">
-        <h2 class="d2 node" id="h-group"><i class="node-dot" aria-hidden="true"></i>Who is behind ROOT.</h2>
-        <p>ROOT by Aikyam is the retail brand of Aikyam Capital Group, which works across capital markets, wealth management, investment banking and asset management. Two of its companies serve you here: Aikyam Capital Private Limited for broking and Aikyam Wealth Private Limited for mutual fund distribution.</p>
+        <h2 class="d2 node" id="h-group"><i class="node-dot" aria-hidden="true"></i>Who is behind ROOT?</h2>
+        <p>ROOT by Aikyam is the retail brand of Aikyam Capital Group. The group works across capital markets, wealth management, investment banking and asset management.</p>
         <ul class="facts">
           <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg><span>Two regulated companies, each named where you act</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chart" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16.5h16.5"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg><span>Member of NSE, BSE, MCX and MSEI, with member codes in the footer</span></li>
           <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-rupee" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10M7 8.5h10"/><path d="M8.5 4.5c4.5 0 6 2 6 4s-2 4-6 4H7l7.5 7"/></svg><span>Charges on one public page: <a href="06-pricing.html">Pricing</a></span></li>
-          <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-support" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19c0 1.4-1.8 2.3-4.8 2.3"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12.6" cy="21.3" r="1.2"/></svg><span>A real person to talk to when you need one: write to <a href="mailto:info@aikyamcap.com">info@aikyamcap.com</a> or use the <a href="15-contact.html">Contact page</a></span></li>
+          <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-support" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19c0 1.4-1.8 2.3-4.8 2.3"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12.6" cy="21.3" r="1.2"/></svg><span>A real person to talk to when you need one: <a href="15-contact.html">Write to us</a></span></li>
         </ul>
         <a class="link" href="07-about.html">About ROOT and the Aikyam Group<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
       </div>
@@ -1169,84 +1500,102 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
       </figure>
     </div>
     <div class="verify">
-      <h3 class="h3" id="h-verify">Check it yourself</h3>
-      <dl class="verify-list" aria-labelledby="h-verify">
+      <div class="verify-head">
+        <h3 class="h3" id="h-verify">Check it yourself</h3>
+        <p>Look us up on each regulator's own website.</p>
+      </div>
+      <dl class="verify-list verify-list--cards" aria-labelledby="h-verify">
         <div class="verify-row">
-          <dt><a href="12-aikyam-capital.html">Aikyam Capital Private Limited</a><span>SEBI stock broker</span></dt>
+          <dt><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg></span><b>Stock broker</b><a href="12-aikyam-capital.html">Aikyam Capital Private Limited</a></dt>
           <dd class="mono">INZ000321232</dd>
           <dd><a class="link" href="https://www.sebi.gov.in/" rel="noopener">Check on SEBI's website<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a></dd>
         </div>
         <div class="verify-row">
-          <dt><a href="12-aikyam-capital.html">Aikyam Capital Private Limited</a><span>NSDL depository participant</span></dt>
+          <dt><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-lock" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="15.5" r="1.6"/></svg></span><b>Depository participant (NSDL)</b><a href="12-aikyam-capital.html">Aikyam Capital Private Limited</a></dt>
           <dd class="mono">IN-DP-854-2026 · NSDL DP IN305066</dd>
           <dd><a class="link" href="https://nsdl.co.in/" rel="noopener">Check on NSDL's website<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a></dd>
         </div>
         <div class="verify-row">
-          <dt><a href="13-aikyam-wealth.html">Aikyam Wealth Private Limited</a><span>AMFI-registered mutual fund distributor</span></dt>
+          <dt><span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg></span><b>Mutual fund distributor</b><a href="13-aikyam-wealth.html">Aikyam Wealth Private Limited</a></dt>
           <dd class="mono">ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></dd>
           <dd><a class="link" href="https://www.amfiindia.com/" rel="noopener">Check on AMFI's website<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a></dd>
         </div>
       </dl>
-      <p class="xs">Exchange, clearing and company codes for both companies are in the footer.</p>
+      <p class="fine">Exchange, clearing and company codes for both companies are in the footer.</p>
     </div>
   </div>
 </section>
 
-<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
+<section class="band" id="s-steps" aria-labelledby="h-steps">
   <div class="wrap">
     <div class="head">
-      <h2 class="d2 node" id="h-steps"><i class="node-dot" aria-hidden="true"></i>Open your trading and demat account in four steps.</h2>
-      <p>Online, on your phone or computer.</p>
+      <h2 class="d2 node" id="h-steps"><i class="node-dot" aria-hidden="true"></i>Open your account in four steps.</h2>
+      <p>Your trading and demat account, online, on your phone or computer.</p>
     </div>
-    <ol class="steps">
-      <li><span class="dot">1</span><h3 class="h3">Enter your mobile number</h3><p>We send a one-time password to confirm it's you.</p></li>
-      <li><span class="dot">2</span><h3 class="h3">Verify your PAN</h3><p>Your PAN details are checked with the income tax records.</p></li>
-      <li><span class="dot">3</span><h3 class="h3">Share Aadhaar with DigiLocker</h3><p>Fetch your address from DigiLocker, with your consent.</p></li>
-      <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add a bank account, then sign with your Aadhaar OTP.</p></li>
-    </ol>
-    <div class="docs">
-      <h3 class="h3">Keep these ready</h3>
-      <ul>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>PAN card</li>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Aadhaar linked to your mobile</li>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Bank account details</li>
-        <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>A photo of your signature</li>
-      </ul>
+    <div class="split split--steps">
+      <div class="steps-side">
+        <ol class="steps" style="--cols:2">
+          <li><span class="dot">1</span><h3 class="h3">Enter your mobile number</h3><p>We send a one-time password to confirm it's you.</p></li>
+          <li><span class="dot">2</span><h3 class="h3">Verify your PAN</h3><p>Your PAN details are checked with the income tax records.</p></li>
+          <li><span class="dot">3</span><h3 class="h3">Share Aadhaar with DigiLocker</h3><p>Fetch your address from DigiLocker, with your consent.</p></li>
+          <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add a bank account, then sign with your Aadhaar OTP.</p></li>
+        </ol>
+        <div class="docs">
+          <h3 class="h3">Keep these ready</h3>
+          <ul>
+            <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>PAN card</li>
+            <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Aadhaar linked to your mobile</li>
+            <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Bank account details</li>
+            <li><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>A photo of your signature</li>
+          </ul>
+        </div>
+        <div class="band-cta">
+          <a class="btn" href="09-start-trading.html">Open free account<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+          <p class="fine">Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+        </div>
+      </div>
+      <div class="ui-stage kyc-stage">
+        <div class="ui-card kyc-card">
+          <div class="ui-row"><span class="ui-label">Step 2 of 4</span><span class="xs">Trading and demat account</span></div>
+          <div class="kyc-progress" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+          <b class="ui-big">Verify your PAN</b>
+          <div class="ui-field"><span class="ui-flabel">PAN</span><span class="ui-fval">ABCDE1234F</span></div>
+          <div class="ui-row ui-ok"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Mobile number verified</span></div>
+          <span class="chip ui-cta">Continue</span>
+        </div>
+        <p class="ui-caption">Illustrative screen. Our KYC partner runs the live flow.</p>
+      </div>
     </div>
-    <div class="band-cta"><a class="btn" href="09-start-trading.html">Open free account<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a><span class="xs">Steps shown are indicative and will be confirmed with the KYC partner's live flow.</span></div>
   </div>
 </section>
 
-<section class="band" id="s-faq" aria-labelledby="h-faq">
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
   <div class="wrap split">
-    <div class="stack" style="--gap:18px">
+    <div class="stack faq-side" style="--gap:18px">
       <h2 class="d2 node" id="h-faq"><i class="node-dot" aria-hidden="true"></i>Questions, answered.</h2>
       <p class="lead">Can't find yours? <a href="15-contact.html">Write to us</a> and a real person replies.</p>
-      <p class="small">For complaints about securities broking: <a href="mailto:grievances@aikyamcap.com">grievances@aikyamcap.com</a></p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-support" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19c0 1.4-1.8 2.3-4.8 2.3"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12.6" cy="21.3" r="1.2"/></svg><b>Photo: a member of the ROOT support team on a call at the Mumbai office</b><span>Real Aikyam staff, after a shoot. Daylight, candid, headset on, laptop open; aubergine and white in frame. Crop 4:3.</span></figure>
       <a class="link" href="08-help-centre.html">Visit the Help Centre<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
-      <a class="link link--wrap" href="65-guide-getting-started.html">New to investing? Start with the Getting started guide<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+      <a class="link link--wrap" href="65-guide-getting-started.html">New to investing? Start with the Getting started <span class="link-tail">guide<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></span></a>
+      <p class="fine">For complaints about securities broking: <a href="mailto:grievances@aikyamcap.com">grievances@aikyamcap.com</a></p>
     </div>
     <div class="faq">
-      <details open><summary>Which company holds my account, and where are my shares kept?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
-        <p>Aikyam Capital Private Limited, a SEBI-registered stock broker (INZ000321232), opens your trading and demat account. Your shares are held in your demat account at NSDL, opened through Aikyam Capital as a depository participant (IN-DP-854-2026 · NSDL DP IN305066).</p>
-        <p>Make payments only to the Aikyam Capital Private Limited bank accounts listed on the <a href="20-client-bank-accounts.html">Client bank accounts page</a>.</p>
-        <p>Mutual funds are distributed by Aikyam Wealth Private Limited (AMFI ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>). How your fund units are held: <mark class="ph" data-ph="mf-holding">to confirm</mark>.</p>
+      <details open><summary>Where are my shares and money kept?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>Your shares sit in your own demat account at NSDL, opened through Aikyam Capital Private Limited as a depository participant.</p>
+        <p>Pay only into the Aikyam Capital Private Limited bank accounts listed on the <a href="20-client-bank-accounts.html">Client bank accounts page</a>.</p>
       </div></details>
-      <details><summary>I only want mutual funds. Do I need a trading account?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
-        <p>No. Mutual funds on ROOT are distributed by Aikyam Wealth Private Limited. <a href="10-start-investing.html">Start investing</a>.</p>
-        <p>Whether one sign-up can open both: <mark class="ph" data-ph="one-flow">one onboarding for both, to confirm</mark>.</p>
-      </div></details>
-      <details><summary>Can I trade F&amp;O as soon as my account opens?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
-        <p>F&amp;O is an optional segment. Before it is switched on, you share one proof of income. You can ask for it while you open your account <mark class="ph" data-ph="fo-activation-when">or later, to confirm</mark>.</p>
-        <div class="ph ph--block" data-ph="fo-income-proofs">List to confirm with Aikyam compliance, for example: bank statement, latest ITR acknowledgement, salary slip or Form 16, net worth certificate, demat holdings statement</div>
+      <details open><summary>Can I trade F&amp;O as soon as my account opens?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>F&amp;O is an optional segment. Before it is switched on, you share one proof of income, such as <mark class="ph" data-ph="fo-income-proofs">a bank statement, ITR, salary slip or Form 16 (list to confirm)</mark>.</p>
+        <p>You can ask for it while you open your account <mark class="ph" data-ph="fo-activation-when">or later, to confirm</mark>.</p>
         <p><a href="22-risk-disclosure.html">Read the full risk disclosure</a></p>
       </div></details>
       <details><summary>Where do I find current lot sizes, margins and expiry dates?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
         <p>They change often, so we do not print them here. Check the current figures on the <a href="https://www.nseindia.com/" rel="noopener">NSE website</a>.</p>
       </div></details>
-      <details><summary>Are the mutual funds regular plans, and what does Aikyam Wealth earn?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
-        <p>Yes, regular plans. Aikyam Wealth Private Limited is paid a commission by the fund house, included in the plan's expense ratio.</p>
-        <p><a href="30-distribution-commission.html">Read the commission disclosure</a></p>
+      <details><summary>I only want mutual funds. Do I need a trading account?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>No. Mutual funds on ROOT are distributed by Aikyam Wealth Private Limited. <a href="10-start-investing.html">Start investing</a>.</p>
+        <p>Whether one sign-up can open both: <mark class="ph" data-ph="one-flow">one onboarding for both, to confirm</mark>.</p>
+        <p>How your fund units are held: <mark class="ph" data-ph="mf-holding">to confirm</mark>.</p>
       </div></details>
       <details><summary>When will the ROOT app be available?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
         <p>The iOS and Android apps are coming soon (<mark class="ph" data-ph="app.launch_date">app launch date to confirm</mark>). You can open your account on the web today.</p>
@@ -1262,12 +1611,13 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
 <section class="band band--dark" id="s-final" aria-labelledby="h-final">
   <div class="wrap app">
     <div class="stack" style="--gap:22px">
+      <span class="eyebrow">Broking by Aikyam Capital · Mutual funds by Aikyam Wealth</span>
       <h2 class="d2 node" id="h-final"><i class="node-dot" aria-hidden="true"></i>Your account starts with a mobile number.</h2>
       <div class="final-actions">
         <a class="btn btn--light btn--lg" href="09-start-trading.html">Open free account<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
         <a class="btn btn--outline-light btn--lg" href="10-start-investing.html" data-event="switch_to_investing">Only mutual funds? Start investing</a>
       </div>
-      <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
       <div class="app-soon">
         <p>The ROOT app for iOS and Android is coming soon.</p>
         <div class="stores">
@@ -1277,34 +1627,7 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
         <a class="link" href="11-get-the-app.html">Tell me when it is live<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
       </div>
     </div>
-    <div class="app-phone">
-      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-o2"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-o2)"/></svg>
-      <div class="phone" role="img" aria-label="Illustrative ROOT app home screen showing a portfolio value, the holdings mix and one example SIP">
-        <div class="ph-status"><span class="num">9:41</span><span>5G</span></div>
-        <div class="ph-top"><span class="wm"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 72.18"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></span><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-bell" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></div>
-        <div class="ph-body">
-          <div class="ph-card">
-            <div class="xs">Total value</div>
-            <div class="ph-val">₹4,82,310.50</div>
-            <div class="chg up">+₹1,240.20 today (+0.26%)</div>
-            <svg class="ph-spark" viewBox="0 0 240 60" width="100%" height="56" aria-hidden="true">
-              <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9 L240 60 L0 60 Z" fill="#1C0F2F" fill-opacity=".06"/>
-              <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9" fill="none" stroke="#1C0F2F" stroke-width="1.6"/>
-              <circle cx="238" cy="9" r="3.2" fill="#C19C2F"/>
-            </svg>
-            <div class="ph-seg"><span>1D</span><span>1W</span><span class="on">1M</span><span>1Y</span><span>All</span></div>
-          </div>
-          <div class="ph-hold">
-            <div class="ph-row"><span>Stocks</span><b>₹2,10,400</b></div><div class="ph-bar"><i style="--w:44%"></i></div>
-            <div class="ph-row"><span>Mutual funds</span><b>₹1,94,800</b></div><div class="ph-bar"><i style="--w:40%"></i></div>
-            <div class="ph-row"><span>ETFs and gold</span><b>₹77,110</b></div><div class="ph-bar"><i style="--w:16%"></i></div>
-          </div>
-          <div class="ph-row ph-sip"><span><span class="xs">Next SIP · 5 Nov</span>Example Flexi Cap Fund</span><b>₹5,000</b></div>
-        </div>
-        <div class="ph-tabs"><span class="on"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-home" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M6 9.6V20h12V9.6"/><path d="M10 20v-5h4v5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.2" r="1.3"/></svg>Home</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg>Invest</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg>Trade</span><span><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-user" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"/></svg>Profile</span></div>
-      </div>
-      <p class="illus ph-cap">Illustrative data. Not real prices or returns.</p>
-    </div>
+    <figure class="img-slot final-visual" style="--ar:4/5"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-user" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c.8-3.9 3.8-6 7.5-6s6.7 2.1 7.5 6"/></svg><b>Photo: a 32-year-old professional at home in the evening, checking her phone on the sofa, at ease</b><span>Shot for ROOT. Screen turned away, or showing the illustrative ROOT screen only. Warm lamp light, soft background, aubergine accents. Crop 4:5. No trading terminals, no charts.</span></figure>
   </div>
 </section>
 
@@ -1313,10 +1636,10 @@ dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
     <div class="risk-box">
       <svg class="i i--lg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-info" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.7v.2"/></svg>
       <div class="stack" style="--gap:10px">
-        <h2 class="h3" id="h-disclosures">Mutual fund and distribution disclosures</h2>
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
         <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
         <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
-        <div class="ph ph--block" data-ph="ipo-distributor-line">Line naming Aikyam Capital Private Limited as the trading member acting as distributor for IPOs: wording to confirm with Aikyam compliance</div>
+        <p><mark class="ph" data-ph="ipo-distributor-line">IPO distributor line from Aikyam compliance</mark></p>
         <a class="link" href="22-risk-disclosure.html">Read the full risk disclosure<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
       </div>
     </div>

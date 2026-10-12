@@ -1,10 +1,10 @@
 {
  "page": "09-start-trading",
  "verdict": "pass",
- "score": 90,
+ "score": 88,
  "must_fix": [],
- "note": "Reviewer pass (90 after fix round) carried after curator CSS promotion and ARN label fix; gate ok, slice counts unchanged",
+ "note": "v3 revision reviewer pass carried after curator CSS promotion / consent alignment; gate ok",
  "by": "orchestrator-carry",
- "sha": "4ab9a56f9fae",
+ "sha": "27273d619c16",
  "date": "12-Oct-2026"
 }

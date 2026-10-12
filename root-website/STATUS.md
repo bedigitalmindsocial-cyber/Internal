@@ -14,8 +14,8 @@ brief: 72 · done: 3
 | 06 | Pricing | A | 1 | derivative | - | n | n | - | - | - |  | brief |
 | 07 | About ROOT and the Aikyam Group | F | 1 | golden | - | n | n | - | - | - |  | brief |
 | 08 | Help Centre | A | 1 | derivative | - | n | n | - | - | - |  | brief |
-| 09 | Start Trading | D | 1 | golden | reviewed | y | y | y | pass | 90 |  | done |
-| 10 | Start Investing | D | 1 | derivative | reviewed | y | y | y | pass | 88 |  | done |
+| 09 | Start Trading | D | 1 | golden | reviewed | y | y | y | pass | 88 |  | done |
+| 10 | Start Investing | D | 1 | derivative | reviewed | y | y | y | pass | 87 |  | done |
 | 11 | Get the App | D | 1 | derivative | - | n | n | - | - | - |  | brief |
 | 12 | Aikyam Capital | F | 1 | derivative | - | n | n | - | - | - |  | brief |
 | 13 | Aikyam Wealth | F | 1 | derivative | - | n | n | - | - | - |  | brief |

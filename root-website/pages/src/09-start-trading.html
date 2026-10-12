@@ -2,49 +2,115 @@
           "description": "Open a trading and demat account with Aikyam Capital Private Limited, a SEBI-registered broker. Start with your mobile number and an OTP.",
           "query": "open trading and demat account online",
           "lint_allow": []} -->
+<style data-page>
+/* 09 v3 page CSS (tokens only). Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator, v3 golden promotions).
+   Kept here until 10 Start Investing is rebuilt on v3 (as a site rule it would move 10's steps link): the band CTA sits 20 px under the steps note */
+.steps-note + .band-cta{margin-top:20px}
+</style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
-      <h1 class="d1" id="h-hero">Open your trading and demat account, <em>online.</em></h1>
-      <p class="lead">A trading and demat account with {{reg.capital.name}}, the SEBI-registered stock broker behind ROOT by Aikyam. Trade shares and ETFs, and add futures and options (F&amp;O), currency and commodity when you are ready.</p>
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h1 class="d1" id="h-hero">Stocks, ETFs and IPOs, <em>a few steps away.</em></h1>
+      <p class="lead">Open your trading and demat account online with your PAN and Aadhaar, and add more segments when you're ready.</p>
       <ul class="creds">
-        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="num">{{reg.capital.sebi}}</span></div></li>
+        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="num mono">{{reg.capital.sebi}}</span></div></li>
         <li><svg class="i"><use href="#i-chart"/></svg><div>Member of NSE, BSE, MCX and MSEI<span>Member codes in the footer</span></div></li>
-        <li><svg class="i"><use href="#i-lock"/></svg><div>NSDL depository participant<span class="num">{{reg.capital.dp}}</span></div></li>
-        <li><svg class="i"><use href="#i-sprout"/></svg><div>Backed by Aikyam Capital Group<span>Capital markets to asset management</span></div></li>
-        <li class="cred-cost"><svg class="i"><use href="#i-rupee"/></svg><div>Account opening<span class="cost-line">{{pricing.account_opening}} <a href="#s-charges">See all charges</a></span></div></li>
+        <li class="cred-wide"><svg class="i"><use href="#i-lock"/></svg><div>NSDL depository participant<span class="num mono">{{reg.capital.dp}}</span></div></li>
       </ul>
+      <a class="link" href="#s-charges">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
     </div>
 
     <div class="hero-side">
-      <section class="form-card" id="s-open" aria-labelledby="h-open">
-        <span class="label">Step 1 of 4 · Trading and demat account</span>
-        <h2 class="h3" id="h-open">Start with your mobile number</h2>
-        <form id="open-form" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
-          <div class="fgroup">
-            <label for="open-mob">Mobile number</label>
-            <span class="field"><span class="pre">+91</span><input id="open-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="open-mob-help" required></span>
-            <span class="fhelp" id="open-mob-help">We send a one-time password (OTP) to this number.</span>
-          </div>
-          <label class="check"><input type="checkbox" name="consent" required><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
-          <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
-          <button class="btn btn--lg" type="submit" data-primary>Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-          <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
-        </form>
-      </section>
+      <div class="ui-stage ui-stage--panel open-stage">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-open"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-open)"/></svg>
+        <ol class="track" aria-label="Opening your account: step 1 of 4">
+          <li class="is-on" aria-current="step">Mobile</li>
+          <li>PAN</li>
+          <li>Aadhaar</li>
+          <li>Bank and <span>e-sign</span></li>
+        </ol>
+        <section class="form-card" id="s-open" aria-labelledby="h-open">
+          <h2 class="h3" id="h-open">Start with your mobile number</h2>
+          <form id="open-form" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
+            <div class="fgroup">
+              <label for="open-mob">Mobile number</label>
+              <span class="field"><span class="pre">+91</span><input id="open-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="open-mob-help" required></span>
+              <span class="fhelp" id="open-mob-help">We'll send a one-time password (OTP) to this number.</span>
+            </div>
+            <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+            <button class="btn btn--lg" type="submit" data-primary>Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+            <div class="stack" style="--gap:0px">
+              <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+              <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+            </div>
+          </form>
+        </section>
+      </div>
       <div class="hero-alt"><a class="link link--wrap" href="/open-account/investing" data-event="switch_to_investing">Investing only? Open an investing account with <span class="link-tail">Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></span></a></div>
     </div>
   </div>
 </section>
 
-<section class="band band--mist band--tight" id="s-risk" aria-labelledby="h-risk">
+<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
   <div class="wrap">
-    <div class="risk-box">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">Four steps, on your phone or computer.</h2>
+      <p>Set aside about <mark class="ph" data-ph="kyc-duration">time to confirm</mark>. The ROOT app is coming soon, and you can open your account on the web today.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="dot">1</span><h3 class="h3">Verify your mobile</h3><p>Enter your number and the OTP we send.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: mobile number verified"><div class="ui-row"><span class="ui-label">Mobile number</span><span class="chip chip--gain">Verified</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">Check your PAN</h3><p>We match it with income tax records.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: PAN matched"><div class="ui-row"><span class="ui-label">PAN</span><span class="chip chip--gain">Matched</span></div><b class="num">XXXXX1234X</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Share Aadhaar via DigiLocker</h3><p>Your address comes from DigiLocker, with your consent.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: address fetched from DigiLocker"><div class="ui-row"><span class="ui-label">DigiLocker</span><span class="chip chip--gain">Address fetched</span></div><b class="num">Aadhaar XXXX XXXX 1234</b></div></li>
+      <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add your bank account, then sign with an Aadhaar OTP.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: bank account added, ready to e-sign"><div class="ui-row"><span class="ui-label">Bank account</span><span class="chip chip--ink">e-sign</span></div><b class="num">XXXXXX4321</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+
+    <div class="docs docs--tiles">
+      <h3 class="h3">Keep these ready</h3>
+      <ul>
+        <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>PAN card</li>
+        <li><span class="tile"><svg class="i"><use href="#i-phone"/></svg></span>Aadhaar linked to your mobile (for the OTP)</li>
+        <li><span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>Bank account details</li>
+        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span>A photo of your signature</li>
+      </ul>
+    </div>
+
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <h3 class="h3">Stopped halfway?</h3>
+        <p>Come back with the same mobile number and <mark class="ph" data-ph="kyc-resume">pick up where you stopped</mark>.</p>
+        <p>If a PAN, Aadhaar or bank check doesn't go through: <mark class="ph" data-ph="kyc-fail">what to do next, to confirm with the KYC partner</mark>. You can always <a href="/contact">talk to us</a>.</p>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-lock"/></svg></span>
+        <h3 class="h3">Who handles your details?</h3>
+        <p>Our KYC partner, {{kyc.vendor}}, completes your KYC for {{reg.capital.name}}. Your details are used to open and run your account, as our <a href="/legal/privacy">Privacy Policy</a> explains.</p>
+        <p><mark class="ph" data-ph="data-security">How your data is protected, to confirm</mark></p>
+      </div>
+    </div>
+
+    <p class="small steps-note">Your account is ready to use once your KYC is verified and the exchanges approve it. Then log in at <a href="https://{{url.login}}">{{url.login}}</a>.</p>
+    <div class="band-cta"><a class="link" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-fo" aria-labelledby="h-fo">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-fo">F&amp;O is optional. Know the risks first.</h2>
+    </div>
+    <div class="risk-box risk-box--inset" id="s-risk" role="note" aria-labelledby="h-risk">
       <svg class="i i--lg"><use href="#i-alert"/></svg>
       <div class="stack" style="--gap:10px">
-        <h2 class="h3" id="h-risk">Risk disclosures on derivatives</h2>
+        <h3 class="h3" id="h-risk">Risk disclosures on derivatives</h3>
         <ul>
           <li>9 out of 10 individual traders in equity Futures and Options Segment incurred net losses.</li>
           <li>On an average, loss makers registered net trading loss close to Rs. 50,000.</li>
@@ -54,47 +120,31 @@
         <p class="xs">Source: {{fo.risk_source}}. <mark class="ph" data-ph="fo-risk-current">Aikyam compliance to confirm this is the current prescribed text</mark></p>
       </div>
     </div>
-  </div>
-</section>
+    <div class="risk-more"><a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a></div>
 
-<section class="band" id="s-steps" aria-labelledby="h-steps">
-  <div class="wrap">
-    <div class="head">
-      <h2 class="d2 node" id="h-steps">Open your account in four steps.</h2>
-      <p>On your phone or computer, in about <mark class="ph" data-ph="kyc-duration">time to confirm</mark>. The ROOT app for iOS and Android is coming soon. You can open your account on the web today.</p>
-    </div>
-    <ol class="steps">
-      <li><span class="dot">1</span><h3 class="h3">Enter your mobile number</h3><p>We send a one-time password to confirm it's you.</p></li>
-      <li><span class="dot">2</span><h3 class="h3">Verify your PAN</h3><p>Your PAN details are checked with the income tax records.</p></li>
-      <li><span class="dot">3</span><h3 class="h3">Share Aadhaar with DigiLocker</h3><p>Fetch your address from DigiLocker, with your consent.</p></li>
-      <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add a bank account, then sign with your Aadhaar OTP.</p></li>
-    </ol>
-    <div class="docs">
-      <h3 class="h3">Keep these ready</h3>
-      <ul>
-        <li><svg class="i"><use href="#i-check"/></svg>PAN card</li>
-        <li><svg class="i"><use href="#i-check"/></svg>Aadhaar linked to your mobile (for the OTP)</li>
-        <li><svg class="i"><use href="#i-check"/></svg>Bank account details</li>
-        <li><svg class="i"><use href="#i-check"/></svg>A photo of your signature</li>
-        <li><svg class="i"><use href="#i-check"/></svg><span>For F&amp;O only: one <a href="#s-fo">proof of income</a></span></li>
-      </ul>
-    </div>
-    <div class="docs">
-      <h3 class="h3">If you stop or a check fails</h3>
-      <div class="stack" style="--gap:12px">
-        <p>Stopped halfway? Come back with the same mobile number and <mark class="ph" data-ph="kyc-resume">pick up where you stopped</mark>.</p>
-        <div class="ph ph--block" data-ph="kyc-fail">What happens when the PAN, Aadhaar or bank check does not go through, and the route if Aadhaar is not linked to your mobile: to confirm with the KYC partner</div>
+    <div class="split fo-split">
+      <div class="stack" style="--gap:28px">
+        <p class="lead">Add futures and options (F&amp;O) <mark class="ph" data-ph="fo-activation-when">while you open your account or later, to confirm</mark>, once you share one proof of income.</p>
+        <ul class="facts">
+          <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><div class="fact-text"><b>Proof of income</b><p>One recent document, such as <mark class="ph" data-ph="fo-income-proofs">a bank statement, ITR, salary slip or Form 16 (list to confirm)</mark>.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-chart"/></svg></span><div class="fact-text"><b>Lot sizes, margins and expiry dates</b><p>These change often, so check the current figures on NSE.</p>
+            <div class="links">
+              <a class="link link--wrap" href="https://www.nseindia.com/" rel="noopener">NSE: contract specifications and expiry <span class="link-tail">calendar<svg class="i"><use href="#i-ne"/></svg></span></a>
+              <a class="link" href="#s-charges">What each F&amp;O order costs<svg class="i"><use href="#i-arrow"/></svg></a>
+            </div></div></li>
+        </ul>
+      </div>
+      <div class="ui-stage ui-stage--panel seg-stage">
+        <div class="ui-card ui-list seg-card" role="img" aria-label="Illustrative screen: account segments, equity on, others not added">
+          <span class="ui-label">Your segments</span>
+          <div class="ui-row"><span>Equity: shares and ETFs</span><span class="chip chip--gain">On</span></div>
+          <div class="ui-row"><span>Futures and options</span><span class="chip">Add with proof of income</span></div>
+          <div class="ui-row"><span>Currency</span><span class="chip">Add</span></div>
+          <div class="ui-row"><span>Commodity</span><span class="chip">Add</span></div>
+        </div>
+        <p class="ui-caption">Illustrative screen</p>
       </div>
     </div>
-    <div class="docs">
-      <h3 class="h3">Your details and the KYC partner</h3>
-      <div class="stack" style="--gap:12px">
-        <p>KYC is completed with our KYC partner, {{kyc.vendor}}, on behalf of {{reg.capital.name}}. Your details are used to open and service your account, as set out in our <a href="/legal/privacy">Privacy Policy</a>.</p>
-        <div class="ph ph--block" data-ph="data-security">Security measures Aikyam can state, to confirm</div>
-      </div>
-    </div>
-    <p class="small steps-note">Activation is subject to KYC verification and exchange approval. When your account is active, log in at <a href="https://{{url.login}}">{{url.login}}</a>.</p>
-    <div class="band-cta"><a class="link" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">Steps shown are indicative and will be confirmed with the KYC partner's live flow.</span></div>
   </div>
 </section>
 
@@ -102,91 +152,61 @@
   <div class="wrap">
     <div class="head">
       <h2 class="d2 node" id="h-charges">Know what you pay before you trade.</h2>
-      <p>Brokerage is set by Aikyam Capital. Statutory and exchange charges are set by the government, the exchanges and SEBI, and appear on your contract note.</p>
+      <p>Brokerage is set by us. Statutory charges are set by the government, the exchanges and SEBI. Both show on your contract note.</p>
     </div>
-    <div class="price-grid">
-      <div class="zero zero--top">
-        <div class="label">Account opening</div>
-        <div class="big">{{pricing.account_opening}}</div>
-        <div class="fees">
-          <p class="small">Annual maintenance charge (AMC): {{pricing.amc}}</p>
-          <p class="small">DP charge when you sell shares from your demat: {{pricing.dp_charge}}</p>
-        </div>
-        <a class="link" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a>
-      </div>
-      <div class="stack" style="--gap:16px">
-        <div class="tablewrap">
-          <table class="data data--stack">
-            <caption>Brokerage by segment (rate card to be confirmed)</caption>
-            <thead><tr><th scope="col">Segment</th><th scope="col">Brokerage</th></tr></thead>
-            <tbody>
-              <tr><td>Equity delivery</td><td><span class="td-label">Brokerage</span>{{pricing.delivery}}</td></tr>
-              <tr><td>Equity intraday</td><td><span class="td-label">Brokerage</span>{{pricing.intraday}}</td></tr>
-              <tr><td>Futures</td><td><span class="td-label">Brokerage</span>{{pricing.futures}}</td></tr>
-              <tr><td>Options</td><td><span class="td-label">Brokerage</span>{{pricing.options}}</td></tr>
-              <tr><td>Currency and commodity</td><td><span class="td-label">Brokerage</span>{{pricing.currency_commodity}}</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="small">On top of brokerage, statutory and exchange charges apply: Securities Transaction Tax (STT) or Commodities Transaction Tax (CTT), exchange transaction charges, SEBI turnover fees, stamp duty and GST.</p>
-      </div>
+    <div class="stat-tiles">
+      <div class="stat-tile"><span class="label">Account opening</span><div class="num">{{pricing.account_opening}}</div><p>To open your trading and demat account</p></div>
+      <div class="stat-tile"><span class="label">Annual maintenance (AMC)</span><div class="num">{{pricing.amc}}</div><p>To keep your demat account running</p></div>
+      <div class="stat-tile"><span class="label">DP charge</span><div class="num">{{pricing.dp_charge}}</div><p>When you sell shares from your demat</p></div>
     </div>
-    <div class="band-cta"><a class="link" href="/pricing">See the full list of charges<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">Brokerage will never exceed the limits prescribed by SEBI.</span></div>
-  </div>
-</section>
-
-<section class="band" id="s-fo" aria-labelledby="h-fo">
-  <div class="wrap split">
-    <div class="stack" style="--gap:18px">
-      <h2 class="d2 node" id="h-fo">F&amp;O needs one more step: proof of income.</h2>
-      <p class="lead">F&amp;O is an optional segment. Before it is switched on, you share one proof of income. You can ask for F&amp;O while you open your account <mark class="ph" data-ph="fo-activation-when">or later, to confirm</mark>.</p>
-      <a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
-    </div>
-    <div class="stack" style="--gap:20px">
+    <div class="cards cards--2">
       <div class="info-card">
-        <h3 class="h3">Proof of income we accept</h3>
-        <div class="ph ph--block" data-ph="fo-income-proofs">List to confirm with Aikyam compliance, for example: bank statement, latest ITR acknowledgement, salary slip or Form 16, net worth certificate, demat holdings statement</div>
+        <h3 class="h3">Brokerage by segment</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Equity delivery</dt><dd>{{pricing.delivery}}</dd></div>
+          <div><dt>Equity intraday</dt><dd>{{pricing.intraday}}</dd></div>
+          <div><dt>Futures</dt><dd>{{pricing.futures}}</dd></div>
+          <div><dt>Options</dt><dd>{{pricing.options}}</dd></div>
+          <div><dt>Currency and commodity</dt><dd>{{pricing.currency_commodity}}</dd></div>
+        </dl>
+        <p class="fine">Brokerage will never exceed the limits prescribed by SEBI.</p>
+        <a class="link" href="/pricing">See the full list of charges<svg class="i"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="info-card">
-        <h3 class="h3">Current lot sizes, margins and expiries</h3>
-        <p>They change often, so we do not print them here. Check the current figures on the NSE website.</p>
-        <div class="links">
-          <a class="link link--wrap" href="https://www.nseindia.com/" rel="noopener">NSE: contract specifications and expiry <span class="link-tail">calendar<svg class="i"><use href="#i-ne"/></svg></span></a>
-          <a class="link" href="#s-charges">What each F&amp;O order costs<svg class="i"><use href="#i-arrow"/></svg></a>
-        </div>
+      <div class="ui-card ui-receipt">
+        <span class="ui-label">On your contract note</span>
+        <div class="ui-row"><span>Brokerage</span><span>Set by us</span></div>
+        <div class="ui-row"><span>Securities or commodities transaction tax (STT or CTT)</span><span>Government</span></div>
+        <div class="ui-row"><span>Exchange transaction charges</span><span>Exchanges</span></div>
+        <div class="ui-row"><span>SEBI turnover fees</span><span>SEBI</span></div>
+        <div class="ui-row"><span>Stamp duty</span><span>Government</span></div>
+        <div class="ui-row"><span>GST</span><span>Government</span></div>
+        <p class="small">Amounts depend on your trades.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+<section class="band" id="s-faq" aria-labelledby="h-faq">
   <div class="wrap split">
-    <div class="stack" style="--gap:18px">
+    <div class="stack" style="--gap:22px">
       <h2 class="d2 node" id="h-faq">Questions before you start.</h2>
       <p class="lead">Can't find yours? <a href="/contact">Talk to us</a> and a real person replies.</p>
-      <p class="small">For complaints about securities broking: <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a></p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the ROOT support team on a call at their desk</b><span>Art direction: real Aikyam staff (shoot to come), warm daylight, relaxed and attentive, eye level, 4:3</span></figure>
       <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
     </div>
     <div class="faq">
-      <details open><summary>Which company opens and holds my account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>{{reg.capital.name}}, a SEBI-registered stock broker ({{reg.capital.sebi}}) and NSDL depository participant ({{reg.capital.dp}}), opens your trading and demat account. ROOT by Aikyam is its retail brand. You can check this registration yourself on the <a href="https://www.sebi.gov.in/" rel="noopener">SEBI website</a>.</p>
-        <p>{{reg.capital.name}} is engaged in client based and proprietary trading on various exchanges.</p>
+      <details open><summary>Which company opens my account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>{{reg.capital.name}} opens and holds your trading and demat account. ROOT by Aikyam is its brand for investors. You can check its registration yourself on the <a href="https://www.sebi.gov.in/" rel="noopener">SEBI website</a>.</p>
+        <p class="fine">{{reg.capital.name}} is engaged in client based and proprietary trading on various exchanges.</p>
       </div></details>
-      <details><summary>Is my data safe, and who is the KYC partner?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>KYC is completed with our KYC partner, {{kyc.vendor}}, on behalf of {{reg.capital.name}}. Your details are used to open and service your account, as set out in our <a href="/legal/privacy">Privacy Policy</a>.</p>
-        <div class="ph ph--block" data-ph="data-security">Security measures Aikyam can state, to confirm</div>
-      </div></details>
-      <details><summary>What if a check does not go through, or I stop halfway?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>Stopped halfway? Come back with the same mobile number and <mark class="ph" data-ph="kyc-resume">pick up where you stopped</mark>.</p>
-        <div class="ph ph--block" data-ph="kyc-fail">What happens when the PAN, Aadhaar or bank check does not go through, and the route if Aadhaar is not linked to your mobile: to confirm with the KYC partner</div>
+      <details><summary>When can I start trading?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Activation is subject to KYC verification and exchange approval. When your account is active, log in at <a href="https://{{url.login}}">{{url.login}}</a>.</p>
       </div></details>
       <details><summary>I only want to invest, not trade. Is this the right page?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>Investing accounts are opened by {{reg.wealth.name}} on the <a href="/open-account/investing">Start Investing page</a>.</p>
-        <p>Whether one sign-up can open both: <mark class="ph" data-ph="one-flow">one onboarding for both, to confirm</mark>.</p>
+        <p>For investing only, open an investing account with {{reg.wealth.name}} on the <a href="/open-account/investing">Start Investing page</a>.</p>
       </div></details>
       <details><summary>Can NRIs, joint holders or companies open an account here?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>This page opens accounts for resident Indian individuals. NRI accounts are not available on ROOT yet.</p>
-        <div class="ph ph--block" data-ph="account-types">Joint, minor, HUF and company accounts, to confirm</div>
+        <p>This page is for resident Indian individuals. NRI accounts are not available on ROOT yet. Joint, minor, HUF and company accounts: <mark class="ph" data-ph="account-types">to confirm</mark>.</p>
       </div></details>
       <details><summary>How do I raise a complaint?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
         <p>Write to <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a>. If you are not satisfied with the response, you can use SEBI's <a href="https://scores.sebi.gov.in/" rel="noopener">SCORES portal</a> or the <a href="https://smartodr.in/" rel="noopener">Smart ODR portal</a> (online dispute resolution). <mark class="ph" data-ph="escalation-text">Compliance to confirm wording</mark></p>
@@ -196,55 +216,79 @@
   </div>
 </section>
 
-<section class="band" id="s-final" aria-labelledby="h-final">
-  <div class="wrap final">
-    <h2 class="d2 node" id="h-final">Open your account with Aikyam Capital.</h2>
-    <div class="row"><a class="btn btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a><a class="btn btn--ghost btn--lg" href="/open-account/investing">Investing only? Start with Aikyam Wealth</a></div>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h2 class="d2 node" id="h-final">Ready when you are.</h2>
+      <p class="lead">Open your account on your phone or computer, with your PAN and Aadhaar.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/open-account/investing" data-event="switch_to_investing">Investing only? Start with Aikyam Wealth</a>
+      </div>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+    </div>
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: account active">
+        <span class="ui-label">Account status</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>Trading and demat account</span><svg class="i i--sm"><use href="#i-check"/></svg></div>
+        <div class="ui-row"><span>Log in at</span><span>{{url.login}}</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative order ticket">
+        <span class="ui-label">Buy · NSE</span>
+        <span class="ui-big">Example Industries Ltd</span>
+        <div class="ui-row"><span>Product</span><b>Delivery</b></div>
+        <div class="ui-row"><span>Quantity</span><b>10</b></div>
+        <div class="ui-row"><span>Order type</span><b>Limit</b></div>
+        <span class="ui-pill">Buy</span>
+      </div>
+      <p class="ui-caption">Illustrative screens. Example names, not real securities.</p>
+    </div>
   </div>
 </section>
 
 <template data-state="sending-otp" data-label="Get OTP pressed, sending (button loading)">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Start with your mobile number</h2>
   <form>
     <div class="fgroup">
       <label for="st1-mob">Mobile number</label>
       <span class="field"><span class="pre">+91</span><input id="st1-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
-      <span class="fhelp">We send a one-time password (OTP) to this number.</span>
+      <span class="fhelp">We'll send a one-time password (OTP) to this number.</span>
     </div>
-    <label class="check"><input type="checkbox" checked><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
-    <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
     <button class="btn btn--lg is-loading" type="button" aria-busy="true">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    </div>
   </form>
 </div>
 </template>
 
 <template data-state="otp-sent" data-label="OTP sent, resend timer running (also shown on arrival from Home with the number carried over)">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Enter the OTP</h2>
-  <p class="small">We sent a one-time password to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
+  <p class="small">We sent it to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
   <form>
     <div class="fgroup">
       <span class="flabel">One-time password</span>
       <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
       <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
     </div>
-    <p class="xs">Didn't get it? Resend OTP in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+    <p class="xs">Didn't get it? Resend in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
     <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
   </form>
 </div>
 </template>
 
 <template data-state="otp-resend-ready" data-label="Timer ended, resend available">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Enter the OTP</h2>
-  <p class="small">We sent a one-time password to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
+  <p class="small">We sent it to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
   <form>
     <div class="fgroup">
       <span class="flabel">One-time password</span>
@@ -252,14 +296,13 @@
     </div>
     <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a></p>
     <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
   </form>
 </div>
 </template>
 
 <template data-state="invalid-number" data-label="Error: number is not 10 digits">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Start with your mobile number</h2>
   <form>
     <div class="fgroup is-error">
@@ -267,17 +310,18 @@
       <span class="field"><span class="pre">+91</span><input id="st4-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st4-err"></span>
       <span class="fhelp" id="st4-err">Enter a 10-digit mobile number.</span>
     </div>
-    <label class="check"><input type="checkbox" checked><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
-    <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
     <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    </div>
   </form>
 </div>
 </template>
 
 <template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Start with your mobile number</h2>
   <form>
     <div class="fgroup">
@@ -285,21 +329,22 @@
       <span class="field"><span class="pre">+91</span><input id="st5-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
     </div>
     <div class="fgroup is-error">
-      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st5-err"><span><mark class="ph" data-ph="consent-mobile">Consent wording from Aikyam compliance</mark> Read our <a href="/legal/privacy">Privacy Policy</a>.</span></label>
+      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st5-err"><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
       <span class="fhelp" id="st5-err">Tick the box to continue.</span>
     </div>
-    <p class="xs">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
     <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    </div>
   </form>
 </div>
 </template>
 
 <template data-state="otp-wrong" data-label="Error: wrong or expired OTP">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Enter the OTP</h2>
-  <div class="alert alert--err" role="alert"><svg class="i"><use href="#i-alert"/></svg><div><b>That OTP did not match or has expired</b>Check the digits and try again, or ask for a new OTP.</div></div>
+  <div class="alert alert--err" role="alert"><svg class="i"><use href="#i-alert"/></svg><div><b>That OTP didn't match or has expired</b>Check the digits and try again, or ask for a new one.</div></div>
   <form>
     <div class="fgroup">
       <span class="flabel">One-time password</span>
@@ -307,38 +352,43 @@
     </div>
     <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a> · <a href="#s-open">Change number</a></p>
     <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
-    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
   </form>
 </div>
 </template>
 
-<template data-state="verified" data-label="Success: number verified, next step is KYC">
-<div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
-  <h2 class="h3">Number verified</h2>
-  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is confirmed</b>Next, verify your PAN and Aadhaar with our KYC partner.</div></div>
-  <p class="xs">KYC partner: {{kyc.vendor}}, on behalf of {{reg.capital.name}}.</p>
-  <a class="btn btn--lg" href="#s-open">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></a>
-  <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+<template data-state="verified" data-label="Success: number verified; the tracker marks Mobile done and PAN active; next step is KYC">
+<div class="ui-stage ui-stage--panel open-stage">
+  <ol class="track" aria-label="Opening your account: step 2 of 4">
+    <li class="is-done"><svg class="i"><use href="#i-check"/></svg>Mobile</li>
+    <li class="is-on" aria-current="step">PAN</li>
+    <li>Aadhaar</li>
+    <li>Bank and <span>e-sign</span></li>
+  </ol>
+  <div class="form-card">
+    <h2 class="h3">Number verified</h2>
+    <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is verified</b>Next: your PAN and Aadhaar, with our KYC partner.</div></div>
+    <p class="fine">KYC partner: {{kyc.vendor}}, for {{reg.capital.name}}.</p>
+    <a class="btn btn--lg" href="#s-open">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></a>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
 </div>
 </template>
 
 <template data-state="verified-loading" data-label="Success: handing over to the KYC partner (button loading)">
 <div class="form-card">
-  <span class="label">Step 1 of 4 · Trading and demat account</span>
   <h2 class="h3">Number verified</h2>
-  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is confirmed</b>Next, verify your PAN and Aadhaar with our KYC partner.</div></div>
-  <p class="xs">KYC partner: {{kyc.vendor}}, on behalf of {{reg.capital.name}}.</p>
+  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is verified</b>Next: your PAN and Aadhaar, with our KYC partner.</div></div>
+  <p class="fine">KYC partner: {{kyc.vendor}}, for {{reg.capital.name}}.</p>
   <span class="btn btn--lg is-loading" aria-busy="true">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></span>
-  <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
 </div>
 </template>
 
 <template data-state="existing-account" data-label="This number already has an account">
 <div class="form-card">
-  <span class="label">Trading and demat account</span>
   <h2 class="h3">You already have an account</h2>
-  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number already has an Aikyam Capital account.</b>Log in to see your account, or use a different number.</div></div>
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number already has an Aikyam Capital account.</b>Log in, or use a different number.</div></div>
   <a class="btn btn--lg" href="https://{{url.login}}">Log in<svg class="i"><use href="#i-arrow"/></svg></a>
   <p class="xs"><a href="#s-open">Use a different number</a></p>
 </div>

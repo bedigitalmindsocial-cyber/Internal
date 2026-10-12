@@ -7,10 +7,11 @@
  "overflow": false,
  "slices": {
   "desktop": 4,
-  "mobile": 5
+  "mobile": 6
  },
  "states": 10,
- "placeholders": 26,
+ "placeholders": 19,
  "notes": [],
- "sha": "65176779b92b"
+ "sha": "de2abe6ba6cd",
+ "first_screen_placeholders": []
 }
