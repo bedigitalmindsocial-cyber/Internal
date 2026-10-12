@@ -29,3 +29,15 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - F&O risk box: second section on F&O pages; above the dark band on every other page that promotes F&O.
 - Theme v1 claims that are not yet provable stay out of copy or inside placeholders: bank-grade security, fast or reliable execution, institutional-grade or open-architecture research, instant pledge, MTF (rules/claims.json).
 - The phone mockup illustration is used on Home and Get the App only; elsewhere use placeholders or theme rings.
+
+## Pilot (12-Oct-2026): defaults adopted from the pilot's proposals (user may override at gate 1)
+- No "one account", "single account" or "everything" copy until Q7 (one flow or two) is answered. Home h1 default: "Stocks, IPOs and mutual funds, in one place."
+- Theme v1 blocks whose copy must not be reused: the trust pillars (execution and research claims), the ticker (invented values on real indices), the markets module and SIP projection on Home (Phase 2 data), the goal-progress phone card. Use the pilot's "facts list" and "two-entity credential ledger with verify links" instead.
+- On fo_risk pages that are not F&O pages, the hero, title and description do not name F&O, and the risk box sits directly before the first section that promotes F&O (on Home: second section). Template D pages flagged fo_risk (09, 75) put it second.
+- Every lead form: one unticked, required consent checkbox with compliance-supplied wording (placeholder `consent-mobile` for Aikyam Capital forms, `consent-mobile-wealth` for Aikyam Wealth forms); a receiver line naming the company and its registration token; the hand-off line. Aikyam Wealth forms say "Activation is subject to KYC verification" plus a placeholder for other checks (not "exchange approval").
+- Customer-facing phone: `{{contact.helpdesk_phone}}`, never the main line (listed against the CEO in the Escalation Matrix).
+- While the app is not live, the app band merges into the closing CTA on Home (one dark band); it splits back when APP_LIVE flips.
+- Goal tiles on Home collapse to one "Plan by goal" link until the goal pages go live (8 Dec).
+- "Fully online" is held until the KYC flow is confirmed to have no offline step; use "online" and "on your phone or computer".
+- Phase 2 and 3 targets linked from Phase 1 pages fall back at go-live to their Phase 1 hub (/plan, /learn, /pricing); designs keep the final URLs.
+- Analytics events add switch_to_investing and switch_to_trading for the cross-door links.

@@ -737,6 +737,10 @@ pre.code{margin:0; padding:20px; border-radius:var(--r-card); background:var(--a
 /* placeholder: a value Aikyam must confirm. Visible on purpose, so it is never shipped by mistake */
 .ph{display:inline; white-space:nowrap; padding:1px 7px; border-radius:6px; background:var(--gold-wash); color:var(--warn); box-shadow:inset 0 0 0 1px rgba(193,156,47,.45); font:inherit; font-weight:500}
 .ph--block{display:flex; align-items:center; justify-content:center; text-align:center; aspect-ratio:var(--ar, auto); padding:14px 16px; border-radius:var(--r-ctl); border:1.5px dashed rgba(193,156,47,.6); box-shadow:none; background:var(--gold-wash); color:var(--warn); font-size:var(--fs-sm)}
+/* placeholders wrap where a one-line chip would overflow: block placeholders, chips inside form cards, risk boxes and docs strips,
+   and every chip in main below 900 px (each line keeps its padding and corners). Fix from 01 Home and 09 Start Trading */
+.ph--block,.form-card .ph,.risk-box .ph,.docs .ph{white-space:normal}
+@media (max-width: 899px){ main .ph{white-space:normal; -webkit-box-decoration-break:clone; box-decoration-break:clone} }
 
 /* static capture for Figma import: no motion, spine nodes drawn as reached, hidden overlays stay hidden */
 .is-static *, .is-static *::before, .is-static *::after{animation:none !important; transition:none !important}
@@ -787,8 +791,13 @@ pre.code{margin:0; padding:20px; border-radius:var(--r-card); background:var(--a
 .is-static .band--mist .tab[aria-selected="true"]{background:var(--mist)}
 .is-static .pcard h3 a::after{display:none}
 .is-static .ticker-track{animation:none}
-.steps{grid-template-columns:repeat(var(--cols, 4), minmax(0,1fr))}
-.steps::before{right:calc(100% / var(--cols, 4) - 22px)}
+
+/* steps: --cols sets the column count from 900 px up only, so the theme's 2-column (899) and 1-column (640) rules still apply.
+   Fix from 01 Home and 09 Start Trading (unscoped, these rules kept four squeezed columns at 390) */
+@media (min-width: 900px){
+  .steps{grid-template-columns:repeat(var(--cols, 4), minmax(0,1fr))}
+  .steps::before{right:calc(100% / var(--cols, 4) - 22px)}
+}
 
 /* fixed and sticky bars sit in flow (the designer re-applies stickiness); data-sticky marks them */
 .is-static .mbar{position:static; box-shadow:0 -1px 0 var(--line)}
@@ -816,6 +825,153 @@ pre.code{margin:0; padding:20px; border-radius:var(--r-card); background:var(--a
 .state-frame{padding-block:40px; border-bottom:1px dashed var(--line-2)}
 .state-label{font:500 .8125rem/1.4 var(--mono); color:var(--aub-60); margin-bottom:20px}
 .state-label b{color:var(--aub); font-weight:600}
+
+/* ===== Golden wave promotions (curated 12-Oct-2026 from 01 Home and 09 Start Trading) =====
+   Moved out of the pages' <style data-page>; canonical markup for each block is in theme/components.html. */
+
+/* utility: registration codes outside creds-wall and foot-reg (from 01 Home) */
+.mono{font-family:var(--mono); font-weight:500; letter-spacing:.01em}
+
+/* theme hero: the root seed sits inside .hero-copy (the theme reference set this with inline styles). From 01 and 09 */
+.hero-copy{position:relative}
+.hero-copy > .root-seed{left:-36px; top:2px}
+
+/* Hero with form card (template D, from 09 Start Trading; 01 Home reuses it): .hero-side holds the form card and the side door */
+.hero-grid:has(> .hero-side){align-items:start}
+.hero-side{display:flex; flex-direction:column; gap:18px; min-width:0}
+.form-card{display:flex; flex-direction:column; gap:18px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.form-card form{display:flex; flex-direction:column; gap:16px}
+.form-card .btn{width:100%}
+.form-card .fhelp a{font-weight:600}
+.states-board .form-card{max-width:30rem}
+/* consent box inside an error .fgroup keeps body type (.fgroup > label is the bold field label). From 01 and 09 */
+.fgroup > label.check{font:400 var(--fs-sm)/1.45 var(--sans); color:var(--aub-80)}
+/* cost line at the foot of a form card: charge + "See all charges" (from 01 Home) */
+.form-card .cost-line{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; padding-top:16px; border-top:1px solid var(--line); color:var(--aub)}
+.form-card .cost-line a{font-weight:600}
+/* side door under the form card: the other company's link plus one line (from 01 Home) */
+.side-door{display:flex; flex-direction:column; gap:6px}
+@media (max-width: 640px){ .form-card{padding:20px} }
+
+/* cost cred: a cred whose value is a charge plus a link spans both cred columns (from 09 Start Trading) */
+.creds .cred-cost{grid-column:1/-1}
+.creds .cost-line{display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px}
+
+/* wrapping link: inline, so the arrow follows the last word; .link-tail keeps the last word and the icon together (from 09; 01 reuses it) */
+.link--wrap{display:inline}
+.link--wrap .i{display:inline-block; vertical-align:-4px; margin-left:6px}
+.link--wrap .link-tail{white-space:nowrap}
+
+/* docs strips, stacked: 16 px apart and one shared label column from 900 px up; a .stack of copy + ph--block on the right (from 09) */
+.docs + .docs{margin-top:16px}
+.docs .stack p{color:var(--aub)}
+@media (min-width: 900px){ .docs:has(+ .docs),.docs + .docs{grid-template-columns:17rem minmax(0,1fr)} }
+.steps-note{margin-top:24px; max-width:46rem}
+
+/* charges block (from 09 Start Trading): an unconfirmed value in the numeral slot renders at body size and wraps; fee lines stack;
+   .zero--top groups the card's content at the top instead of stretching it to the table's height */
+.zero .big .ph{font:500 var(--fs-sm)/1.4 var(--sans); white-space:normal; letter-spacing:0}
+.zero .fees{display:flex; flex-direction:column; gap:8px}
+.zero.zero--top{align-self:start; justify-content:flex-start}
+/* visible table caption above a data table (from 01 and 09) */
+.data caption{caption-side:top; text-align:left; padding:18px 20px 6px; font-size:var(--fs-sm); color:var(--aub-60)}
+/* two-column stacked table in a charges block: the first cell is the row title on phones (from 09) */
+@media (max-width: 640px){ .price-grid .data--stack td:first-child{font-weight:600; color:var(--aub)} }
+
+/* info card: a white card with an h3, copy or a ph--block, and a stack of links (from 09 s-fo) */
+.info-card{display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.info-card .links{display:flex; flex-direction:column; gap:10px; margin-top:4px}
+@media (max-width: 640px){ .info-card{padding:20px} }
+
+/* FAQ on a Mist band: the plus button stays visible (from 09) */
+.band--mist .faq summary .pm{background:var(--paper)}
+
+/* closing CTA: both buttons full width when stacked on phones (from 09) */
+@media (max-width: 640px){
+  .final .row{flex-direction:column; align-items:stretch; align-self:stretch; width:100%}
+  .final .row .btn{width:100%}
+}
+
+/* dark band: copy, links and the illustrative label in on-dark colours (theme ink is invisible on the gradient). From 01 Home */
+.band--dark .lead,.band--dark .handoff,.band--dark .illus{color:var(--on-dark-2)}
+.band--dark .link{color:var(--on-dark)}
+
+/* disclosure band with the info icon (mutual fund and distribution disclosures): the risk-box pattern in ink, not warn (from 01) */
+.risk-box .i[data-icon="i-info"]{color:var(--aub)}
+
+/* Entity doors (from 01 Home s-products): one panel per Aikyam company; the company is the structure, not a chip */
+.doors{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px; align-items:stretch}
+.door{display:flex; flex-direction:column; padding:clamp(22px, 2.6vw, 32px); border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2)}
+.door-head{display:flex; flex-direction:column; gap:6px; padding-bottom:20px}
+.door-reg{font-size:var(--fs-sm); color:var(--aub-60)}
+.door-reg .mono{color:var(--aub)}
+.door-rows{list-style:none; display:flex; flex-direction:column}
+.door-rows li{display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid var(--line)}
+.row-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.row-text > a{font-weight:600; font-size:1.0625rem; color:var(--aub); text-decoration:none}
+.row-text > a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.row-text p{font-size:var(--fs-sm); color:var(--aub-60)}
+.door .risk{display:flex; gap:8px; align-items:flex-start; margin-top:6px; padding:10px 12px; border-radius:var(--r-ctl); background:var(--warn-bg); color:var(--warn); font-size:var(--fs-xs); line-height:1.4}
+.door .risk a{color:inherit; font-weight:600}
+.door .risk .i{width:16px; height:16px; margin-top:1px}
+.door-foot{margin-top:auto; display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding-top:22px; border-top:1px solid var(--line)}
+.door-foot .xs{max-width:34rem}
+@media (max-width: 899px){ .doors{grid-template-columns:1fr} }
+
+/* Two ledgers (from 01 Home s-pricing): 7/5 columns, one per company; a two-column data table whose rows become one line on phones,
+   and a dl.kv-list card for terms that are not tabular */
+.ledgers{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(24px, 4vw, 48px); align-items:start}
+.ledger{display:flex; flex-direction:column; gap:16px; min-width:0}
+.ledger-head{display:flex; flex-direction:column; gap:4px}
+.ledger table.data{min-width:0}
+.kv-list{margin:0; padding:4px 24px; background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1)}
+.kv-list > div{display:flex; flex-direction:column; gap:4px; padding:16px 0; border-bottom:1px solid var(--line)}
+.kv-list > div:last-child{border-bottom:0}
+.kv-list dt{font-size:var(--fs-sm); color:var(--aub-60)}
+.kv-list dd{margin:0; color:var(--aub); font-weight:500}
+@media (max-width: 899px){ .ledgers{grid-template-columns:1fr} }
+@media (max-width: 640px){
+  .ledger .data--stack tr{display:flex; justify-content:space-between; align-items:center; gap:12px}
+  .ledger .data--stack td{padding:0}
+  .ledger .data--stack td:first-child{flex:1 1 0; min-width:0; text-align:left}
+  .ledger .data--stack td + td{flex:0 0 auto; max-width:58%; justify-content:flex-end; text-align:left}
+}
+
+/* Facts list (from 01 Home s-group): icon + one checkable line; the claim-free replacement for the theme pillars */
+.facts{list-style:none; display:flex; flex-direction:column; gap:14px}
+.facts li{display:flex; gap:12px; align-items:flex-start; color:var(--aub); font-weight:500; line-height:1.45}
+.facts li a{font-weight:600}
+
+/* Group map (from 01 Home s-group): HTML root node, four SVG paths with non-scaling strokes, HTML branch cards (.is-on = on ROOT).
+   Labels stay editable text in Figma; 2 x 2 cards with no lines or dots at 640 */
+.gmap{margin:0; display:flex; flex-direction:column; align-items:center; min-width:0}
+.gmap-root{display:flex; flex-direction:column; align-items:center; gap:6px; padding:18px 32px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2); box-shadow:var(--shadow-1); text-align:center}
+.gmap-root b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+.gmap-lines{width:100%; height:72px}
+.gmap-branches{list-style:none; width:100%; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px}
+.gmap-branches li{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; min-width:0}
+.gmap-dot{width:11px; height:11px; border-radius:50%; border:1.5px solid var(--line-2); background:var(--paper)}
+.gmap-branches .is-on .gmap-dot{background:var(--gold); border-color:var(--gold)}
+.gmap-card{display:flex; flex-direction:column; align-items:center; gap:6px; width:100%; padding:14px 10px; border-radius:var(--r-ctl); font-size:var(--fs-sm); color:var(--aub-60); line-height:1.35}
+.gmap-card b{color:var(--aub-60); font-weight:500}
+.is-on .gmap-card{background:var(--mist)}
+.is-on .gmap-card b{color:var(--aub); font-weight:600}
+.is-on .gmap-card .chip{background:var(--paper)}
+@media (max-width: 640px){
+  .gmap-lines,.gmap-dot{display:none}
+  .gmap-root{margin-bottom:16px}
+  .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
+}
+
+/* Check it yourself ledger (from 01 Home s-group): company + role, registration code (.mono), regulator link; stacks at 640 */
+.verify{margin-top:clamp(40px, 5vw, 64px); display:flex; flex-direction:column; gap:16px}
+.verify-list{margin:0; border-top:1px solid var(--line)}
+.verify-row{display:grid; grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, .8fr); gap:8px 32px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line)}
+.verify-row dt{display:flex; flex-direction:column; gap:2px}
+.verify-row dt a{font-weight:600; color:var(--aub)}
+.verify-row dt span{font-size:var(--fs-sm); color:var(--aub-60)}
+.verify-row dd{margin:0; color:var(--aub)}
+@media (max-width: 640px){ .verify-row{grid-template-columns:1fr; gap:6px} }
 
 .kit-frame{padding-block:32px; border-bottom:1px dashed var(--line-2)}
 .kit-frame .site-head{position:relative}
@@ -1443,8 +1599,8 @@ pre.code{margin:0; padding:20px; border-radius:var(--r-card); background:var(--a
       <div><dt>Exchange membership</dt><dd>BSE 6899 · NSE 90419 · MCX 8136 · MSEI 80750</dd></div>
       <div><dt>Clearing membership</dt><dd>BSECL 6899 · NCL M70106 · MCXCCL 8135</dd></div>
       <div><dt>GST</dt><dd>27AAXCA9480C1Z5</dd></div>
-      <div><dt>Mutual fund distribution</dt><dd>Aikyam Wealth Private Limited · ARN <mark class="ph" data-ph="reg.wealth.arn">AMFI ARN to confirm</mark></dd></div>
-      <div><dt>Aikyam Wealth CIN</dt><dd><mark class="ph" data-ph="reg.wealth.cin">CIN to confirm</mark></dd></div>
+      <div><dt>Mutual fund distribution</dt><dd>Aikyam Wealth Private Limited · ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></dd></div>
+      <div><dt>Aikyam Wealth CIN</dt><dd><mark class="ph" data-ph="reg.wealth.cin">to confirm</mark></dd></div>
     </dl>
     <div class="foot-legal">
       <div><h3>Attention investor</h3><ul>
@@ -1476,8 +1632,8 @@ pre.code{margin:0; padding:20px; border-radius:var(--r-card); background:var(--a
       <div><dt>Exchange membership</dt><dd>BSE 6899 · NSE 90419 · MCX 8136 · MSEI 80750</dd></div>
       <div><dt>Clearing membership</dt><dd>BSECL 6899 · NCL M70106 · MCXCCL 8135</dd></div>
       <div><dt>GST</dt><dd>27AAXCA9480C1Z5</dd></div>
-      <div><dt>Mutual fund distribution</dt><dd>Aikyam Wealth Private Limited · ARN <mark class="ph" data-ph="reg.wealth.arn">AMFI ARN to confirm</mark></dd></div>
-      <div><dt>Aikyam Wealth CIN</dt><dd><mark class="ph" data-ph="reg.wealth.cin">CIN to confirm</mark></dd></div>
+      <div><dt>Mutual fund distribution</dt><dd>Aikyam Wealth Private Limited · ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></dd></div>
+      <div><dt>Aikyam Wealth CIN</dt><dd><mark class="ph" data-ph="reg.wealth.cin">to confirm</mark></dd></div>
     </dl>
     <p class="foot-note">"Investment in securities market are subject to market risks, read all the related documents carefully before investing."</p>
     <div class="foot-base"><span>© 2026 Aikyam Capital Private Limited. ROOT is a product of Aikyam Capital Group.</span><span>Footer content awaits Aikyam compliance confirmation.</span></div>

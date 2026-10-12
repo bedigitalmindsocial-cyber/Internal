@@ -1,0 +1,10 @@
+{
+ "page": "10-start-investing",
+ "verdict": "pass",
+ "score": 88,
+ "must_fix": [],
+ "note": "Reviewer pass (88) carried after ARN label fix; gate ok",
+ "by": "orchestrator-carry",
+ "sha": "65176779b92b",
+ "date": "12-Oct-2026"
+}

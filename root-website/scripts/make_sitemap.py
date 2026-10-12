@@ -87,6 +87,7 @@ PAGES = [
 # Red-team round 1 (12-Oct-2026) corrections, applied on top of PAGES
 OVERRIDES = {
  1:  {"flags+": "mf_risk distributor_disclaimer illustrative_data"},
+ 2:  {"cta_href": "/open-account/investing"},
  22: {"flags+": "fo_page"},
  37: {"primary_cta": "Open trading account", "flags+": "fo_page"},
  38: {"flags+": "fo_page"},
@@ -143,6 +144,8 @@ for n,pid,title,url,tpl,ph,ent,nav,golden,aud,cta,flags in PAGES:
     pages.append(dict(n=n,id=pid,file=f"{n:02d}-{pid}.html",title=title,url=url,template=tpl,phase=ph,
         entity=ent,nav=nav,mode="golden" if golden else "derivative",audiences=aud.split(),
         primary_cta=cta,cta=cta_for(url,tpl,ent,fl),flags=fl,status="todo"))
+    if "cta_href" in o:
+        pages[-1]["cta"] = {"href": o["cta_href"], "form_entity": "Aikyam Wealth" if "investing" in o["cta_href"] else "Aikyam Capital", "event": "account_start"}
 urls = {p["url"] for p in pages}
 for p in pages:  # parent: the hub above this page (breadcrumbs, "back to" links, journey context)
     u = p["url"]

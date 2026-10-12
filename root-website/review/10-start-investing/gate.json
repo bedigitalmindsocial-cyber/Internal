@@ -1,0 +1,16 @@
+{
+ "page": "10-start-investing",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 0,
+ "overflow": false,
+ "slices": {
+  "desktop": 4,
+  "mobile": 5
+ },
+ "states": 10,
+ "placeholders": 26,
+ "notes": [],
+ "sha": "65176779b92b"
+}

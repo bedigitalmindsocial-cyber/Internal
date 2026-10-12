@@ -73,8 +73,8 @@
    ],
    "primary_cta": "Start investing",
    "cta": {
-    "href": "/open-account/trading",
-    "form_entity": "Aikyam Capital",
+    "href": "/open-account/investing",
+    "form_entity": "Aikyam Wealth",
     "event": "account_start"
    },
    "flags": [

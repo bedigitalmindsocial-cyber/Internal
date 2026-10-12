@@ -92,7 +92,7 @@ def trace_ids(page):
     m = re.search(r"## 4\..*?\n(.*?)\n## ", md, re.S)
     if not m:
         return []
-    rows = [r for r in m.group(1).splitlines() if r.startswith("|") and not re.match(r"\|\s*-", r) and "Question" not in r]
+    rows = [r for r in m.group(1).splitlines() if r.startswith("|") and not re.match(r"\|\s*-", r)][1:]  # drop the header row
     out = []
     for r in rows:
         cells = [c.strip() for c in r.strip("|").split("|")]

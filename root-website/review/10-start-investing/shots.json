@@ -1,0 +1,32 @@
+{
+ "file": "10-start-investing.html",
+ "sha": "65176779b92b",
+ "desktop": {
+  "height": 4986,
+  "slices": 4,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 485,
+  "primary_text": "Get OTP"
+ },
+ "mobile": {
+  "height": 7874,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 1077,
+  "primary_text": "Get OTP"
+ },
+ "states_board": {
+  "height": 5804,
+  "slices": 5,
+  "fonts_loaded": false,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null
+ },
+ "notes": []
+}
