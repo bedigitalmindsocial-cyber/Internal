@@ -1,0 +1,485 @@
+<!-- ROOT theme v1 homepage sections, extracted as the starting pattern library.
+     Each section is preceded by a PATTERN comment from the theme author: name | specs | where it is reused.
+     Copy markup from here; keep class names; replace copy and data for the page you are building. -->
+<!-- HERO -->
+  <section class="hero" aria-labelledby="h-hero">
+    <!-- PATTERN: Hero · proof before form | d1 serif 64/66 | creds strip | lead bar | reuse: Invest, Trade, Open Account -->
+    <div class="wrap hero-grid">
+      <div class="hero-copy enter" style="position:relative">
+        <span class="root-seed" style="left:-36px; top:2px" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+        <h1 class="d1" id="h-hero" style="--n:0">Trade &amp; invest in everything, <em>from one account.</em></h1>
+        <p class="lead" style="--n:1">A fast, transparent platform for Stocks, F&amp;O, Commodity, ETFs, IPO and Mutual Funds, built for your first trade and your long-term portfolio.</p>
+        <ul class="creds" style="--n:2">
+          <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered broker<span class="num">INZ000321232</span></div></li>
+          <li><svg class="i"><use href="#i-chart"/></svg><div>Member of NSE, BSE, MCX, MSEI<span>Exchange codes in the footer</span></div></li>
+          <li><svg class="i"><use href="#i-sprout"/></svg><div>Backed by Aikyam Capital Group<span>Capital markets to asset management</span></div></li>
+          <li><svg class="i"><use href="#i-rupee"/></svg><div>₹0 account opening<span>Fully online</span></div></li>
+          <li><svg class="i"><use href="#i-lock"/></svg><div>NSDL depository participant<span class="num">IN305066</span></div></li>
+        </ul>
+        <form class="leadbar" id="open" style="--n:3">
+          <label class="field" for="hero-mob"><span class="pre">+91</span><input id="hero-mob" name="mobile" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="Enter mobile number" aria-describedby="hero-help"></label>
+          <button class="btn" type="submit">Open free account<svg class="i"><use href="#i-arrow"/></svg></button>
+        </form>
+        <p class="handoff" id="hero-help" style="--n:4">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+        <div class="hero-alt" style="--n:5"><a class="link" href="/invest">Explore products<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">Already a customer? <a href="/login">Login</a></span></div>
+      </div>
+
+      <div class="phone-stage">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true">
+          <defs><clipPath id="ring-o"><circle cx="100" cy="120" r="86"/></clipPath></defs>
+          <circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/>
+          <circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/>
+          <circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-o)"/>
+        </svg>
+        <div class="phone" role="img" aria-label="Illustrative ROOT app home screen showing a portfolio value, holdings mix and a goal">
+          <div class="ph-status"><span class="num">9:41</span><span>5G</span></div>
+          <div class="ph-top"><span class="wm"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 72.18"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></span><svg class="i i--sm"><use href="#i-bell"/></svg></div>
+          <div class="ph-body">
+            <div class="ph-card">
+              <div class="xs">Total value</div>
+              <div class="ph-val">₹4,82,310.50</div>
+              <div class="chg up" style="font-size:11px">+₹1,240.20 today (+0.26%)</div>
+              <svg viewBox="0 0 240 60" width="100%" height="56" aria-hidden="true" style="margin-top:6px">
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9 L240 60 L0 60 Z" fill="#1C0F2F" fill-opacity=".06"/>
+                <path d="M0 48 L20 44 L40 46 L60 38 L80 40 L100 31 L120 34 L140 25 L160 27 L180 18 L200 21 L220 12 L240 9" fill="none" stroke="#1C0F2F" stroke-width="1.6"/>
+                <circle cx="238" cy="9" r="3.2" fill="#C19C2F"/>
+              </svg>
+              <div class="ph-seg"><span>1D</span><span>1W</span><span class="on">1M</span><span>1Y</span><span>All</span></div>
+            </div>
+            <div style="display:grid; gap:8px; padding:2px 2px 0">
+              <div class="ph-row"><span>Stocks</span><b>₹2,10,400</b></div><div class="ph-bar"><i style="--w:44%"></i></div>
+              <div class="ph-row"><span>Mutual funds</span><b>₹1,94,800</b></div><div class="ph-bar"><i style="--w:40%"></i></div>
+              <div class="ph-row"><span>ETFs and gold</span><b>₹77,110</b></div><div class="ph-bar"><i style="--w:16%"></i></div>
+            </div>
+            <div class="ph-card" style="display:flex; gap:10px; align-items:center">
+              <svg class="i"><use href="#i-cap"/></svg>
+              <div style="flex:1"><div style="font-weight:600">Child's education</div><div class="ph-bar"><i style="--w:62%; background:#C19C2F"></i></div></div>
+              <b class="num">62%</b>
+            </div>
+            <div class="ph-row" style="padding:0 2px"><span><span class="xs" style="display:block">Next SIP · 5 Nov</span>Example Flexi Cap Fund</span><b>₹5,000</b></div>
+          </div>
+          <div class="ph-tabs"><span class="on"><svg class="i"><use href="#i-home"/></svg>Home</span><span><svg class="i"><use href="#i-mf"/></svg>Invest</span><span><svg class="i"><use href="#i-stocks"/></svg>Trade</span><span><svg class="i"><use href="#i-sprout"/></svg>Goals</span><span><svg class="i"><use href="#i-user"/></svg>Profile</span></div>
+        </div>
+        <p class="illus ph-cap">Illustrative app screen. Figures are not real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-label="Market snapshot, illustrative values">
+    <div class="ticker-inner">
+      <div class="ticker-label"><span class="label">Markets</span><span class="chip chip--line" style="min-height:22px; font-size:.6875rem">Illustrative</span></div>
+      <div class="ticker-track">
+        <ul>
+          <li><b>NIFTY 50</b><span class="num">24,936.40</span><span class="chg up">+0.42%</span></li>
+          <li><b>SENSEX</b><span class="num">81,712.85</span><span class="chg up">+0.38%</span></li>
+          <li><b>NIFTY BANK</b><span class="num">53,880.15</span><span class="chg down">−0.21%</span></li>
+          <li><b>NIFTY MIDCAP 100</b><span class="num">57,412.30</span><span class="chg up">+0.66%</span></li>
+          <li><b>GOLD · MCX</b><span class="num">₹76,420</span><span class="chg up">+0.12%</span></li>
+          <li><b>SILVER · MCX</b><span class="num">₹91,180</span><span class="chg down">−0.35%</span></li>
+          <li><b>USD/INR</b><span class="num">84.06</span><span class="chg down">−0.04%</span></li>
+        </ul>
+        <ul class="dupe" aria-hidden="true">
+          <li><b>NIFTY 50</b><span class="num">24,936.40</span><span class="chg up">+0.42%</span></li>
+          <li><b>SENSEX</b><span class="num">81,712.85</span><span class="chg up">+0.38%</span></li>
+          <li><b>NIFTY BANK</b><span class="num">53,880.15</span><span class="chg down">−0.21%</span></li>
+          <li><b>NIFTY MIDCAP 100</b><span class="num">57,412.30</span><span class="chg up">+0.66%</span></li>
+          <li><b>GOLD · MCX</b><span class="num">₹76,420</span><span class="chg up">+0.12%</span></li>
+          <li><b>SILVER · MCX</b><span class="num">₹91,180</span><span class="chg down">−0.35%</span></li>
+          <li><b>USD/INR</b><span class="num">84.06</span><span class="chg down">−0.04%</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST PILLARS -->
+  <section class="band" aria-labelledby="h-trust">
+    <!-- PATTERN: Pillars · editorial 2×2 | hairline grid, no cards | reuse: About, Help Centre -->
+    <div class="wrap split">
+      <div class="stack" style="--gap:18px">
+        <h2 class="d2 node" id="h-trust">Built to earn your trust, not just your trades.</h2>
+        <p class="lead" style="color:var(--aub-60)">ROOT brings the depth of an institutional group to an app that stays simple.</p>
+        <a class="link" href="/about">About ROOT and the Aikyam Group<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="pillars">
+        <div class="pillar"><svg class="i"><use href="#i-bolt"/></svg><h3 class="h3">Fast, reliable execution</h3><p>Built for speed across Stocks, F&amp;O and Commodity, with no lag between decision and order.</p></div>
+        <div class="pillar"><svg class="i"><use href="#i-research"/></svg><h3 class="h3">Open-architecture research</h3><p>Institutional-grade research from Aikyam Capital Group, without product bias.</p></div>
+        <div class="pillar"><svg class="i"><use href="#i-support"/></svg><h3 class="h3">Human and digital support</h3><p>A real person to talk to when you need one. A clean, self-serve app when you don't.</p></div>
+        <div class="pillar"><svg class="i"><use href="#i-lock"/></svg><h3 class="h3">Bank-grade security</h3><p>Your data and holdings protected end to end, at every layer of the platform.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="band band--mist" id="products" aria-labelledby="h-products">
+    <!-- PATTERN: Product card | r16 · shadow-1 → shadow-2 on hover | 48px icon tile | reuse: Invest, Trade hubs -->
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d2 node" id="h-products">Everything you can trade and invest in.</h2>
+        <p>Six markets in one account. Four more are on the way.</p>
+      </div>
+      <div class="cards">
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/open-account/trading">Stocks</a></h3><p>Own a part of India's leading listed companies, with instant pledge and MTF.</p></article>
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-fo"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/open-account/trading">Futures &amp; Options</a></h3><p>Manage risk with Futures and Options across NSE and BSE.</p><p class="risk"><svg class="i"><use href="#i-alert"/></svg><span>9 out of 10 individual traders in equity F&amp;O incurred net losses. <a href="/legal/risk-disclosure" style="color:inherit">Read more</a></span></p></article>
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-commodity"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/open-account/trading">Commodity</a></h3><p>Trade gold, silver, crude and other commodities on MCX.</p></article>
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-etf"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/open-account/trading">ETFs</a></h3><p>Diversified exposure with the flexibility and liquidity of a stock.</p></article>
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-ipo"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/markets">IPO</a></h3><p>Apply for upcoming and open IPOs directly with UPI, in a few taps.</p></article>
+        <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-mf"/></svg></span><svg class="i arrow"><use href="#i-ne"/></svg></div><h3 class="h3"><a href="/markets">Mutual Funds</a></h3><p>Plans across equity, debt and hybrid categories, with SIP or one-time investing.</p></article>
+      </div>
+      <div class="soon-row">
+        <p>Coming soon</p>
+        <div class="soon-tile"><svg class="i"><use href="#i-shield"/></svg>Insurance<span class="soon">Soon</span></div>
+        <div class="soon-tile"><svg class="i"><use href="#i-bond"/></svg>Bonds &amp; Fixed Income<span class="soon">Soon</span></div>
+        <div class="soon-tile"><svg class="i"><use href="#i-nps"/></svg>NPS<span class="soon">Soon</span></div>
+        <div class="soon-tile"><svg class="i"><use href="#i-pms"/></svg>PMS<span class="soon">Soon</span></div>
+      </div>
+      <div class="band-cta"><a class="btn" href="/open-account/trading">Open free account<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">One account covers all six, opened fully online.</span></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="band" id="pricing" aria-labelledby="h-pricing">
+    <!-- PATTERN: Charges block | serif ₹0 numeral | data table | "to confirm" placeholder | reuse: Pricing page -->
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d2 node" id="h-pricing">Know what you pay before you trade.</h2>
+        <p>Every charge is published here first. Nothing appears on your contract note that you could not read on this page.</p>
+      </div>
+      <div class="price-grid">
+        <div class="zero">
+          <div class="label">Account opening</div>
+          <div class="big"><sup>₹</sup>0</div>
+          <p class="small">Open your trading and demat account online, at no cost.</p>
+          <a class="btn" href="/open-account/trading">Open free account</a>
+        </div>
+        <div class="tablewrap">
+          <table class="data data--fluid">
+            <caption class="sr-only">Brokerage and charges (rate card to be confirmed)</caption>
+            <thead><tr><th scope="col">Segment</th><th scope="col">Brokerage</th><th scope="col">Account charges</th></tr></thead>
+            <tbody>
+              <tr><td>Equity delivery</td><td><i class="tbc">Rate card to confirm</i></td><td><i class="tbc">To confirm</i></td></tr>
+              <tr><td>Equity intraday</td><td><i class="tbc">Rate card to confirm</i></td><td><i class="tbc">To confirm</i></td></tr>
+              <tr><td>Futures &amp; Options</td><td><i class="tbc">Rate card to confirm</i></td><td><i class="tbc">To confirm</i></td></tr>
+              <tr><td>Commodity (MCX)</td><td><i class="tbc">Rate card to confirm</i></td><td><i class="tbc">To confirm</i></td></tr>
+              <tr><td>Mutual funds</td><td><i class="tbc">Rate card to confirm</i></td><td><i class="tbc">To confirm</i></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="band-cta"><a class="link" href="/pricing">See the full list of charges<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">Brokerage will never exceed the limits prescribed by SEBI.</span></div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="band band--mist" aria-labelledby="h-steps">
+    <!-- PATTERN: Process steps | numbered: order matters | gold connector = root line | reuse: Start Trading, Start Investing -->
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d2 node" id="h-steps">Open your account in four steps.</h2>
+        <p>Fully online, on your phone or computer.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="dot">1</span><h3 class="h3">Enter your mobile number</h3><p>We send a one-time password to confirm it's you.</p></li>
+        <li><span class="dot">2</span><h3 class="h3">Verify your PAN</h3><p>Your PAN details are checked with the income tax records.</p></li>
+        <li><span class="dot">3</span><h3 class="h3">Share Aadhaar with DigiLocker</h3><p>Fetch your address securely, with your consent.</p></li>
+        <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add a bank account, then sign with your Aadhaar OTP.</p></li>
+      </ol>
+      <div class="docs">
+        <h3 class="h3">Keep these ready</h3>
+        <ul><li><svg class="i"><use href="#i-check"/></svg>PAN card</li><li><svg class="i"><use href="#i-check"/></svg>Aadhaar linked to your mobile</li><li><svg class="i"><use href="#i-check"/></svg>Bank account details</li><li><svg class="i"><use href="#i-check"/></svg>A photo of your signature</li></ul>
+      </div>
+      <div class="band-cta"><a class="btn" href="/open-account/trading">Start now<svg class="i"><use href="#i-arrow"/></svg></a><span class="xs">Steps shown are indicative and will be confirmed with the KYC partner's live flow.</span></div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="band" id="goals" aria-labelledby="h-goals">
+    <!-- PATTERN: Goal tiles | serif d3 title | link to a calculator | reuse: Plan &amp; Tools, goal pages -->
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d2 node" id="h-goals">What are you investing for?</h2>
+        <p>Start from the goal, not the product. ROOT maps your investments to the things that matter to you.</p>
+      </div>
+      <div class="goals">
+        <a class="goal" href="/tools/sip-calculator" style="text-decoration:none"><div class="goal-top"><h3 class="d3">Retirement</h3><svg class="i"><use href="#i-sun"/></svg></div><p>Build a corpus that keeps paying after your salary stops.</p><span class="link">Retirement calculator<svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="goal" href="/tools/sip-calculator" style="text-decoration:none"><div class="goal-top"><h3 class="d3">Child's education</h3><svg class="i"><use href="#i-cap"/></svg></div><p>Plan for school and college fees years before they arrive.</p><span class="link">Plan education<svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="goal" href="/tools/sip-calculator" style="text-decoration:none"><div class="goal-top"><h3 class="d3">House planning</h3><svg class="i"><use href="#i-home"/></svg></div><p>Save steadily for the down payment on your home.</p><span class="link">SIP calculator<svg class="i"><use href="#i-arrow"/></svg></span></a>
+        <a class="goal" href="/tools/sip-calculator" style="text-decoration:none"><div class="goal-top"><h3 class="d3">Wealth creation</h3><svg class="i"><use href="#i-sprout"/></svg></div><p>Grow your money over the long term with discipline.</p><span class="link">Lumpsum calculator<svg class="i"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="band band--mist" id="calc" aria-labelledby="h-calc">
+    <!-- PATTERN: Calculator | range + output pairs | split bar + yearly bars | reuse: 6 calculator pages -->
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d2 node" id="h-calc">See what a monthly SIP can grow into.</h2>
+        <p>Move the sliders. The estimate updates as you go.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-in">
+          <div class="calc-row"><div class="top"><label class="flabel" for="c-amt">Monthly investment</label><output id="o-amt" for="c-amt">₹5,000</output></div><input class="range" id="c-amt" type="range" min="500" max="100000" step="500" value="5000"></div>
+          <div class="calc-row"><div class="top"><label class="flabel" for="c-yrs">Time period</label><output id="o-yrs" for="c-yrs">10 years</output></div><input class="range" id="c-yrs" type="range" min="1" max="30" step="1" value="10"></div>
+          <div class="calc-row"><div class="top"><label class="flabel" for="c-rate">Expected return (p.a.)</label><output id="o-rate" for="c-rate">12%</output></div><input class="range" id="c-rate" type="range" min="1" max="20" step="0.5" value="12"></div>
+          <a class="btn" href="/open-account/trading">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <div><div class="label">Estimated value</div><div class="calc-total" id="o-total">₹11,61,695</div></div>
+          <div class="splitbar" aria-hidden="true"><i id="b-inv" style="flex-grow:52"></i><i id="b-ret" style="flex-grow:48"></i></div>
+          <div class="legend"><span>Invested <b id="o-inv">₹6,00,000</b></span><span style="--c:var(--gold)">Estimated returns <b id="o-ret">₹5,61,695</b></span></div>
+          <div><div class="bars" id="o-bars" aria-hidden="true"></div><div class="bars-axis"><span>Year 1</span><span id="o-lastyr">Year 10</span></div></div>
+          <p class="xs">Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES WITH TABS -->
+  <section class="band" aria-labelledby="h-feat">
+    <!-- PATTERN: Feature switcher | vertical tablist | panel enters 450ms | reuse: product pages -->
+    <div class="wrap feature">
+      <div>
+        <h2 class="d2 node" id="h-feat">Built to hold, track and grow.</h2>
+        <p class="lead" style="margin-top:16px; color:var(--aub-60)">Everything you need to invest with discipline and stay invested.</p>
+        <ul class="flist" role="tablist" aria-label="Features" aria-orientation="vertical">
+          <li><button role="tab" id="ft-sip" aria-selected="true" aria-controls="fp-sip"><span class="tile"><svg class="i"><use href="#i-cal"/></svg></span><b>SIP in stocks, ETFs and funds</b><span>Set it once, invest every month.</span></button></li>
+          <li><button role="tab" id="ft-ipo" aria-selected="false" aria-controls="fp-ipo" tabindex="-1"><span class="tile"><svg class="i"><use href="#i-ipo"/></svg></span><b>IPOs in a few taps</b><span>Apply with a UPI mandate.</span></button></li>
+          <li><button role="tab" id="ft-goal" aria-selected="false" aria-controls="fp-goal" tabindex="-1"><span class="tile"><svg class="i"><use href="#i-sprout"/></svg></span><b>Goal-based tracking</b><span>See how far each goal has come.</span></button></li>
+          <li><button role="tab" id="ft-div" aria-selected="false" aria-controls="fp-div" tabindex="-1"><span class="tile"><svg class="i"><use href="#i-bell"/></svg></span><b>Dividends and corporate actions</b><span>Know what's coming to your account.</span></button></li>
+        </ul>
+        <div class="band-cta"><a class="btn" href="/open-account/trading">Open your account<svg class="i"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <div>
+        <div class="fpanel" role="tabpanel" id="fp-sip" aria-labelledby="ft-sip">
+          <div style="display:flex; justify-content:space-between; align-items:center"><span class="h3">Your SIPs</span><span class="chip chip--line">3 active</span></div>
+          <div class="mini">
+            <div class="mini-row"><span>Example Flexi Cap Fund<br><span class="xs">Every month on the 5th</span></span><b>₹5,000</b></div>
+            <div class="mini-row"><span>NIFTY 50 ETF<br><span class="xs">Every month on the 10th</span></span><b>₹2,000</b></div>
+            <div class="mini-row"><span>Example Liquid Fund<br><span class="xs">Every week on Monday</span></span><b>₹1,000</b></div>
+          </div>
+          <div class="alert alert--info"><svg class="i"><use href="#i-cal"/></svg><div><b>Next instalment on 5 November</b>₹5,000 will be debited through your UPI AutoPay mandate.</div></div>
+          <p class="illus">Illustrative screen. Fund names are examples.</p>
+        </div>
+        <div class="fpanel" role="tabpanel" id="fp-ipo" aria-labelledby="ft-ipo" hidden>
+          <div style="display:flex; justify-content:space-between; align-items:center"><span class="h3">Example Industries Ltd</span><span class="chip chip--gain">Open now</span></div>
+          <div class="mini">
+            <div class="mini-row"><span>Price band</span><b>₹412 – ₹433</b></div>
+            <div class="mini-row"><span>Minimum lot</span><b>34 shares · ₹14,722</b></div>
+            <div class="mini-row"><span>Closes on</span><b>12 November</b></div>
+          </div>
+          <div class="fgroup"><label for="ipo-upi">UPI ID for the mandate</label><span class="field"><input id="ipo-upi" placeholder="yourname@bank"></span><span class="fhelp">You'll approve the mandate in your UPI app.</span></div>
+          <p class="illus">Illustrative IPO. Not a real offer.</p>
+        </div>
+        <div class="fpanel" role="tabpanel" id="fp-goal" aria-labelledby="ft-goal" hidden>
+          <span class="h3">Child's education</span>
+          <div style="display:flex; gap:24px; align-items:center; flex-wrap:wrap">
+            <div class="ring" style="--v:62" data-label="62%"></div>
+            <div class="mini" style="flex:1; min-width:200px">
+              <div class="mini-row"><span>Target by 2034</span><b>₹25,00,000</b></div>
+              <div class="mini-row"><span>Saved so far</span><b>₹15,50,000</b></div>
+              <div class="mini-row"><span>Monthly SIP</span><b>₹8,000</b></div>
+            </div>
+          </div>
+          <p class="illus">Illustrative goal. Figures are not real.</p>
+        </div>
+        <div class="fpanel" role="tabpanel" id="fp-div" aria-labelledby="ft-div" hidden>
+          <span class="h3">Upcoming in your holdings</span>
+          <div class="mini">
+            <div class="mini-row"><span><span class="chip chip--gold">Dividend</span> Example Bank Ltd<br><span class="xs">Record date 14 Nov</span></span><b>₹6.50 / share</b></div>
+            <div class="mini-row"><span><span class="chip">Bonus</span> Example Tech Ltd<br><span class="xs">Ex-date 20 Nov</span></span><b>1 : 1</b></div>
+            <div class="mini-row"><span><span class="chip">AGM</span> Example Power Ltd<br><span class="xs">E-voting open</span></span><b>28 Nov</b></div>
+          </div>
+          <p class="illus">Illustrative events. Company names are examples.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="band band--mist" id="markets" aria-labelledby="h-mkt">
+    <!-- PATTERN: Market modules | index card · IPO row · fund card | riskometer | reuse: Phase 2 data pages -->
+    <div class="wrap">
+      <div class="mkt-head">
+        <div class="stack" style="--gap:12px; max-width:40rem"><h2 class="d2 node" id="h-mkt">Follow the markets in one place.</h2><p class="lead" style="color:var(--aub-60)">Indices, IPOs and mutual funds, with the same clear layout on the website and the app.</p></div>
+        <div class="tabs" role="tablist" aria-label="Market data" data-tabs>
+          <span class="tab-ind" aria-hidden="true"></span>
+          <button class="tab" role="tab" id="mt-idx" aria-selected="true" aria-controls="mp-idx">Indices</button>
+          <button class="tab" role="tab" id="mt-ipo" aria-selected="false" aria-controls="mp-ipo" tabindex="-1">IPOs</button>
+          <button class="tab" role="tab" id="mt-mf" aria-selected="false" aria-controls="mp-mf" tabindex="-1">Mutual funds</button>
+        </div>
+      </div>
+      <div role="tabpanel" id="mp-idx" aria-labelledby="mt-idx">
+        <div class="idx-grid">
+          <div class="idx"><span class="nm">NIFTY 50</span><span class="px">24,936.40</span><span class="chg up">+104.35 (+0.42%)</span><svg viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 L25 30 L50 32 L75 24 L100 26 L125 18 L150 20 L175 12 L200 8" fill="none" stroke="#0B7A55" stroke-width="1.6"/></svg></div>
+          <div class="idx"><span class="nm">SENSEX</span><span class="px">81,712.85</span><span class="chg up">+309.80 (+0.38%)</span><svg viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 L25 32 L50 26 L75 28 L100 20 L125 22 L150 16 L175 18 L200 11" fill="none" stroke="#0B7A55" stroke-width="1.6"/></svg></div>
+          <div class="idx"><span class="nm">NIFTY BANK</span><span class="px">53,880.15</span><span class="chg down">−113.40 (−0.21%)</span><svg viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 L25 14 L50 11 L75 18 L100 16 L125 24 L150 22 L175 28 L200 31" fill="none" stroke="#B4352B" stroke-width="1.6"/></svg></div>
+          <div class="idx"><span class="nm">NIFTY MIDCAP 100</span><span class="px">57,412.30</span><span class="chg up">+376.55 (+0.66%)</span><svg viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 L25 33 L50 34 L75 27 L100 22 L125 25 L150 17 L175 14 L200 9" fill="none" stroke="#0B7A55" stroke-width="1.6"/></svg></div>
+        </div>
+      </div>
+      <div role="tabpanel" id="mp-ipo" aria-labelledby="mt-ipo" hidden>
+        <div class="ipo-list">
+          <div class="ipo"><div class="co"><span class="lg">EI</span><div><b>Example Industries Ltd</b><span class="k">Mainboard</span></div></div><div><span class="k">Price band</span><b class="num">₹412 – ₹433</b></div><div><span class="k">Lot</span><b class="num">34 shares</b></div><div class="hide-md"><span class="k">Dates</span><b>6 – 12 Nov</b></div><span class="chip chip--gain">Open</span></div>
+          <div class="ipo"><div class="co"><span class="lg">SG</span><div><b>Sample Green Energy Ltd</b><span class="k">Mainboard</span></div></div><div><span class="k">Price band</span><b class="num">₹96 – ₹101</b></div><div><span class="k">Lot</span><b class="num">148 shares</b></div><div class="hide-md"><span class="k">Dates</span><b>18 – 21 Nov</b></div><span class="chip chip--gold">Upcoming</span></div>
+          <div class="ipo"><div class="co"><span class="lg">DL</span><div><b>Demo Logistics Ltd</b><span class="k">SME</span></div></div><div><span class="k">Issue price</span><b class="num">₹128</b></div><div><span class="k">Lot</span><b class="num">1,000 shares</b></div><div class="hide-md"><span class="k">Allotment</span><b>4 Nov</b></div><span class="chip">Allotment out</span></div>
+        </div>
+      </div>
+      <div role="tabpanel" id="mp-mf" aria-labelledby="mt-mf" hidden>
+        <div class="fund-grid">
+          <div class="fund"><span class="fn">Example Flexi Cap Fund · Regular Growth</span><div class="meta"><span class="chip">Equity</span><span class="chip">Flexi cap</span></div><div class="kv"><span>3Y return<b class="chg up">14.2%</b></span><span>Min SIP<b>₹500</b></span></div><div class="riskometer"><span class="xs">Riskometer: Very high</span><div class="scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on top"></i></div></div></div>
+          <div class="fund"><span class="fn">Sample Corporate Bond Fund · Regular Growth</span><div class="meta"><span class="chip">Debt</span><span class="chip">Corporate bond</span></div><div class="kv"><span>3Y return<b class="chg up">7.1%</b></span><span>Min SIP<b>₹1,000</b></span></div><div class="riskometer"><span class="xs">Riskometer: Moderate</span><div class="scale"><i class="on"></i><i class="on"></i><i class="on top"></i><i></i><i></i><i></i></div></div></div>
+          <div class="fund"><span class="fn">Demo Balanced Advantage Fund · Regular Growth</span><div class="meta"><span class="chip">Hybrid</span><span class="chip">Dynamic allocation</span></div><div class="kv"><span>3Y return<b class="chg up">11.6%</b></span><span>Min SIP<b>₹500</b></span></div><div class="riskometer"><span class="xs">Riskometer: High</span><div class="scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on top"></i><i></i></div></div></div>
+        </div>
+      </div>
+      <div class="band-cta"><a class="btn" href="/open-account/trading">Open free account<svg class="i"><use href="#i-arrow"/></svg></a><span class="illus">All market data in this block is illustrative. Live pages use the data vendor's feed. Past performance does not guarantee future returns.</span></div>
+    </div>
+  </section>
+
+  <!-- ABOUT + GROUP + CREDENTIALS -->
+  <section class="band" id="about" aria-labelledby="h-about">
+    <!-- PATTERN: Group + credential wall | root diagram (SVG geometry) | mono for registration codes | reuse: About, Aikyam Capital -->
+    <div class="wrap">
+      <div class="split" style="align-items:center">
+        <div class="stack" style="--gap:18px">
+          <h2 class="d2 node" id="h-about">Investing, rooted in what matters.</h2>
+          <p>ROOT by Aikyam is an investment and trading platform built to make financial markets simpler, more accessible and more intuitive for investors.</p>
+          <p>It is powered by the expertise of Aikyam, a financial services group with capabilities across capital markets, wealth management, investment banking and asset management.</p>
+          <p>Whether you are taking your first step into investing or actively managing your portfolio, ROOT gives you the tools and access to make more informed decisions.</p>
+          <a class="link" href="/about">Meet the leadership team<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+        <svg class="group-map" viewBox="0 0 620 400" role="img" aria-label="ROOT sits on Aikyam Capital Group, which spans capital markets, wealth management, investment banking and asset management">
+          <path d="M310 96 V200" stroke="#C19C2F" stroke-width="1.5" fill="none"/>
+          <path d="M310 200 C310 250 110 240 110 300" stroke="#C19C2F" stroke-width="1.5" fill="none"/>
+          <path d="M310 200 C310 250 240 250 240 300" stroke="#C19C2F" stroke-width="1.5" fill="none"/>
+          <path d="M310 200 C310 250 380 250 380 300" stroke="#C19C2F" stroke-width="1.5" fill="none"/>
+          <path d="M310 200 C310 250 510 240 510 300" stroke="#C19C2F" stroke-width="1.5" fill="none"/>
+          <circle cx="310" cy="200" r="5" fill="#C19C2F"/>
+          <rect x="230" y="30" width="160" height="66" rx="16" fill="#FFFFFF" stroke="#E2E8EF"/>
+          <g transform="translate(262 46) scale(.45)"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></g>
+          <rect x="226" y="176" width="168" height="0" fill="none"/>
+          <text x="330" y="190" font-size="13" fill="#5F5571">Aikyam Capital Group</text>
+          <g font-size="14" font-weight="600" fill="#1C0F2F" text-anchor="middle">
+            <circle cx="110" cy="306" r="6" fill="#FFFFFF" stroke="#C19C2F" stroke-width="1.5"/><text x="110" y="336">Capital</text><text x="110" y="354">markets</text>
+            <circle cx="240" cy="306" r="6" fill="#FFFFFF" stroke="#C19C2F" stroke-width="1.5"/><text x="240" y="336">Wealth</text><text x="240" y="354">management</text>
+            <circle cx="380" cy="306" r="6" fill="#FFFFFF" stroke="#C19C2F" stroke-width="1.5"/><text x="380" y="336">Investment</text><text x="380" y="354">banking</text>
+            <circle cx="510" cy="306" r="6" fill="#FFFFFF" stroke="#C19C2F" stroke-width="1.5"/><text x="510" y="336">Asset</text><text x="510" y="354">management</text>
+          </g>
+        </svg>
+      </div>
+      <dl class="creds-wall">
+        <div class="cred"><dt>Trading member</dt><dd>Aikyam Capital Private Limited</dd></div>
+        <div class="cred"><dt>SEBI registration</dt><dd>INZ000321232</dd></div>
+        <div class="cred"><dt>Depository participant</dt><dd>IN-DP-854-2026 · NSDL DP IN305066</dd></div>
+        <div class="cred"><dt>Exchange membership</dt><dd>BSE 6899 · NSE 90419 · MCX 8136 · MSEI 80750</dd></div>
+        <div class="cred"><dt>Clearing membership</dt><dd>BSECL 6899 · NCL M70106 · MCXCCL 8135</dd></div>
+        <div class="cred"><dt>CIN</dt><dd>U67100MH2022PTC394087</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="band band--mist" id="learn" aria-labelledby="h-learn">
+    <!-- PATTERN: Article card + thumbnail system | 16:10 · brand gradient · serif title · rings | reuse: Learn, Guides, Glossary -->
+    <div class="wrap">
+      <div class="mkt-head">
+        <div class="stack" style="--gap:12px; max-width:40rem"><h2 class="d2 node" id="h-learn">Learn before you invest.</h2><p class="lead" style="color:var(--aub-60)">Plain-language guides, written for your first trade and the ones after.</p></div>
+        <a class="link" href="/learn">All guides<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="posts">
+        <a class="post" href="/learn"><div class="thumb"><svg class="ringart" viewBox="0 0 200 200" aria-hidden="true"><circle cx="80" cy="110" r="70" fill="none" stroke="#E2E8EF" stroke-opacity=".25" stroke-width="1.5"/><circle cx="135" cy="100" r="45" fill="none" stroke="#C19C2F" stroke-width="1.5"/></svg><span class="t">Getting started with investing</span></div><div class="meta"><span class="chip chip--line">Guide</span><span>7 min read</span></div><h3>Your first ₹5,000: where to start and what to avoid</h3></a>
+        <a class="post" href="/learn"><div class="thumb v2"><svg class="ringart" viewBox="0 0 200 200" aria-hidden="true"><circle cx="80" cy="110" r="70" fill="none" stroke="#E2E8EF" stroke-opacity=".25" stroke-width="1.5"/><circle cx="135" cy="100" r="45" fill="none" stroke="#C19C2F" stroke-width="1.5"/></svg><span class="t">Mutual funds, explained</span></div><div class="meta"><span class="chip chip--line">Guide</span><span>9 min read</span></div><h3>SIP or lumpsum: how to choose for your goal</h3></a>
+        <a class="post" href="/learn"><div class="thumb v3"><svg class="ringart" viewBox="0 0 200 200" aria-hidden="true"><circle cx="80" cy="110" r="70" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="135" cy="100" r="45" fill="none" stroke="#C19C2F" stroke-width="1.5"/></svg><span class="t">Trading basics</span></div><div class="meta"><span class="chip chip--line">Guide</span><span>6 min read</span></div><h3>Intraday vs delivery: what changes in cost and risk</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band" id="faq" aria-labelledby="h-faq">
+    <!-- PATTERN: FAQ accordion | native details/summary | answers in HTML for search | reuse: every product page -->
+    <div class="wrap split">
+      <div class="stack" style="--gap:18px">
+        <h2 class="d2 node" id="h-faq">Questions, answered.</h2>
+        <p class="lead" style="color:var(--aub-60)">Can't find yours? Write to us and a real person replies.</p>
+        <p class="small">For complaints about securities broking: <a href="/help">grievances@aikyamcap.com</a></p>
+        <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="faq">
+        <details open><summary>How do I open an account with ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Enter your mobile number, verify your PAN, share your Aadhaar through DigiLocker, link your bank account and e-sign. The process is fully online.</p><p>Activation is subject to KYC verification and exchange approval.</p></div></details>
+        <details><summary>What does it cost to open an account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Opening an account is free. Brokerage and other charges are listed on the Pricing page.</p></div></details>
+        <details><summary>Is ROOT registered with SEBI?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>ROOT is offered by Aikyam Capital Private Limited, a SEBI-registered stock broker (INZ000321232) and a member of NSE, BSE, MCX and MSEI.</p></div></details>
+        <details><summary>When will the ROOT app be available?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>The iOS and Android apps are coming soon. You can open your account on the web today.</p></div></details>
+        <details><summary>Can I invest in mutual funds through ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Yes. You can invest in plans across equity, debt and hybrid categories, as a SIP or a one-time investment.</p></div></details>
+        <details><summary>How do I raise a complaint?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans"><p>Write to grievances@aikyamcap.com. If you are not satisfied with the response, you can register your grievance on SEBI's SCORES portal or the Smart ODR portal.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP BAND (dark) -->
+  <section class="band band--dark" aria-labelledby="h-app">
+    <!-- PATTERN: Dark band · one per page | app-icon gradient #1C0F2F → #0C2229 | reuse: Get the App, final CTA -->
+    <div class="wrap app">
+      <div class="stack" style="--gap:20px">
+        <span class="appicon" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 73.71 73.71"><defs><linearGradient id="lg-appicon-5" x1="0" y1="36.85" x2="73.71" y2="36.85" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1c0f2f"/><stop offset="1" stop-color="#0c2229"/></linearGradient></defs><g><rect fill="url(#lg-appicon-5)" width="73.71" height="73.71" rx="12.58" ry="12.58"/><path fill="#c19c2f" d="M42.56,20.83c-2.87,0-5.58.62-8.04,1.72-3.37-4.67-8.05-8.34-13.52-10.42l-3.5,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+        <h2 class="d2 node" id="h-app">Trade &amp; invest, wherever you are.</h2>
+        <p class="lead" style="color:var(--on-dark-2)">Everything on this page, in your pocket. The ROOT by Aikyam app for iOS and Android is coming soon.</p>
+        <div class="stores">
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>App Store</b></span></span>
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>Google Play</b></span></span>
+        </div>
+        <div class="qr"><span class="box"><svg class="i i--lg"><use href="#i-qr"/></svg></span><span>A QR code to download the app will appear here at launch.<br><button class="btn btn--outline-light btn--sm" type="button" data-open="notify" style="margin-top:10px">Tell me when it's live</button></span></div>
+      </div>
+      <div class="app-phone">
+        <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-o2"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-o2)"/></svg>
+        <div class="phone" role="img" aria-label="Illustrative ROOT app order screen">
+          <div class="ph-status"><span class="num">9:41</span><span>5G</span></div>
+          <div class="ph-top"><b style="font-size:14px">Example Bank Ltd</b><span class="chip chip--gain" style="min-height:22px; font-size:11px">NSE</span></div>
+          <div class="ph-body">
+            <div class="ph-card"><div class="ph-val">₹1,742.60</div><div class="chg up" style="font-size:11px">+18.40 (+1.07%)</div>
+              <svg viewBox="0 0 240 70" width="100%" height="70" aria-hidden="true" style="margin-top:6px"><path d="M0 52 L24 48 L48 50 L72 40 L96 43 L120 33 L144 36 L168 26 L192 28 L216 18 L240 14" fill="none" stroke="#0B7A55" stroke-width="1.6"/><circle cx="238" cy="14" r="3.2" fill="#C19C2F"/></svg>
+            </div>
+            <div class="ph-seg" style="margin:0"><span class="on">Delivery</span><span>Intraday</span></div>
+            <div class="ph-row"><span>Quantity</span><b>10</b></div>
+            <div class="ph-row"><span>Price</span><b>Market</b></div>
+            <div class="ph-row"><span>Order type</span><span style="display:flex; gap:4px"><span class="chip" style="min-height:20px; font-size:11px; background:#1C0F2F; color:#fff">Market</span><span class="chip" style="min-height:20px; font-size:11px">Limit</span><span class="chip" style="min-height:20px; font-size:11px">SL</span></span></div>
+            <div class="ph-row"><span>Approx. amount</span><b>₹17,426.00</b></div>
+            <div class="ph-row"><span>Margin available</span><b>₹42,880.00</b></div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px">
+              <span style="display:grid; place-items:center; height:38px; border-radius:10px; background:#0B7A55; color:#fff; font-weight:600">Buy</span>
+              <span style="display:grid; place-items:center; height:38px; border-radius:10px; background:#F3F5F8; color:#1C0F2F; font-weight:600">Sell</span>
+            </div>
+          </div>
+          <div class="ph-tabs"><span><svg class="i"><use href="#i-home"/></svg>Home</span><span><svg class="i"><use href="#i-mf"/></svg>Invest</span><span class="on"><svg class="i"><use href="#i-stocks"/></svg>Trade</span><span><svg class="i"><use href="#i-sprout"/></svg>Goals</span><span><svg class="i"><use href="#i-user"/></svg>Profile</span></div>
+        </div>
+        <p class="illus ph-cap" style="color:var(--on-dark-2)">Illustrative screen. Not a recommendation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="band" id="final" aria-labelledby="h-final">
+    <!-- PATTERN: Closing CTA | d2 + two buttons | every page ends here -->
+    <div class="wrap final">
+      <h2 class="d2 node" id="h-final">One platform. Every way to grow your money.</h2>
+      <div class="row"><a class="btn btn--lg" href="/open-account/trading">Open your free account<svg class="i"><use href="#i-arrow"/></svg></a><a class="btn btn--ghost btn--lg" href="/login">Login</a></div>
+      <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+    </div>
+  </section>
+
+  <!-- RISK -->
+  <section class="band band--mist band--tight" id="risk" aria-labelledby="h-risk">
+    <!-- PATTERN: Mandatory disclosure | never collapsed | verbatim SEBI text | reuse: every F&amp;O page -->
+    <div class="wrap">
+      <div class="risk-box">
+        <svg class="i i--lg"><use href="#i-alert"/></svg>
+        <div class="stack" style="--gap:10px">
+          <h2 class="h3" id="h-risk">Risk disclosures on derivatives</h2>
+          <ul>
+            <li>9 out of 10 individual traders in equity Futures and Options Segment incurred net losses.</li>
+            <li>On an average, loss makers registered net trading loss close to Rs. 50,000.</li>
+            <li>Over and above net trading losses, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
+            <li>Those making net trading profits incurred between 15% to 50% of such profit as transaction cost.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,28 @@
+/* ROOT theme v1 · extensions for the 75-page build
+   Rules: tokens only (no raw hex), one block per pattern, a comment naming the page that introduced it.
+   Golden pages may add patterns here; derivative pages reuse them and do not add new ones without a memory note. */
+
+/* shell: current nav item (build marks it from sitemap.json "nav") */
+.navlink.is-current{background:var(--mist)}
+
+/* shell: minimal header for template D (logo, help, login) */
+.site-head--min .wrap{justify-content:space-between}
+.site-head--min .head-help{display:inline-flex; gap:6px}
+
+/* shell: short footer for template D */
+.site-foot--min{padding-block:40px 32px}
+.foot-links{display:flex; flex-wrap:wrap; gap:8px 24px; padding-bottom:24px; border-bottom:1px solid var(--line-2)}
+.site-foot--min .foot-reg{margin-top:24px; padding-top:0; border-top:0}
+.foot-note{margin-top:24px; font-size:var(--fs-xs); color:var(--aub-60)}
+
+/* placeholder: a value Aikyam must confirm. Visible on purpose, so it is never shipped by mistake */
+.ph{display:inline; white-space:nowrap; padding:1px 7px; border-radius:6px; background:var(--gold-wash); color:var(--warn); box-shadow:inset 0 0 0 1px rgba(193,156,47,.45); font:inherit; font-weight:500}
+.ph--block{display:flex; align-items:center; justify-content:center; text-align:center; aspect-ratio:var(--ar, auto); padding:14px 16px; border-radius:var(--r-ctl); border:1.5px dashed rgba(193,156,47,.6); box-shadow:none; background:var(--gold-wash); color:var(--warn); font-size:var(--fs-sm)}
+
+/* static capture for Figma import: no motion, spine nodes drawn as reached, hidden overlays stay hidden */
+.is-static *, .is-static *::before, .is-static *::after{animation:none !important; transition:none !important}
+.is-static .node::before{background:var(--gold)}
+.is-static .band--mist .node::before{background:var(--gold)}
+
+/* shell: breadcrumb bar under the header (build renders it from front-matter "breadcrumb") */
+.crumbs-bar{padding-top:20px}
