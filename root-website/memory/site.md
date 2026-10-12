@@ -41,3 +41,9 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - "Fully online" is held until the KYC flow is confirmed to have no offline step; use "online" and "on your phone or computer".
 - Phase 2 and 3 targets linked from Phase 1 pages fall back at go-live to their Phase 1 hub (/plan, /learn, /pricing); designs keep the final URLs.
 - Analytics events add switch_to_investing and switch_to_trading for the cross-door links.
+
+## Gate 1 answers (12-Oct-2026, user)
+- Home h1: "Stocks, IPOs and mutual funds, in one place." (kept).
+- Home F&O risk box: inside the Trade door, directly above the F&O row (verbatim, never collapsed; Aikyam compliance to confirm this placement is sufficient).
+- Repo: the user is making it private; keep pushing everything.
+- Pilot revision requested on all four fronts: less compliance-heavy feel, hero and first screen, copy and tone, visual richness. Response: rules/design-direction.md (v3) and a revise run of 01, 09, 10 before Wave 1.

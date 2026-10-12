@@ -22,9 +22,20 @@ Front matter keys: `title`, `description`, `query` (main search query), optional
 - Use theme layout classes: `wrap`, `band`, `band--mist`, `band--dark` (at most one per page), `band--tight`, `head`, `split`, `stack`, `cards`, `hero-grid`, `price-grid`, `steps` (set `style="--cols:3"` when not 4), `goals`, `pillars`, `feature`, `faq`, `app`, `final`, `risk-box`, `creds-wall`, `posts`, `fund-grid`, `idx-grid`, `ipo-list`, `tablewrap` + `table.data`.
 - Reuse markup from `theme/components.html` when it exists (golden pages add to it), then `theme/sections-reference.html`.
 
+## Design direction v3 components
+- `p.fine`: fine print under an action (MF risk line, hand-off line, receiver line). Placeholders inside fine print are allowed in the first screen; anywhere else in the first screen they fail the gate.
+- `span.eyebrow`: the small label above an h1 (carries the product and the legal entity, e.g. "Trading and demat account · Aikyam Capital Private Limited").
+- `figure.img-slot` with `style="--ar:4/5"`: an art-directed image slot (`<svg class="i"><use href="#i-user"/></svg><b>Photo: subject</b><span>Art direction: mood, light, crop, ratio</span>`).
+- `.ui-card` (inside `.ui-stage`, with `.ui-label`, `.ui-big`, `.ui-row`) plus `p.ui-caption` "Illustrative screen": floating product UI built from theme parts. The theme phone mockup (`.phone`) may be used on any page that sells the app experience.
+- `.stat-tiles > .stat-tile` (serif `.num` + `p`): compact summaries instead of long tables on Home and hubs.
+- `.risk-box.risk-box--inset` with `id="s-risk"`: the verbatim F&O box placed in context (inside a product door or card), calm panel style.
+- `[data-draft="key"]` on an element whose wording is a realistic draft for the client to approve (consent line, hand-off variant); list every draft in memory section 9.
+
 ## Values and placeholders
 - Site-wide values are tokens: `{{cta.primary}}`, `{{reg.capital.sebi}}`, `{{reg.wealth.arn}}`, `{{contact.grievance_email}}`, `{{pms.minimum}}`... (list in the brief). Never type a registration number, CTA label or company contact literally: one edit in `memory/values.json` must update all 75 pages. A token whose value is not known yet renders as a placeholder chip automatically.
-- Anything else not confirmed (a price, a payout, a date, a count, a claim in `rules/claims.json` "unconfirmed"): `<mark class="ph" data-ph="short-key">what is missing</mark>`; blocks and images: `<div class="ph ph--block" style="--ar:4/3">Photo: what it shows, ratio</div>`.
+- Facts not confirmed (a price, a payout, a date, a count, a name, a claim in `rules/claims.json` "unconfirmed"): `<mark class="ph" data-ph="short-key">what is missing</mark>` (renders as a quiet dashed underline). Keep them out of the first screen unless they sit in `p.fine`; prefer copy that does not need the value there.
+- Wording (not facts) the client must approve: write realistic draft copy with `data-draft`, never a placeholder chip.
+- Client-supplied text blocks (legal clauses): `<div class="ph ph--block">Client text: what the clause covers</div>`. Images: `figure.img-slot`, never a dashed box.
 - Market or fund data is illustrative, uses fictional names (Example Industries Ltd, Sample Flexi Cap Fund), shows an as-on date and a source line, and is labelled `<p class="illus">Illustrative data. Not real prices or returns.</p>`. Missing values are a dash, never 0%.
 - Legal pages: structure (contents list, numbered clause headings, what each covers) with the client's text in `ph ph--block` placeholders. Never draft legal or regulatory text. SEBI-prescribed texts in `rules/compliance-blocks.md` are used verbatim.
 
@@ -35,7 +46,7 @@ Put every other state in `<template data-state="key" data-label="what it shows">
 - **No JavaScript**, no `onsubmit`, no `<script>`, no `hidden` content the design needs (use a state block instead).
 - Layout with theme flex/grid classes; no absolute positioning for content, no transforms for layout, no negative-margin tricks. The build's static mode turns one-direction stacks into flex and draws outlines as borders.
 - **Icons**: `<svg class="i"><use href="#i-NAME"/></svg>` only (the build expands them with explicit strokes). Names: stocks, fo, commodity, etf, ipo, mf, shield, bond, nps, pms, bolt, research, support, lock, sun, cap, home, sprout, search, user, chev, arrow, ne, check, info, alert, phone, qr, menu, close, plus, cal, bell, doc, calc, book, chart, swap, handshake, store, rupee.
-- **No images.** Theme illustrations (phone mockup on Home and Get the App only; rings; gradient article thumbs; group root diagram) or labelled placeholders.
+- **No image files.** Use theme illustrations (phone mockup, floating `.ui-card` product UI, rings, gradient article thumbs, group root diagram), SVG data visuals, icon tiles, or `figure.img-slot` art-directed slots. Every screen height at 1440 needs a visual anchor.
 - Rings and gauges (riskometer, goal progress): inline SVG with paths and an HTML label, not `conic-gradient` or `attr()`.
 - Tables with more than 3 columns: `<table class="data data--stack">` with `<span class="td-label">Column name</span>` at the start of each cell, so they stack on phones instead of being cut off.
 - Inline `style` only for CSS custom properties. New CSS in `<style data-page>`, tokens only (never hex), short; reusable pieces are named in memory section 7 for promotion.

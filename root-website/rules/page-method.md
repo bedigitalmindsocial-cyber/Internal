@@ -1,6 +1,8 @@
-# The page method (v2, after red-team round 1)
+# The page method (v3: v2 after red-team round 1, plus the pilot review)
 
 Think like a product manager first, a UX designer second, a front-end builder third. No layout before the page's questions are known; no HTML before a layout has beaten its alternatives.
+
+**Read `rules/design-direction.md` before anything else.** The pilot was compliant but not desirable; v3 fixes that without weakening compliance.
 
 ## Step 0. Read
 1. **`packs/NN-id.md`** (run `python3 scripts/pack.py NN` if it is missing). It holds the page card, journey neighbours, the mandatory questions for this page type, the compliance blocks for its flags, site values, site memory and the pattern library. Start here.
@@ -25,7 +27,7 @@ Think like a product manager first, a UX designer second, a front-end builder th
 Ordered sections; each with its id (`s-<name>`), the question numbers it answers, a content outline (real headings and key copy points), and its component. Follow the template skeleton (brief) unless you state why not. Cut any section that answers nothing.
 
 ## Step 4. Layout exploration, where it pays
-Explore options only for the sections that decide the page: the hero, any form, data displays, and the page's key block (pricing table, calculator, steps, eligibility, credential wall). Standard sections (FAQ, closing CTA, risk box, related links) use the pattern library directly.
+Explore options only for the sections that decide the page: the hero (always: 3 options, at least one led by a product visual), any form, data displays, and the page's key block (pricing table, calculator, steps, eligibility, credential wall). Standard sections (FAQ, closing CTA, risk box, related links) use the pattern library directly.
 - **Option A** is the pattern-library layout. **B and C** differ in structure (hierarchy, layout, density or interaction), not decoration. All options use the ROOT theme.
 - Each option: a three-line wireframe spec plus a **conversion hypothesis** ("puts the OTP field in the first screen at 390, so more visitors start").
 - Score on the rubric, pick, and record one line on why the winner won and why each loser lost.
@@ -34,6 +36,7 @@ Explore options only for the sections that decide the page: the hero, any form, 
 ### Rubric (weight)
 | Criterion | Weight |
 |---|---|
+| Desirability: would a 30-year-old professional want to use this after five seconds? (offer clear, visual, confident, calm) | 3 |
 | Answers its questions, in the order asked | 3 |
 | Moves the visitor to the next step (the primary action is visible on the first screen at 1440 and within 1.5 screens at 390) | 3 |
 | Trust and compliance (claims rule, company named, disclosures) | 3, and any failure is a veto |
@@ -41,7 +44,7 @@ Explore options only for the sections that decide the page: the hero, any form, 
 | Mobile at 390 (stacks cleanly, nothing cut off, tables stack) | 2 |
 | Consistency with the pattern library | 1 |
 | Figma editability (flex stacks, no tricks) | 1 |
-Vetoes: an invented number or claim; a missing mandatory disclosure; content only visible through JavaScript; a primary action hidden on mobile.
+Vetoes: an invented number or claim; a missing mandatory disclosure; content only visible through JavaScript; a primary action hidden on mobile; a first screen without a visual anchor or with placeholder chips outside fine print.
 
 ## Step 5. Build
 Follow `rules/figma-html.md`. Write `pages/src/NN-id.html`, then run `python3 scripts/gate.py NN` (Bash timeout 300000). It builds, lints and screenshots, and prints one JSON line. Fix and re-run until `"ok": true`, **at most 3 loops**; if it still fails, stop, set memory status `needs-human`, and explain why in the memory change log. Then look at the screenshot slices in `review/NN-id/` and fix what looks wrong (each fix: run the gate again).

@@ -1,7 +1,7 @@
 export const meta = {
   name: 'root-wave',
   description: 'Build a wave of ROOT pages: PM brief, layout options, judge, HTML, gate checks, independent review, fix',
-  whenToUse: 'ROOT 75-page build. args = output of: python3 workflow/wave_args.py NN NN ...',
+  whenToUse: 'ROOT 75-page build. args = output of: python3 workflow/wave_args.py NN NN ... (add "revise": "<user feedback>" to revise built pages)',
   phases: [
     { title: 'Golden pages', detail: 'strategist, judge, builder (gate), reviewer, fixer + second review' },
     { title: 'Curate', detail: 'promote reusable CSS and markup from golden pages' },
@@ -12,6 +12,7 @@ export const meta = {
 const ROOT = '/home/user/Internal/root-website'
 const PAGES = args.pages
 const DATE = args.date
+const REVISE = args.revise || ''
 const golden = PAGES.filter(p => p.mode === 'golden')
 const derived = PAGES.filter(p => p.mode !== 'golden')
 const nn = p => String(p.n).padStart(2, '0')
@@ -89,6 +90,20 @@ ${p.mode === 'golden'
 Questions: all mandatory questions from the brief plus at least 3 page-specific ones, each with its source. Section 4 maps each to a section id and quotes the answering sentence (a few words). Section 10 lists every question for Aikyam or Giraffe with the default you used.`
 }
 
+function revisePrompt(p) {
+  return `${PRE}
+
+${page(p)}
+
+ROLE: design lead, REVISION round. This page is already built. The user reviewed it and asked for: ${REVISE}
+Read rules/design-direction.md (v3, written for this feedback) first, then your brief, memory/pages/${name(p)}.md, pages/src/${p.file}, and LOOK at review/${name(p)}/desktop-01.png to desktop-03.png and mobile-01.png, mobile-02.png.${p.mode !== 'golden' ? ` This is a derivative: read the REVISED golden page first (memory/pages/${p.golden_file.replace('.html', '.md')}, pages/src/${p.golden_file}, review/${p.golden_file.replace('.html', '')}/desktop-01.png) and inherit its new hero, form card and section treatments.` : ''}
+1. Diagnose in 5 to 8 bullets what makes this page compliance-heavy, unbalanced, legal-sounding or text-heavy, citing section ids.
+2. Hero: 3 options (at least one led by a product visual), each a 3-line wireframe spec with a conversion hypothesis, scored on the updated rubric (desirability weight 3); choose one.
+3. Every other section: keep, tighten, merge, cut or re-layout, so each screen height at 1440 has a visual anchor. Rewrite copy in the v3 tone. Move company names into labels, receiver lines and fine print. Take placeholder chips out of the first screen. Replace dashed placeholder boxes with img-slots. Turn long tables on Home and hubs into stat tiles. Fewer, stronger sections.
+4. Keep: every MUST question answered (update section 4 with section ids and quoted answers), every mandatory disclosure verbatim (placement and presentation per rules/compliance-blocks.md), tokens, interaction states, and the user's decisions in memory/site.md ("Gate 1 answers").
+Update memory sections 4, 6 (new decisions with rejected options), 9 (drafts and placeholders), 10 and the change log ("Revision v3 ${DATE}: ..."), status: briefed. Do not build; a builder follows.`
+}
+
 function judgePrompt(p) {
   return `${PRE}
 
@@ -107,7 +122,7 @@ function builderPrompt(p) {
 
 ${page(p)}
 
-ROLE: front-end builder. Build pages/src/${p.file} from memory/pages/${name(p)}.md (section 6 = final layout decisions), following rules/figma-html.md exactly. Reuse markup and class names from theme/components.html (if present), theme/sections-reference.html and the pattern library${p.mode !== 'golden' ? `, and from pages/src/${p.golden_file} for inherited sections` : ''}. Compliance blocks from your brief, verbatim. Mark the primary action with data-primary. Add <template data-state> blocks for every interaction state (template D: OTP sent with timer, error, verified; every form: error and success).
+ROLE: front-end builder. ${REVISE ? 'REVISION: rewrite pages/src/' + p.file + ' fully from the updated memory (section 6 has the revised decisions; keep only what it says to keep). ' : ''}Build pages/src/${p.file} from memory/pages/${name(p)}.md (section 6 = final layout decisions), following rules/design-direction.md and rules/figma-html.md exactly. Reuse markup and class names from theme/components.html (if present), theme/sections-reference.html and the pattern library${p.mode !== 'golden' ? `, and from pages/src/${p.golden_file} for inherited sections` : ''}. Compliance blocks from your brief, verbatim. Mark the primary action with data-primary. Add <template data-state> blocks for every interaction state (template D: OTP sent with timer, error, verified; every form: error and success).
 Then run: cd ${ROOT} && python3 scripts/gate.py ${nn(p)}
 Fix and re-run until it prints "ok": true, at most 3 loops. Then LOOK at the screenshots in review/${name(p)}/: every desktop-NN.png and at least the first three mobile-NN.png (plus any slice with a form or table), and states-desktop.png if present. Fix anything broken, cramped, misaligned, off-theme or unreadable, and re-run the gate.
 Finally fill memory sections 7 to 11 and the change log ("Built ${DATE}"), status: built (or needs-human if the gate still fails, with the reason).
@@ -122,8 +137,8 @@ ${page(p)}
 ROLE: independent reviewer${round > 1 ? ' (second round: check the earlier blocking fixes were done and nothing regressed)' : ''}. You did not build this page. Do not edit pages or memory.
 1. BLIND TRACE FIRST: look at every screenshot slice in review/${name(p)}/ (desktop-NN.png, mobile-NN.png, states-desktop.png) and list the questions this page answers, before reading the memory.
 2. Then read memory/pages/${name(p)}.md, review/${name(p)}/lint.json and shots.json, and compare: every MUST question in section 4 must be visibly answered, in order.
-3. Check: the primary action is clear on the first screen at 1440 and within 1.5 screens at 390; compliance (rules/claims.json, the company named at every conversion, disclosures from the brief, placeholders instead of invented values, nothing that reads as advice); visual quality (theme fidelity: aubergine ink, one gold spark, serif display over Mukta, Mist bands, at most one dark band; alignment, spacing rhythm, density, hierarchy, mobile stacking); Figma readiness (static, s- ids, states board present where needed).
-must_fix is ONLY for: a claim or disclosure problem, an unanswered MUST question, a primary action not visible as above, or a broken layout. Everything else goes to should_fix. verdict "pass" only when must_fix is empty.
+3. Check: desirability per rules/design-direction.md (first screen balanced with a visual anchor, benefit-led copy, company names in labels and fine print, no placeholder chips outside fine print, a visual anchor every screen height at 1440, calm disclosure presentation); the primary action is clear on the first screen at 1440 and within 1.5 screens at 390; compliance (rules/claims.json, the company named at every conversion, disclosures from the brief, placeholders instead of invented values, nothing that reads as advice); visual quality (theme fidelity: aubergine ink, one gold spark, serif display over Mukta, Mist bands, at most one dark band; alignment, spacing rhythm, density, hierarchy, mobile stacking); Figma readiness (static, s- ids, states board present where needed).
+must_fix is ONLY for: a claim or disclosure problem, an unanswered MUST question, a primary action not visible as above, a broken layout, or a first screen that fails the design direction (no visual anchor, legal-sounding hero, placeholder chips). Everything else goes to should_fix. verdict "pass" only when must_fix is empty.
 Record it: python3 scripts/verdict.py ${nn(p)} pass|fix --score <0-100> ${'--must "<section id: change>"'} (one --must per blocking fix) --by reviewer${round > 1 ? '-2' : ''}`
 }
 
@@ -167,8 +182,8 @@ async function reviewAndFix(p, ph, built) {
 phase('Golden pages')
 const goldenResults = await pipeline(
   golden,
-  p => run(strategistPrompt(p), { label: `brief ${name(p)}`, phase: 'Golden pages', schema: BRIEF }),
-  (brief, p) => run(judgePrompt(p), { label: `judge ${name(p)}`, phase: 'Golden pages', schema: JUDGE }).then(judge => ({ brief, judge })),
+  p => run(REVISE ? revisePrompt(p) : strategistPrompt(p), { label: `${REVISE ? 'revise' : 'brief'} ${name(p)}`, phase: 'Golden pages', schema: BRIEF }),
+  (brief, p) => REVISE ? Promise.resolve({ brief, judge: null }) : run(judgePrompt(p), { label: `judge ${name(p)}`, phase: 'Golden pages', schema: JUDGE }).then(judge => ({ brief, judge })),
   (bj, p) => buildAndCheck(p, 'Golden pages').then(built => ({ ...bj, built })),
   (bjb, p) => reviewAndFix(p, 'Golden pages', bjb.built).then(r => ({ ...r, brief: bjb.brief, judge: bjb.judge })),
 )
@@ -191,7 +206,7 @@ ${proposals.join('\n') || '(none proposed; still read each golden page source fo
 phase('Derivative pages')
 const derivedResults = await pipeline(
   derived,
-  p => run(strategistPrompt(p), { label: `brief ${name(p)}`, phase: 'Derivative pages', schema: BRIEF }),
+  p => run(REVISE ? revisePrompt(p) : strategistPrompt(p), { label: `${REVISE ? 'revise' : 'brief'} ${name(p)}`, phase: 'Derivative pages', schema: BRIEF }),
   (brief, p) => buildAndCheck(p, 'Derivative pages').then(built => ({ brief, built })),
   (bb, p) => reviewAndFix(p, 'Derivative pages', bb.built).then(r => ({ ...r, brief: bb.brief })),
 )

@@ -13,11 +13,14 @@ Plain, short and confident, written for an Indian investor aged 28 to 45. Retail
 
 Still to confirm with Aikyam compliance (use only as placeholders until confirmed): "Bank-grade security", "Fast, reliable execution", "Institutional-grade research", "₹0 account opening", the rate card, the KYC steps, the footer text.
 
+## Tone (design direction v3)
+Benefit first, second person, short sentences. The visitor hears "ROOT"; the legal entity appears once, plainly, where they act (eyebrow label, receiver line, door header, fine print, footer), never in the h1 or lead. Headings answer the visitor's question or state a benefit. See `rules/design-direction.md` for before and after examples.
+
 ## House rules
 - No em dashes. Use commas, colons or parentheses. Spaced en dashes only in numeric ranges (₹412 – ₹433).
 - Currency as ₹ with Indian digit grouping (₹4,82,310). Dates as DD-MMM-YYYY in tables, "12 Nov 2026" in prose.
 - Sentence case for headings. The h1 may carry one italic phrase (`<em>`) in the serif, as in theme v1.
-- Name the company: "Aikyam Capital Private Limited provides broking" and "Aikyam Wealth Private Limited distributes mutual funds (AMFI ARN ...)".
+- Name the company where the visitor acts (eyebrow, receiver line, door header, fine print): "Aikyam Capital Private Limited provides broking"; "Aikyam Wealth Private Limited distributes mutual funds (AMFI ARN ...)". Once per block, not in every sentence.
 - CTA labels: verb first, say what happens ("Open free account", "Get OTP", "See all charges", "Talk to the wealth team", "Tell me when it is live").
 - Plain-English explanations of jargon on first use (SIP, NAV, F&O, SPAN, ARN, ODR).
 - No superlatives or comparisons with other brokers. No urgency ("act now", "limited period"). No promises about returns.

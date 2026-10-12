@@ -175,17 +175,18 @@ def lint(page, claims, cta_label):
         if flag in flags and not re.search(pat, main, re.I):
             errors.append(msg)
     if "fo_risk" in flags:
-        box = section_body(main, "s-risk")
+        at = main.find('id="s-risk"')
+        box = main[at:at + 6000] if at >= 0 else ""
         missing = [b for b in FO_BULLETS if b not in box]
         if missing:
-            errors.append(f"F&O risk box (section id s-risk) missing or incomplete: {missing[:2]}")
-        order = [sid for _, sid, _ in secs]
-        if "s-risk" in order:
-            dark = [i for i, (_, _, tag) in enumerate(secs) if "band--dark" in tag]
-            if dark and order.index("s-risk") > dark[0]:
+            errors.append(f"F&O risk box (element id s-risk) missing or incomplete: {missing[:2]}")
+        if at >= 0:
+            dark = [pos for pos, _, tag in secs if "band--dark" in tag]
+            if dark and at > dark[0]:
                 errors.append("F&O risk box sits below the dark band; it must come before it")
-            if "fo_page" in flags and order.index("s-risk") > 1:
-                errors.append("on F&O pages the risk box comes directly after the hero (second section)")
+            order = [sid for _, sid, _ in secs]
+            if "fo_page" in flags and ("s-risk" not in order or order.index("s-risk") > 1):
+                errors.append("on F&O pages the risk box is its own section directly after the hero (second section)")
     if "pms" in flags:
         if not re.search(r"50 lakh|\{\{pms\.minimum\}\}", main, re.I):
             errors.append("PMS page must state the SEBI minimum investment (₹50 lakh)")

@@ -1,6 +1,7 @@
 """Gate: build + lint + shoot one page and print ONE JSON line (agents return it verbatim).
 
-ok = the page built cleanly, lint has no errors and there is no overflow at 1440 or 390.
+ok = the page built cleanly, lint has no errors, there is no overflow at 1440 or 390, and no placeholder
+chip sits in the first screen at 1440 outside fine print (design direction v3).
 Also writes review/NN-id/gate.json. Usage: python3 scripts/gate.py NN   (Bash timeout 300000)
 """
 import json, os, subprocess, sys
@@ -44,7 +45,9 @@ def main(argv):
         "states": lint.get("states", 0), "placeholders": lint.get("placeholders"),
         "notes": shots.get("notes", []), "sha": lint.get("sha"),
     })
-    out["ok"] = out["build_ok"] and not out["lint_errors"] and bool(shots) and not out["overflow"]
+    out["first_screen_placeholders"] = shots.get("desktop", {}).get("first_screen_ph", [])
+    out["ok"] = (out["build_ok"] and not out["lint_errors"] and bool(shots) and not out["overflow"]
+                 and not out["first_screen_placeholders"])
     tmp = P("review", name, f"gate.json.tmp{os.getpid()}")
     json.dump(out, open(tmp, "w"), indent=1)
     os.replace(tmp, P("review", name, "gate.json"))

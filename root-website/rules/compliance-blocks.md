@@ -1,5 +1,7 @@
 # Mandatory blocks (use verbatim; the lint checks for them by sitemap flag)
 
+Presentation (design direction v3): the words are verbatim and never collapsed, but the frame is calm. One-liners go in `p.fine` under the action; longer blocks go in one closing disclosure band above the footer; the F&O box may be the inset variant (`risk-box risk-box--inset`) when placed in context.
+
 The footer already carries: the registration strip, Attention Investors, the general disclaimer ("Investment in securities market are subject to market risks, read all the related documents carefully before investing.") and the caution notice. Pages add the blocks below according to their flags.
 
 ## fo_risk: F&O risk disclosure (SEBI circular of 19-May-2023; never collapsed, never in small grey type)
@@ -24,12 +26,12 @@ The footer already carries: the registration strip, Attention Investors, the gen
 ```
 Placement (lint checks it):
 - Pages flagged `fo_page` (F&O, currency and commodity, margin and SPAN calculators, trading basics guide, risk disclosure): the box is the **second section, directly after the hero**, before any F&O call to action.
-- Other `fo_risk` pages: before the first section that promotes F&O, and always **above the dark band** and the closing CTA. Never the last thing on the page, never under a sticky bar.
+- Other `fo_risk` pages: before the first content that promotes F&O, and always **above the dark band** and the closing CTA. Never the last thing on the page, never under a sticky bar. It may sit in context as `<div class="risk-box risk-box--inset" id="s-risk">` inside the product block, directly above the F&O item (Home: inside the Trade door, user decision 12-Oct-2026, Aikyam compliance to confirm).
 - F&O facts (lot sizes, margins, expiries, eligibility) change often: do not state figures from memory. Use placeholders and link to the exchange (nseindia.com) for current values.
 
 ## mf_risk: mutual fund risk line
 "Mutual fund investments are subject to market risks, read all scheme related documents carefully."
-Place it next to the first MF call to action and again in the closing disclosure band.
+Place it as fine print (`p.fine`) under the first MF call to action, and again in the closing disclosure band.
 
 ## distributor_disclaimer (Aikyam Wealth distribution, and IPO/bonds offered by the broker)
 "Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism."

@@ -7,7 +7,8 @@ For each figma/NN-id.html:
   review/NN-id/states-desktop.png            the states board, if the page has one
   review/NN-id/shots.json                    the checks below, with the sha of the file that was shot
 Checks: horizontal overflow at both widths; whether the brand fonts loaded; where the [data-primary] action sits
-(it should be inside the first screen at 1440 and within the first 1.5 screens at 390).
+(it should be inside the first screen at 1440 and within the first 1.5 screens at 390), and placeholder
+chips in the first screen outside fine print (design direction v3: the gate fails these at 1440).
 
 At most 4 Chromium renders run at once across all parallel agents (file-lock semaphore), and each page renders
 into a temp folder that is swapped in at the end, so a killed run keeps the previous screenshots.
@@ -38,7 +39,10 @@ OVERFLOW_JS = """() => {
 GEOM_JS = """() => {
   const main = document.querySelector('main'), prim = document.querySelector('main [data-primary]');
   const r = prim ? prim.getBoundingClientRect() : null;
-  return {mainBottom: main ? Math.ceil(main.getBoundingClientRect().bottom + scrollY) : document.documentElement.scrollHeight,
+  const fold = innerWidth >= 900 ? 900 : 844;
+  const phs = [...document.querySelectorAll('main .ph')].filter(e => !e.closest('.fine') && e.getBoundingClientRect().top + scrollY < fold && e.getBoundingClientRect().width > 0);
+  return {firstScreenPh: phs.map(e => e.textContent.trim().slice(0, 40)),
+          mainBottom: main ? Math.ceil(main.getBoundingClientRect().bottom + scrollY) : document.documentElement.scrollHeight,
           primaryTop: r ? Math.round(r.top + scrollY) : null,
           primaryText: prim ? prim.textContent.trim().slice(0, 40) : null};
 }"""
@@ -87,7 +91,7 @@ def render(pw, path, out_dir, label, width, slice_to_main=True):
                           clip={"x": 0, "y": top, "width": width, "height": min(SLICE, end - top)})
         return {"height": height, "slices": n, "fonts_loaded": all(fonts),
                 "overflow": ov["scrollWidth"] > ov["width"] + 1 or bool(ov["offenders"]), "offenders": ov["offenders"],
-                "primary_top": geo["primaryTop"], "primary_text": geo["primaryText"]}
+                "primary_top": geo["primaryTop"], "primary_text": geo["primaryText"], "first_screen_ph": geo["firstScreenPh"]}
     finally:
         browser.close()
 
@@ -115,6 +119,8 @@ def shoot(page_file, pw):
             notes.append(f"primary action starts at {d['primary_top']}px on desktop (below the first screen)")
         if m["primary_top"] is not None and m["primary_top"] > 1266:
             notes.append(f"primary action starts at {m['primary_top']}px on mobile (below 1.5 screens)")
+    if d.get("first_screen_ph"):
+        notes.append(f"placeholders in the first screen at 1440 (move to fine print or rewrite): {d['first_screen_ph'][:4]}")
     result["notes"] = notes
     os.makedirs(final_dir, exist_ok=True)
     for f in glob.glob(os.path.join(final_dir, "*.png")):
