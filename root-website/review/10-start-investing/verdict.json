@@ -1,0 +1,10 @@
+{
+ "page": "10-start-investing",
+ "verdict": "pass",
+ "score": 87,
+ "must_fix": [],
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
+ "by": "orchestrator-carry",
+ "sha": "51388a343243",
+ "date": "13-Oct-2026"
+}

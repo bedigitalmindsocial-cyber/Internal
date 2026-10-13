@@ -1,0 +1,38 @@
+{
+ "file": "09-start-trading.html",
+ "sha": "3a2b5a681e2b",
+ "desktop": {
+  "height": 6003,
+  "slices": 4,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 469,
+  "primary_text": "Get OTP",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 10009,
+  "slices": 7,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 1001,
+  "primary_text": "Get OTP",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 4706,
+  "slices": 4,
+  "fonts_loaded": false,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": [
+   "OTP length to confirm",
+   "timer to confirm"
+  ]
+ },
+ "notes": []
+}

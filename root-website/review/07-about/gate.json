@@ -1,0 +1,17 @@
+{
+ "page": "07-about",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 1,
+ "overflow": false,
+ "slices": {
+  "desktop": 5,
+  "mobile": 7
+ },
+ "states": 4,
+ "placeholders": 8,
+ "notes": [],
+ "sha": "37b11727f42a",
+ "first_screen_placeholders": []
+}

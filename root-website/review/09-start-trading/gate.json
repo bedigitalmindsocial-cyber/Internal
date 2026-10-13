@@ -1,0 +1,17 @@
+{
+ "page": "09-start-trading",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 0,
+ "overflow": false,
+ "slices": {
+  "desktop": 4,
+  "mobile": 7
+ },
+ "states": 9,
+ "placeholders": 18,
+ "notes": [],
+ "sha": "3a2b5a681e2b",
+ "first_screen_placeholders": []
+}

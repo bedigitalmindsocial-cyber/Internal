@@ -1,0 +1,387 @@
+<!--page {"title": "Mutual fund distributor partner programme | ROOT by Aikyam",
+          "description": "Partner with Aikyam Wealth as an AMFI-registered mutual fund distributor. See who can apply, how payouts are worked out, the rules and the steps to apply.",
+          "query": "mutual fund distributor partner programme",
+          "lint_allow": [],
+          "mbar": {"label": "Apply to partner", "href": "#s-apply"}} -->
+<style data-page>
+/* 62 Distributor Partner Programme (golden, template P). Tokens only. Reusable blocks were promoted to theme/patterns.css on
+   12-Oct-2026 (curator, Wave 1 golden promotions: template P hero, band CTA spacing, path cards, payout and agreement splits,
+   money path, agreement card, Always and Never lists); only page-specific rules stay here. */
+/* documents strip: one item per line on phones (short labels such as PAN otherwise wrap beside a longer one) */
+@media (max-width: 640px){ #s-steps .docs--tiles ul{flex-direction:column; align-items:flex-start} }
+</style>
+
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Distributor Partner Programme · {{reg.wealth.name}}</span>
+      <h1 class="d1" id="h-hero">Grow your mutual fund practice <em>with ROOT.</em></h1>
+      <p class="lead">Partner with ROOT as an AMFI-registered distributor, and offer your clients regular plans across equity, debt and hybrid categories.</p>
+      <ul class="creds">
+        <li><svg class="i"><use href="#i-handshake"/></svg><div>Partner with Aikyam Wealth<span>An AMFI-registered mutual fund distributor</span></div></li>
+        <li><svg class="i"><use href="#i-cap"/></svg><div>For NISM Series V-A certified distributors<span>Holding an ARN from AMFI</span></div></li>
+        <li class="cred-wide"><svg class="i"><use href="#i-shield"/></svg><div>Part of Aikyam Capital Group<span>The group behind ROOT by Aikyam</span></div></li>
+      </ul>
+      <a class="link" href="#s-eligibility">Who can apply<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="hero-side">
+      <div class="ui-stage ui-stage--panel open-stage">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-apply"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-apply)"/></svg>
+        <ol class="track" aria-label="Becoming a partner: step 1 of 4">
+          <li class="is-on" aria-current="step">Apply</li>
+          <li>Checks</li>
+          <li>Agreement</li>
+          <li>First <span>client</span></li>
+        </ol>
+        <section class="form-card" id="s-apply" aria-labelledby="h-apply">
+          <h2 class="h3" id="h-apply">Start your application</h2>
+          <form id="apply-form" method="post" data-event="partner_lead" data-programme="distributor" data-form-entity="Aikyam Wealth">
+            <div class="fgroup">
+              <label for="apply-mob">Mobile number</label>
+              <span class="field"><span class="pre">+91</span><input id="apply-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="apply-mob-help" required></span>
+              <span class="fhelp" id="apply-mob-help">The partner team will call you on this number.</span>
+            </div>
+            <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+            <button class="btn btn--lg" type="submit" data-primary>Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></button>
+            <div class="stack" style="--gap:0px">
+              <p class="fine">Your details go to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its partner team can call you about the programme.</p>
+              <p class="fine">You join only after the checks and a signed partner agreement.</p>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="hero-alt"><a class="link link--wrap" href="/partner/authorised-person" data-event="switch_to_ap">Want to offer shares and IPOs too? See the Authorised Person <span class="link-tail">Programme<svg class="i"><use href="#i-arrow"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-eligibility" aria-labelledby="h-eligibility">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-eligibility">Can you apply?</h2>
+      <p>You can partner with ROOT if you are registered to distribute mutual funds in India.</p>
+    </div>
+    <div class="cards cards--2 path-cards">
+      <div class="info-card path-card">
+        <span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span>
+        <h3 class="h3">You're a registered distributor</h3>
+        <ul class="facts">
+          <li><span class="tile"><svg class="i"><use href="#i-cap"/></svg></span><span>NISM Series V-A certificate</span></li>
+          <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><span>An ARN (AMFI Registration Number), with your KYD (Know Your Distributor) checks complete</span></li>
+          <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span><span>An EUIN for each person in your team who deals with investors</span></li>
+        </ul>
+        <p>Individual distributors and distribution firms can apply. A firm applies with the firm's ARN. <mark class="ph" data-ph="partner-criteria">Any minimum experience, business size or location, to confirm</mark>.</p>
+        <a class="link" href="#s-apply">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="info-card path-card">
+        <span class="tile"><svg class="i"><use href="#i-cap"/></svg></span>
+        <h3 class="h3">New to distribution?</h3>
+        <ol class="facts">
+          <li><span class="tile"><svg class="i"><use href="#i-cap"/></svg></span><span>Pass NISM Series V-A, the certification exam for mutual fund distributors.</span></li>
+          <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><span>Complete KYD and apply to AMFI for your ARN.</span></li>
+          <li><span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span><span>Then apply to partner with ROOT.</span></li>
+        </ol>
+        <p><mark class="ph" data-ph="pre-arn-applicants">Whether you can apply to ROOT while you prepare, and any help Aikyam Wealth gives, to confirm</mark>.</p>
+        <div class="links">
+          <a class="link link--wrap" href="https://www.nism.ac.in/" rel="noopener">NISM <span class="link-tail">certification<svg class="i"><use href="#i-ne"/></svg></span></a>
+          <a class="link link--wrap" href="https://www.amfiindia.com/" rel="noopener">AMFI: become a mutual fund <span class="link-tail">distributor<svg class="i"><use href="#i-ne"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-payouts" aria-labelledby="h-payouts">
+  <div class="wrap split split--pay">
+    <div class="stack" style="--gap:28px">
+      <div class="stack" style="--gap:14px">
+        <h2 class="d2 node" id="h-payouts">How you are paid</h2>
+        <p class="lead">Fund houses pay distribution commission on regular plans. <span data-draft="partner-model">Aikyam Wealth shares it with you, as set out in your payout grid.</span></p>
+      </div>
+      <div class="stack" style="--gap:12px">
+        <h3 class="h3">Your payout</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Paid on</dt><dd>Regular plans your clients hold</dd></div>
+          <div><dt>Your share</dt><dd><mark class="ph" data-ph="payout-grid">Payout grid to confirm</mark></dd></div>
+          <div><dt>When you are paid</dt><dd><mark class="ph" data-ph="payout-cycle">Payout cycle and statement to confirm</mark></dd></div>
+        </dl>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="stack" style="--gap:12px">
+        <h3 class="h3">What joining costs you</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Joining fee</dt><dd><mark class="ph" data-ph="partner-fee">to confirm</mark></dd></div>
+          <div><dt>Security deposit</dt><dd><mark class="ph" data-ph="partner-deposit">to confirm</mark></dd></div>
+          <div><dt>Minimum business</dt><dd><mark class="ph" data-ph="partner-targets">to confirm</mark></dd></div>
+        </dl>
+        <p class="fine">You pay NISM and AMFI directly for your own certification and ARN.</p>
+      </div>
+    </div>
+    <div class="ui-stage ui-stage--panel money-stage">
+      <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-pay"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".12" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".12" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-pay)"/></svg>
+      <ol class="money-path" aria-label="How commission reaches you" data-draft="partner-model">
+        <li>
+          <div class="ui-card ui-mini" role="img" aria-label="Illustrative: your client invests in a regular plan">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-user"/></svg></span><div class="path-text"><span class="ui-label">Your client</span><b>Invests in a regular plan</b></div></div>
+            <span class="chip">Regular plan</span>
+          </div>
+          <i class="path-line" aria-hidden="true"></i>
+        </li>
+        <li>
+          <div class="ui-card ui-mini" role="img" aria-label="Illustrative: the fund house pays distribution commission, included in the plan's expense ratio">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-mf"/></svg></span><div class="path-text"><span class="ui-label">Fund house</span><b>Pays distribution commission</b><span>Included in the plan's expense ratio</span></div></div>
+          </div>
+          <i class="path-line" aria-hidden="true"></i>
+        </li>
+        <li>
+          <div class="ui-card ui-mini" role="img" aria-label="Illustrative: Aikyam Wealth receives it under its ARN">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-handshake"/></svg></span><div class="path-text"><span class="ui-label">Aikyam Wealth</span><b>Receives it under its ARN</b></div></div>
+          </div>
+          <i class="path-line" aria-hidden="true"></i>
+        </li>
+        <li>
+          <div class="ui-card ui-mini" role="img" aria-label="Illustrative: you receive your share, per your payout grid">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-rupee"/></svg></span><div class="path-text"><span class="ui-label">You</span><b>Your share, per your payout grid</b></div></div>
+          </div>
+        </li>
+      </ol>
+      <p class="ui-caption">Illustrative. Amounts depend on your clients' investments and your payout grid.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">From application to your first client</h2>
+      <p>What happens after you apply.</p>
+    </div>
+    <ol class="steps" style="--cols:4">
+      <li><span class="dot">1</span><h3 class="h3">Apply</h3><p>Leave your mobile number in the application form.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: application received"><div class="ui-row"><span class="ui-label">Application</span><span class="chip chip--gain">Received</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">We check your registration</h3><p>The Aikyam Wealth partner team calls you and checks your NISM certificate, ARN, KYD and EUIN.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: AMFI ARN verified"><div class="ui-row"><span class="ui-label">AMFI ARN</span><span class="chip chip--gain">Verified</span></div><b class="num">ARN-XXXXXX</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Sign your agreement</h3><p>Read and sign your partner agreement with Aikyam Wealth.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: partner agreement signed with Aikyam Wealth"><div class="ui-row"><span class="ui-label">Partner agreement</span><span class="chip chip--gain">Signed</span></div><b>Aikyam Wealth</b></div></li>
+      <li><span class="dot">4</span><h3 class="h3">Your first client invests</h3><p data-draft="partner-model">Your client completes KYC and invests in a regular plan, with your ARN on the investment.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: example client with an active SIP in a regular plan"><div class="ui-row"><span class="ui-label">Example client</span><span class="chip chip--gain">SIP active</span></div><b>Regular plan</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps are indicative and will be confirmed by Aikyam Wealth.</p>
+
+    <div class="docs docs--tiles">
+      <h3 class="h3">Keep these ready</h3>
+      <ul>
+        <li><span class="tile"><svg class="i"><use href="#i-cap"/></svg></span>NISM Series V-A certificate</li>
+        <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>ARN and KYD details</li>
+        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span>PAN</li>
+        <li><span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>Bank account for payouts</li>
+      </ul>
+    </div>
+
+    <p class="small steps-note">How long the checks take: <mark class="ph" data-ph="partner-approval-time">to confirm</mark>. Full document list, including for firms: <mark class="ph" data-ph="partner-documents">to confirm</mark>.</p>
+    <div class="band-cta"><a class="btn" href="#s-apply">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-agreement" aria-labelledby="h-agreement">
+  <div class="wrap">
+    <div class="split split--agree">
+      <div class="stack" style="--gap:22px">
+        <h2 class="d2 node" id="h-agreement">What you agree to</h2>
+        <p class="lead">You sign your partner agreement with Aikyam Wealth, and you follow AMFI's code of conduct for mutual fund distributors.</p>
+        <div class="ui-stage ui-stage--panel">
+          <div class="ui-card ui-list agree-card" role="img" aria-label="Illustrative summary of the partner agreement between you and Aikyam Wealth">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-doc"/></svg></span><span class="ui-label">Partner agreement</span></div>
+            <div class="ui-row"><span>Between</span><b>You and {{reg.wealth.name}}</b></div>
+            <div class="ui-row"><span>Aikyam Wealth's registration</span><b class="mono">AMFI ARN {{reg.wealth.arn}}</b></div>
+            <div class="ui-row"><span>Your registration</span><b>Your ARN, and EUINs for your team</b></div>
+            <div class="ui-row"><span>Rules you follow</span><b>AMFI code of conduct</b></div>
+            <div class="ui-row"><span>Your payouts</span><b>Set out in the agreement</b></div>
+          </div>
+          <p class="ui-caption">Illustrative. Aikyam Wealth shares the full agreement after the checks.</p>
+        </div>
+        <a class="link link--wrap" href="https://www.amfiindia.com/" rel="noopener">Check Aikyam Wealth's ARN on AMFI's <span class="link-tail">website<svg class="i"><use href="#i-ne"/></svg></span></a>
+      </div>
+      <div class="stack agree-side" style="--gap:16px">
+      <div class="cards cards--2">
+        <div class="info-card">
+          <span class="tile"><svg class="i"><use href="#i-check"/></svg></span>
+          <h3 class="h3">Always</h3>
+          <ul class="rule-list" data-draft="partner-conduct">
+            <li>Show your ARN and EUIN to clients and on every investment.</li>
+            <li>Tell clients they invest in regular plans, and what you earn from them.</li>
+            <li>Make sure each client's KYC is complete before they invest.</li>
+            <li>Explain each scheme's risk, using its riskometer and scheme documents.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <span class="tile"><svg class="i"><use href="#i-close"/></svg></span>
+          <h3 class="h3">Never</h3>
+          <ul class="rule-list" data-draft="partner-conduct">
+            <li>Promise returns, or say an investment cannot lose value.</li>
+            <li>Pass any part of your commission back to a client, or offer gifts to win business.</li>
+            <li>Take client money into your own account.</li>
+            <li>Switch a client's investments to earn more commission.</li>
+            <li>Use a title other than mutual fund distributor.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ph ph--block" data-ph="partner-code">Client text: Aikyam Wealth's partner code of conduct and the obligations in the partner agreement, including how partners may use the ROOT and Aikyam names</div>
+      <a class="link link--wrap" href="https://www.amfiindia.com/" rel="noopener">Read AMFI's code of conduct for <span class="link-tail">distributors<svg class="i"><use href="#i-ne"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions distributors ask</h2>
+      <p class="lead">Can't find yours? <a href="#s-apply">Leave your number</a> and the partner team will call you.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the Aikyam Wealth partner team on a call with a distributor</b><span>Real Aikyam staff, after a shoot. Mumbai office, daylight, notebook open; aubergine and white in frame. Crop 4:3.</span></figure>
+      <a class="link" href="/about/aikyam-wealth">About Aikyam Wealth<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="link" href="/partner">Partner with ROOT<svg class="i"><use href="#i-arrow"/></svg></a>
+      <p class="fine">Partner team: <mark class="ph" data-ph="partner-contact">email and phone to confirm</mark></p>
+    </div>
+    <div class="faq">
+      <details open><summary>Do my clients stay mine?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Your clients' investments are always held in their own names, <span data-draft="partner-model">and your ARN is recorded on each one</span>.</p>
+        <p><mark class="ph" data-ph="client-ownership">Who holds the client relationship, and whether Aikyam Wealth contacts your clients, to confirm</mark>.</p>
+      </div></details>
+      <details open><summary>What will my clients use to invest?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p data-draft="partner-model">Each client opens an investing account with Aikyam Wealth and completes KYC.</p>
+        <p><mark class="ph" data-ph="client-platform">How your clients invest and log in on ROOT, and whether they see your name, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can I bring my existing clients to ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p><mark class="ph" data-ph="client-transfer">Whether existing investments can move under the programme, and how, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>What tools and support do partners get?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p><mark class="ph" data-ph="partner-tools">Partner login, client reports, training and marketing material, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can I leave the programme later?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p><mark class="ph" data-ph="partner-exit">How you leave, and what happens to your clients' investments and your payouts, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can I also offer shares, IPOs and demat accounts?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>That is a separate programme. Authorised Persons work with Aikyam Capital, the stock broker behind ROOT, and are approved by the stock exchanges.</p>
+        <p><a class="link" href="/partner/authorised-person" data-event="switch_to_ap">See the Authorised Person Programme<svg class="i"><use href="#i-arrow"/></svg></a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:22px">
+      <span class="eyebrow">Distributor Partner Programme · {{reg.wealth.name}}</span>
+      <h2 class="d2 node" id="h-final">Ready to partner with ROOT?</h2>
+      <p class="lead">Apply with your mobile number. The partner team will call you to check your registration and talk you through the agreement.</p>
+      <div class="final-actions">
+        <a class="btn btn--light btn--lg" href="#s-apply">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/partner/authorised-person" data-event="switch_to_ap">See the Authorised Person Programme</a>
+      </div>
+    </div>
+    <figure class="img-slot final-visual" style="--ar:4/5"><svg class="i"><use href="#i-user"/></svg><b>Photo: a mutual fund distributor in his forties meeting a client couple at his office</b><span>A model with a release, never captioned as a ROOT partner (none exist before launch). Ludhiana or Pune feel, daylight, unhurried, papers on the desk, aubergine accents, crop 4:5. No charts, no cash, no trading screens.</span></figure>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you partner</h2>
+        <p>The Distributor Partner Programme is offered by {{reg.wealth.name}}. Partners must hold their own ARN and follow AMFI's code of conduct.</p>
+        <div class="ph ph--block" data-ph="partner-disclaimer">Client text: programme terms and partner disclosures from Aikyam compliance</div>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <a class="link" href="/legal/disclosures">See all disclosures<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<div class="form-card">
+  <h2 class="h3">Start your application</h2>
+  <form>
+    <div class="fgroup is-error">
+      <label for="st1-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st1-err"></span>
+      <span class="fhelp" id="st1-err">Enter a 10-digit mobile number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg" type="submit">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your details go to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its partner team can call you about the programme.</p>
+      <p class="fine">You join only after the checks and a signed partner agreement.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="consent-missing" data-label="Error: consent box not ticked (the box is required by site rule)">
+<div class="form-card">
+  <h2 class="h3">Start your application</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st2-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+    </div>
+    <div class="fgroup is-error">
+      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st2-err"><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+      <span class="fhelp" id="st2-err">Tick the box to let the partner team contact you.</span>
+    </div>
+    <button class="btn btn--lg" type="submit">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your details go to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its partner team can call you about the programme.</p>
+      <p class="fine">You join only after the checks and a signed partner agreement.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="submitting" data-label="Apply pressed, sending (button loading)">
+<div class="form-card">
+  <h2 class="h3">Start your application</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st3-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+      <span class="fhelp">The partner team will call you on this number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Apply as a distributor partner<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your details go to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its partner team can call you about the programme.</p>
+      <p class="fine">You join only after the checks and a signed partner agreement.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="success" data-label="Success: application received; the tracker marks Apply done and Checks active; the visitor stays on the page">
+<div class="ui-stage ui-stage--panel open-stage">
+  <ol class="track" aria-label="Becoming a partner: step 2 of 4">
+    <li class="is-done"><svg class="i"><use href="#i-check"/></svg>Apply</li>
+    <li class="is-on" aria-current="step">Checks</li>
+    <li>Agreement</li>
+    <li>First <span>client</span></li>
+  </ol>
+  <div class="form-card">
+    <h2 class="h3">Application received</h2>
+    <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>Thank you. The Aikyam Wealth partner team will call you on +91 98XXXXXX21.</b>Keep your NISM certificate and ARN details ready for the call.</div></div>
+    <a class="link" href="#s-eligibility">No ARN yet? See what you need first<svg class="i"><use href="#i-arrow"/></svg></a>
+    <p class="fine">You join only after the checks and a signed partner agreement.</p>
+  </div>
+</div>
+</template>
+
+<template data-state="already-applied" data-label="This number has already applied">
+<div class="form-card">
+  <h2 class="h3">You have already applied</h2>
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number has already applied.</b>The partner team will be in touch.</div></div>
+  <p class="xs"><a href="#s-apply">Use a different number</a></p>
+</div>
+</template>

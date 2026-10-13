@@ -1,0 +1,599 @@
+<!--page {"title": "Example Flexi Cap Fund: NAV, returns and risk | ROOT by Aikyam",
+          "description": "See Example Flexi Cap Fund's NAV, returns against its benchmark, riskometer, costs and holdings. Invest through Aikyam Wealth, an AMFI-registered distributor.",
+          "query": "example flexi cap fund",
+          "breadcrumb": [["Home", "/"], ["Invest", "/invest"], ["Mutual Funds", "/invest/mutual-funds"], ["Example Flexi Cap Fund", "/invest/mutual-funds/example-flexi-cap-fund"]],
+          "mbar": {"label": "Invest in this fund", "href": "#s-invest"},
+          "lint_allow": []} -->
+<style data-page>
+/* 29 Scheme Detail (golden, template B). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator,
+   Wave 1 golden promotions: data hero, data card, NAV chart, invest card, split family, paired bars, legend keys, dials,
+   composition card, stacked receipt rows, phone rules); only page-specific rules stay here. */
+/* no one-word last lines in the receipt's timing values */
+.page-scheme-detail .ui-receipt .ui-row span + span{text-wrap:pretty}
+/* closing h2 breaks into two even lines */
+#h-final{max-width:10em}
+/* states board: the hero copy at its page width */
+.states-board .hero-copy{max-width:40rem}
+</style>
+
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--data">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Managed by <span data-field="amc_name">Example Mutual Fund</span></span>
+      <h1 class="d1 d1--name" id="h-hero" data-field="scheme_name">Example Flexi Cap Fund</h1>
+      <div class="chip-row">
+        <span class="chip">Equity</span>
+        <span class="chip">Flexi cap</span>
+        <span class="chip">Regular plan</span>
+        <span class="chip">Growth</span>
+        <span class="chip chip-risk"><span class="riskometer" aria-hidden="true"><span class="scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on top"></i></span></span><span>Riskometer: <b data-field="riskometer">Very high</b></span></span>
+      </div>
+      <p class="lead" data-draft="category-line">Puts at least 65% in company shares, large, mid or small, in a mix its fund manager chooses.</p>
+      <div class="nav-row">
+        <div class="nav-val"><span class="label">NAV (price of one unit)</span><b class="num" data-field="nav">₹58.42</b></div>
+        <p class="src">NAV as on <span data-field="nav_date">09-Oct-2026</span> · Source: AMFI</p>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <section class="form-card invest-card" id="s-invest" aria-labelledby="h-invest">
+        <span class="label">Regular plan · distributed by {{reg.wealth.name}}</span>
+        <h2 class="h3" id="h-invest">Start a SIP or invest once</h2>
+        <div class="stack" style="--gap:10px">
+          <dl class="kv-list kv-list--row">
+            <div><dt>Minimum SIP</dt><dd data-field="min_sip">₹500 a month</dd></div>
+            <div><dt>Minimum one-time</dt><dd data-field="min_lumpsum">₹1,000</dd></div>
+            <div><dt>Exit load (if you sell early)</dt><dd data-field="exit_load">1% within 1 year</dd></div>
+          </dl>
+          <div class="data-foot">
+            <p class="src">Scheme terms as on <span data-field="terms_date">30-Sep-2026</span> · Source: the fund house</p>
+            <p class="illus">Illustrative data. Not real prices or returns.</p>
+          </div>
+        </div>
+        <form id="invest-form" action="/open-account/investing" method="post" data-event="account_start" data-form-entity="Aikyam Wealth">
+          <input type="hidden" name="scheme" value="example-flexi-cap-fund" data-field="scheme_code">
+          <div class="fgroup">
+            <label for="invest-mob">Mobile number</label>
+            <span class="field"><span class="pre">+91</span><input id="invest-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="invest-mob-help" required></span>
+            <span class="fhelp" id="invest-mob-help">We'll send a one-time password (OTP) to this number to open your investing account.</span>
+          </div>
+          <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+          <button class="btn btn--lg" type="submit" data-primary>Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
+          <div class="stack" style="--gap:0px">
+            <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+            <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+            <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+          </div>
+        </form>
+      </section>
+      <div class="hero-alt"><a class="link" href="#s-costs">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a></div>
+    </div>
+
+    <div class="hero-chart">
+      <figure class="data-card chart-card" aria-labelledby="chart-cap">
+        <div class="chart-top">
+          <figcaption class="label" id="chart-cap">NAV over the last year</figcaption>
+          <div class="tabs" role="tablist" aria-label="NAV range">
+            <button class="tab" type="button" role="tab" aria-selected="false">1M</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">6M</button>
+            <button class="tab" type="button" role="tab" aria-selected="true">1Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">3Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">5Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">All</button>
+          </div>
+        </div>
+        <div class="chart-plot">
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="nav-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C0F2F" stop-opacity=".14"/><stop offset="1" stop-color="#1C0F2F" stop-opacity="0"/></linearGradient></defs><path d="M0 8H600M0 192H600" fill="none" stroke="#D1D6DD" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><path fill="url(#nav-fill)" d="M0.0 111.3 L11.5 106.3 L23.1 99.0 L34.6 94.5 L46.2 89.3 L57.7 96.4 L69.2 100.6 L80.8 107.1 L92.3 100.5 L103.8 87.0 L115.4 78.5 L126.9 82.1 L138.5 92.8 L150.0 101.2 L161.5 110.9 L173.1 124.9 L184.6 130.8 L196.2 141.1 L207.7 146.6 L219.2 137.3 L230.8 132.8 L242.3 147.1 L253.8 166.3 L265.4 192.0 L276.9 184.6 L288.5 173.0 L300.0 162.4 L311.5 154.4 L323.1 142.8 L334.6 138.7 L346.2 146.5 L357.7 152.5 L369.2 143.9 L380.8 126.8 L392.3 117.0 L403.8 108.9 L415.4 106.5 L426.9 103.2 L438.5 108.9 L450.0 115.0 L461.5 104.0 L473.1 94.9 L484.6 83.4 L496.2 72.2 L507.7 67.6 L519.2 71.7 L530.8 79.5 L542.3 65.9 L553.8 49.9 L565.4 42.8 L576.9 34.1 L588.5 24.2 L600.0 8.0 L600 200 L0 200 Z"/><path fill="none" stroke="#1C0F2F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0.0 111.3 L11.5 106.3 L23.1 99.0 L34.6 94.5 L46.2 89.3 L57.7 96.4 L69.2 100.6 L80.8 107.1 L92.3 100.5 L103.8 87.0 L115.4 78.5 L126.9 82.1 L138.5 92.8 L150.0 101.2 L161.5 110.9 L173.1 124.9 L184.6 130.8 L196.2 141.1 L207.7 146.6 L219.2 137.3 L230.8 132.8 L242.3 147.1 L253.8 166.3 L265.4 192.0 L276.9 184.6 L288.5 173.0 L300.0 162.4 L311.5 154.4 L323.1 142.8 L334.6 138.7 L346.2 146.5 L357.7 152.5 L369.2 143.9 L380.8 126.8 L392.3 117.0 L403.8 108.9 L415.4 106.5 L426.9 103.2 L438.5 108.9 L450.0 115.0 L461.5 104.0 L473.1 94.9 L484.6 83.4 L496.2 72.2 L507.7 67.6 L519.2 71.7 L530.8 79.5 L542.3 65.9 L553.8 49.9 L565.4 42.8 L576.9 34.1 L588.5 24.2 L600.0 8.0"/></svg>
+          <div class="chart-y"><span>High <b data-field="nav_high">₹58.42</b></span><span>Low <b data-field="nav_low">₹49.10</b></span></div>
+          <div class="chart-x"><span>Oct 2025</span><span>Oct 2026</span></div>
+        </div>
+      </figure>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-returns" aria-labelledby="h-returns">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-returns">How has it done?</h2>
+      <p>Past returns of this plan, next to its benchmark. Past returns are not a forecast.</p>
+    </div>
+    <div class="tabs band-tabs" role="tablist" aria-label="Return type">
+      <button class="tab" type="button" role="tab" aria-selected="true">One-time investment</button>
+      <button class="tab" type="button" role="tab" aria-selected="false">SIP</button>
+    </div>
+    <div class="split split--data split--returns">
+      <figure class="data-card pairbars" aria-labelledby="pb-cap">
+        <figcaption class="pb-legend" id="pb-cap">
+          <span><i class="sw" aria-hidden="true"></i><span>This fund (Regular, Growth)</span></span>
+          <span><i class="sw sw--bm" aria-hidden="true"></i><span>Benchmark: <span data-field="benchmark_name">Example Broad Market Index (TRI)</span></span></span>
+        </figcaption>
+        <div class="pb-rows">
+          <div class="pb-row">
+            <span class="pb-label">1 year</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:40.3%"></i><b data-field="return_1y"><span class="sr-only">This fund: </span>9.84%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:43.5%"></i><b data-field="bm_return_1y"><span class="sr-only">Benchmark: </span>10.62%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">3 years</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:64%"></i><b data-field="return_3y"><span class="sr-only">This fund: </span>15.61%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:61.1%"></i><b data-field="bm_return_3y"><span class="sr-only">Benchmark: </span>14.90%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">5 years</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:70.2%"></i><b data-field="return_5y"><span class="sr-only">This fund: </span>17.12%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:71.5%"></i><b data-field="bm_return_5y"><span class="sr-only">Benchmark: </span>17.45%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Since launch<span data-field="launch_date">14-Jan-2013</span></span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:56.2%"></i><b data-field="return_since_launch"><span class="sr-only">This fund: </span>13.71%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:52.3%"></i><b data-field="bm_return_since_launch"><span class="sr-only">Benchmark: </span>12.76%</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="data-foot">
+          <p class="src">Returns as on <span data-field="returns_date">09-Oct-2026</span>, worked out from daily NAVs by <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark>.</p>
+          <p class="fine">Past performance does not guarantee future returns.</p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </figure>
+      <div class="info-card read-card">
+        <span class="tile"><svg class="i"><use href="#i-book"/></svg></span>
+        <h3 class="h3">How to read this</h3>
+        <p><b>CAGR:</b> the average yearly growth rate over the period. Returns for 1 year are a simple change.</p>
+        <p><b>Benchmark:</b> the index this fund measures itself against.</p>
+        <p><b>Since launch:</b> the CAGR from the day the fund started.</p>
+        <p><b>Regular plan:</b> its costs include the distributor's commission.</p>
+        <div class="links"><a class="link" href="/invest/mutual-funds/explore" data-query="category=flexi-cap" data-event="explore_funds">Compare flexi cap funds<svg class="i"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-riskometer" aria-labelledby="h-riskometer">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-riskometer">How much risk does it carry?</h2>
+      <p>Every scheme sits on one of six risk levels, from Low to Very high.</p>
+    </div>
+    <div class="split split--half">
+      <div class="ui-stage ui-stage--panel dial-stage">
+        <div class="dials">
+          <figure class="dial">
+            <svg viewBox="0 0 200 108" aria-hidden="true" focusable="false"><path fill="#D6D4DA" d="M10.00 100.00A90 90 0 0 1 21.44 56.09L49.37 71.70A58 58 0 0 0 42.00 100.00Z"/><path fill="#B6B2BC" d="M22.69 53.92A90 90 0 0 1 53.92 22.69L70.30 50.18A58 58 0 0 0 50.18 70.30Z"/><path fill="#97919F" d="M56.09 21.44A90 90 0 0 1 98.74 10.01L99.19 42.01A58 58 0 0 0 71.70 49.37Z"/><path fill="#726A7E" d="M101.26 10.01A90 90 0 0 1 143.91 21.44L128.30 49.37A58 58 0 0 0 100.81 42.01Z"/><path fill="#493F59" d="M146.08 22.69A90 90 0 0 1 177.31 53.92L149.82 70.30A58 58 0 0 0 129.70 50.18Z"/><path fill="#1C0F2F" d="M178.56 56.09A90 90 0 0 1 190.00 100.00L158.00 100.00A58 58 0 0 0 150.63 71.70Z"/><path fill="#1C0F2F" d="M98.71 95.17L175.34 79.81L101.29 104.83Z"/><circle cx="100" cy="100" r="7" fill="#1C0F2F"/><circle cx="100" cy="100" r="3" fill="#C19C2F"/></svg>
+            <figcaption>This fund<b data-field="riskometer">Very high</b></figcaption>
+          </figure>
+          <figure class="dial">
+            <svg viewBox="0 0 200 108" aria-hidden="true" focusable="false"><path fill="#D6D4DA" d="M10.00 100.00A90 90 0 0 1 21.44 56.09L49.37 71.70A58 58 0 0 0 42.00 100.00Z"/><path fill="#B6B2BC" d="M22.69 53.92A90 90 0 0 1 53.92 22.69L70.30 50.18A58 58 0 0 0 50.18 70.30Z"/><path fill="#97919F" d="M56.09 21.44A90 90 0 0 1 98.74 10.01L99.19 42.01A58 58 0 0 0 71.70 49.37Z"/><path fill="#726A7E" d="M101.26 10.01A90 90 0 0 1 143.91 21.44L128.30 49.37A58 58 0 0 0 100.81 42.01Z"/><path fill="#493F59" d="M146.08 22.69A90 90 0 0 1 177.31 53.92L149.82 70.30A58 58 0 0 0 129.70 50.18Z"/><path fill="#1C0F2F" d="M178.56 56.09A90 90 0 0 1 190.00 100.00L158.00 100.00A58 58 0 0 0 150.63 71.70Z"/><path fill="#1C0F2F" d="M98.71 95.17L175.34 79.81L101.29 104.83Z"/><circle cx="100" cy="100" r="7" fill="#1C0F2F"/><circle cx="100" cy="100" r="3" fill="#C19C2F"/></svg>
+            <figcaption>Its benchmark<b data-field="bm_riskometer">Very high</b></figcaption>
+          </figure>
+        </div>
+        <p class="small">Levels: Low, Low to moderate, Moderate, Moderately high, High, Very high.</p>
+        <div class="data-foot">
+          <p class="src">Riskometer as on <span data-field="riskometer_date">30-Sep-2026</span> · Source: the fund house</p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-info"/></svg></span>
+        <h3 class="h3">What Very high means</h3>
+        <p data-draft="risk-level">The value of your investment can rise and fall a lot, especially over short periods.</p>
+        <p>The fund house says it suits investors seeking:</p>
+        <ul data-field="product_label">
+          <li>Long-term capital growth</li>
+          <li>Investment mainly in shares of companies of all sizes</li>
+        </ul>
+        <p>You decide if it suits you.</p>
+        <h4 class="h4">Read the scheme documents first</h4>
+        <div class="links">
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="sid_url">Scheme Information Document (SID)<svg class="i"><use href="#i-ne"/></svg></a>
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="kim_url">Key Information Memorandum (KIM)<svg class="i"><use href="#i-ne"/></svg></a>
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="factsheet_url">Latest factsheet<svg class="i"><use href="#i-ne"/></svg></a>
+          <a class="link" href="/tools/risk-profiler">Not sure? Check your risk profile<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-costs" aria-labelledby="h-costs">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-costs">What will I pay?</h2>
+      <p>The fund's own costs come out of its NAV. Here's what they are, and how Aikyam Wealth is paid.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-chart"/></svg></span>
+        <span class="label">Expense ratio · this plan</span>
+        <div class="num" data-field="ter">1.68%</div>
+        <p>The fund's yearly running cost, taken from its assets, so it's already in the NAV.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <span class="label">Exit load</span>
+        <div class="num" data-field="exit_load">1%</div>
+        <p>If you sell units within 1 year of buying. Nil after that.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span>
+        <span class="label">How Aikyam Wealth is paid</span>
+        <div class="num num--word">Commission</div>
+        <p>From the fund house, included in this plan's expense ratio.</p>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="data-foot price-notes">
+      <p class="src">Expense ratio and exit load as on <span data-field="terms_date">30-Sep-2026</span> · Source: the fund house</p>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <h3 class="h3">Buying through ROOT</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Opening your investing account</dt><dd><mark class="ph" data-ph="wealth-account-charge">charge to confirm</mark></dd></div>
+          <div><dt>Transaction charge</dt><dd><mark class="ph" data-ph="mf-transaction-charge">charge to confirm</mark></dd></div>
+        </dl>
+        <p class="small">The transaction charge is taken when you buy units, if it applies.</p>
+        <a class="link" href="/pricing">See all charges<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="ui-card ui-receipt ui-receipt--stack">
+        <span class="ui-label">When each cost applies</span>
+        <div class="ui-row"><span>When you buy</span><span>Stamp duty, set by the government</span></div>
+        <div class="ui-row"><span>While you hold</span><span>Expense ratio, within SEBI limits, already in the NAV</span></div>
+        <div class="ui-row"><span>When you sell</span><span>Exit load if it applies, and tax on any gains</span></div>
+        <p class="small">The scheme documents show every figure.</p>
+      </div>
+    </div>
+    <div class="band-cta"><a class="link" href="#s-invest">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-portfolio" aria-labelledby="h-portfolio">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-portfolio">What does it own?</h2>
+      <p>The mix changes as the fund manager buys and sells.</p>
+    </div>
+    <div class="split split--data split--stretch">
+      <div class="data-card">
+        <figure class="mix" aria-labelledby="mix-cap">
+          <h3 class="h4" id="mix-cap">By company size</h3>
+          <div class="splitbar" aria-hidden="true" data-field="mcap_split"><i style="--w:62"></i><i style="--w:21"></i><i style="--w:11"></i><i style="--w:6"></i></div>
+          <figcaption class="mix-legend">
+            <span><i class="sw" aria-hidden="true"></i>Large <b>62.0%</b></span>
+            <span><i class="sw sw--2" aria-hidden="true"></i>Mid <b>21.0%</b></span>
+            <span><i class="sw sw--3" aria-hidden="true"></i>Small <b>11.0%</b></span>
+            <span><i class="sw sw--4" aria-hidden="true"></i>Cash and others <b>6.0%</b></span>
+          </figcaption>
+        </figure>
+        <div class="barcols">
+          <div>
+            <h3 class="h4">Top 5 holdings</h3>
+            <ol class="barrows" data-field="holdings">
+              <li><span>Example Bank Ltd</span><b>8.4%</b><span class="br-track" aria-hidden="true"><i style="--w:84%"></i></span></li>
+              <li><span>Sample Software Ltd</span><b>6.1%</b><span class="br-track" aria-hidden="true"><i style="--w:61%"></i></span></li>
+              <li><span>Demo Energy Ltd</span><b>5.2%</b><span class="br-track" aria-hidden="true"><i style="--w:52%"></i></span></li>
+              <li><span>Example Consumer Ltd</span><b>4.0%</b><span class="br-track" aria-hidden="true"><i style="--w:40%"></i></span></li>
+              <li><span>Sample Pharma Ltd</span><b>3.3%</b><span class="br-track" aria-hidden="true"><i style="--w:33%"></i></span></li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="h4">Top 5 sectors</h3>
+            <ol class="barrows" data-field="sectors">
+              <li><span>Financial services</span><b>31.2%</b><span class="br-track" aria-hidden="true"><i style="--w:78%"></i></span></li>
+              <li><span>Information technology</span><b>12.4%</b><span class="br-track" aria-hidden="true"><i style="--w:31%"></i></span></li>
+              <li><span>Energy</span><b>9.1%</b><span class="br-track" aria-hidden="true"><i style="--w:22.8%"></i></span></li>
+              <li><span>Consumer goods</span><b>8.3%</b><span class="br-track" aria-hidden="true"><i style="--w:20.8%"></i></span></li>
+              <li><span>Healthcare</span><b>7.0%</b><span class="br-track" aria-hidden="true"><i style="--w:17.5%"></i></span></li>
+            </ol>
+          </div>
+        </div>
+        <a class="link link--wrap" href="https://www.example.com/" rel="noopener" data-field="factsheet_url">See all holdings in the latest <span class="link-tail">factsheet<svg class="i"><use href="#i-ne"/></svg></span></a>
+        <div class="data-foot">
+          <p class="src">Portfolio as on <span data-field="portfolio_date">30-Sep-2026</span>, updated monthly · Source: <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark></p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+      <div class="info-card facts-card">
+        <h3 class="h3">Fund facts</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Fund house</dt><dd data-field="amc_name">Example Mutual Fund (manages this scheme)</dd></div>
+          <div><dt>Fund managers</dt><dd data-field="managers">A. Example (since Apr 2019), B. Sample (since Jul 2022)</dd></div>
+          <div><dt>Launched</dt><dd data-field="launch_date">14-Jan-2013</dd></div>
+          <div><dt>Fund size (money it manages)</dt><dd data-field="aum">₹12,480 Cr</dd></div>
+          <div><dt>Benchmark</dt><dd data-field="benchmark_name">Example Broad Market Index (TRI)</dd></div>
+          <div><dt>Plan and option</dt><dd>Regular plan, Growth</dd></div>
+          <div><dt>Lock-in</dt><dd data-field="lock_in">None</dd></div>
+        </dl>
+        <p>Aikyam Wealth distributes this fund. The fund house manages it.</p>
+        <div class="data-foot">
+          <p class="src">Fund facts as on <span data-field="facts_date">30-Sep-2026</span> · Source: <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark></p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+    </div>
+    <div class="band-cta"><a class="link" href="#s-invest">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions about this fund.</h2>
+      <p class="lead">Can't find yours? <a href="/contact">Talk to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the ROOT support team on a call at their desk</b><span>Art direction: real Aikyam staff (shoot to come), warm daylight, relaxed and attentive, eye level, 4:3</span></figure>
+      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="faq">
+      <details open><summary>Is this a regular plan, and what does Aikyam Wealth earn?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Yes. ROOT offers regular plans, sold through {{reg.wealth.name}} as your mutual fund distributor. The fund house pays Aikyam Wealth a commission, which is included in this plan's expense ratio.</p>
+        <p>Its ARN (AMFI registration number) is {{reg.wealth.arn}}. You can check it yourself on <a href="https://www.amfiindia.com/" rel="noopener">AMFI's website</a>.</p>
+        <p><a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a></p>
+      </div></details>
+      <details><summary>Which NAV will I get if I invest today?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>You get the NAV of the business day on which your money reaches the fund house before the cut-off time SEBI sets.</p>
+        <p>Order times on ROOT: <mark class="ph" data-ph="nav-cutoff">to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Growth or IDCW: what's the difference?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>This page shows the Growth option: the fund reinvests what it earns, and that shows in the NAV.</p>
+        <p>With IDCW (income distribution cum capital withdrawal), the fund may pay out part of the NAV, which can include your own capital. The NAV falls by the amount paid out, and payouts are not guaranteed.</p>
+      </div></details>
+      <details><summary>How are my gains taxed?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Gains on mutual fund units are taxed as capital gains when you sell. The rate depends on the type of fund and how long you held the units, and tax rules can change.</p>
+        <p>Current tax treatment: <mark class="ph" data-ph="mf-tax">to confirm with compliance</mark>.</p>
+      </div></details>
+      <details><summary>How do I raise a complaint?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Write to <mark class="ph" data-ph="wealth-grievance">email to confirm</mark>. If you are not satisfied with the response: <mark class="ph" data-ph="wealth-escalation">to confirm with compliance</mark>.</p>
+        <p>Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p><a href="/legal/grievance-redressal">How we handle complaints</a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Regular plan · {{reg.wealth.name}}</span>
+      <h2 class="d2 node" id="h-final">Invest in this fund at your own pace.</h2>
+      <p class="lead">Open your investing account on your phone or computer, then start a SIP or invest all at once.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="#s-invest">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/invest/mutual-funds/explore" data-query="category=flexi-cap" data-event="explore_funds">Compare flexi cap funds</a>
+      </div>
+      <p class="fine">Already investing with ROOT? Choose this fund at <mark class="ph" data-ph="wealth-platform">where you invest, to confirm</mark>.</p>
+    </div>
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: investing account active">
+        <span class="ui-label">Investing account</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>KYC verified</span><svg class="i i--sm"><use href="#i-check"/></svg></div>
+        <div class="ui-row"><span>Bank account</span><span>XXXXXX4321</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: setting up a SIP in Example Flexi Cap Fund">
+        <span class="ui-label">Start a SIP · Regular plan</span>
+        <span class="ui-big">Example Flexi Cap Fund</span>
+        <div class="ui-row"><span>Category</span><b>Equity: flexi cap</b></div>
+        <div class="ui-row"><span>Frequency</span><b>Monthly</b></div>
+        <div class="ui-row"><span>Amount</span><b>You choose</b></div>
+        <span class="ui-pill">Start SIP</span>
+      </div>
+      <p class="ui-caption">Illustrative screens. Example names, not real schemes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p>Scheme data: NAV from AMFI; returns, portfolio, riskometer and costs from <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark> and the fund house, as on the dates shown with each figure. Past performance does not guarantee future returns.</p>
+        <p data-draft="not-advice">These are facts about the scheme from the fund house and our data provider. They are not a recommendation: you decide which funds to invest in.</p>
+        <a class="link link--wrap" href="/legal/disclosures">Disclosures and Investor <span class="link-tail">Charter<svg class="i"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<div class="hero-side">
+<section class="form-card invest-card">
+  <span class="label">Regular plan · distributed by {{reg.wealth.name}}</span>
+  <h2 class="h3">Start a SIP or invest once</h2>
+  <div class="stack" style="--gap:10px">
+    <dl class="kv-list kv-list--row">
+      <div><dt>Minimum SIP</dt><dd>₹500 a month</dd></div>
+      <div><dt>Minimum one-time</dt><dd>₹1,000</dd></div>
+      <div><dt>Exit load (if you sell early)</dt><dd>1% within 1 year</dd></div>
+    </dl>
+    <div class="data-foot">
+      <p class="src">Scheme terms as on 30-Sep-2026 · Source: the fund house</p>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+  <form>
+    <div class="fgroup is-error">
+      <label for="st1-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st1-err"></span>
+      <span class="fhelp" id="st1-err">Enter a 10-digit mobile number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg" type="submit">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</section>
+</div>
+</template>
+
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<div class="hero-side">
+<section class="form-card invest-card">
+  <span class="label">Regular plan · distributed by {{reg.wealth.name}}</span>
+  <h2 class="h3">Start a SIP or invest once</h2>
+  <div class="stack" style="--gap:10px">
+    <dl class="kv-list kv-list--row">
+      <div><dt>Minimum SIP</dt><dd>₹500 a month</dd></div>
+      <div><dt>Minimum one-time</dt><dd>₹1,000</dd></div>
+      <div><dt>Exit load (if you sell early)</dt><dd>1% within 1 year</dd></div>
+    </dl>
+    <div class="data-foot">
+      <p class="src">Scheme terms as on 30-Sep-2026 · Source: the fund house</p>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+  <form>
+    <div class="fgroup">
+      <label for="st2-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+    </div>
+    <div class="fgroup is-error">
+      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st2-err"><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+      <span class="fhelp" id="st2-err">Tick the box to continue.</span>
+    </div>
+    <button class="btn btn--lg" type="submit">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</section>
+</div>
+</template>
+
+<template data-state="submitting" data-label="Invest in this fund pressed: sending the number (button loading)">
+<div class="hero-side">
+<section class="form-card invest-card">
+  <span class="label">Regular plan · distributed by {{reg.wealth.name}}</span>
+  <h2 class="h3">Start a SIP or invest once</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st3-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+      <span class="fhelp">We'll send a one-time password (OTP) to this number to open your investing account.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</section>
+</div>
+</template>
+
+<template data-state="handoff-otp-sent" data-label="Success: Start Investing (/open-account/investing) opens in its OTP-sent state with this number and consent carried over; the scheme travels in a hidden field; resend timer running">
+<div class="ui-stage ui-stage--panel open-stage">
+  <ol class="track" aria-label="Opening your investing account: step 1 of 4">
+    <li class="is-on" aria-current="step">Mobile</li>
+    <li>PAN</li>
+    <li>Aadhaar</li>
+    <li>Bank and <span>e-sign</span></li>
+  </ol>
+  <div class="form-card">
+    <h2 class="h3">Enter the OTP</h2>
+    <p class="small">We sent it to +91 98XXXXXX21. <a href="/open-account/investing">Change number</a></p>
+    <form>
+      <div class="fgroup">
+        <span class="flabel">One-time password</span>
+        <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+        <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
+      </div>
+      <p class="xs">Didn't get it? Resend in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+      <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+      <div class="stack" style="--gap:0px">
+        <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+        <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+      </div>
+    </form>
+  </div>
+</div>
+</template>
+
+<template data-state="range-5y" data-label="NAV chart, 5Y range selected: redrawn from 5 years ago, High and Low labels and months updated">
+<div class="hero-chart">
+  <figure class="data-card chart-card">
+    <div class="chart-top">
+      <figcaption class="label">NAV over the last 5 years</figcaption>
+      <div class="tabs" role="tablist" aria-label="NAV range">
+        <button class="tab" type="button" role="tab" aria-selected="false">1M</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">6M</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">1Y</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">3Y</button>
+        <button class="tab" type="button" role="tab" aria-selected="true">5Y</button>
+        <button class="tab" type="button" role="tab" aria-selected="false">All</button>
+      </div>
+    </div>
+    <div class="chart-plot">
+      <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="nav-fill-5y" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C0F2F" stop-opacity=".14"/><stop offset="1" stop-color="#1C0F2F" stop-opacity="0"/></linearGradient></defs><path d="M0 8H600M0 192H600" fill="none" stroke="#D1D6DD" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><path fill="url(#nav-fill-5y)" d="M0.0 192.0 L10.0 189.6 L20.0 182.8 L30.0 180.7 L40.0 177.1 L50.0 173.7 L60.0 170.7 L70.0 172.3 L80.0 175.6 L90.0 174.7 L100.0 177.1 L110.0 171.8 L120.0 165.4 L130.0 164.0 L140.0 157.5 L150.0 160.6 L160.0 161.6 L170.0 160.8 L180.0 163.8 L190.0 155.2 L200.0 151.8 L210.0 145.6 L220.0 139.9 L230.0 135.2 L240.0 126.8 L250.0 122.8 L260.0 115.7 L270.0 111.9 L280.0 108.7 L290.0 103.3 L300.0 99.2 L310.0 102.3 L320.0 106.3 L330.0 108.4 L340.0 99.6 L350.0 94.9 L360.0 86.5 L370.0 83.0 L380.0 74.4 L390.0 77.7 L400.0 80.3 L410.0 79.7 L420.0 84.2 L430.0 74.6 L440.0 69.1 L450.0 62.4 L460.0 53.9 L470.0 48.0 L480.0 38.2 L490.0 33.4 L500.0 28.9 L510.0 38.5 L520.0 51.9 L530.0 61.7 L540.0 55.1 L550.0 43.7 L560.0 34.4 L570.0 25.4 L580.0 17.2 L590.0 14.3 L600.0 8.0 L600 200 L0 200 Z"/><path fill="none" stroke="#1C0F2F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0.0 192.0 L10.0 189.6 L20.0 182.8 L30.0 180.7 L40.0 177.1 L50.0 173.7 L60.0 170.7 L70.0 172.3 L80.0 175.6 L90.0 174.7 L100.0 177.1 L110.0 171.8 L120.0 165.4 L130.0 164.0 L140.0 157.5 L150.0 160.6 L160.0 161.6 L170.0 160.8 L180.0 163.8 L190.0 155.2 L200.0 151.8 L210.0 145.6 L220.0 139.9 L230.0 135.2 L240.0 126.8 L250.0 122.8 L260.0 115.7 L270.0 111.9 L280.0 108.7 L290.0 103.3 L300.0 99.2 L310.0 102.3 L320.0 106.3 L330.0 108.4 L340.0 99.6 L350.0 94.9 L360.0 86.5 L370.0 83.0 L380.0 74.4 L390.0 77.7 L400.0 80.3 L410.0 79.7 L420.0 84.2 L430.0 74.6 L440.0 69.1 L450.0 62.4 L460.0 53.9 L470.0 48.0 L480.0 38.2 L490.0 33.4 L500.0 28.9 L510.0 38.5 L520.0 51.9 L530.0 61.7 L540.0 55.1 L550.0 43.7 L560.0 34.4 L570.0 25.4 L580.0 17.2 L590.0 14.3 L600.0 8.0"/></svg>
+      <div class="chart-y"><span>High <b>₹58.42</b></span><span>Low <b>₹26.51</b></span></div>
+      <div class="chart-x"><span>Oct 2021</span><span>Oct 2026</span></div>
+    </div>
+  </figure>
+  <p class="illus">Illustrative data. Not real prices or returns.</p>
+</div>
+</template>
+
+<template data-state="returns-sip" data-label="Returns, SIP tab selected (shown only if compliance allows SIP returns; values come from the data feed)">
+<div class="stack" style="--gap:24px">
+  <div class="tabs" role="tablist" aria-label="Return type">
+    <button class="tab" type="button" role="tab" aria-selected="false">One-time investment</button>
+    <button class="tab" type="button" role="tab" aria-selected="true">SIP</button>
+  </div>
+  <figure class="data-card pairbars">
+    <figcaption class="pb-legend">
+      <span><i class="sw" aria-hidden="true"></i><span>This fund (Regular, Growth)</span></span>
+      <span><i class="sw sw--bm" aria-hidden="true"></i><span>Benchmark: Example Broad Market Index (TRI)</span></span>
+    </figcaption>
+    <div class="pb-rows">
+      <div class="pb-row"><span class="pb-label">1 year</span><div class="pb-bars"><div class="pb-bar"><b><mark class="ph" data-ph="sip-returns">SIP return from the feed</mark></b></div><div class="pb-bar pb-bar--bm"><b><span aria-label="Not available">-</span></b></div></div></div>
+      <div class="pb-row"><span class="pb-label">3 years</span><div class="pb-bars"><div class="pb-bar"><b><mark class="ph" data-ph="sip-returns">SIP return from the feed</mark></b></div><div class="pb-bar pb-bar--bm"><b><span aria-label="Not available">-</span></b></div></div></div>
+      <div class="pb-row"><span class="pb-label">5 years</span><div class="pb-bars"><div class="pb-bar"><b><mark class="ph" data-ph="sip-returns">SIP return from the feed</mark></b></div><div class="pb-bar pb-bar--bm"><b><span aria-label="Not available">-</span></b></div></div></div>
+    </div>
+    <div class="data-foot">
+      <p class="src">SIP returns as on 09-Oct-2026, worked out by <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark>. Format: <mark class="ph" data-ph="sip-returns-format">to confirm with compliance</mark>.</p>
+      <p class="fine">Past performance does not guarantee future returns.</p>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </figure>
+</div>
+</template>
+
+<template data-state="option-idcw" data-label="IDCW option chosen (only if ROOT offers IDCW beside Growth): chip and NAV change; the IDCW NAV comes from the feed">
+<div class="hero-copy">
+  <div class="chip-row">
+    <span class="chip">Equity</span>
+    <span class="chip">Flexi cap</span>
+    <span class="chip">Regular plan</span>
+    <span class="chip">IDCW</span>
+    <span class="chip chip-risk"><span class="riskometer" aria-hidden="true"><span class="scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on top"></i></span></span><span>Riskometer: <b>Very high</b></span></span>
+  </div>
+  <div class="nav-row">
+    <div class="nav-val"><span class="label">NAV (price of one unit)</span><b class="num"><mark class="ph" data-ph="idcw-nav">IDCW NAV from the feed</mark></b></div>
+    <p class="src">NAV as on 09-Oct-2026 · Source: AMFI</p>
+  </div>
+  <p class="small">IDCW means income distribution cum capital withdrawal: the fund may pay out part of the NAV.</p>
+</div>
+</template>

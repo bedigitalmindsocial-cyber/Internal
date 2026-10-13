@@ -1,0 +1,17 @@
+{
+ "page": "29-scheme-detail",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 0,
+ "overflow": false,
+ "slices": {
+  "desktop": 6,
+  "mobile": 9
+ },
+ "states": 7,
+ "placeholders": 15,
+ "notes": [],
+ "sha": "2705738c72ce",
+ "first_screen_placeholders": []
+}

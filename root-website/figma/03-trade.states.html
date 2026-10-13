@@ -1,0 +1,2074 @@
+<!doctype html>
+<!-- ROOT by Aikyam · page 03 of 75 · Trade · states board · template A · entity Capital
+     Built 13-Oct-2026 from pages/src/03-trade.html · page memory: memory/pages/03-trade.md
+     DRAFT for design review and Figma import. Exchange advertisement filing: required before publication (not filed).
+     Not for publication until Aikyam compliance approves. -->
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>States: Online share trading: stocks, ETFs and IPOs | ROOT by Aikyam</title>
+<meta name="description" content="Interaction states for the designer">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Red+Hat+Mono:wght@500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+<style>
+/* ROOT by Aikyam · website theme v1
+   Layout: a 1200px column on white and Mist bands; a 1px gold "root line" runs down the left gutter and every section heading sits on a node.
+   Single light world by decision (light and calm). Colours are set explicitly so the page reads the same on any host theme. */
+:root{
+  color-scheme: light;
+  /* colour: from the ROOT logo files */
+  --aub:#1C0F2F;          /* ink: every heading, button and icon */
+  --aub-80:#3A2E4B;       /* body copy */
+  --aub-60:#5F5571;       /* secondary copy, captions */
+  --aub-08:rgba(28,15,47,.08);
+  --aub-04:rgba(28,15,47,.04);
+  --teal:#0C2229;
+  --gold:#C19C2F;         /* spark only: mark, root line, nodes, one icon detail */
+  --gold-deep:#A38125;
+  --gold-wash:#F8F2E2;
+  --paper:#FFFFFF;
+  --mist:#F3F5F8;         /* section band, from logo grey #E2E8EF */
+  --mist-2:#E9EDF2;
+  --line:#E2E8EF;         /* hairlines, logo light grey */
+  --line-2:#D1D6DD;       /* control borders, logo mid grey */
+  --gain:#0B7A55; --gain-bg:#E6F4EE;
+  --loss:#B4352B; --loss-bg:#FBEDEB;
+  --warn:#7A5A0E; --warn-bg:#FBF4E2;
+  --info-bg:#EEF0F6;
+  --on-dark:#F4F1F7; --on-dark-2:#C9C1D4; --dark-line:rgba(226,232,239,.18);
+  --grad:linear-gradient(100deg,#1C0F2F 0%,#170C27 48%,#0C2229 100%);
+
+  /* type */
+  --serif:"Tiro Devanagari Hindi", "Noto Serif Devanagari", Georgia, "Times New Roman", serif;
+  --sans:"Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"Red Hat Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-d1:clamp(2.45rem, 1.35rem + 3.4vw, 4rem);
+  --fs-d2:clamp(1.9rem, 1.35rem + 1.7vw, 2.65rem);
+  --fs-d3:clamp(1.45rem, 1.2rem + .7vw, 1.75rem);
+  --fs-h3:1.2rem;
+  --fs-lead:1.2rem;
+  --fs-body:1.0625rem;
+  --fs-sm:.9375rem;
+  --fs-xs:.8125rem;
+
+  /* shape and depth */
+  --r-card:16px; --r-ctl:10px; --r-tile:12px; --r-pill:999px;
+  --shadow-1:0 1px 2px rgba(28,15,47,.05), 0 8px 24px -6px rgba(28,15,47,.10);
+  --shadow-2:0 2px 4px rgba(28,15,47,.06), 0 20px 44px -10px rgba(28,15,47,.20);
+  --shadow-pop:0 2px 6px rgba(28,15,47,.08), 0 24px 56px -12px rgba(28,15,47,.28);
+
+  /* space */
+  --gutter:clamp(20px, 5vw, 64px);
+  --wrap:min(1200px, 100% - 2 * var(--gutter));
+  --section-y:clamp(64px, 8.5vw, 112px);
+  --spine-x:calc((100% - var(--wrap)) / 2 - 36px);
+
+  /* motion */
+  --ease-state:cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter:cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:150ms; --t-base:200ms; --t-enter:450ms;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{margin:0; background:var(--paper); color:var(--aub-80); font:400 var(--fs-body)/1.6 var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+::selection{background:var(--gold-wash); color:var(--aub)}
+img,svg{display:block; max-width:100%}
+a{color:var(--aub); text-decoration-color:rgba(193,156,47,.6); text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{text-decoration-color:var(--aub)}
+:focus-visible{outline:2px solid var(--aub); outline-offset:3px; border-radius:6px}
+h1,h2,h3,h4{color:var(--aub); margin:0; text-wrap:balance}
+p{margin:0; text-wrap:pretty}
+ul,ol{margin:0; padding:0}
+button{font:inherit; color:inherit}
+html{scrollbar-color:var(--line-2) transparent}
+.num,.tnum{font-variant-numeric:tabular-nums lining-nums}
+.sr-only{position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* layout */
+.wrap{width:var(--wrap); margin-inline:auto}
+.band{padding-block:var(--section-y); position:relative}
+.band--mist{background:var(--mist)}
+.band--tight{padding-block:clamp(40px, 5vw, 64px)}
+.band--dark{background:var(--grad); color:var(--on-dark-2)}
+.band--dark h2,.band--dark h3{color:var(--on-dark)}
+.stack{display:grid; gap:var(--gap, 16px); align-content:start}
+.head{display:grid; gap:14px; max-width:46rem; margin-bottom:clamp(32px, 4vw, 48px)}
+.head p{font-size:var(--fs-lead); color:var(--aub-60); max-width:40rem}
+.split{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); gap:clamp(32px, 6vw, 96px); align-items:start}
+.split > *{min-width:0}
+
+/* type */
+.d1,.d2,.d3{color:var(--aub)}
+.d1{font:400 var(--fs-d1)/1.04 var(--serif); letter-spacing:-.018em}
+.d2{font:400 var(--fs-d2)/1.12 var(--serif); letter-spacing:-.012em}
+.d3{font:400 var(--fs-d3)/1.2 var(--serif); letter-spacing:-.008em}
+.d1 em,.d2 em{font-style:italic}
+.h3{font:600 var(--fs-h3)/1.3 var(--sans); color:var(--aub); letter-spacing:-.005em}
+.lead{font-size:var(--fs-lead); line-height:1.55; color:var(--aub-80)}
+.small{font-size:var(--fs-sm); line-height:1.5}
+.xs{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
+.label{font:600 .75rem/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60)}
+.illus{font-size:var(--fs-xs); color:var(--aub-60); display:flex; gap:6px; align-items:center}
+.illus::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); flex:none}
+
+/* icons */
+.i{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex:none}
+.i .sp,.sp{fill:var(--gold); stroke:none}
+.i--sm{width:18px; height:18px}
+.i--lg{width:28px; height:28px}
+.tile{width:48px; height:48px; border-radius:var(--r-tile); background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.band--mist .tile{background:var(--paper)}
+
+/* root line spine */
+.spine{position:relative}
+.root-line{position:absolute; top:0; bottom:0; left:var(--spine-x); width:1px; pointer-events:none; z-index:3}
+.root-line::before{content:""; position:absolute; inset:0; background:rgba(193,156,47,.22)}
+.root-line i{position:absolute; inset:0; background:var(--gold); transform-origin:top; transform:scaleY(var(--grow, 1))}
+.root-seed{position:absolute; left:var(--spine-x); top:6px; width:22px; transform:translateX(-50%); z-index:4}
+.node{position:relative}
+.node::before{content:""; position:absolute; left:-36px; top:.5em; width:11px; height:11px; border-radius:50%; transform:translate(-50%, -50%); background:var(--paper); box-shadow:inset 0 0 0 1.5px var(--gold); transition:background-color var(--t-base) var(--ease-state); z-index:4}
+.band--mist .node::before{background:var(--mist)}
+.node.is-reached::before,.no-spine-motion .node::before{background:var(--gold)}
+.band--dark .node::before{background:#170C27}
+.band--dark .node.is-reached::before{background:var(--gold)}
+@media (max-width: 899px){
+  :root{--spine-x:8px}
+  .root-seed{display:none}
+  .node::before{left:calc(8px - var(--gutter)); width:7px; height:7px}
+}
+
+/* announcement */
+.announce{background:var(--mist); font-size:var(--fs-sm); color:var(--aub-80)}
+.announce .wrap{display:flex; gap:10px; align-items:center; justify-content:center; padding-block:9px; text-align:center}
+.announce svg{width:12px; flex:none}
+
+/* header */
+.site-head{position:sticky; top:env(safe-area-inset-top, 0px); z-index:40; background:rgba(255,255,255,.96); border-bottom:1px solid transparent; transition:border-color var(--t-base) var(--ease-state), box-shadow var(--t-base) var(--ease-state)}
+.site-head.is-stuck{border-bottom-color:var(--line); box-shadow:0 6px 24px -18px rgba(28,15,47,.4)}
+.site-head .wrap{display:flex; align-items:center; gap:28px; height:72px}
+.brand{display:block; width:104px; flex:none}
+.brand svg{width:100%; height:auto}
+.mainnav{display:flex; gap:2px; align-items:center; flex:1}
+.mainnav > div{position:relative}
+.navlink{display:inline-flex; align-items:center; gap:4px; padding:10px 12px; border:0; background:none; border-radius:8px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub); text-decoration:none; cursor:pointer; white-space:nowrap}
+.navlink .i{width:16px; height:16px; transition:transform var(--t-base) var(--ease-state)}
+.navlink:hover{background:var(--mist)}
+.navlink[aria-expanded="true"]{background:var(--mist)}
+.navlink[aria-expanded="true"] .i{transform:rotate(180deg)}
+.head-actions{display:flex; gap:10px; align-items:center; margin-left:auto}
+.iconbtn{width:42px; height:42px; display:grid; place-items:center; border-radius:var(--r-ctl); border:0; background:none; color:var(--aub); cursor:pointer}
+.iconbtn:hover{background:var(--mist)}
+.menu-btn{display:none}
+
+/* mega menu */
+.mega{position:absolute; left:0; top:calc(100% + 10px); width:min(720px, 80vw); background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-pop); padding:24px; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px 24px; opacity:0; visibility:hidden; transform:translateY(-4px) scale(.98); transform-origin:top left; transition:opacity 120ms var(--ease-state), transform 120ms var(--ease-state), visibility 0s linear 120ms}
+.mega.is-open{opacity:1; visibility:visible; transform:none; transition:opacity 180ms var(--ease-state), transform 180ms var(--ease-state), visibility 0s}
+.mega .mh{margin:0; font:600 .75rem/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60); padding:8px 10px 10px}
+.mega a{display:flex; gap:10px; align-items:center; padding:9px 10px; border-radius:var(--r-ctl); text-decoration:none; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.mega a:hover{background:var(--mist)}
+.mega a .i{width:20px; height:20px; color:var(--aub)}
+.mega .soon{margin-left:auto}
+.mega-foot{grid-column:1/-1; margin-top:10px; padding:14px 10px 2px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; align-items:center; font-size:var(--fs-sm)}
+
+/* buttons */
+.btn{--bg:var(--aub); --fg:#fff; display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 22px; border-radius:var(--r-ctl); border:1px solid transparent; background:var(--bg); color:var(--fg); font:600 1rem/1 var(--sans); text-decoration:none; cursor:pointer; white-space:nowrap; transition-property:background-color, border-color, color, box-shadow, scale; transition-duration:var(--t-fast); transition-timing-function:var(--ease-state)}
+.btn:hover{--bg:#2E1F45}
+.btn:active{scale:.96}
+.btn .i{width:18px; height:18px; margin-right:-4px}
+.btn--sm{min-height:40px; padding:0 16px; font-size:var(--fs-sm)}
+.btn--lg{min-height:56px; padding:0 28px; font-size:1.0625rem}
+.btn--ghost{--bg:transparent; --fg:var(--aub); border-color:var(--line-2)}
+.btn--ghost:hover{--bg:var(--mist); border-color:var(--aub-60)}
+.btn--soft{--bg:var(--mist); --fg:var(--aub)}
+.btn--soft:hover{--bg:var(--mist-2)}
+.btn--light{--bg:#fff; --fg:var(--aub)}
+.btn--light:hover{--bg:var(--mist)}
+.btn--outline-light{--bg:transparent; --fg:var(--on-dark); border-color:rgba(244,241,247,.4)}
+.btn--outline-light:hover{--bg:rgba(244,241,247,.08); border-color:var(--on-dark)}
+.btn[disabled],.btn[aria-disabled="true"]{--bg:var(--mist-2); --fg:var(--aub-60); cursor:not-allowed; scale:1}
+.btn.is-loading{color:transparent; position:relative}
+.btn.is-loading::after{content:""; position:absolute; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.link{display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--aub); text-decoration:none}
+.link .i{width:18px; height:18px; transition:transform var(--t-base) var(--ease-state)}
+.link:hover .i{transform:translateX(3px)}
+.link:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+
+/* chips and badges */
+.chip{display:inline-flex; align-items:center; gap:6px; min-height:28px; padding:0 11px; border-radius:var(--r-pill); font:500 .8125rem/1 var(--sans); background:var(--mist); color:var(--aub); white-space:nowrap}
+.chip--gold{background:var(--gold-wash); color:var(--warn)}
+.chip--gain{background:var(--gain-bg); color:var(--gain)}
+.chip--loss{background:var(--loss-bg); color:var(--loss)}
+.chip--line{background:transparent; box-shadow:inset 0 0 0 1px var(--line-2)}
+.chip--dark{background:rgba(244,241,247,.1); color:var(--on-dark)}
+.soon{display:inline-flex; align-items:center; gap:5px; padding:3px 8px; border-radius:var(--r-pill); background:var(--gold-wash); color:var(--warn); font:600 .75rem/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; white-space:nowrap}
+.soon::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--gold)}
+.chg{font-weight:600; font-variant-numeric:tabular-nums}
+.chg.up{color:var(--gain)} .chg.down{color:var(--loss)}
+
+/* hero */
+.hero{padding-block:clamp(40px, 6vw, 80px) clamp(48px, 6vw, 88px); overflow:hidden}
+.hero-grid{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(32px, 5vw, 72px); align-items:center}
+.hero-copy{display:grid; gap:22px; min-width:0}
+.hero-copy .lead{max-width:34rem}
+.creds{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 24px; padding:4px 0; max-width:560px}
+.creds li{list-style:none; display:flex; gap:10px; align-items:center; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.creds li span{display:block; color:var(--aub-60); font-size:var(--fs-xs)}
+.creds .i{color:var(--aub)}
+.leadbar{display:flex; gap:8px; padding:8px; background:var(--paper); border-radius:14px; box-shadow:var(--shadow-1), 0 0 0 1px var(--line); max-width:560px}
+.leadbar .field{flex:1; min-width:0}
+.handoff{font-size:var(--fs-xs); color:var(--aub-60); max-width:520px}
+.hero-alt{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center}
+
+/* fields */
+.field{position:relative; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 14px; border-radius:var(--r-ctl); background:var(--paper); box-shadow:inset 0 0 0 1px var(--line-2); transition:box-shadow var(--t-fast) var(--ease-state)}
+.field:hover{box-shadow:inset 0 0 0 1px var(--aub-60)}
+.field:focus-within{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+.field input,.field select{border:0; outline:0; background:transparent; font:400 1rem/1.2 var(--sans); color:var(--aub); width:100%; min-width:0; padding:12px 0}
+.field input::placeholder{color:#6E6680}
+.field .pre{font-weight:600; color:var(--aub); padding-right:10px; border-right:1px solid var(--line); font-variant-numeric:tabular-nums}
+.leadbar .field{box-shadow:none}
+.leadbar .field:focus-within{box-shadow:inset 0 0 0 1.5px var(--aub)}
+.fgroup{display:grid; gap:7px}
+.fgroup > label,.flabel{font:600 var(--fs-sm)/1.2 var(--sans); color:var(--aub)}
+.fhelp{font-size:var(--fs-xs); color:var(--aub-60)}
+.fgroup.is-error .field{box-shadow:inset 0 0 0 1.5px var(--loss)}
+.fgroup.is-error .fhelp{color:var(--loss)}
+.field select{appearance:none; cursor:pointer}
+.field--select::after{content:""; position:absolute; right:16px; top:50%; width:8px; height:8px; border-right:1.5px solid var(--aub); border-bottom:1.5px solid var(--aub); transform:translateY(-70%) rotate(45deg); pointer-events:none}
+.check{display:flex; gap:12px; align-items:flex-start; font-size:var(--fs-sm); line-height:1.45; cursor:pointer}
+.check input{appearance:none; width:20px; height:20px; margin:1px 0 0; border-radius:6px; box-shadow:inset 0 0 0 1.5px var(--line-2); background:#fff; flex:none; display:grid; place-items:center; cursor:pointer; transition:background-color var(--t-fast) var(--ease-state), box-shadow var(--t-fast) var(--ease-state)}
+.check input[type=radio]{border-radius:50%}
+.check input:checked{background:var(--aub); box-shadow:none}
+.check input[type=checkbox]:checked::after{content:""; width:10px; height:6px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:translateY(-1px) rotate(-45deg)}
+.check input[type=radio]:checked::after{content:""; width:8px; height:8px; border-radius:50%; background:#fff}
+.range{appearance:none; width:100%; height:24px; background:transparent; margin:0; cursor:pointer}
+.range::-webkit-slider-runnable-track{height:4px; border-radius:4px; background:linear-gradient(90deg, var(--aub) var(--p, 50%), var(--line-2) var(--p, 50%))}
+.range::-moz-range-track{height:4px; border-radius:4px; background:linear-gradient(90deg, var(--aub) var(--p, 50%), var(--line-2) var(--p, 50%))}
+.range::-webkit-slider-thumb{appearance:none; width:22px; height:22px; margin-top:-9px; border-radius:50%; background:#fff; box-shadow:0 0 0 1.5px var(--aub), 0 2px 6px rgba(28,15,47,.2)}
+.range::-moz-range-thumb{width:22px; height:22px; border:0; border-radius:50%; background:#fff; box-shadow:0 0 0 1.5px var(--aub), 0 2px 6px rgba(28,15,47,.2)}
+.otp{display:flex; gap:8px}
+.otp input{width:46px; height:52px; text-align:center; font:600 1.25rem/1 var(--sans); color:var(--aub); border:0; border-radius:var(--r-ctl); box-shadow:inset 0 0 0 1px var(--line-2); background:#fff}
+.otp input:focus{outline:0; box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+
+/* phone */
+.phone-stage{position:relative; display:grid; justify-items:start; min-width:0}
+.phone-stage .phone{margin-left:clamp(0px, 2vw, 24px)}
+.rings{position:absolute; width:204px; top:-16px; right:0; pointer-events:none}
+.app-phone{position:relative; justify-self:stretch; display:grid; justify-items:start}
+.app-phone .phone{margin-left:clamp(0px, 2vw, 24px)}
+.rings--dark{top:-24px}
+@media (max-width: 1199px){ .rings{display:none} }
+.phone{position:relative; width:min(300px, 100%); aspect-ratio:300/610; border-radius:42px; background:#fff; box-shadow:0 0 0 9px #241732, 0 0 0 10px #3a2d4b, var(--shadow-pop); overflow:hidden; display:flex; flex-direction:column; font-size:12px; color:var(--aub)}
+.phone::before{content:""; position:absolute; top:10px; left:50%; width:92px; height:26px; border-radius:20px; background:#1a1024; transform:translateX(-50%); z-index:2}
+.ph-status{display:flex; justify-content:space-between; padding:14px 24px 6px; font-weight:600; font-size:12px}
+.ph-top{display:flex; justify-content:space-between; align-items:center; padding:14px 18px 6px}
+.ph-top .wm{width:58px}
+.ph-body{padding:6px 16px 0; display:grid; gap:10px; flex:1; align-content:start}
+.ph-card{background:var(--mist); border-radius:14px; padding:12px 14px}
+.ph-val{font:600 1.5rem/1.1 var(--sans); font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.ph-seg{display:flex; gap:4px; margin-top:8px}
+.ph-seg span{flex:1; text-align:center; padding:4px 0; border-radius:6px; font-size:11px; color:var(--aub-60)}
+.ph-seg span.on{background:#fff; color:var(--aub); font-weight:600; box-shadow:0 1px 2px rgba(28,15,47,.08)}
+.ph-row{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:11.5px}
+.ph-row b{font-weight:600; font-variant-numeric:tabular-nums}
+.ph-bar{height:5px; border-radius:5px; background:var(--line); overflow:hidden; margin-top:4px}
+.ph-bar i{display:block; height:100%; width:var(--w); background:var(--aub); border-radius:5px}
+.ph-tabs{display:flex; justify-content:space-around; padding:10px 8px 18px; border-top:1px solid var(--line); font-size:11px; color:var(--aub-60)}
+.ph-tabs span{display:grid; justify-items:center; gap:3px}
+.ph-tabs span.on{color:var(--aub); font-weight:600}
+.ph-tabs .i{width:18px; height:18px}
+.ph-cap{margin-top:22px}
+
+/* ticker */
+.ticker{border-block:1px solid var(--line); background:var(--paper); overflow:hidden; position:relative}
+.ticker-inner{display:flex; align-items:center}
+.ticker-label{flex:none; padding:14px 18px 14px max(var(--gutter), (100% - 1200px) / 2); background:var(--paper); z-index:1; display:flex; gap:10px; align-items:center; box-shadow:12px 0 16px -8px #fff}
+.ticker-track{display:flex; width:max-content; animation:tick 70s linear infinite}
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
+.ticker ul{display:flex; list-style:none}
+.ticker li{display:flex; gap:10px; align-items:baseline; padding:14px 26px; border-left:1px solid var(--line); font-size:var(--fs-sm); white-space:nowrap}
+.ticker li b{font-weight:600; color:var(--aub)}
+.ticker li .num{color:var(--aub)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* trust pillars */
+.pillars{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--line)}
+.pillar{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; padding:28px 24px 28px 0; border-bottom:1px solid var(--line)}
+.pillar:nth-child(odd){border-right:1px solid var(--line); padding-right:32px}
+.pillar:nth-child(even){padding-left:32px}
+.pillar > .i{grid-row:span 2; width:28px; height:28px; color:var(--aub); margin-top:2px}
+.pillar p{font-size:var(--fs-sm); color:var(--aub-60)}
+
+/* product cards */
+.cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px}
+.pcard{position:relative; display:grid; gap:14px; align-content:start; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); transition-property:transform, box-shadow; transition-duration:var(--t-base); transition-timing-function:var(--ease-state)}
+.pcard:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+.pcard h3 a{text-decoration:none; color:inherit}
+.pcard h3 a::after{content:""; position:absolute; inset:0; border-radius:inherit}
+.pcard h3 a:focus-visible{outline:0}
+.pcard:has(h3 a:focus-visible){outline:2px solid var(--aub); outline-offset:3px}
+.pcard .top{display:flex; justify-content:space-between; align-items:flex-start}
+.pcard .arrow{color:var(--aub-60); transition:transform var(--t-base) var(--ease-state), color var(--t-base) var(--ease-state)}
+.pcard:hover .arrow{transform:translate(2px, -2px); color:var(--aub)}
+.pcard p{font-size:var(--fs-sm); color:var(--aub-60)}
+.pcard .tile,.goal .tile{background:var(--mist)}
+.pcard .risk{position:relative; z-index:1; display:flex; gap:8px; align-items:flex-start; padding:10px 12px; border-radius:var(--r-ctl); background:var(--warn-bg); color:var(--warn); font-size:var(--fs-xs); line-height:1.4}
+.pcard .risk .i{width:16px; height:16px; margin-top:1px}
+.soon-row{margin-top:20px; display:grid; grid-template-columns:auto repeat(4, minmax(0,1fr)); gap:12px; align-items:stretch}
+.soon-row > p{align-self:center; font-weight:600; color:var(--aub); padding-right:12px}
+.soon-tile{display:flex; gap:12px; align-items:center; padding:14px 16px; border-radius:var(--r-card); box-shadow:inset 0 0 0 1px var(--line-2); color:var(--aub); font-weight:500; font-size:var(--fs-sm)}
+.soon-tile .soon{margin-left:auto}
+.band-cta{margin-top:clamp(32px, 4vw, 48px); display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center}
+
+/* pricing */
+.price-grid{display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 8fr); gap:clamp(24px, 4vw, 56px); align-items:stretch}
+.zero{background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1); padding:28px; display:grid; align-content:space-between; gap:24px}
+.zero .big{font:400 clamp(4.5rem, 3rem + 4vw, 6rem)/0.9 var(--serif); color:var(--aub); letter-spacing:-.02em; display:flex; align-items:flex-start; gap:4px}
+.zero .big sup{font-size:.42em; line-height:1; margin-top:.18em}
+.tablewrap{overflow-x:auto; background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1)}
+table.data{border-collapse:collapse; width:100%; min-width:560px; font-size:var(--fs-sm)}
+.data th,.data td{text-align:left; padding:15px 20px; border-bottom:1px solid var(--line); vertical-align:middle}
+.data thead th{font:600 .75rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60); background:var(--paper)}
+.data tbody tr:last-child td{border-bottom:0}
+.data tbody tr:hover td{background:#FAFBFC}
+.data td:first-child{color:var(--aub); font-weight:500}
+.data .r{text-align:right}
+.tbc{display:inline-flex; align-items:center; gap:6px; color:var(--aub-60); font-style:normal}
+.tbc::before{content:""; width:14px; height:1.5px; background:var(--line-2)}
+
+/* steps */
+.steps{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px; list-style:none; position:relative; counter-reset:st}
+.steps::before{content:""; position:absolute; top:22px; left:22px; right:calc(25% - 22px); height:1px; background:linear-gradient(90deg, var(--gold), rgba(193,156,47,.25))}
+.steps li{position:relative; display:grid; gap:10px; align-content:start}
+.steps .dot{width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:var(--paper); box-shadow:inset 0 0 0 1.5px var(--gold); font:400 1.25rem/1 var(--serif); color:var(--aub); position:relative}
+.steps li p{font-size:var(--fs-sm); color:var(--aub-60)}
+.docs{margin-top:40px; display:grid; grid-template-columns:auto 1fr; gap:20px 40px; align-items:center; padding:24px 28px; border-radius:var(--r-card); background:var(--mist)}
+.band--mist .docs{background:var(--paper)}
+.docs ul{display:flex; flex-wrap:wrap; gap:10px 28px; list-style:none}
+.docs li{display:flex; gap:8px; align-items:center; color:var(--aub); font-weight:500}
+.docs li .i{width:18px; height:18px; color:var(--gain)}
+
+/* goals */
+.goals{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px}
+.goal{display:grid; gap:12px; align-content:start; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-height:236px; transition-property:transform, box-shadow; transition-duration:var(--t-base); transition-timing-function:var(--ease-state)}
+.goal:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+.goal-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.goal-top .i{width:30px; height:30px; color:var(--aub)}
+.goal p{font-size:var(--fs-sm); color:var(--aub-60)}
+.goal .link{margin-top:auto; font-size:var(--fs-sm)}
+
+/* calculator */
+.calc{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); background:var(--paper); border-radius:20px; box-shadow:var(--shadow-1); overflow:hidden}
+.calc-in{padding:clamp(24px, 3vw, 36px); display:grid; gap:26px; border-right:1px solid var(--line)}
+.calc-row{display:grid; gap:10px}
+.calc-row .top{display:flex; justify-content:space-between; align-items:center; gap:12px}
+.calc-row output{min-width:120px; text-align:right; padding:8px 12px; border-radius:8px; background:var(--mist); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-out{padding:clamp(24px, 3vw, 36px); display:grid; gap:22px; align-content:start; background:linear-gradient(180deg, #fff, #FAFBFC)}
+.calc-total{font:400 clamp(2.4rem, 1.8rem + 2vw, 3.4rem)/1 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums}
+.splitbar{display:flex; height:12px; border-radius:12px; overflow:hidden; background:var(--line)}
+.splitbar i{display:block; background:var(--aub); transition:flex-grow 0s}
+.splitbar i + i{background:var(--gold)}
+.legend{display:flex; flex-wrap:wrap; gap:10px 28px; font-size:var(--fs-sm)}
+.legend span{display:flex; gap:8px; align-items:center}
+.legend span::before{content:""; width:10px; height:10px; border-radius:3px; background:var(--c, var(--aub))}
+.legend b{color:var(--aub); font-variant-numeric:tabular-nums}
+.bars{display:flex; align-items:flex-end; gap:4px; height:132px; padding-top:8px; border-bottom:1px solid var(--line)}
+.bars i{flex:1; background:linear-gradient(180deg, var(--gold) 0 var(--r, 0%), var(--aub) var(--r, 0%)); border-radius:3px 3px 0 0; min-height:2px}
+.bars-axis{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60); margin-top:6px}
+
+/* tabs */
+.tabs{display:flex; gap:4px; padding:4px; border-radius:12px; background:var(--mist); width:max-content; max-width:100%; overflow-x:auto; position:relative}
+.band--mist .tabs{background:var(--paper)}
+.tab{position:relative; z-index:1; border:0; background:none; padding:9px 16px; border-radius:9px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub-60); cursor:pointer; white-space:nowrap; transition:color var(--t-fast) var(--ease-state)}
+.tab[aria-selected="true"]{color:var(--aub)}
+.tab:hover{color:var(--aub)}
+.tab-ind{position:absolute; z-index:0; top:4px; bottom:4px; left:0; width:0; border-radius:9px; background:var(--paper); box-shadow:0 1px 2px rgba(28,15,47,.08), 0 2px 8px -2px rgba(28,15,47,.10); transition:transform 250ms var(--ease-state)}
+.band--mist .tab-ind{background:var(--mist)}
+.feature{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:clamp(32px, 5vw, 80px); align-items:center}
+.flist{display:grid; gap:4px; list-style:none; margin-top:28px}
+.flist button{width:100%; display:grid; grid-template-columns:auto 1fr; gap:4px 16px; text-align:left; padding:16px 18px; border:0; border-radius:var(--r-card); background:none; cursor:pointer; transition:background-color var(--t-fast) var(--ease-state)}
+.flist button:hover{background:rgba(255,255,255,.6)}
+.flist button[aria-selected="true"]{background:var(--paper); box-shadow:var(--shadow-1)}
+.flist .tile{grid-row:span 2; width:44px; height:44px}
+.flist b{font-weight:600; color:var(--aub); font-size:1.0625rem}
+.flist span{font-size:var(--fs-sm); color:var(--aub-60)}
+.fpanel{background:var(--paper); border-radius:20px; box-shadow:var(--shadow-1); padding:clamp(20px, 3vw, 32px); min-height:380px; display:grid; align-content:start; gap:16px}
+.fpanel[hidden]{display:none}
+.fpanel.is-in{animation:fadeup var(--t-enter) var(--ease-enter) both}
+@keyframes fadeup{from{opacity:0; transform:translateY(8px); filter:blur(4px)} to{opacity:1; transform:none; filter:none}}
+.mini{display:grid; gap:12px}
+.mini-row{display:flex; justify-content:space-between; gap:12px; align-items:center; padding:12px 14px; border-radius:var(--r-ctl); background:var(--mist); font-size:var(--fs-sm)}
+.mini-row b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
+.ring{--v:62; width:132px; height:132px; border-radius:50%; background:conic-gradient(var(--aub) calc(var(--v) * 1%), var(--line) 0); display:grid; place-items:center}
+.ring::before{content:attr(data-label); width:104px; height:104px; border-radius:50%; background:#fff; display:grid; place-items:center; font:400 1.75rem/1 var(--serif); color:var(--aub)}
+
+/* markets */
+.mkt-head{display:flex; flex-wrap:wrap; gap:16px 24px; justify-content:space-between; align-items:flex-end; margin-bottom:28px}
+.idx-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+.idx{padding:18px 18px 14px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); display:grid; gap:4px}
+.idx .nm{font-size:var(--fs-sm); color:var(--aub-60); font-weight:500}
+.idx .px{font:600 1.375rem/1.2 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.idx svg{margin-top:8px; width:100%; height:44px}
+.ipo-list{display:grid; gap:12px}
+.ipo{display:grid; grid-template-columns:minmax(0, 2.2fr) repeat(3, minmax(0,1fr)) auto; gap:16px; align-items:center; padding:18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ipo .co{display:flex; gap:12px; align-items:center}
+.ipo .lg{width:40px; height:40px; border-radius:10px; background:var(--mist); display:grid; place-items:center; font:600 .8125rem/1 var(--sans); color:var(--aub)}
+.ipo b{display:block; color:var(--aub); font-weight:600}
+.ipo .k{color:var(--aub-60); font-size:var(--fs-xs)}
+.fund-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
+.fund{padding:20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); display:grid; gap:14px}
+.fund .fn{font-weight:600; color:var(--aub); line-height:1.3}
+.fund .meta{display:flex; flex-wrap:wrap; gap:6px}
+.fund .kv{display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:var(--fs-xs); color:var(--aub-60)}
+.fund .kv b{display:block; font:600 1.0625rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.riskometer{display:grid; gap:6px}
+.riskometer .scale{display:grid; grid-template-columns:repeat(6, 1fr); gap:3px}
+.riskometer .scale i{height:6px; border-radius:3px; background:var(--line)}
+.riskometer .scale i.on{background:var(--aub)}
+.riskometer .scale i.on.top{background:var(--gold)}
+
+/* group and credentials */
+.group-map{width:100%; height:auto}
+.group-map text{font-family:var(--sans)}
+.creds-wall{margin-top:clamp(40px, 5vw, 64px); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line)}
+.cred{padding:18px 20px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; gap:6px}
+.cred dt{font:600 .75rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60)}
+.cred dd{margin:0; font:500 .95rem/1.4 var(--mono); color:var(--aub); letter-spacing:.01em}
+
+/* learn */
+.posts{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px}
+.post{display:grid; gap:14px; align-content:start; text-decoration:none; color:inherit}
+.thumb{aspect-ratio:16/10; border-radius:var(--r-card); background:var(--grad); position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:var(--on-dark); transition:transform var(--t-base) var(--ease-state)}
+.thumb .t{font:400 1.45rem/1.15 var(--serif); max-width:15ch; position:relative}
+.thumb .ringart{position:absolute; right:-18%; top:-26%; width:72%; opacity:.9}
+.thumb.v2{background:linear-gradient(100deg, #0C2229, #13302F 60%, #1C0F2F)}
+.thumb.v3{background:var(--paper); color:var(--aub); box-shadow:inset 0 0 0 1px var(--line)}
+.post:hover .thumb{transform:translateY(-2px)}
+.post h3{font:600 1.125rem/1.35 var(--sans); color:var(--aub)}
+.post:hover h3{text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:4px}
+.post .meta{display:flex; gap:10px; align-items:center; font-size:var(--fs-xs); color:var(--aub-60)}
+
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none; display:flex; justify-content:space-between; gap:20px; align-items:center; padding:20px 4px; cursor:pointer; font:600 1.0625rem/1.4 var(--sans); color:var(--aub)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:28px; height:28px; border-radius:50%; background:var(--mist); display:grid; place-items:center; flex:none; transition:transform var(--t-base) var(--ease-state)}
+.faq details[open] summary .pm{transform:rotate(45deg)}
+.faq .ans{padding:0 4px 22px; max-width:62ch; color:var(--aub-80)}
+.faq .ans p + p{margin-top:10px}
+
+/* app band */
+.app{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(32px, 5vw, 80px); align-items:center}
+.app .stores{display:flex; flex-wrap:wrap; gap:12px; margin-top:8px}
+.store{display:flex; gap:12px; align-items:center; padding:10px 18px 10px 14px; border-radius:12px; background:rgba(244,241,247,.08); box-shadow:inset 0 0 0 1px var(--dark-line); color:var(--on-dark); min-width:200px}
+.store small{display:block; font-size:.6875rem; color:var(--on-dark-2); letter-spacing:.06em; text-transform:uppercase}
+.store b{font-weight:600; font-size:1rem}
+.qr{display:flex; gap:16px; align-items:center; margin-top:8px; font-size:var(--fs-sm)}
+.qr .box{width:84px; height:84px; border-radius:12px; display:grid; place-items:center; box-shadow:inset 0 0 0 1.5px var(--dark-line); color:var(--on-dark-2)}
+.appicon{display:block; width:72px}
+.appicon svg{width:100%; height:auto; border-radius:16px; box-shadow:0 10px 30px -8px rgba(0,0,0,.5)}
+.app-phone .phone{box-shadow:0 0 0 9px #0f0819, 0 0 0 10px #3a2d4b, 0 40px 80px -20px rgba(0,0,0,.6)}
+
+/* final cta */
+.final{display:grid; justify-items:start; gap:22px}
+.final .row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+
+/* risk */
+.risk-box{display:grid; grid-template-columns:auto 1fr; gap:16px 20px; padding:24px 28px; border-radius:var(--r-card); background:var(--paper); box-shadow:inset 0 0 0 1px var(--line-2)}
+.risk-box ul{display:grid; gap:6px; padding-left:18px; color:var(--aub-80)}
+.risk-box .i{color:var(--warn)}
+
+/* footer */
+.site-foot{background:var(--mist); color:var(--aub-80); font-size:var(--fs-sm); padding-block:64px 40px; border-top:1px solid var(--line)}
+.site-foot a{color:var(--aub); text-decoration:none}
+.site-foot a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.foot-top{display:grid; grid-template-columns:minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap:32px}
+.foot-top h3{font:600 .75rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub-60); margin-bottom:16px}
+.foot-top ul{list-style:none; display:grid; gap:10px}
+.foot-brand{display:grid; gap:18px; align-content:start}
+.foot-brand .lockup{width:150px}
+.foot-reg{margin-top:48px; padding-top:28px; border-top:1px solid var(--line-2); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px 32px}
+.foot-reg dt{font:600 .75rem/1.2 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub-60)}
+.foot-reg dd{margin:4px 0 0; font:500 .875rem/1.45 var(--mono); color:var(--aub)}
+.foot-legal{margin-top:36px; display:grid; gap:24px}
+.foot-legal h3{font:600 .75rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub); margin-bottom:10px}
+.foot-legal ul{display:grid; gap:6px; padding-left:16px; max-width:110ch; line-height:1.55}
+.foot-base{margin-top:36px; padding-top:20px; border-top:1px solid var(--line-2); color:var(--aub-60); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px}
+
+/* mobile menu drawer */
+dialog.drawer{margin:0 0 0 auto; height:100%; max-height:100%; width:min(420px, 100%); border:0; padding:0; background:var(--paper); color:var(--aub-80); box-shadow:var(--shadow-pop)}
+dialog.drawer::backdrop{background:rgba(28,15,47,.45)}
+dialog.drawer[open]{animation:drawer-in 240ms var(--ease-state)}
+@keyframes drawer-in{from{transform:translateX(24px); opacity:0} to{transform:none; opacity:1}}
+.drawer-in{display:flex; flex-direction:column; min-height:100%; padding:16px var(--gutter) calc(24px + env(safe-area-inset-bottom, 0px))}
+.drawer-top{display:flex; justify-content:space-between; align-items:center; height:56px}
+.drawer-top .brand{width:96px}
+.drawer nav{display:grid; margin-top:8px; border-top:1px solid var(--line)}
+.drawer details{border-bottom:1px solid var(--line)}
+.drawer summary{list-style:none; display:flex; justify-content:space-between; align-items:center; padding:16px 2px; font:600 1.0625rem/1.2 var(--sans); color:var(--aub); cursor:pointer}
+.drawer summary::-webkit-details-marker{display:none}
+.drawer summary .i{transition:transform var(--t-base) var(--ease-state)}
+.drawer details[open] summary .i{transform:rotate(180deg)}
+.drawer details a{display:block; padding:10px 2px 10px 12px; color:var(--aub-80); text-decoration:none}
+.drawer details > div{padding-bottom:12px}
+.drawer nav > a{display:block; padding:16px 2px; border-bottom:1px solid var(--line); font:600 1.0625rem/1.2 var(--sans); color:var(--aub); text-decoration:none}
+.drawer-cta{margin-top:auto; padding-top:24px; display:grid; gap:10px}
+
+/* mobile sticky cta */
+.mbar{display:none}
+
+/* modal and toast */
+dialog.modal{border:0; padding:0; border-radius:20px; width:min(460px, calc(100% - 32px)); box-shadow:var(--shadow-pop); color:var(--aub-80)}
+dialog.modal::backdrop{background:rgba(28,15,47,.45)}
+dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
+@keyframes modal-in{from{opacity:0; transform:translateY(6px) scale(.98)} to{opacity:1; transform:none}}
+.modal-in{padding:28px; display:grid; gap:18px}
+.modal-head{display:flex; justify-content:space-between; gap:16px; align-items:flex-start}
+.toast{position:fixed; left:50%; bottom:calc(84px + env(safe-area-inset-bottom, 0px)); z-index:60; display:flex; gap:12px; align-items:center; padding:12px 16px 12px 14px; border-radius:12px; background:var(--aub); color:var(--on-dark); box-shadow:var(--shadow-pop); font-size:var(--fs-sm); transform:translate(-50%, 12px); opacity:0; visibility:hidden; transition:opacity 200ms var(--ease-state), transform 200ms var(--ease-state), visibility 0s linear 200ms}
+.toast.is-on{opacity:1; visibility:visible; transform:translate(-50%, 0); transition:opacity 200ms var(--ease-state), transform 200ms var(--ease-state), visibility 0s}
+.toast .i{color:var(--gold)}
+
+/* entrance: one orchestrated moment on the hero */
+@media (prefers-reduced-motion: no-preference){
+  .enter > *{animation:fadeup var(--t-enter) var(--ease-enter) backwards; animation-delay:calc(var(--n, 0) * 90ms + 60ms)}
+  .phone-stage{animation:fadeup 700ms var(--ease-enter) 320ms backwards}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .ticker-track{width:auto}
+  .ticker .dupe{display:none}
+  .ticker-track{overflow-x:auto}
+}
+
+/* ===================== STATES AND SMALL COMPONENTS ===================== */
+.alert{display:grid; grid-template-columns:auto 1fr; gap:4px 14px; padding:16px 18px; border-radius:var(--r-card); font-size:var(--fs-sm); line-height:1.5}
+.alert b{color:inherit; font-weight:600; display:block}
+.alert--info{background:var(--info-bg); color:var(--aub)}
+.alert--ok{background:var(--gain-bg); color:#0A5E42}
+.alert--warn{background:var(--warn-bg); color:var(--warn)}
+.alert--err{background:var(--loss-bg); color:#8E2A22}
+.alert .i{margin-top:1px}
+.skel{display:grid; gap:10px}
+.skel i{display:block; height:12px; border-radius:6px; background:linear-gradient(90deg, var(--mist) 0%, var(--mist-2) 40%, var(--mist) 80%); background-size:300% 100%; animation:shim 1.4s var(--ease-state) infinite}
+@keyframes shim{from{background-position:100% 0} to{background-position:0 0}}
+.empty{display:grid; justify-items:center; text-align:center; gap:12px; padding:20px 8px}
+.empty .i{width:36px; height:36px; color:var(--aub-60)}
+.crumbs{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:var(--fs-sm); list-style:none}
+.crumbs li{display:flex; gap:8px; align-items:center}
+.crumbs li + li::before{content:""; width:6px; height:6px; border-right:1.5px solid var(--aub-60); border-top:1.5px solid var(--aub-60); transform:rotate(45deg)}
+.crumbs a{color:var(--aub-60)}
+.crumbs [aria-current]{color:var(--aub); font-weight:500}
+.pager{display:flex; gap:6px; list-style:none}
+.pager a{display:grid; place-items:center; width:40px; height:40px; border-radius:10px; text-decoration:none; color:var(--aub); font-weight:500; font-variant-numeric:tabular-nums}
+.pager a:hover{background:var(--mist)}
+.pager a[aria-current]{background:var(--aub); color:#fff}
+.seg{display:inline-flex; justify-self:start; padding:3px; border-radius:10px; box-shadow:inset 0 0 0 1px var(--line-2)}
+.seg button{border:0; background:none; padding:7px 14px; border-radius:8px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub-60); cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--aub); color:#fff}
+.tip{position:relative; display:inline-flex; margin-top:56px}
+.tip .tip-bubble{position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%); width:max-content; max-width:240px; padding:8px 12px; border-radius:8px; background:var(--aub); color:var(--on-dark); font-size:var(--fs-xs); line-height:1.4; box-shadow:var(--shadow-1)}
+.tip .tip-bubble::after{content:""; position:absolute; top:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-top-color:var(--aub)}
+
+/* responsive */
+@media (max-width: 1100px){
+  .mainnav{display:none}
+  .menu-btn{display:grid}
+  .head-actions .btn--ghost{display:none}
+  .cards,.fund-grid,.posts{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .goals,.idx-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .soon-row{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .soon-row > p{grid-column:1/-1}
+  .foot-top{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .foot-brand{grid-column:1/-1}
+  .ipo{grid-template-columns:minmax(0,1.6fr) repeat(2, minmax(0,1fr)) auto}
+  .ipo .hide-md{display:none}
+}
+@media (max-width: 899px){
+  .hero-grid,.split,.price-grid,.calc,.feature,.app{grid-template-columns:1fr}
+  .calc-in{border-right:0; border-bottom:1px solid var(--line)}
+  .pillars{grid-template-columns:1fr}
+  .pillar:nth-child(odd){border-right:0; padding-right:0}
+  .pillar:nth-child(even){padding-left:0}
+  .steps{grid-template-columns:repeat(2, minmax(0,1fr)); row-gap:32px}
+  .steps::before{display:none}
+  .creds-wall,.foot-reg{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .phone-stage{margin-top:12px; justify-items:center}
+  .phone-stage .phone,.app-phone .phone{margin-inline:auto}
+  .app-phone{justify-items:center}
+  .docs{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  :root{--fs-body:1rem}
+  .cards,.goals,.fund-grid,.posts,.idx-grid,.soon-row,.creds-wall,.foot-reg,.foot-top{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .leadbar{flex-direction:column; padding:10px}
+  .leadbar .field{box-shadow:inset 0 0 0 1px var(--line-2)}
+  .leadbar .btn{width:100%}
+  .head-actions .btn{display:none}
+  .creds{grid-template-columns:1fr}
+  .announce a{display:none}
+  .ipo{grid-template-columns:1fr 1fr; row-gap:10px}
+  .ipo .co{grid-column:1/-1}
+  .mbar{display:flex; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:45; padding:10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); background:rgba(255,255,255,.97); box-shadow:0 -1px 0 var(--line), 0 -10px 30px -18px rgba(28,15,47,.4)}
+  .mbar .btn{flex:1}
+  table.data--fluid{min-width:0}
+  .group-map text{font-size:22px}
+  .rings{display:none}
+  .data--fluid th,.data--fluid td{padding:12px 12px}
+  .data--fluid th:last-child,.data--fluid td:last-child{display:none}
+  body{padding-bottom:72px}
+  .zero .big{font-size:5rem}
+}
+
+/* ROOT theme v1 · extensions for the 75-page build
+   Rules: tokens only (no raw hex), one block per pattern, a comment naming the page that introduced it.
+   Golden pages may add patterns here; derivative pages reuse them and do not add new ones without a memory note. */
+
+/* shell: current nav item (build marks it from sitemap.json "nav") */
+.navlink.is-current{background:var(--mist)}
+
+/* shell: minimal header for template D (logo, help, login) */
+.site-head--min .wrap{justify-content:space-between}
+.site-head--min .head-help{display:inline-flex; gap:6px}
+
+/* shell: short footer for template D */
+.site-foot--min{padding-block:40px 32px}
+.foot-links{display:flex; flex-wrap:wrap; gap:8px 24px; padding-bottom:24px; border-bottom:1px solid var(--line-2)}
+.site-foot--min .foot-reg{margin-top:24px; padding-top:0; border-top:0}
+.foot-note{margin-top:24px; font-size:var(--fs-xs); color:var(--aub-60)}
+
+/* placeholder: a value Aikyam must confirm. Visible on purpose, so it is never shipped by mistake */
+.ph{display:inline; white-space:nowrap; padding:1px 7px; border-radius:6px; background:var(--gold-wash); color:var(--warn); box-shadow:inset 0 0 0 1px rgba(193,156,47,.45); font:inherit; font-weight:500}
+.ph--block{display:flex; align-items:center; justify-content:center; text-align:center; aspect-ratio:var(--ar, auto); padding:14px 16px; border-radius:var(--r-ctl); border:1.5px dashed rgba(193,156,47,.6); box-shadow:none; background:var(--gold-wash); color:var(--warn); font-size:var(--fs-sm)}
+/* placeholders wrap where a one-line chip would overflow: block placeholders, chips inside form cards, risk boxes and docs strips,
+   and every chip in main below 900 px (each line keeps its padding and corners). Fix from 01 Home and 09 Start Trading */
+.ph--block,.form-card .ph,.risk-box .ph,.docs .ph{white-space:normal}
+@media (max-width: 899px){ main .ph{white-space:normal; -webkit-box-decoration-break:clone; box-decoration-break:clone} }
+
+/* static capture for Figma import: no motion, spine nodes drawn as reached, hidden overlays stay hidden */
+.is-static *, .is-static *::before, .is-static *::after{animation:none !important; transition:none !important}
+.is-static .node::before{background:var(--gold)}
+.is-static .band--mist .node::before{background:var(--gold)}
+
+/* shell: breadcrumb bar under the header (build renders it from front-matter "breadcrumb") */
+.crumbs-bar{padding-top:20px}
+
+/* ===== Figma-import mode (body.is-static). Red-team round 1, 12-Oct-2026 =====
+   The browser view is unchanged in spirit; these rules make the imported layer tree clean:
+   one-direction stacks become flex (auto layout), outlines become real borders (not inner shadows),
+   type sizes are whole pixels, line breaks are the browser's natural ones (Figma wraps the same way),
+   JS-only visuals get static equivalents, sticky/fixed bars sit in flow. */
+
+/* stacks: grid with one column -> flex column (imports as vertical auto layout) */
+.is-static :is(.stack,.head,.hero-copy,.fgroup,.pcard,.goal,.post,.fund,.idx,.calc-in,.calc-out,.calc-row,.mini,.fpanel,.foot-brand,.foot-legal,.modal-in,.drawer-cta,.steps li,.panel){display:flex; flex-direction:column; justify-content:flex-start}
+.is-static .final{display:flex; flex-direction:column; align-items:flex-start}
+.is-static .zero{display:flex; flex-direction:column; justify-content:space-between}
+.is-static .goal .link{margin-top:auto}
+
+/* outlines as borders, not inset shadows */
+.is-static .field{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .leadbar .field{border-color:transparent}
+.is-static .otp input{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .risk-box{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .chip--line{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .soon-tile{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .steps .dot{box-shadow:none; border:1.5px solid var(--gold)}
+.is-static .check input{box-shadow:none; border:1.5px solid var(--line-2)}
+.is-static .thumb.v3{box-shadow:none; border:1px solid var(--line)}
+.is-static .ph{box-shadow:none; border:1px solid rgba(193,156,47,.45)}
+.is-static .leadbar{box-shadow:var(--shadow-1); border:1px solid var(--line)}
+
+/* whole-pixel type at the two capture widths; natural wrapping */
+@media (min-width: 1100px){ .is-static{--fs-d1:64px; --fs-d2:42px; --fs-d3:28px; --fs-h3:19px; --fs-lead:19px} }
+@media (max-width: 640px){ .is-static{--fs-d1:40px; --fs-d2:30px; --fs-d3:23px; --fs-h3:19px; --fs-lead:18px} }
+.is-static :is(h1,h2,h3,h4,p){text-wrap:wrap}
+
+/* spine nodes as real elements (build inserts <i class="node-dot">) */
+.is-static .node::before{display:none}
+.node-dot{position:absolute; left:-36px; top:.5em; width:11px; height:11px; border-radius:50%; transform:translate(-50%,-50%); background:var(--gold); z-index:4}
+@media (max-width: 899px){ .node-dot{left:calc(8px - var(--gutter)); width:7px; height:7px} }
+
+/* JS-only visuals: static equivalents */
+.is-static .tab-ind{display:none}
+.is-static .tab[aria-selected="true"]{background:var(--paper); box-shadow:0 1px 2px rgba(28,15,47,.08), 0 2px 8px -2px rgba(28,15,47,.10); border-radius:9px}
+.is-static .band--mist .tab[aria-selected="true"]{background:var(--mist)}
+.is-static .pcard h3 a::after{display:none}
+.is-static .ticker-track{animation:none}
+
+/* steps: --cols sets the column count from 900 px up only, so the theme's 2-column (899) and 1-column (640) rules still apply.
+   Fix from 01 Home and 09 Start Trading (unscoped, these rules kept four squeezed columns at 390) */
+@media (min-width: 900px){
+  .steps{grid-template-columns:repeat(var(--cols, 4), minmax(0,1fr))}
+  .steps::before{right:calc(100% / var(--cols, 4) - 22px)}
+}
+
+/* fixed and sticky bars sit in flow (the designer re-applies stickiness); data-sticky marks them */
+.is-static .mbar{position:static; box-shadow:0 -1px 0 var(--line)}
+@media (max-width: 640px){ .is-static{padding-bottom:0} }
+.is-static .site-head{position:relative}
+
+/* minimal header keeps Login on phones (template D has no mobile bar) */
+@media (max-width: 640px){
+  .site-head--min .head-actions .btn{display:inline-flex}
+  .site-head--min .head-help{display:none}
+}
+
+/* tables that stack on phones: <table class="data data--stack"> with <span class="td-label"> in each cell */
+.td-label{display:none}
+@media (max-width: 640px){
+  table.data--stack{min-width:0}
+  .data--stack thead{display:none}
+  .data--stack tr{display:block; padding:12px 16px; border-bottom:1px solid var(--line)}
+  .data--stack td{display:flex; justify-content:space-between; gap:12px; padding:5px 0; border:0; text-align:right}
+  .data--stack td:first-child{text-align:left}
+  .data--stack .td-label{display:block; color:var(--aub-60); font-size:var(--fs-xs); text-align:left}
+}
+
+/* states board (figma/NN-id.states.html): one labelled frame per interaction state */
+.state-frame{padding-block:40px; border-bottom:1px dashed var(--line-2)}
+.state-label{font:500 .8125rem/1.4 var(--mono); color:var(--aub-60); margin-bottom:20px}
+.state-label b{color:var(--aub); font-weight:600}
+
+/* ===== Golden wave promotions (curated 12-Oct-2026 from 01 Home and 09 Start Trading) =====
+   Moved out of the pages' <style data-page>; canonical markup for each block is in theme/components.html. */
+
+/* utility: registration codes outside creds-wall and foot-reg (from 01 Home) */
+.mono{font-family:var(--mono); font-weight:500; letter-spacing:.01em}
+
+/* theme hero: the root seed sits inside .hero-copy (the theme reference set this with inline styles). From 01 and 09 */
+.hero-copy{position:relative}
+.hero-copy > .root-seed{left:-36px; top:2px}
+
+/* Hero with form card (template D, from 09 Start Trading; 01 Home reuses it): .hero-side holds the form card and the side door */
+.hero-grid:has(> .hero-side){align-items:start}
+.hero-side{display:flex; flex-direction:column; gap:18px; min-width:0}
+.form-card{display:flex; flex-direction:column; gap:18px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.form-card form{display:flex; flex-direction:column; gap:16px}
+.form-card .btn{width:100%}
+.form-card .fhelp a{font-weight:600}
+.states-board .form-card{max-width:30rem}
+/* consent box inside an error .fgroup keeps body type (.fgroup > label is the bold field label). From 01 and 09 */
+.fgroup > label.check{font:400 var(--fs-sm)/1.45 var(--sans); color:var(--aub-80)}
+/* cost line at the foot of a form card: charge + "See all charges" (from 01 Home) */
+.form-card .cost-line{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; padding-top:16px; border-top:1px solid var(--line); color:var(--aub)}
+.form-card .cost-line a{font-weight:600}
+/* side door under the form card: the other company's link plus one line (from 01 Home) */
+.side-door{display:flex; flex-direction:column; gap:6px}
+@media (max-width: 640px){ .form-card{padding:20px} }
+
+/* wide cred: a cred with a long value spans both cred columns. .cred-wide is the v3 name (09 v3); .cred-cost is the v2 name
+   for a charge plus a link (09 v2, still used by 10) */
+.creds .cred-cost,.creds .cred-wide{grid-column:1/-1}
+.creds .cost-line{display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px}
+
+/* wrapping link: inline, so the arrow follows the last word; .link-tail keeps the last word and the icon together (from 09; 01 reuses it) */
+.link--wrap{display:inline}
+.link--wrap .i{display:inline-block; vertical-align:-4px; margin-left:6px}
+.link--wrap .link-tail{white-space:nowrap}
+
+/* docs strips, stacked: 16 px apart and one shared label column from 900 px up; a .stack of copy + ph--block on the right (from 09) */
+.docs + .docs{margin-top:16px}
+.docs .stack p{color:var(--aub)}
+@media (min-width: 900px){ .docs:has(+ .docs),.docs + .docs{grid-template-columns:17rem minmax(0,1fr)} }
+.steps-note{margin-top:24px; max-width:46rem}
+
+/* charges block (from 09 Start Trading): an unconfirmed value in the numeral slot renders at body size and wraps; fee lines stack;
+   .zero--top groups the card's content at the top instead of stretching it to the table's height */
+.zero .big .ph{font:500 var(--fs-sm)/1.4 var(--sans); white-space:normal; letter-spacing:0}
+.zero .fees{display:flex; flex-direction:column; gap:8px}
+.zero.zero--top{align-self:start; justify-content:flex-start}
+/* visible table caption above a data table (from 01 and 09) */
+.data caption{caption-side:top; text-align:left; padding:18px 20px 6px; font-size:var(--fs-sm); color:var(--aub-60)}
+/* two-column stacked table in a charges block: the first cell is the row title on phones (from 09) */
+@media (max-width: 640px){ .price-grid .data--stack td:first-child{font-weight:600; color:var(--aub)} }
+
+/* info card: a white card with an h3, copy or a ph--block, and a stack of links (from 09 s-fo) */
+.info-card{display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.info-card .links{display:flex; flex-direction:column; gap:10px; margin-top:4px}
+@media (max-width: 640px){ .info-card{padding:20px} }
+
+/* FAQ on a Mist band: the plus button stays visible (from 09) */
+.band--mist .faq summary .pm{background:var(--paper)}
+
+/* closing CTA: both buttons full width when stacked on phones (from 09) */
+@media (max-width: 640px){
+  .final .row{flex-direction:column; align-items:stretch; align-self:stretch; width:100%}
+  .final .row .btn{width:100%}
+}
+
+/* dark band: copy, links, fine print, eyebrow and the illustrative labels in on-dark colours (theme ink is invisible on the gradient).
+   From 01 Home; .fine, .eyebrow from 01 v3 and 09 v3, .ui-caption and .fine a from 09 v3 */
+.band--dark .lead,.band--dark .handoff,.band--dark .illus{color:var(--on-dark-2)}
+.band--dark .link{color:var(--on-dark)}
+.band--dark .fine,.band--dark .eyebrow,.band--dark .ui-caption{color:var(--on-dark-2)}
+.band--dark .fine a{color:var(--on-dark)}
+
+/* disclosure band with the info icon (mutual fund and distribution disclosures): the risk-box pattern in ink, not warn (from 01) */
+.risk-box .i[data-icon="i-info"]{color:var(--aub)}
+
+/* Entity doors (from 01 Home s-products): one panel per Aikyam company; the company is the structure, not a chip */
+.doors{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px; align-items:stretch}
+.door{display:flex; flex-direction:column; padding:clamp(22px, 2.6vw, 32px); border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2)}
+.door-head{display:flex; flex-direction:column; gap:6px; padding-bottom:20px}
+.door-reg{font-size:var(--fs-sm); color:var(--aub-60)}
+.door-reg .mono{color:var(--aub)}
+.door-rows{list-style:none; display:flex; flex-direction:column}
+.door-rows li{display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid var(--line)}
+.row-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.row-text > a{font-weight:600; font-size:1.0625rem; color:var(--aub); text-decoration:none}
+.row-text > a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.row-text p{font-size:var(--fs-sm); color:var(--aub-60)}
+.door .risk{display:flex; gap:8px; align-items:flex-start; margin-top:6px; padding:10px 12px; border-radius:var(--r-ctl); background:var(--warn-bg); color:var(--warn); font-size:var(--fs-xs); line-height:1.4}
+.door .risk a{color:inherit; font-weight:600}
+.door .risk .i{width:16px; height:16px; margin-top:1px}
+.door-foot{margin-top:auto; display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding-top:22px; border-top:1px solid var(--line)}
+.door-foot .xs{max-width:34rem}
+@media (max-width: 899px){ .doors{grid-template-columns:1fr} }
+
+/* Two ledgers (from 01 Home s-pricing): 7/5 columns, one per company; a two-column data table whose rows become one line on phones,
+   and a dl.kv-list card for terms that are not tabular */
+.ledgers{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(24px, 4vw, 48px); align-items:start}
+.ledger{display:flex; flex-direction:column; gap:16px; min-width:0}
+.ledger-head{display:flex; flex-direction:column; gap:4px}
+.ledger table.data{min-width:0}
+.kv-list{margin:0; padding:4px 24px; background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1)}
+.kv-list > div{display:flex; flex-direction:column; gap:4px; padding:16px 0; border-bottom:1px solid var(--line)}
+.kv-list > div:last-child{border-bottom:0}
+.kv-list dt{font-size:var(--fs-sm); color:var(--aub-60)}
+.kv-list dd{margin:0; color:var(--aub); font-weight:500}
+@media (max-width: 899px){ .ledgers{grid-template-columns:1fr} }
+@media (max-width: 640px){
+  .ledger .data--stack tr{display:flex; justify-content:space-between; align-items:center; gap:12px}
+  .ledger .data--stack td{padding:0}
+  .ledger .data--stack td:first-child{flex:1 1 0; min-width:0; text-align:left}
+  .ledger .data--stack td + td{flex:0 0 auto; max-width:58%; justify-content:flex-end; text-align:left}
+}
+
+/* Facts list (from 01 Home s-group): icon + one checkable line; the claim-free replacement for the theme pillars */
+.facts{list-style:none; display:flex; flex-direction:column; gap:14px}
+.facts li{display:flex; gap:12px; align-items:flex-start; color:var(--aub); font-weight:500; line-height:1.45}
+.facts li a{font-weight:600}
+
+/* Group map (from 01 Home s-group): HTML root node, four SVG paths with non-scaling strokes, HTML branch cards (.is-on = on ROOT).
+   Labels stay editable text in Figma; 2 x 2 cards with no lines or dots at 640 */
+.gmap{margin:0; display:flex; flex-direction:column; align-items:center; min-width:0}
+.gmap-root{display:flex; flex-direction:column; align-items:center; gap:6px; padding:18px 32px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2); box-shadow:var(--shadow-1); text-align:center}
+.gmap-root b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+.gmap-lines{width:100%; height:72px}
+.gmap-branches{list-style:none; width:100%; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px}
+.gmap-branches li{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; min-width:0}
+.gmap-dot{width:11px; height:11px; border-radius:50%; border:1.5px solid var(--line-2); background:var(--paper)}
+.gmap-branches .is-on .gmap-dot{background:var(--gold); border-color:var(--gold)}
+.gmap-card{display:flex; flex-direction:column; align-items:center; gap:6px; width:100%; padding:14px 10px; border-radius:var(--r-ctl); font-size:var(--fs-sm); color:var(--aub-60); line-height:1.35}
+.gmap-card b{color:var(--aub-60); font-weight:500}
+.is-on .gmap-card{background:var(--mist)}
+.is-on .gmap-card b{color:var(--aub); font-weight:600}
+.is-on .gmap-card .chip{background:var(--paper)}
+@media (max-width: 640px){
+  .gmap-lines,.gmap-dot{display:none}
+  .gmap-root{margin-bottom:16px}
+  .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
+}
+
+/* Check it yourself ledger (from 01 Home s-group): company + role, registration code (.mono), regulator link; stacks at 640 */
+.verify{margin-top:clamp(40px, 5vw, 64px); display:flex; flex-direction:column; gap:16px}
+.verify-list{margin:0; border-top:1px solid var(--line)}
+.verify-row{display:grid; grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, .8fr); gap:8px 32px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line)}
+.verify-row dt{display:flex; flex-direction:column; gap:2px}
+.verify-row dt a{font-weight:600; color:var(--aub)}
+.verify-row dt span{font-size:var(--fs-sm); color:var(--aub-60)}
+.verify-row dd{margin:0; color:var(--aub)}
+@media (max-width: 640px){ .verify-row{grid-template-columns:1fr; gap:6px} }
+
+/* ===== Design direction v3 (pilot feedback, 12-Oct-2026): quieter compliance, richer visuals ===== */
+
+/* placeholders: a quiet dashed underline instead of a filled chip; still impossible to miss on review */
+main .ph{background:transparent; border:0; box-shadow:none; border-bottom:1.5px dashed var(--gold); border-radius:0; padding:0 1px; color:var(--warn); white-space:normal; font-weight:500}
+.is-static main .ph{border:0; border-bottom:1.5px dashed var(--gold)}
+main .ph.ph--block{border:0; border-radius:var(--r-card); padding:20px; background:var(--gold-wash); color:var(--warn)}
+
+/* fine print: one-line disclosures under an action (MF risk line, hand-off, receiver line) */
+.fine{font-size:var(--fs-xs); line-height:1.5; color:var(--aub-60); max-width:62ch}
+.fine + .fine{margin-top:6px}
+.fine a{color:var(--aub-60)}
+.eyebrow{font:600 .75rem/1.2 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60)}
+
+/* art-directed image slot: where a real photo or illustration will go */
+.img-slot{display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:var(--ar, 4/3); margin:0; padding:20px; border-radius:var(--r-card); background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%); color:var(--aub-60); overflow:hidden}
+.img-slot .i{width:28px; height:28px; color:var(--aub-60); margin-bottom:auto}
+.img-slot b{color:var(--aub); font-weight:600; font-size:var(--fs-sm); line-height:1.35}
+.img-slot span{font-size:var(--fs-xs); line-height:1.45}
+.band--mist .img-slot{background:linear-gradient(160deg, var(--paper) 0%, var(--mist-2) 100%)}
+
+/* floating product UI card (illustrative app panel built from theme parts) */
+.ui-card{background:var(--paper); border-radius:20px; box-shadow:var(--shadow-pop); padding:16px 18px; display:flex; flex-direction:column; gap:10px; font-size:13px; color:var(--aub); min-width:0}
+.ui-card .ui-label{font:600 11px/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60)}
+.ui-card .ui-big{font:600 1.375rem/1.15 var(--sans); font-variant-numeric:tabular-nums}
+.ui-card .ui-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.ui-stage{position:relative; display:flex; flex-direction:column; gap:16px; padding:8px}
+.ui-caption{font-size:var(--fs-xs); color:var(--aub-60); display:flex; gap:6px; align-items:center}
+
+/* stat tiles: compact cost or fact summary on Home and hubs */
+.stat-tiles{display:flex; flex-wrap:wrap; gap:16px}
+.stat-tile{flex:1 1 200px; display:flex; flex-direction:column; gap:6px; padding:20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.stat-tile .num{font:400 2rem/1.05 var(--serif); color:var(--aub)}
+.stat-tile p{font-size:var(--fs-sm); color:var(--aub-60)}
+
+/* calm inset risk panel (F&O box in context): same verbatim text, quieter frame */
+.risk-box--inset{background:var(--warn-bg); border:0; padding:18px 20px; gap:12px 16px}
+.is-static .risk-box--inset{border:0}
+.risk-box--inset ul{font-size:var(--fs-sm)}
+
+/* hero balance: centre the columns */
+.hero-grid{align-items:center}
+
+/* ===== v3 golden promotions (curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. Scoped where 01 and 09 use different conventions, so neither page changes. */
+
+/* Hero · product stage (from 01 Home s-hero): two equal columns from 900 px; inline bar form left, illustrative screens right */
+@media (min-width: 900px){ .hero-grid--stage{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--stage .hero-copy{gap:16px}
+.hero-visual{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0}
+.hero-stage{position:relative; display:flex; gap:24px; align-items:stretch; justify-content:center; width:100%}
+.hero-stage .rings{width:300px; top:-28px; right:0}
+.hero-stage .phone{flex:none; width:280px}
+.stage-cards{position:relative; z-index:1; flex:0 1 236px; min-width:0; display:flex; flex-direction:column; justify-content:space-around; gap:24px; padding-block:48px}
+/* stage card rows: label in aub-60, value bold and right-aligned (09's illustrative rows keep ink labels) */
+.stage-cards .ui-row span{color:var(--aub-60)}
+.stage-cards .ui-row b{font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+/* theme phone, Home screen parts at 280 px (theme .phone clips its tab bar below 256 px) */
+.hero-stage .ph-card .chg{font-size:11px}
+.hero-stage .ph-spark{margin-top:6px}
+.ph-hold{display:flex; flex-direction:column; gap:8px; padding:2px 2px 0}
+.ph-sip{padding:0 2px}
+.ph-sip .xs{display:block}
+@media (max-width: 640px){
+  .hero-stage{flex-direction:column; align-items:center; gap:20px}
+  .hero-stage .phone{width:256px}
+  .hero-stage .ph-spark{height:40px}
+  .hero-stage .ph-body{gap:8px}
+  .stage-cards{flex-direction:row; align-items:stretch; padding:0; width:100%; flex:none; gap:12px}
+  .stage-cards .ui-card{flex:1 1 0; padding:14px}
+  .stage-cards .ui-row{flex-direction:column; align-items:flex-start; gap:0}
+  .stage-cards .ui-row b{text-align:left}
+}
+
+/* Hero inline bar form (from 01 Home s-hero): theme .leadbar + consent + receiver and hand-off lines 6 px apart.
+   Error states wrap the bar or the consent box in .fgroup.is-error: the bar takes the red outline, the field drops its own */
+.hero-form{display:flex; flex-direction:column; gap:12px; max-width:560px}
+.hero-fine{display:flex; flex-direction:column; gap:6px}
+.hero-fine .fine + .fine{margin-top:0}
+.hero-form .leadbar{max-width:none}
+.hero-form .check{color:var(--aub-80)}
+.hero-form .check a{font-weight:600}
+.hero-form .fine{max-width:58ch}
+.hero-form .is-error .leadbar{border-color:var(--loss); box-shadow:var(--shadow-1), 0 0 0 1px var(--loss)}
+.hero-form .is-error .leadbar .field{box-shadow:none}
+.hero-form .is-error .check input{border-color:var(--loss)}
+/* the other company's door under the form, inside .hero-copy: link above its fine print */
+.hero-copy .hero-alt{flex-direction:column; align-items:flex-start; gap:4px}
+.hero-alt .fine{max-width:none}
+
+/* Proof row (from 01 Home s-hero): ul.creds.creds--row, three across from 900 px under a hairline, icon top-aligned */
+.creds--row{max-width:none; gap:14px 20px; padding-top:14px; border-top:1px solid var(--line)}
+.creds--row li{align-items:flex-start}
+.creds--row li > .i{margin-top:2px}
+@media (min-width: 900px){ .creds--row{grid-template-columns:repeat(3, minmax(0,1fr))} }
+
+/* Hero helper (from 09 v3): a link directly under the creds hugs its text instead of spanning the column */
+.hero-copy > .link{justify-self:start; align-self:flex-start}
+
+/* Hero with the onboarding stage (from 09 v3 s-hero): centre the columns. Outranks .hero-grid:has(> .hero-side){align-items:start},
+   which stays for the v2 form-card hero still used by 10 */
+.hero-grid:has(> .hero-side > .open-stage){align-items:center}
+
+/* Stage panel (from 09 v3): a Mist panel that holds a form card or illustrative UI on a white band */
+.ui-stage--panel{padding:24px; border-radius:24px; background:var(--mist)}
+@media (max-width: 640px){ .ui-stage--panel{padding:16px} }
+
+/* Onboarding stage + step tracker (from 09 v3 s-hero and the "verified" state): rings bottom right behind the card,
+   every other child above them. ol.track: four li segments, a 3 px top border plus a label; li.is-on gold (aria-current="step"),
+   li.is-done ink with an inline check; a span keeps "e-sign" together */
+.open-stage > :not(.rings){position:relative; z-index:1}
+.open-stage .rings{top:auto; bottom:-40px; right:-96px}
+.track{list-style:none; display:flex; gap:6px}
+.track li{flex:1 1 0; min-width:0; padding-top:8px; border-top:3px solid var(--line-2); font:500 var(--fs-xs)/1.3 var(--sans); color:var(--aub-60)}
+.track li.is-on{border-top-color:var(--gold); color:var(--aub); font-weight:600}
+.track li.is-done{border-top-color:var(--aub); color:var(--aub)}
+.track li .i{display:inline-block; vertical-align:-3px; margin-right:4px; width:15px; height:15px; color:var(--gain)}
+.track li span{white-space:nowrap}
+.states-board .open-stage{max-width:32rem}
+
+/* Parts for illustrative cards (01 v3 and 09 v3).
+   Small status chips inside .ui-card (09); .ui-cta keeps the full chip size as the card's action (01); ink chip; check icons in gain green */
+.ui-card .chip{min-height:22px; padding:0 9px; font-size:11px}
+.chip--ink{background:var(--aub); color:var(--paper)}
+.ui-row .i{color:var(--gain)}
+/* card head (01): 34 px icon tile + label, then a bold name */
+.ui-card .ui-head{display:flex; align-items:center; gap:10px}
+.ui-card .ui-tile{width:34px; height:34px; border-radius:10px; background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.ui-card .ui-tile .i{width:18px; height:18px}
+.ui-card .ui-name{font-weight:600; font-size:.9375rem; line-height:1.3}
+/* actions: .ui-cta an ink chip (01, a span, not a button); .ui-pill a full-width 38 px ink bar (09, a span, not a button) */
+.ui-card .ui-cta{min-height:28px; padding:0 11px; font-size:.8125rem; justify-content:center; background:var(--aub); color:var(--paper); font-weight:600}
+.ui-card .ui-pill{display:flex; justify-content:center; align-items:center; min-height:38px; border-radius:10px; background:var(--aub); color:var(--paper); font-weight:600; font-size:var(--fs-sm)}
+/* form-like parts (01 KYC card): a field with label and mono value, a gain-green "done" row */
+.ui-field{display:flex; flex-direction:column; gap:4px; padding:10px 14px; border-radius:var(--r-ctl); border:1px solid var(--line-2)}
+.ui-field .ui-flabel{font-size:11px; color:var(--aub-60)}
+.ui-field .ui-fval{font:500 15px/1.2 var(--mono); letter-spacing:.06em; color:var(--aub)}
+.ui-card .ui-ok{justify-content:flex-start; gap:8px; color:var(--gain); font-weight:500}
+.ui-card .ui-ok .i{width:16px; height:16px}
+.ui-card .ui-ok span{color:var(--gain)}
+
+/* Hairline row card (from 09 v3): .ui-card.ui-list, rows split by 1 px lines (segments, account status, order ticket) */
+.ui-card.ui-list{gap:0}
+.ui-list .ui-label{padding-bottom:10px}
+.ui-list .ui-big{padding-bottom:12px}
+.ui-list .ui-row{padding:11px 0; border-top:1px solid var(--line)}
+.ui-list .ui-pill{margin-top:12px}
+
+/* Receipt card (from 09 v3 s-charges): .ui-card.ui-receipt, a contract-note look for charges without figures */
+.ui-card.ui-receipt{padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ui-receipt .ui-label{padding-bottom:12px}
+.ui-receipt .ui-row{padding:12px 0; border-top:1px dashed var(--line-2); align-items:baseline}
+.ui-receipt .ui-row span + span{flex:none; color:var(--aub-60); text-align:right}
+.ui-receipt .small{padding-top:14px; border-top:1px dashed var(--line-2); color:var(--aub-60)}
+
+/* KYC step card (from 01 Home s-steps): .ui-stage.kyc-stage, a Mist panel with a taller top, holding .ui-card.kyc-card */
+.kyc-stage{align-items:center; padding:48px 32px 28px; border-radius:24px; background:var(--mist)}
+.kyc-card{width:min(340px, 100%); gap:14px; padding:22px}
+.kyc-progress{display:flex; gap:6px}
+.kyc-progress i{flex:1; height:4px; border-radius:4px; background:var(--line)}
+.kyc-progress i.on{background:var(--aub)}
+@media (max-width: 640px){ .kyc-stage{padding:28px 16px 20px} }
+
+/* Steps split (from 01 Home s-steps): steps 2 x 2, the docs strip (heading above a two-column list from 900 px) and the band CTA left (7),
+   a product visual right (5) */
+@media (min-width: 900px){ .split--steps{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.split--steps .docs{margin-top:36px; grid-template-columns:1fr; gap:14px}
+@media (min-width: 900px){ .split--steps .docs ul{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 24px} }
+.split--steps .band-cta{margin-top:32px}
+
+/* Step mini screens (from 09 v3 s-steps): .ui-card.ui-mini under each step, pinned to the foot of the row so all four line up */
+.steps li:has(.ui-mini){display:flex; flex-direction:column}
+.ui-card.ui-mini{margin-top:auto; padding:14px 16px; gap:8px; border-radius:14px; box-shadow:var(--shadow-1)}
+.ui-mini b{font-size:var(--fs-sm); font-weight:600; color:var(--aub)}
+.steps + .ui-caption{margin-top:28px}
+
+/* Documents strip with icon tiles (from 09 v3 s-steps): .docs.docs--tiles, 40 px Mist tiles; from 641 px the list is two
+   max-content columns, so four items read 2 x 2 */
+.docs--tiles li .tile{width:40px; height:40px; background:var(--mist)}
+.docs--tiles li .tile .i{width:20px; height:20px; color:var(--aub)}
+.docs--tiles ul{gap:12px 28px}
+@media (min-width: 641px){ .docs--tiles ul{display:grid; grid-template-columns:repeat(2, minmax(0, max-content)); column-gap:48px} }
+
+/* Info card tile (fix from 09 v3): the theme makes tiles white on Mist bands, which vanish inside white info cards */
+.info-card .tile{background:var(--mist)}
+
+/* Two-card row (from 09 v3): .cards.cards--2, two columns from 641 px, one below, 16 px under the block before it */
+.cards--2{margin-top:16px}
+@media (min-width: 641px){ .cards--2{grid-template-columns:repeat(2, minmax(0,1fr))} }
+
+/* F&O section (from 09 v3 s-fo): link 16 px under the inset risk box; a centred split below it; facts with a title;
+   the segments card centred on a stage panel */
+.risk-more{margin-top:16px}
+.fo-split{margin-top:clamp(40px, 5vw, 64px); align-items:center}
+.fo-split .facts{gap:24px}
+.fact-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.fact-text p{font-weight:400; color:var(--aub-80)}
+.fact-text .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+.seg-card{width:min(100%, 26rem); align-self:center; padding:20px 22px; font-size:var(--fs-sm)}
+.seg-card .chip{min-height:24px; font-size:12px}
+.seg-stage .ui-caption{align-self:center}
+
+/* Inset risk box inside a product door (from 01 Home s-products): icon and bullets in ink, an h4 under the door's h3.
+   09 keeps the warn icon in a stand-alone inset box */
+.door .risk-box--inset{margin:6px 0 2px}
+.door .risk-box--inset .i{color:var(--aub)}
+.door .risk-box--inset ul{color:var(--aub); line-height:1.5}
+.risk-box--inset .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+
+/* Door rows, wide text and goal chips (from 01 Home s-products): fine print inside a row; 2 x 2 Mist goal tiles, not links */
+.row-text--wide{flex:1}
+.row-text .fine{margin-top:4px; font-size:var(--fs-xs)}
+.door-foot .fine{max-width:52ch}
+.goal-chips{list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px}
+.goal-chips li{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:22px 18px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-size:var(--fs-sm); font-weight:600; line-height:1.3}
+.goal-chips .i{width:24px; height:24px}
+@media (max-width: 640px){ .goal-chips li{padding:14px 12px; gap:8px} }
+
+/* Coming-soon card (from 01 Home s-products): the right column of .doors stacks the second door and a hairline card that fills
+   the rest; one item per line with a small icon, no badges or links, outside the door so no company is implied */
+.doors-side{display:flex; flex-direction:column; gap:24px; min-width:0}
+.soon-card{flex:1; display:flex; flex-direction:column; gap:14px; padding:22px 28px; border-radius:var(--r-card); border:1px solid var(--line-2); color:var(--aub-80); font-size:var(--fs-sm)}
+.soon-card .label{color:var(--aub)}
+.soon-list{list-style:none; display:flex; flex-direction:column; gap:12px}
+.soon-item{display:flex; gap:10px; align-items:flex-start; line-height:1.4}
+.soon-item .i{flex:none; width:18px; height:18px; margin-top:1px; color:var(--aub-60)}
+@media (max-width: 640px){
+  .soon-card{padding:18px 20px}
+  .soon-list{gap:10px}
+}
+
+/* Stat tiles (01 v3 and 09 v3): an unconfirmed value sits at body size in a slot of numeral height (2rem x 1.05),
+   so a confirmed serif value fills it with no layout shift; .stat-tiles--3 adds an icon tile and roomier tiles; .num--word for a word */
+.stat-tile .num{display:flex; align-items:center; min-height:2.1rem}
+.stat-tile .num .ph{font:500 var(--fs-sm)/1.4 var(--sans); letter-spacing:0}
+.stat-tile .num--word{font-size:1.625rem; line-height:1.2}
+.stat-tile .tile{margin-bottom:10px}
+.stat-tile .link{margin-top:6px}
+.stat-tiles--3 .stat-tile{flex:1 1 260px; gap:8px; padding:26px}
+.price-notes{margin-top:24px}
+
+/* Row list (from 09 v3 s-charges): dl.kv-list.kv-list--row, no card frame, hairlines above the first and below the last row;
+   dt ink left, dd right at fs-sm; rows wrap on phones */
+.kv-list--row{padding:0; background:none; box-shadow:none; border-radius:0; border-top:1px solid var(--line)}
+.kv-list--row > div{flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px; padding:12px 0}
+.kv-list--row > div:last-child{border-bottom:1px solid var(--line)}
+.kv-list--row dt{color:var(--aub)}
+.kv-list--row dd{font-size:var(--fs-sm); text-align:right}
+
+/* Group map on a Mist band, and off-group branches with a hairline shell (they still read as branches at 640). From 01 v3 */
+.band--mist .is-on .gmap-card{background:var(--paper)}
+.band--mist .is-on .gmap-card .chip{background:var(--mist)}
+.gmap-branches li:not(.is-on) .gmap-card{border:1px solid var(--line-2)}
+
+/* Verify cards (from 01 Home s-group): the check-it-yourself ledger as three white cards; tile, bold role, company link,
+   .mono code above a hairline (balanced break at the middle dot), regulator link pinned to the foot; one column at 899 */
+.verify-head{display:flex; flex-direction:column; gap:6px}
+.verify-head p{color:var(--aub-60)}
+.verify-list--cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; border-top:0}
+.verify-list--cards .verify-row{display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:24px; border-bottom:0; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.verify-list--cards dt{gap:4px}
+.verify-list--cards dt .tile{margin-bottom:10px; background:var(--mist); color:var(--aub)}
+.verify-list--cards dt b{font-weight:600; color:var(--aub)}
+.verify-list--cards dt a{font-weight:500; font-size:var(--fs-sm)}
+.verify-list--cards dd.mono{padding-top:12px; border-top:1px solid var(--line); align-self:stretch; text-wrap:balance}
+.verify-list--cards dd:last-child{margin-top:auto}
+@media (max-width: 899px){ .verify-list--cards{grid-template-columns:1fr} }
+@media (max-width: 640px){ .verify-list--cards .verify-row{padding:20px} }
+
+/* FAQ split, left column (from 01 Home s-faq): the image slot gets a little air in the 18 px stack */
+.faq-side .img-slot{margin-block:4px}
+
+/* Dark closing band (01 v3 and 09 v3; on-dark copy colours are in the dark band block above).
+   01: buttons in a row, an app-soon block, a translucent image slot right. 09: a column of equal-width buttons, product cards right */
+.final-actions{display:flex; flex-wrap:wrap; gap:12px}
+.app-soon{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:22px; border-top:1px solid var(--dark-line)}
+.app-soon p{color:var(--on-dark)}
+.final-visual{justify-self:end; width:min(420px, 100%)}
+.band--dark .img-slot{background:linear-gradient(160deg, rgba(244,241,247,.16) 0%, rgba(244,241,247,.05) 100%); border:1px solid var(--dark-line); color:var(--on-dark-2)}
+.band--dark .img-slot b{color:var(--on-dark)}
+.band--dark .img-slot .i{color:var(--on-dark-2)}
+.app .row{display:flex; flex-direction:column; align-items:stretch; gap:12px; width:max-content; max-width:100%}
+.final-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.final-stage .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 899px){
+  .final-visual{justify-self:stretch; width:100%; max-width:420px}
+  .final-stage{padding:0}
+}
+@media (max-width: 640px){
+  .app-soon .stores{flex-wrap:nowrap; align-self:stretch}
+  .app-soon .store{flex:1 1 0; min-width:0; gap:10px; padding:10px 12px}
+  .app-soon .store b{white-space:nowrap}
+  .app .row{width:100%}
+  .app .row .btn{width:100%; white-space:normal; text-align:center; line-height:1.25; padding:12px 16px; font-size:1rem}
+  .final-stage .ui-card{width:100%}
+}
+
+/* ===== Wave 1 golden promotions (curated 12-Oct-2026 from 03 Trade, 07 About, 17 Grievance, 29 Scheme detail, 42 SIP calculator,
+   57 PMS, 62 Distributor partner, 65 Guide: getting started) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. A rule that would change the approved pages 01, 09 or 10 is scoped by template (body .tpl-x, set by the build)
+   or by component, so those pages render exactly as approved; the site-wide versions are proposals for the orchestrator. */
+
+/* --- Site and template rules --- */
+
+/* Hero under a breadcrumb, per template (each golden's values; one site value is a pending proposal).
+   A hubs and H products (03, 57): 40 px top, 24 at 640. P partners (62): 40 px top. E guides and F company pages (07, 65): 40/80,
+   32/56 at 640. B data heroes and C calculators carry theirs in .hero-grid--data and .hero--calc below; G (17) keeps the theme's */
+.tpl-a .hero,.tpl-h .hero,.tpl-p .hero{padding-top:40px}
+.tpl-e .hero,.tpl-f .hero{padding-block:40px 80px}
+@media (max-width: 640px){
+  .tpl-a .hero,.tpl-h .hero{padding-top:24px}
+  .tpl-e .hero,.tpl-f .hero{padding-block:32px 56px}
+}
+
+/* Phones: buttons in main go full width and wrap (01 Home, 03, 07, 57, 65). Scoped to those templates; as a site rule it would
+   also change 09 and 10 (approved), 17, 29, 42 and 62 */
+@media (max-width: 640px){
+  :is(.tpl-home,.tpl-a,.tpl-e,.tpl-f,.tpl-h) main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
+}
+
+/* Phones: risk and disclosure boxes put the icon above the text, an inset box keeps 18 px (01, 03, 10, 29, 42, 57, 65).
+   Scoped to the templates whose goldens use it, plus F and G (no box on their goldens); site-wide it would also change 09 and 62 */
+@media (max-width: 640px){
+  :is(.tpl-home,.tpl-a,.tpl-b,.tpl-c,.tpl-e,.tpl-f,.tpl-g,.tpl-h) .risk-box{grid-template-columns:1fr; padding:20px}
+  :is(.tpl-home,.tpl-a,.tpl-b,.tpl-c,.tpl-e,.tpl-f,.tpl-g,.tpl-h) .risk-box--inset{padding:18px}
+}
+
+/* Band CTA 20 px under the steps note (09, 10 and 62 carried it in their pages) */
+.steps-note + .band-cta{margin-top:20px}
+
+/* Dark band: a placeholder in on-dark fine print stays readable (from 29 and 42) */
+.band--dark .ph{color:var(--on-dark)}
+
+/* Utility: keeps a token value (a minimum amount) on one line in running copy (from 57) */
+.nb{white-space:nowrap}
+
+/* Chip row (from 10 and 29): static category labels inside a card, not links or filters; 6 px apart inside a .ui-card (42) */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px}
+.ui-card .chip-row{gap:6px}
+
+/* Card head in a hairline row card (from 03; 62's agreement card and 65's cards use it): tile + label head with no extra label
+   padding, a status chip pushed right */
+.ui-list .ui-head{padding-bottom:12px}
+.ui-list .ui-head .ui-label{padding-bottom:0}
+.ui-head .chip{margin-left:auto}
+
+/* Stacked rows (57's set-up card, 62's agreement card): each row stacks a small grey label over a bold value, so long answers never
+   wrap against a label; a registration code stays at mono 500. .ui-list--stack is the name for new cards */
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row span{font-size:var(--fs-xs); color:var(--aub-60)}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row b{font-weight:600}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row b.mono{font-weight:500}
+
+/* Receipt rows stacked on phones (10 and 29): for receipts whose values are phrases, not amounts; 09's receipt keeps two columns */
+@media (max-width: 640px){
+  .ui-receipt--stack .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .ui-receipt--stack .ui-row span + span{text-align:left}
+}
+
+/* Staggered stage (03 explainer cards, 65 first-steps cards; the same rule as 09's .final-stage): two 22rem cards above the rings,
+   the second aligned right; full width at 640 */
+.explain-stage > .ui-card,.first-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.explain-stage > .ui-card + .ui-card,.first-stage > .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 640px){ .explain-stage > .ui-card,.first-stage > .ui-card{width:100%} }
+
+/* Rings bottom right behind a stage panel's cards (as 09's .open-stage): 62's money path, 17's route card */
+.money-stage > :not(.rings),.route-stage > :not(.rings){position:relative; z-index:1}
+.money-stage .rings,.route-stage .rings{top:auto; bottom:-40px; right:-96px}
+
+/* Info card with a foot button (from 03): the button hugs its label and pins to the card foot, so it lines up with a taller card
+   beside it; rate notes sit above it */
+.info-card .btn{align-self:flex-start; margin-top:auto}
+.info-card .price-notes{margin-top:0}
+/* Info card parts (from 29): an h4 sub-head and a plain bullet list */
+.info-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub); margin-top:6px}
+.info-card > ul:not([class]){display:flex; flex-direction:column; gap:4px; padding-left:20px; color:var(--aub-80)}
+
+/* Split family. 7/5 from 900 px: .split--75 is the name for new pages; --wide (65), --rows (03), --pay (62), --data (29) and
+   .clause-split (17) are the goldens' names for the same columns. Centred: --75, --wide, --rows (from 900 px); --mid (new pages),
+   --returns (29), --roles (57), --pay and --agree (62) at every width. .split--top top-aligns; .split--half is 6/6, top-aligned;
+   .split--stretch makes equal-height cards and pins the left card's .data-foot (29). .split--steps (01) stays separate */
+@media (min-width: 900px){
+  .split--75,.split--wide,.split--rows,.split--pay,.split--data,.clause-split{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
+  .split--75,.split--wide,.split--rows{align-items:center}
+  .split--half{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+.split--mid,.split--returns,.split--roles,.split--pay,.split--agree{align-items:center}
+.split--half{align-items:start}
+@media (min-width: 900px){
+  .split--top,.split--wide.split--top{align-items:start}
+  .split--stretch{align-items:stretch}
+  .split--stretch > .data-card > .data-foot{margin-top:auto}
+}
+
+/* Hero actions (07 About, 17 Grievance): a button and an on-page link in one row; at 640 the button goes full width and the link
+   sits under it. .hero-act stacks the actions (or one button, 65) over a fine line 12 px under it */
+.hero-actions{display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px}
+.hero-act{display:flex; flex-direction:column; align-items:flex-start; gap:12px}
+.hero-act > .hero-actions{align-self:stretch}
+@media (max-width: 640px){
+  .hero-actions{flex-direction:column; align-items:stretch; gap:16px}
+  .hero-actions .btn{width:100%}
+  .hero-actions .link{align-self:flex-start}
+}
+
+/* --- Template A: hubs (from 03 Trade) --- */
+
+/* Ticket stage (03 s-hero): the hub hero's product stage with an illustrative order ticket in the phone's slot. The stage keeps the
+   phone's height (540 px) and the two stage cards sit at its top and foot, staggered around the 300 px ticket; the ticket's Buy
+   .ui-pill keeps the library 38 px, so the real primary stays the largest ink button. 31, 35 to 38; 06 with the receipt as ticket */
+.hero-stage:has(> .ticket){min-height:540px}
+.hero-stage:has(> .ticket) .stage-cards{padding-block:0; justify-content:space-between}
+.hero-stage > .ticket{position:relative; z-index:1; flex:none; width:300px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.ticket .ui-row{padding-block:13px}
+.ticket .ui-row span{color:var(--aub-60)}
+.ticket .ui-row b{font-weight:600; font-variant-numeric:tabular-nums}
+.ticket-toggle{display:flex; gap:4px; padding:4px; margin-bottom:14px; border-radius:12px; background:var(--mist)}
+.ticket-toggle span{flex:1 1 0; padding:9px 0; border-radius:9px; text-align:center; font-weight:600; color:var(--aub-60)}
+.ticket-toggle .on{background:var(--aub); color:var(--paper)}
+.stage-cards .chip--gain{align-self:flex-start}
+@media (max-width: 640px){
+  .hero-stage:has(> .ticket){min-height:0}
+  .hero-stage > .ticket{width:min(320px, 100%)}
+  .stage-cards .chip--gain{margin-top:auto}
+}
+
+/* Rows plus explainer split (03 s-products): door rows left, two staggered explainer cards right (columns in the split family,
+   cards in the staggered stage) */
+.explain-card .ui-name{padding-bottom:10px}
+.explain-card .ui-row b{font-weight:600}
+
+/* --- Template F: company pages (from 07 About) --- */
+
+/* Hero · group stage (07 s-hero): the group map on a Mist stage panel beside the copy; rings top right; tighter branch cards;
+   branches 2 x 2 without lines while the map column is narrow (900 to 1199 px), as at 640. 12, 13 */
+.group-stage{align-self:stretch; padding:36px 24px 28px; overflow:visible}
+.group-stage > :not(.rings){position:relative; z-index:1}
+.group-stage .rings{top:-44px; right:-88px; width:260px}
+/* Group map on a stage panel: the "Group map on Mist" rules, extended to a Mist panel on a white band */
+.ui-stage--panel .is-on .gmap-card{background:var(--paper)}
+.ui-stage--panel .is-on .gmap-card .chip{background:var(--mist)}
+.group-stage .gmap-branches{gap:10px}
+.group-stage .gmap-card{padding:14px 8px; gap:4px}
+.group-stage .gmap-card > span:not(.chip){font-size:var(--fs-xs)}
+.group-stage .gmap-card .chip{margin-top:6px}
+.gmap-caption{margin-top:24px; text-align:center; font-size:var(--fs-sm); color:var(--aub-60); max-width:30rem; text-wrap:balance}
+@media (min-width: 900px) and (max-width: 1199px){
+  .group-stage .gmap-lines,.group-stage .gmap-dot{display:none}
+  .group-stage .gmap-root{margin-bottom:16px}
+  .group-stage .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
+}
+@media (max-width: 640px){
+  .group-stage{padding:20px 16px 18px}
+  .gmap-caption{margin-top:16px}
+}
+
+/* Proof sub-line (07 s-hero): span.cred-sub names whose licence it is, then the code as an inline .mono after a middle dot
+   (the theme sets every span in a cred to block). Any hero proof row: 01, 03, 09, 12 */
+.creds li .cred-sub .mono{display:inline; font-size:inherit; color:inherit}
+
+/* Entity doors · about variant (07 s-companies): question rows per company (label over a 1rem answer), 40 px Mist tiles (theme tiles
+   turn white on Mist bands and vanish in a white door), a "Coming soon" line inside a row, full-width fine print in the foot */
+.door-rows--about .tile{width:40px; height:40px; border-radius:10px; background:var(--mist)}
+.door-rows--about .tile .i{width:20px; height:20px}
+.door-rows--about .row-text{gap:6px}
+.door-rows--about .row-text p{font-size:1rem; color:var(--aub-80)}
+.door-rows--about .row-text .link{font-size:var(--fs-sm); margin-top:2px}
+.door-rows--about .row-text p.row-soon{margin-top:4px; font-size:var(--fs-xs); color:var(--aub-60)}
+.row-soon b{font-weight:600; color:var(--aub)}
+.door-rows--about ~ .door-foot .fine{max-width:none}
+/* a note under the doors: fine print (07) or small copy (65), 24 px below */
+.doors + .fine{margin-top:24px; max-width:none}
+.doors + .small{margin-top:24px; color:var(--aub-80)}
+
+/* Company registers (07 s-registers): how-to-check strip (Mist panel, three items with 40 px white tiles, three across from 900 px);
+   .ledger.register row lists as a 2/3 grid (dt left; mono value and a "Check on" link right; one column at 640); .ledger-side holds
+   the second register and a documents block; the stay-safe card full width with a links column behind a hairline. 12, 13, 15, 16 */
+.check-strip{list-style:none; display:grid; gap:20px 32px; padding:24px 28px; border-radius:var(--r-card); background:var(--mist); margin-bottom:clamp(40px, 5vw, 56px)}
+.check-strip li{display:flex; gap:14px; align-items:flex-start; min-width:0}
+.check-strip .tile{width:40px; height:40px; border-radius:10px; background:var(--paper)}
+.check-strip .tile .i{width:20px; height:20px}
+.check-strip b{display:block; color:var(--aub); font-weight:600}
+.check-strip p{font-size:var(--fs-sm); color:var(--aub-60)}
+@media (min-width: 900px){ .check-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.register .ledger-head{gap:6px; padding-bottom:4px}
+.register .kv-list--row > div{display:grid; grid-template-columns:minmax(0, 2fr) minmax(0, 3fr); gap:4px 24px; align-items:baseline; padding:14px 0}
+.register .kv-list--row dt{font-size:var(--fs-sm); color:var(--aub-80)}
+.register .kv-list--row dd{text-align:left; color:var(--aub)}
+.register .kv-list--row dd + dd{grid-column:2}
+.register dd.mono{font-size:var(--fs-sm); text-wrap:balance}
+.register dd .link{font-size:var(--fs-sm)}
+.register dd .link .i{width:16px; height:16px}
+.register > .fine{max-width:none}
+.safe-card{margin-top:clamp(40px, 5vw, 56px)}
+@media (min-width: 900px){
+  .safe-card{display:grid; grid-template-columns:auto minmax(0, 1fr) auto; gap:4px 24px; align-items:start; padding:28px 32px}
+  .safe-card .links{margin-top:0; padding-left:24px; border-left:1px solid var(--line)}
+}
+.safe-card p{color:var(--aub-80); max-width:62ch}
+.safe-card a[href^="tel:"]{white-space:nowrap}
+.ledger-side{display:flex; flex-direction:column; gap:clamp(40px, 5vw, 56px); min-width:0}
+.doc-block{display:flex; flex-direction:column; gap:12px}
+.doc-list{list-style:none; border-top:1px solid var(--line)}
+.doc-list li{padding:14px 0; border-bottom:1px solid var(--line)}
+@media (max-width: 899px){ .ledgers:has(.register){row-gap:48px} }
+@media (max-width: 640px){
+  .check-strip{padding:20px}
+  .register .kv-list--row > div{grid-template-columns:1fr; gap:2px}
+  .register .kv-list--row dd + dd{grid-column:auto; margin-top:4px}
+  .safe-card .links{padding-top:4px}
+}
+
+/* People cards · compact (07 s-people): white cards; an 88 px face slot (64 at 640) holds the leader's serif initials on the Mist
+   gradient until a portrait replaces them in the same slot; three columns from 1100 px, two from 641 px. 12, 13; 14 until the shoot */
+.people{list-style:none; display:grid; grid-template-columns:1fr; gap:16px}
+@media (min-width: 641px){ .people{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (min-width: 1100px){ .people{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.person{display:flex; gap:16px; align-items:center; padding:16px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
+.person .img-slot--face{flex:none; width:88px; padding:0; justify-content:center; align-items:center; border-radius:12px; background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%)}
+.person .img-slot--face .initials{font:400 1.75rem/1 var(--serif); color:var(--aub); letter-spacing:.02em}
+.person .stack{min-width:0}
+.person h3{font:600 1.0625rem/1.3 var(--sans); color:var(--aub)}
+.person p{color:var(--aub-60)}
+.people-note{margin-top:20px; color:var(--aub-60)}
+.people-links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:28px}
+@media (max-width: 640px){
+  .person{padding:12px}
+  .person .img-slot--face{width:64px}
+  .person .img-slot--face .initials{font-size:1.375rem}
+}
+
+/* Contact strip (07 s-contact): three labelled channels, a hairline above each, no card frame; three columns from 900 px. 15, 73 */
+.contact-strip{display:grid; grid-template-columns:1fr; gap:0 48px}
+@media (min-width: 900px){ .contact-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.contact-col{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding-block:28px; border-top:1px solid var(--line); min-width:0}
+.contact-col .tile{margin-bottom:8px}
+.contact-col .value{font:600 1.1875rem/1.35 var(--sans); color:var(--aub); text-decoration:none}
+.contact-col p{color:var(--aub-80); overflow-wrap:anywhere}
+.contact-col .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+@media (max-width: 640px){ .contact-col{padding-block:24px} }
+
+/* --- Template G: legal and help pages (from 17 Grievance Redressal) --- */
+
+/* Route card · where to complain (17 s-hero): white card on a Mist stage panel, columns centred; rows on a 1 px gold rail built
+   from real elements (.route-rail: .route-dot numeral in a gold ring over i.route-line), label rows (.route-group), two Mist
+   alternative tiles (.route-alts), a link under a hairline. Scoped by .route-steps: 65's guide route card shares the outer names */
+.hero-grid:has(> .hero-side > .route-stage){align-items:center}
+.route-card:has(> .route-steps){padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.route-card > .ui-label{padding-bottom:18px}
+.route-steps{list-style:none; display:flex; flex-direction:column}
+.route-steps li,.route-group{display:flex; gap:16px; align-items:stretch}
+.route-rail{flex:none; width:28px; display:flex; flex-direction:column; align-items:center}
+.route-dot{flex:none; width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); background:var(--paper); display:flex; align-items:center; justify-content:center; font:400 15px/1 var(--serif); color:var(--aub)}
+.route-rail .route-line{flex:1 1 auto; width:1px; min-height:8px; background:var(--gold)}
+.route-group .label{padding:2px 0 12px; font-size:11px}
+.route-steps .route-text{flex:1 1 auto; display:flex; flex-direction:column; gap:2px; min-width:0; padding:3px 0 22px}
+.route-steps:last-of-type li .route-text{padding-bottom:4px}
+.route-steps .route-text > a,.route-steps .route-text > b{font-weight:600; font-size:1rem; color:var(--aub); text-decoration:none}
+.route-steps .route-text > a:hover,.route-steps .route-text > a.is-hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.route-steps .route-text > span{color:var(--aub-60)}
+.route-alts{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:10px}
+.route-alt{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:14px; border-radius:var(--r-tile); background:var(--mist); color:var(--aub); text-decoration:none; line-height:1.35}
+.route-alt .tile{width:36px; height:36px; border-radius:10px; background:var(--paper)}
+.route-alt .tile .i{width:20px; height:20px}
+.route-alt b{font-weight:600}
+.route-alt small{display:block; font-size:var(--fs-xs); color:var(--aub-60)}
+.route-alt:hover,.route-alt.is-hover{background:var(--mist-2)}
+.route-alt.is-focus{outline:2px solid var(--aub); outline-offset:2px}
+.route-steps ~ .route-foot{margin-top:18px; padding-top:16px; border-top:1px solid var(--line)}
+.states-board .route-stage:has(.route-steps){max-width:30rem}
+@media (max-width: 640px){
+  .route-card:has(> .route-steps){padding:20px}
+  .route-alts{grid-template-columns:1fr}
+  .route-alt{flex-direction:row; align-items:center; gap:12px; padding:12px}
+}
+
+/* Clause split (17 s-contents): section.clause > .split.clause-split (7/5 from 900 px, in the split family), "Step N" eyebrow,
+   h3.d3.node on the spine, copy left, the step's working card right; a hairline and 48 to 80 px between clauses.
+   .clause-head (46rem) over a two-card row for a step whose answer is a choice; .head--wide (54rem) keeps a long h2 on one line */
+.clause + .clause{margin-top:clamp(48px, 6vw, 80px); padding-top:clamp(48px, 6vw, 80px); border-top:1px solid var(--line-2)}
+.clause-head{max-width:46rem}
+.head--wide{max-width:54rem}
+.clause .stack > p:not(.fine):not(.small){max-width:34rem}
+.clause-fine{margin-top:20px}
+/* Checklist (17): gain-green checks and ink text. 21 KYC documents, 23 */
+.checklist{list-style:none; display:flex; flex-direction:column; gap:10px}
+.checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--aub); line-height:1.45}
+.checklist .i{width:20px; height:20px; margin-top:1px; color:var(--gain)}
+
+/* Row list, two columns (17): dl.kv-list.kv-list--row.kv-list--cols, dt in a fixed column (--dt, default 9rem), dd left-aligned
+   beside it; stacked at 640. 13, 16, 20, 30 */
+.kv-list--cols > div{flex-wrap:nowrap; justify-content:flex-start}
+.kv-list--cols dt{flex:0 0 var(--dt, 9rem); font-size:var(--fs-sm)}
+.kv-list--cols dd{flex:1 1 auto; min-width:0; text-align:left}
+@media (max-width: 640px){
+  .kv-list--cols > div{flex-direction:column; gap:2px}
+  .kv-list--cols dt{flex:none}
+}
+
+/* Desk card (17 s-write): .info-card.desk-card, a label naming the company; ul.desk-rows (40 px tile + .desk-text: grey label,
+   bold link or value, hours line); .desk-next hairline block. .desk-action (button over two fine lines) sits in the copy column;
+   the button goes full width at 640. 15 Contact, 18, 08 Help Centre */
+.desk-rows{list-style:none; display:flex; flex-direction:column; gap:14px; padding-top:4px}
+.desk-rows li{display:flex; gap:14px; align-items:flex-start}
+.desk-rows .tile,.portal-top .tile{width:40px; height:40px}
+.desk-rows .tile .i,.portal-top .tile .i{width:20px; height:20px}
+.desk-card > .label,.portal-top .label{line-height:1.4; text-wrap:balance}
+.desk-text{display:flex; flex-direction:column; gap:2px; min-width:0}
+.desk-text > span{font-size:var(--fs-sm); color:var(--aub-60)}
+.desk-text a{font-weight:600; overflow-wrap:anywhere}
+.desk-action{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:4px}
+.desk-next{display:flex; flex-direction:column; gap:12px; margin-top:8px; padding-top:20px; border-top:1px solid var(--line)}
+@media (max-width: 640px){
+  .desk-action{align-items:stretch}
+  .desk-action .btn{width:100%}
+}
+
+/* Escalation ladder v2 (17 s-escalate): white stage panel; ol.ladder of two labelled groups, one counter per card.
+   li.ladder-start ("First contact"): a Mist bracket with quiet rungs (hollow dots, grey rail, white chips, roles at 500).
+   li.ladder-group ("Escalation"): no fill, gold rail, ink chips. Both share an 18 px side inset (14 at 640) so the dots stay in one
+   column, and both labels are inset 28 px (12 px rail + 16 px gap) into the rung-text column. 18 Escalation Matrix */
+.ui-stage--panel.ladder-stage{background:var(--paper); box-shadow:var(--shadow-1); padding:28px}
+.ladder,.ladder ol{list-style:none; display:flex; flex-direction:column}
+.ladder-start,.ladder-group{display:flex; flex-direction:column; gap:14px}
+.ladder-start{padding:18px 18px 2px; margin-bottom:22px; border-radius:var(--r-card); background:var(--mist)}
+.ladder-group{padding:0 18px}
+.ladder-start > .label,.ladder-group > .label{padding-left:28px; line-height:1.4}
+.rung{display:flex; gap:16px; align-items:stretch}
+.rung-rail{flex:none; width:12px; display:flex; flex-direction:column; align-items:center; padding-top:9px}
+.rung-dot{flex:none; width:11px; height:11px; border-radius:50%; background:var(--gold)}
+.rung-line{flex:1 1 auto; width:1px; margin-top:6px; background:var(--gold)}
+.ladder-start .rung-dot{background:var(--paper); border:1.5px solid var(--line-2)}
+.ladder-start .rung-line{background:var(--line-2)}
+.rung-text{flex:1 1 auto; display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; padding-bottom:22px}
+.rung-head{display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center}
+.rung-head b{color:var(--aub); font-weight:600}
+.ladder-group .rung:last-child .rung-text{padding-bottom:0}
+.rung-contact{display:flex; flex-wrap:wrap; gap:4px 16px; font-size:var(--fs-sm)}
+.rung-contact a{font-weight:500; overflow-wrap:anywhere}
+.rung-when{font-size:var(--fs-sm); color:var(--aub-60)}
+.ladder-start .chip{background:var(--paper)}
+.ladder-start .rung-head b{color:var(--aub-80); font-weight:500}
+.ladder-group .chip{background:var(--aub); color:var(--paper)}
+@media (max-width: 640px){
+  .ui-stage--panel.ladder-stage{padding:20px}
+  .ladder-start{padding:14px 14px 0}
+  .ladder-group{padding:0 14px}
+}
+
+/* Portal cards (17 s-scores-odr): two equal info cards (.portal-top tile + label, .portal-name h4 + mono address, row lists);
+   links pinned to the foot so the two "Go to" links align. 16, 22 */
+.portal-card{gap:14px}
+.portal-top{display:flex; align-items:center; gap:12px}
+.portal-name{display:flex; flex-direction:column; gap:2px}
+.portal-name .mono{font-size:var(--fs-sm); color:var(--aub-60)}
+.portal-card .links{margin-top:auto; padding-top:10px}
+.portal-card dd.mono{font-size:var(--fs-sm); overflow-wrap:anywhere}
+
+/* Document frame (17 s-policy): .doc-grid (4/8 from 1100 px) > aside.doc-rail (Mist card, sticky in the design: label, ol.toc
+   hairline links, .doc-file tile + name + PDF line, fine lines) + ol.clauses (numbered articles with compact client blocks).
+   s-contents of 16, 19, 21 to 25, 30 */
+.doc-grid{display:grid; gap:clamp(24px, 4vw, 56px); align-items:start}
+@media (min-width: 1100px){ .doc-grid{grid-template-columns:minmax(0, 4fr) minmax(0, 8fr)} }
+.doc-rail{display:flex; flex-direction:column; gap:16px; padding:24px; border-radius:var(--r-card); background:var(--mist)}
+.toc{list-style:none; display:flex; flex-direction:column}
+.toc a{display:block; padding:7px 0; border-bottom:1px solid var(--line-2); font-size:var(--fs-sm); font-weight:500; text-decoration:none}
+.toc a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.doc-file{display:flex; gap:14px; align-items:center}
+.doc-rail .tile{width:44px; height:44px; background:var(--paper)}
+.doc-file > div{display:flex; flex-direction:column; gap:4px; align-items:flex-start; min-width:0}
+.doc-file b{color:var(--aub); font-weight:600; line-height:1.3}
+.doc-file span{font-size:var(--fs-sm); color:var(--aub-60)}
+.clauses{list-style:none; display:flex; flex-direction:column; gap:24px}
+.clauses article{display:flex; flex-direction:column; gap:10px}
+main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding:14px 18px}
+.states-board .doc-rail{max-width:24rem}
+@media (max-width: 640px){ .doc-rail{padding:20px} }
+
+/* Product cards four across (17 s-related): .cards.cards--4, four from 1101 px, the theme's two and one below */
+@media (min-width: 1101px){ .cards--4{grid-template-columns:repeat(4, minmax(0,1fr))} }
+
+/* FAQ answer links (17): external links with i-ne in a wrapping row inside an answer (the FAQ side column's stack is below, 65) */
+.faq .faq-links{display:flex; flex-wrap:wrap; gap:6px 20px}
+.faq .faq-links .i{width:16px; height:16px}
+
+/* Mail card (17 states board): an illustrative prefilled email (label, To and Subject rows, body lines). 18, 23 */
+.mail-card{width:min(100%, 34rem); padding:22px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.mail-card .ui-row{justify-content:flex-start; padding:10px 0; border-top:1px solid var(--line)}
+.mail-card .ui-row > span:first-child{flex:0 0 5rem; color:var(--aub-60)}
+.mail-body{display:flex; flex-direction:column; gap:6px; padding-top:12px; border-top:1px solid var(--line)}
+
+/* --- Template B: data pages (from 29 Scheme detail) --- */
+
+/* Data hero (29 s-hero): DOM order copy, invest card, chart. Below 900 px the theme's one column gives that order; from 900 px the
+   chart sits under the copy (7) and the card spans both rows (5); 28 px under the breadcrumb (16 at 640). The item's name is the h1
+   at d2 size (.d1--name); .chip-row with .chip-risk (the theme riskometer scale in a chip); .nav-row: label and a 2.4rem serif
+   numeral on one baseline, hairline above, p.src under */
+.hero:has(> .hero-grid--data){padding-top:28px}
+@media (min-width: 900px){
+  .hero-grid--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); grid-template-areas:"copy side" "chart side"; grid-template-rows:auto 1fr; row-gap:28px; align-items:start}
+  .hero-grid--data > .hero-copy{grid-area:copy}
+  .hero-grid--data > .hero-side{grid-area:side}
+  .hero-grid--data > .hero-chart{grid-area:chart}
+}
+.hero-grid--data .hero-copy{gap:14px}
+.d1.d1--name{font-size:var(--fs-d2); line-height:1.12; letter-spacing:-.012em}
+.chip-risk .riskometer{width:56px}
+.chip-risk .scale{gap:2px}
+.chip-risk b{font-weight:600}
+.nav-row{display:flex; flex-direction:column; gap:4px; margin-top:4px; padding-top:14px; border-top:1px solid var(--line)}
+.nav-val{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px}
+.nav-val .num{font:400 2.4rem/1 var(--serif); color:var(--aub)}
+.nav-val .num .ph{font:500 var(--fs-sm)/1.4 var(--sans)}
+@media (max-width: 640px){ .hero:has(> .hero-grid--data){padding-top:16px} }
+
+/* Data card + data foot (29): one white card language for every block with numbers (shadow, no border); .data-foot stacks p.src
+   (as-on date and source), optional p.fine and p.illus 4 px apart */
+.src{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
+.data-foot{display:flex; flex-direction:column; gap:4px}
+.data-foot .fine + .fine{margin-top:0}
+.data-card{display:flex; flex-direction:column; gap:18px; margin:0; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
+.data-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+.states-board .chart-card,.states-board .data-card{max-width:44rem}
+@media (max-width: 640px){ .data-card{padding:20px} }
+
+/* NAV chart card (29 s-hero): figcaption label + range tabs, SVG line and area (paths only, non-scaling strokes), High and Low as
+   HTML at the right edge, months under. 39 Stock detail, 40 Markets */
+.hero-chart{display:flex; flex-direction:column; gap:10px; min-width:0}
+.chart-card{gap:14px; padding:20px 24px}
+.chart-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px 16px}
+.chart-top .tab{padding:8px 12px}
+.chart-plot{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px}
+.chart-plot svg{width:100%; height:200px; display:block}
+.chart-plot .chart-y{display:flex; flex-direction:column; justify-content:space-between; font-size:var(--fs-xs); line-height:1.4; color:var(--aub-60); white-space:nowrap}
+.chart-plot .chart-y b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
+.chart-plot .chart-x{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60)}
+@media (max-width: 899px){ .chart-plot svg{height:140px} }
+@media (max-width: 640px){ .chart-card{padding:16px} }
+
+/* Invest card (29): the scheme's terms as a row list above the mobile field; no one-word last line in the help line */
+.invest-card .kv-list--row > div{padding:10px 0}
+.invest-card .label{line-height:1.45}
+.invest-card .fhelp{text-wrap:pretty}
+
+/* Tabs above a band's content (29 s-returns) */
+.band-tabs{margin-bottom:24px}
+
+/* Legend keys (29, 42): .sw is a 12 px ink square; --bm, --2, --3, --4 are ink tints for data series; --line (2.5 px solid ink),
+   --dash (2 px dashed aub-60), --soft (2 px solid aub-60) and --bar (an 18 x 10 borderless wash bar) for chart lines and washes.
+   A key never looks like a control. An i or span: the kit's colour swatches are divs with the same class name */
+:where(i, span).sw{display:inline-block; width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
+.sw--line{height:0; width:18px; border-radius:0; background:none; border-top:2.5px solid var(--aub)}
+.sw--dash{height:0; width:18px; border-radius:0; background:none; border-top:2px dashed var(--aub-60)}
+.sw--soft{height:0; width:18px; border-radius:0; background:none; border-top:2px solid var(--aub-60)}
+.sw--bar{width:18px; height:10px; border-radius:2px; background:color-mix(in srgb, var(--aub) 8%, var(--mist))}
+
+/* Paired bars (29 s-returns): fund and benchmark per period on one scale from zero (--w), values as HTML text; label column 10rem,
+   one column at 640. Beside a reading card (.read-card) in a 7/5 split. 34, 27 */
+.pb-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.pb-legend > span{display:flex; gap:8px; align-items:baseline}
+.pb-legend .sw{align-self:center}
+.pb-rows{display:flex; flex-direction:column}
+.pb-row{display:grid; grid-template-columns:10rem minmax(0, 1fr); gap:8px 20px; align-items:center; padding:16px 0; border-top:1px solid var(--line)}
+.pb-row:last-child{border-bottom:1px solid var(--line)}
+.pb-label{font-weight:600; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.pb-label span{display:block; font-weight:400; font-size:var(--fs-xs); color:var(--aub-60)}
+.pb-bars{display:flex; flex-direction:column; gap:6px; min-width:0}
+.pb-bar{display:flex; align-items:center; gap:10px}
+.pb-bar i{display:block; flex:none; width:var(--w); height:14px; border-radius:0 4px 4px 0; background:var(--aub)}
+.pb-bar b{font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums; white-space:nowrap}
+.pb-bar--bm b{font-weight:500; color:var(--aub-80)}
+.sw--bm,.pb-bar--bm i{background:color-mix(in srgb, var(--aub) 28%, var(--paper))}
+.read-card p b{color:var(--aub)}
+@media (max-width: 640px){ .pb-row{grid-template-columns:1fr} }
+
+/* Riskometer dials (29 s-risk): two white dial cards on a Mist stage panel (two columns at every width); SVG arcs and needle, the
+   level as HTML text */
+.dial-stage{gap:18px}
+.dials{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px}
+.dial{margin:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding:24px 18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); text-align:center; min-width:0}
+.dial svg{width:100%; max-width:220px; height:auto}
+.dial figcaption{display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); color:var(--aub-60)}
+.dial figcaption b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+@media (max-width: 640px){ .dial{padding:18px 10px 14px} .dials{gap:10px} }
+
+/* Stat tiles on a Mist band (29): the icon tile stays Mist inside the white tile (the theme turns tiles white on Mist) */
+.stat-tile .tile{background:var(--mist)}
+
+/* Composition card (29 s-portfolio): a size split bar with real swatches (--w as unitless flex-grow, 3 px gaps, four ink tints),
+   then two columns of bar rows (each list on its own scale); facts card row list beside it */
+.mix{margin:0; display:flex; flex-direction:column; gap:14px}
+.mix .splitbar{height:14px; gap:3px; background:none; border-radius:0}
+.mix .splitbar i{flex:var(--w) 1 0px; border-radius:3px}
+.mix .splitbar i:nth-child(2),.sw--2{background:color-mix(in srgb, var(--aub) 62%, var(--paper))}
+.mix .splitbar i:nth-child(3),.sw--3{background:color-mix(in srgb, var(--aub) 36%, var(--paper))}
+.mix .splitbar i:nth-child(4),.sw--4{background:var(--line-2)}
+.mix-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.mix-legend span{display:flex; gap:8px; align-items:center}
+.mix-legend b{font-weight:600; font-variant-numeric:tabular-nums}
+.barcols{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px 32px; padding-top:20px; border-top:1px solid var(--line)}
+.barcols > div{display:flex; flex-direction:column; gap:14px; min-width:0}
+.barrows{list-style:none; display:flex; flex-direction:column; gap:14px}
+.barrows li{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px; font-size:var(--fs-sm); color:var(--aub); line-height:1.3}
+.barrows b{font-weight:600; font-variant-numeric:tabular-nums}
+.br-track{grid-column:1 / -1; height:6px; border-radius:6px; background:var(--mist)}
+.br-track i{display:block; width:var(--w); height:100%; border-radius:6px; background:var(--aub)}
+.facts-card .kv-list--row dd{max-width:64%}
+.facts-card .kv-list--row > div{padding:10px 0}
+@media (max-width: 640px){
+  .barcols{grid-template-columns:1fr}
+  .facts-card .kv-list--row dd{max-width:none; text-align:left}
+}
+
+/* --- Template C: calculators (from 42 SIP calculator; 43 to 50 inherit) --- */
+
+/* Calculator hero (42 s-hero): the inputs are the working action (left), the result stage is the product visual (right); two equal
+   columns from 900 px, centred; a shorter top under the breadcrumb */
+.hero--calc{padding-top:clamp(24px, 3vw, 40px)}
+@media (min-width: 900px){ .hero-grid--calc{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--calc .hero-copy{gap:20px}
+.states-board .calc-in,.states-board .calc-stage{max-width:36rem}
+@media (max-width: 640px){ .hero-grid--calc .hero-copy{gap:16px} }
+
+/* Field + slider rows (42): theme .calc-row with an editable .field.calc-field (11.5rem, 10 at 640; .pre or .calc-field--suf + .suf)
+   in place of the output chip; hairline rows; .calc-note help line; .is-focus draws the focus ring on the field and the thumb */
+.hero-grid--calc .calc-in{margin:0; padding:0; border:0; gap:0; min-width:0}
+.calc-in .calc-row{gap:12px; padding:16px 0; border-top:1px solid var(--line)}
+.calc-in .calc-row:last-child{border-bottom:1px solid var(--line)}
+.calc-in .calc-row .top{gap:16px}
+.calc-field{flex:none; width:11.5rem}
+.calc-field input{font:600 1.0625rem/1.2 var(--sans); font-variant-numeric:tabular-nums}
+.calc-field--suf input{text-align:right}
+.calc-field .suf{flex:none; padding-left:10px; border-left:1px solid var(--line); color:var(--aub-60); font-size:var(--fs-sm)}
+.calc-note{display:flex; gap:8px; align-items:flex-start; color:var(--aub-60)}
+.calc-note .i{margin-top:2px}
+.calc-row.is-focus .field{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+.calc-row.is-focus .range::-webkit-slider-thumb{box-shadow:0 0 0 1.5px var(--aub), 0 0 0 6px var(--aub-08)}
+@media (max-width: 640px){ .calc-field{width:10rem} }
+
+/* Result stage and card (42 #s-result): Mist stage panel (rings top right, hidden under 900); white card with the label h2,
+   .calc-total, dl.calc-split under a hairline, a caption, the full-width primary, fine lines 4 px apart */
+.calc-stage{gap:20px}
+.calc-stage > :not(.rings){position:relative; z-index:1}
+.calc-stage .rings{top:-44px; right:-104px}
+.calc-card{display:flex; flex-direction:column; gap:14px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.calc-card .calc-total{margin-top:-2px}
+.calc-split{margin:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; padding-top:14px; border-top:1px solid var(--line)}
+.calc-split > div{display:flex; flex-direction:column; gap:2px; min-width:0}
+.calc-split dt{display:flex; align-items:center; gap:8px; font-size:var(--fs-sm); color:var(--aub-60)}
+.calc-split dd{margin:0; font:600 1.1875rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-card .btn{width:100%; margin-top:4px}
+.calc-card .fine + .fine{margin-top:4px}
+@media (max-width: 899px){ .calc-stage .rings{display:none} }
+@media (max-width: 640px){
+  .calc-card{padding:20px}
+  .calc-split dd{font-size:1.0625rem}
+}
+
+/* Growth chart (42): SVG paths only (gridlines, wash, invested line, value curve, gold end dot); y, x and end labels are HTML.
+   The data area runs 5% to 95% of --plot-h, so labels of --plot-h / 10 line height sit on the gridlines; --inv places the invested
+   end label (0 top, 1 bottom); end labels move under the plot at 640. 43, 44, 49, 50 */
+.calc-chart{--plot-h:160px; margin:0; display:grid; grid-template-columns:auto minmax(0,1fr) auto; grid-template-areas:"y plot ends" ". x ."; gap:8px 12px; align-items:start}
+.calc-chart svg{grid-area:plot; width:100%; height:var(--plot-h)}
+.calc-chart .chart-y{grid-area:y; height:var(--plot-h); display:flex; flex-direction:column; justify-content:space-between; font-size:12px; line-height:calc(var(--plot-h) / 10); color:var(--aub-60); text-align:right; white-space:nowrap}
+.calc-chart .chart-x{grid-area:x; display:flex; justify-content:space-between; font-size:12px; line-height:1.3; color:var(--aub-60)}
+.chart-ends{grid-area:ends; height:var(--plot-h); display:grid; grid-template-rows:calc(var(--plot-h) * var(--inv, .5) - 18px) auto; align-content:start}
+.chart-end{display:flex; gap:8px; align-items:flex-start; font-size:var(--fs-xs); line-height:1.35; color:var(--aub-60)}
+.chart-end .sw{margin-top:8px}
+.chart-end b{display:block; font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
+@media (max-width: 640px){
+  .calc-chart{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"y plot" ". x" "ends ends"}
+  .chart-ends{height:auto; grid-template-rows:none; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; padding-top:6px}
+}
+
+/* Year-by-year disclosure (42): native details under the chart, closed by default (the open table is a state); then the stage foot
+   signposts (.calc-links), after the number, one row at 1440, a column at 640 */
+.calc-years{border-top:1px solid var(--line-2)}
+.calc-years summary{list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:14px; cursor:pointer; font:600 var(--fs-sm)/1.3 var(--sans); color:var(--aub)}
+.calc-years summary::-webkit-details-marker{display:none}
+.calc-years .pm{width:28px; height:28px; border-radius:50%; background:var(--paper); display:grid; place-items:center; flex:none}
+.calc-years[open] .pm{transform:rotate(45deg)}
+.calc-years .tablewrap{margin-top:14px}
+.calc-links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:-4px}
+table.calc-table{min-width:0}
+.calc-table th,.calc-table td{padding:10px 16px}
+.calc-table td{font-variant-numeric:tabular-nums}
+@media (max-width: 640px){ .calc-links{flex-direction:column; align-items:flex-start} }
+
+/* Smooth versus real (42 s-assume): facts with titles and text chips left (.split--75), a white stage on the Mist band with the
+   three-line illustration (SVG 600 x 300, non-scaling strokes), its key and a caption right. 43, 44, 49, 50 */
+.facts--chips{gap:22px}
+.fact-head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px}
+.fact-head b{color:var(--aub); font-weight:600}
+.facts--chips .chip{min-height:24px; font-size:12px}
+.facts-link{margin-top:-4px}
+.band--mist .assume-stage{background:var(--paper); box-shadow:var(--shadow-1)}
+.assume-art{margin:0; display:flex; flex-direction:column; gap:18px}
+.assume-art svg{width:100%; height:auto}
+.assume-key{display:flex; flex-direction:column; gap:8px; font-size:var(--fs-sm); color:var(--aub); line-height:1.4}
+.assume-key span{display:flex; align-items:center; gap:10px}
+
+/* Formula card + worked-example receipt (42 s-formula): the formula on a Mist strip (serif), its keys as a row list (serif dt);
+   receipt rows carry figures in ink, a bold total row, rows stacked at 640. 43 to 50; 45 reuses the receipt */
+.formula{padding:16px 18px; border-radius:var(--r-ctl); background:var(--mist); font:400 1.375rem/1.45 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums lining-nums; text-wrap:balance}
+.formula sup,.calc-receipt sup{font-size:.62em; line-height:0}
+.formula-keys dt{font:400 1.125rem/1.3 var(--serif); min-width:1.5rem}
+.formula-keys dd{max-width:80%}
+.calc-receipt .ui-row span + span{flex:0 1 auto; color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-receipt .ui-row.is-total span{font-weight:600; color:var(--aub)}
+.calc-receipt .link{margin-top:16px}
+@media (max-width: 640px){
+  .formula{font-size:1.125rem}
+  .calc-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .calc-receipt .ui-row span + span{text-align:left}
+}
+
+/* FAQ side links (42, 65): a short stack of links under the FAQ side column's image slot */
+.faq-side .faq-links{display:flex; flex-direction:column; align-items:flex-start; gap:10px}
+
+/* --- Template H: products (from 57 PMS) --- */
+
+/* Label row (57 s-hero): the eyebrow naming the company and the Coming soon badge on one line above the h1 (wraps on narrow columns) */
+.label-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+
+/* Set-up stage (57 s-hero): the hub hero's product stage with a 328 px set-up card (stacked rows, above) in the phone's slot and two
+   outcome cards (label, bold status, one chip; what the button does) at its top and foot; min-height 480 px. 51 to 60 */
+.hero-stage:has(> .setup-card){min-height:480px}
+.hero-stage:has(> .setup-card) .stage-cards{flex-basis:212px; padding-block:4px; justify-content:space-between}
+.hero-stage > .setup-card{position:relative; z-index:1; flex:none; width:328px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.setup-card .ui-head{padding-bottom:14px}
+.setup-card .ui-big{font-size:1.25rem}
+.outcome-card{gap:8px}
+.outcome-card .chip{align-self:flex-start}
+@media (max-width: 640px){
+  .hero-stage:has(> .setup-card){min-height:0}
+  .hero-stage:has(> .setup-card) .stage-cards{flex-basis:auto}
+  .hero-stage > .setup-card{width:min(320px, 100%)}
+}
+
+/* Who does what card (57 s-roles): h2, lead and a wrapping check link left; one white card right on the Mist band (no stage panel):
+   h3, a seven-row row list (task aub-80, party bold ink), full-width fine print. 58, 59 */
+.split--roles .link--wrap{justify-self:start}
+.roles-card{gap:16px; padding:28px}
+.roles-card .kv-list--row dt{color:var(--aub-80)}
+.roles-card .kv-list--row dd{color:var(--aub); font-weight:600}
+.roles-card .fine{max-width:none}
+@media (max-width: 640px){ .roles-card{padding:20px} }
+
+/* Product card with a label (57 s-today): tile, a label naming the company (wrapped lines keep their air), h3, copy, then the action
+   and its risk line */
+.today-card .label{margin-top:4px; line-height:1.4}
+.today-card .card-foot{display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding-top:8px}
+
+/* --- Template P: partner programmes (from 62 Distributor partner; 61, 63 inherit) --- */
+
+/* Path cards (62 s-paths): two info cards that fork the audience; requirements as ul.facts or an ordered path as ol.facts with
+   36 px Mist tiles; a short line; the card's link or links pinned to its foot so the pair lines up */
+.path-card{gap:16px}
+.path-card > .tile{margin-bottom:4px}
+.path-card .facts{gap:12px}
+.path-card .facts li{align-items:center}
+.path-card .facts .tile{width:36px; height:36px; border-radius:10px}
+.path-card .facts .tile .i{width:18px; height:18px}
+.path-card > p{color:var(--aub-80); font-size:var(--fs-sm)}
+.path-card > .link,.path-card > .links{margin-top:auto; padding-top:4px}
+
+/* Money path (62 s-payouts): ui-mini nodes stacked on a stage panel (rings bottom right, above), joined by one vertical gold
+   hairline at every width (i.path-line, 1 px, 24 px tall, 34 px in, through the tile centres; none after the last node); the last
+   node's tile is ink (the visitor); a balanced two-line caption clear of the rings. No arrows, no transforms */
+.money-stage{align-items:center; padding-block:32px 24px}
+.money-path{list-style:none; display:flex; flex-direction:column; width:min(100%, 24rem)}
+.money-path li{display:flex; flex-direction:column}
+.money-path .ui-mini{margin-top:0; gap:6px}
+.money-path .ui-head{align-items:flex-start}
+.money-path .path-text{display:flex; flex-direction:column; gap:3px; min-width:0}
+.money-path .path-text span:not(.ui-label){font-size:var(--fs-xs); color:var(--aub-60)}
+.money-path .chip{align-self:flex-start; margin-left:44px}
+.money-path li:last-child .ui-tile{background:var(--aub); color:var(--paper)}
+.path-line{display:block; width:1px; height:24px; margin-left:34px; background:var(--gold)}
+.money-stage .ui-caption{align-self:center; text-align:center; max-width:20rem; text-wrap:balance}
+
+/* Agreement card (62 s-agreement): a hairline row card on a stage panel with a doc tile head and stacked rows (above) */
+.agree-card{padding:22px; font-size:var(--fs-sm)}
+
+/* Always and Never lists (62 s-agreement): hairline rows inside two info cards (check and close tiles) in the right column of a
+   centred .split--agree, the client-text block and the regulator link under them */
+.agree-side > .cards--2{margin-top:0}
+.rule-list{list-style:none; display:flex; flex-direction:column}
+.rule-list li{padding:11px 0; border-top:1px solid var(--line); font-size:var(--fs-sm); color:var(--aub); line-height:1.45}
+.agree-side > .link{align-self:flex-start}
+
+/* --- Template E: guides (from 65 Guide: getting started; 64, 66 to 70, 72 inherit) --- */
+
+/* Route card · guide contents (65 s-hero): Mist stage panel (rings bottom right at 260 px), a centred 30rem card: .route-head (label
+   and read time), ol.route of jump links (.route-mark: span.dot serif numeral in a gold ring over i.route-line, a real 1.5 px
+   connector at .45 opacity, none on the last row; .route-text title and line), .route-foot (FAQ link, last updated).
+   States li.is-done and li.is-on take the gold fill of a reached spine node. Scoped by ol.route (17's route card shares names) */
+.route-stage:has(> .route-card > .route){align-self:stretch; padding:40px 32px}
+.route-stage:has(> .route-card > .route) .rings{bottom:-48px; right:-88px; width:260px}
+.route-card:has(> .route){width:min(100%, 30rem); align-self:center; gap:0; padding:24px 26px 22px; font-size:var(--fs-sm)}
+.route-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line)}
+.route-head .small{color:var(--aub-60)}
+.route{list-style:none; display:flex; flex-direction:column; padding-top:18px}
+.route a{display:flex; gap:14px; text-decoration:none; color:inherit}
+.route-mark{display:flex; flex-direction:column; align-items:center; flex:none; width:32px}
+.route .dot{width:32px; height:32px; flex:none; display:grid; place-items:center; border-radius:50%; border:1.5px solid var(--gold); background:var(--paper); font:400 1rem/1 var(--serif); color:var(--aub)}
+.route-mark .route-line{flex:1; width:1.5px; min-height:8px; background:var(--gold); opacity:.45}
+.route li:last-child .route-line{display:none}
+.route .route-text{display:flex; flex-direction:column; gap:2px; min-width:0; padding:4px 0 16px}
+.route li:last-child .route-text{padding-bottom:2px}
+.route .route-text b{font-weight:600; font-size:1rem; line-height:1.35; color:var(--aub)}
+.route .route-text span{color:var(--aub-60); line-height:1.4}
+.route a:hover b{text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px}
+.route ~ .route-foot{display:flex; flex-direction:column; align-items:flex-start; gap:8px; margin-top:16px; padding-top:16px; border-top:1px solid var(--line)}
+.route li.is-done .dot,.route li.is-on .dot{background:var(--gold)}
+.route li.is-done .dot .i{width:16px; height:16px; color:var(--aub)}
+.route li.is-on .route-text span{color:var(--aub)}
+@media (max-width: 640px){
+  .route-stage:has(> .route-card > .route){padding:16px}
+  .route-card:has(> .route){padding:20px 18px 18px}
+}
+
+/* Chapter head and prose (65): "Part N of M" label, the visitor's question as the h2, a 66ch lead, optional .prose (flex column,
+   gap 14, 66ch, aub-80; body size inside a chapter head). Every guide chapter band */
+.chapter-head{gap:12px; max-width:48rem}
+.chapter-head > p{max-width:66ch}
+.prose{display:flex; flex-direction:column; gap:14px; max-width:66ch; color:var(--aub-80)}
+.chapter-head .prose{margin-top:6px}
+.chapter-head .prose p{font-size:var(--fs-body); color:var(--aub-80)}
+
+/* Guide product cards (65 s-basics): theme pcard with a tile and an account chip on top, a "Start with" row pinned to the foot on a
+   hairline (every value holds two lines from 641 px, so the hairlines line up); not links, so no hover lift. 66, 69 */
+.guide-cards .pcard{display:flex; flex-direction:column; gap:12px}
+.guide-cards .pcard:hover{transform:none; box-shadow:var(--shadow-1)}
+.guide-cards .top{align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+.guide-cards .pcard p{color:var(--aub-80)}
+.start-with{margin:auto 0 0; display:flex; flex-direction:column; gap:6px; padding-top:14px; border-top:1px solid var(--line)}
+.start-with dd{margin:0; color:var(--aub); font-weight:500; line-height:1.45}
+@media (min-width: 641px){ .start-with dd{min-height:2.9em} }
+
+/* Callout family (65): notes and jargon, titled with the visitor's question; Mist on white bands, white with shadow-1 on Mist (the
+   tile inverts). .callout--term (book icon) is tighter inside a door; .callout--row puts the title beside a one-line note from 900 px;
+   .ask > ul.ask-list: three Mist tiles across inside a full-width callout (scoped by .callout: the import test uses .ask).
+   Tile over text at 640. Never the risk-box look */
+.callout{display:flex; gap:16px; align-items:flex-start; padding:22px 24px; border-radius:var(--r-card); background:var(--mist)}
+.band--mist .callout{background:var(--paper); box-shadow:var(--shadow-1)}
+.callout > .tile{width:40px; height:40px; border-radius:10px; background:var(--paper)}
+.band--mist .callout > .tile{background:var(--mist)}
+.callout > .tile .i{width:20px; height:20px}
+.callout-text{flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0}
+.callout-text > b{font-weight:600; font-size:1.0625rem; line-height:1.35; color:var(--aub)}
+.callout-text p{color:var(--aub-80); max-width:66ch}
+.callout-text .links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:6px}
+.cards + .callout{margin-top:24px}
+@media (min-width: 900px){
+  .callout--row{align-items:center}
+  .callout--row .callout-text{display:grid; grid-template-columns:minmax(0, 15rem) minmax(0, 1fr); gap:4px 32px; align-items:baseline}
+  .callout--row .callout-text p{max-width:none}
+}
+.door .callout{margin:6px 0 22px; padding:18px 20px; font-size:var(--fs-sm)}
+.door .callout-text > b{font-size:1rem}
+.door .callout .link{font-size:var(--fs-sm)}
+.callout .ask{display:flex; flex-direction:column; gap:10px; width:100%; margin-top:6px}
+.callout .ask > p{font-weight:600; color:var(--aub)}
+.ask-list{list-style:none; display:grid; gap:10px}
+@media (min-width: 900px){ .ask-list{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.ask-list li{padding:14px 16px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-weight:500; line-height:1.4}
+@media (max-width: 640px){
+  .callout{flex-direction:column; padding:18px; gap:12px}
+  .door .callout{padding:16px}
+}
+
+/* Costs card (65 s-costs): one info card, a labelled row list per company in the doors' order, fine print full width, beside the
+   receipt; at 640 every row stacks label over value, both left. 64, 66, 67, 69 */
+.cost-card .label{line-height:1.4; margin-top:6px}
+.cost-card .fine + .label{margin-top:18px}
+.cost-card .kv-list--row dd{max-width:60%}
+.cost-card .fine{max-width:none}
+@media (max-width: 640px){
+  .cost-card .kv-list--row > div{flex-direction:column; align-items:flex-start; gap:2px}
+  .cost-card .kv-list--row dd{max-width:none; text-align:left}
+}
+
+/* Documents strip on a white band (65 s-open): the strip turns Mist there, so its tiles go white; .docs--wide shares the panel in two
+   equal columns from 641 px, so four items read full width */
+.band:not(.band--mist) .docs--tiles li .tile{background:var(--paper)}
+@media (min-width: 641px){ .docs--tiles.docs--wide ul{grid-template-columns:repeat(2, minmax(0, 1fr))} }
+
+/* Open chapter (65 s-open): the band CTA with its two fine lines (58ch), then the other company's line 20 px under it */
+.open-cta .stack{max-width:58ch}
+.open-alt{margin-top:20px; color:var(--aub-80)}
+
+/* Light product stage (65 s-first): facts left (.first-split, 24 px apart), a plain stage on a Mist band (no panel), light rings
+   behind, two staggered cards (staggered stage, above) with a caption under; the light-band twin of 09's .final-stage; a callout
+   with an ask list 40 to 56 px under the split (.choose-callout) */
+.first-split .facts{gap:24px}
+.first-split .fact-text p + p{margin-top:6px}
+.choose-callout{margin-top:clamp(40px, 5vw, 56px)}
+.first-stage{align-items:flex-start; gap:20px; padding:28px 8px}
+.first-stage > :not(.rings){position:relative; z-index:1}
+.first-stage .rings{top:-12px; right:-24px; width:260px}
+.first-stage .ui-row > span{color:var(--aub-60)}
+.first-stage .ui-row b{font-weight:600; text-align:right}
+.first-stage .ui-caption{align-self:stretch}
+@media (max-width: 640px){ .first-stage{padding:0} }
+
+/* A registration code (or its placeholder) never breaks inside the mark in a door foot (65) */
+.door-foot .mono,.door-foot .mono .ph{white-space:nowrap}
+
+/* page: trade */
+/* 03 Trade (golden, template A). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator, Wave 1
+   golden promotions: template A hero, phone rules, Ticket stage, Rows plus explainer split, card head, info card foot button);
+   only Trade-specific rhythm stays here. */
+/* the receipt beside the rates card is a little tighter, so the two cards match with less air (09's receipt keeps 12 px rows) */
+.cards--2 .ui-receipt .ui-row{padding-block:9px}
+/* the F&O h2 runs the full wrap width, so its last word does not sit alone */
+.page-trade #s-fo .head{max-width:none}
+</style>
+</head>
+<body class="is-static no-spine-motion page-trade tpl-a states-board">
+<main id="main">
+<section class="state-frame" id="state-invalid-number" aria-label="State: Error: number is not 10 digits"><div class="wrap"><p class="state-label"><b>Error: number is not 10 digits</b> · state "invalid-number" · Trade</p>
+<form class="hero-form">
+  <div class="fgroup is-error">
+    <div class="leadbar">
+      <label class="field" for="ts1-mob"><span class="pre">+91</span><input id="ts1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-label="Mobile number" aria-invalid="true" aria-describedby="ts1-err"></label>
+      <button class="btn btn--lg" type="submit">Start trading<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+    </div>
+    <span class="fhelp" id="ts1-err">Enter a 10-digit mobile number.</span>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="25-privacy.html">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to Aikyam Capital Private Limited to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</div></section>
+<section class="state-frame" id="state-consent-missing" aria-label="State: Error: consent box not ticked (keep only if compliance makes the box required)"><div class="wrap"><p class="state-label"><b>Error: consent box not ticked (keep only if compliance makes the box required)</b> · state "consent-missing" · Trade</p>
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ts2-mob"><span class="pre">+91</span><input id="ts2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg" type="submit">Start trading<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+  </div>
+  <div class="fgroup is-error">
+    <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="ts2-err"><span data-draft="consent">I agree to the <a href="25-privacy.html">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+    <span class="fhelp" id="ts2-err">Tick the box to continue.</span>
+  </div>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to Aikyam Capital Private Limited to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</div></section>
+<section class="state-frame" id="state-submitting" aria-label="State: Button pressed, sending the number to Start Trading (button loading)"><div class="wrap"><p class="state-label"><b>Button pressed, sending the number to Start Trading (button loading)</b> · state "submitting" · Trade</p>
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ts3-mob"><span class="pre">+91</span><input id="ts3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Start trading<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="25-privacy.html">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to Aikyam Capital Private Limited to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</div></section>
+<section class="state-frame" id="state-success-otp-sent" aria-label="State: Success: Start Trading (/open-account/trading) opens in its OTP-sent state with the number and consent carried over; resend timer running"><div class="wrap"><p class="state-label"><b>Success: Start Trading (/open-account/trading) opens in its OTP-sent state with the number and consent carried over; resend timer running</b> · state "success-otp-sent" · Trade</p>
+<div class="form-card">
+  <span class="label">Step 1 of 4 · Trading and demat account</span>
+  <h2 class="h3">Enter the OTP</h2>
+  <p class="small">We sent a one-time password to +91 98XXXXXX21. <a href="09-start-trading.html">Change number</a></p>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+      <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
+    </div>
+    <p class="xs">Didn't get it? Resend OTP in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </form>
+</div>
+</div></section>
+</main>
+</body>
+</html>

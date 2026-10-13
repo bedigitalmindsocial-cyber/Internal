@@ -1,0 +1,10 @@
+{
+ "page": "65-guide-getting-started",
+ "verdict": "pass",
+ "score": 90,
+ "must_fix": [],
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
+ "by": "orchestrator-carry",
+ "sha": "ca4219d9456a",
+ "date": "13-Oct-2026"
+}

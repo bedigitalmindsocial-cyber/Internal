@@ -1,0 +1,35 @@
+{
+ "file": "29-scheme-detail.html",
+ "sha": "2705738c72ce",
+ "desktop": {
+  "height": 8363,
+  "slices": 6,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 699,
+  "primary_text": "Invest in this fund",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 14736,
+  "slices": 9,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 1157,
+  "primary_text": "Invest in this fund",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 4439,
+  "slices": 4,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

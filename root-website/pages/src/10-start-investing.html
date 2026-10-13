@@ -1,0 +1,414 @@
+<!--page {"title": "Open a mutual fund investing account online | ROOT by Aikyam",
+          "description": "Open an investing account with Aikyam Wealth Private Limited, an AMFI-registered mutual fund distributor. Start with your mobile number and an OTP.",
+          "query": "open mutual fund account online",
+          "lint_allow": []} -->
+<style data-page>
+/* 10 v3 page CSS (tokens only).
+   Chip row (proposed for patterns.css): static category labels inside a card, not links or filters */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px}
+/* from 09 v3 (kept in both pages until promoted): the band CTA sits 20 px under the steps note */
+.steps-note + .band-cta{margin-top:20px}
+/* phones: fund-cost receipt rows stack (cost name, then who sets it), since the values are phrases, not amounts;
+   the disclosure box puts its icon above the text (Home's rule). Both proposed for patterns.css */
+@media (max-width: 640px){
+  .page-start-investing .ui-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .page-start-investing .ui-receipt .ui-row span + span{text-align:left}
+  .page-start-investing .risk-box{grid-template-columns:1fr; padding:20px}
+}
+</style>
+
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Mutual fund investing account · {{reg.wealth.name}}</span>
+      <h1 class="d1" id="h-hero">Mutual funds, <em>a few steps away.</em></h1>
+      <p class="lead">Open your investing account online, then invest a fixed amount regularly (a SIP) or all at once.</p>
+      <ul class="creds">
+        <li class="cred-wide"><svg class="i"><use href="#i-mf"/></svg><div>AMFI-registered mutual fund distributor<span>Aikyam Wealth, part of Aikyam Capital Group</span></div></li>
+        <li><svg class="i"><use href="#i-check"/></svg><div>No trading account needed<span>Open an investing account on its own</span></div></li>
+        <li><svg class="i"><use href="#i-chart"/></svg><div>You choose your funds<span>Regular plans in equity, debt and hybrid</span></div></li>
+      </ul>
+      <a class="link" href="#s-costs">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="hero-side">
+      <div class="ui-stage ui-stage--panel open-stage">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-open"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-open)"/></svg>
+        <ol class="track" aria-label="Opening your investing account: step 1 of 4">
+          <li class="is-on" aria-current="step">Mobile</li>
+          <li>PAN</li>
+          <li>Aadhaar</li>
+          <li>Bank and <span>e-sign</span></li>
+        </ol>
+        <section class="form-card" id="s-open" aria-labelledby="h-open">
+          <h2 class="h3" id="h-open">Start with your mobile number</h2>
+          <form id="open-form" method="post" data-event="account_start" data-form-entity="Aikyam Wealth">
+            <div class="fgroup">
+              <label for="open-mob">Mobile number</label>
+              <span class="field"><span class="pre">+91</span><input id="open-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="open-mob-help" required></span>
+              <span class="fhelp" id="open-mob-help">We'll send a one-time password (OTP) to this number.</span>
+            </div>
+            <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+            <button class="btn btn--lg" type="submit" data-primary>Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+            <div class="stack" style="--gap:0px">
+              <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+              <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+              <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="hero-alt"><a class="link link--wrap" href="/open-account/trading" data-event="switch_to_trading">Want to trade shares too? Open a trading and demat account with <span class="link-tail">Aikyam Capital<svg class="i"><use href="#i-arrow"/></svg></span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">Four steps, on your phone or computer.</h2>
+      <p>Set aside about <mark class="ph" data-ph="kyc-duration">time to confirm</mark>. The ROOT app is coming soon, and you can open your account on the web today.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="dot">1</span><h3 class="h3">Verify your mobile</h3><p>Enter your number and the OTP we send.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: mobile number verified"><div class="ui-row"><span class="ui-label">Mobile number</span><span class="chip chip--gain">Verified</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">Check your PAN</h3><p>We match it with income tax records.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: PAN matched"><div class="ui-row"><span class="ui-label">PAN</span><span class="chip chip--gain">Matched</span></div><b class="num">XXXXX1234X</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Share Aadhaar via DigiLocker</h3><p>Your address comes from DigiLocker, with your consent.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: address fetched from DigiLocker"><div class="ui-row"><span class="ui-label">DigiLocker</span><span class="chip chip--gain">Address fetched</span></div><b class="num">Aadhaar XXXX XXXX 1234</b></div></li>
+      <li><span class="dot">4</span><h3 class="h3">Link your bank and e-sign</h3><p>Add your bank account, then sign with an Aadhaar OTP.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: bank account added, ready to e-sign"><div class="ui-row"><span class="ui-label">Bank account</span><span class="chip chip--ink">e-sign</span></div><b class="num">XXXXXX4321</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+
+    <div class="docs docs--tiles">
+      <h3 class="h3">Keep these ready</h3>
+      <ul>
+        <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>PAN card</li>
+        <li><span class="tile"><svg class="i"><use href="#i-phone"/></svg></span>Aadhaar linked to your mobile (for the OTP)</li>
+        <li><span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>Bank account details</li>
+        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span>A photo of your signature</li>
+      </ul>
+    </div>
+
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <h3 class="h3">Stopped halfway?</h3>
+        <p>Come back with the same mobile number and <mark class="ph" data-ph="kyc-resume">pick up where you stopped</mark>.</p>
+        <p>If a PAN, Aadhaar or bank check doesn't go through: <mark class="ph" data-ph="kyc-fail">what to do next, to confirm</mark>. You can always <a href="/contact">talk to us</a>.</p>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-lock"/></svg></span>
+        <h3 class="h3">Who handles your details?</h3>
+        <p>Our KYC partner, {{kyc.vendor}}, completes your KYC for {{reg.wealth.name}}. Your details are used to open and run your account, as our <a href="/legal/privacy">Privacy Policy</a> explains.</p>
+        <p>How your data is protected: <mark class="ph" data-ph="data-security">details to confirm</mark>.</p>
+      </div>
+    </div>
+
+    <p class="small steps-note">When your account is active, you choose your funds and start a SIP at <mark class="ph" data-ph="wealth-platform">where you invest, to confirm</mark>.</p>
+    <div class="band-cta"><a class="link" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-costs" aria-labelledby="h-costs">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-costs">What will I pay?</h2>
+      <p>Here's what we charge, and how each fund's own costs work.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <span class="label">Opening your account</span>
+        <div class="num"><mark class="ph" data-ph="wealth-account-charge">charge to confirm</mark></div>
+        <p>To open your investing account.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <span class="label">Transaction charge</span>
+        <div class="num"><mark class="ph" data-ph="mf-transaction-charge">charge to confirm</mark></div>
+        <p>When you buy units, if it applies.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span>
+        <span class="label">How Aikyam Wealth is paid</span>
+        <div class="num num--word">Commission</div>
+        <p>From the fund house, included in the plan's expense ratio.</p>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-chart"/></svg></span>
+        <h3 class="h3">You choose your funds</h3>
+        <p>Regular plans, sold through Aikyam Wealth as your distributor. You pick the schemes.</p>
+        <div class="chip-row"><span class="chip">Equity</span><span class="chip">Debt</span><span class="chip">Hybrid</span></div>
+      </div>
+      <div class="ui-card ui-receipt">
+        <span class="ui-label">Inside each fund's costs</span>
+        <div class="ui-row"><span>Expense ratio (the fund's yearly running cost)</span><span>Set by the fund house</span></div>
+        <div class="ui-row"><span>Distributor commission</span><span>Included in the expense ratio</span></div>
+        <div class="ui-row"><span>Exit load (if you sell early)</span><span>Some schemes</span></div>
+        <p class="small">Each scheme's documents show its figures.</p>
+      </div>
+    </div>
+    <div class="band-cta"><a class="link" href="/pricing">See all charges<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack" style="--gap:22px">
+      <h2 class="d2 node" id="h-faq">Questions before you start.</h2>
+      <p class="lead">Can't find yours? <a href="/contact">Talk to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the ROOT support team on a call at their desk</b><span>Art direction: real Aikyam staff (shoot to come), warm daylight, relaxed and attentive, eye level, 4:3</span></figure>
+      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="faq">
+      <details open><summary>Which company opens my investing account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>{{reg.wealth.name}}, an AMFI-registered mutual fund distributor, opens your investing account and distributes the funds you invest in. ROOT by Aikyam is the Aikyam Capital Group's brand for investors.</p>
+        <p>Its ARN (AMFI registration number) is {{reg.wealth.arn}}. You can check it yourself on <a href="https://www.amfiindia.com/" rel="noopener">AMFI's website</a>.</p>
+      </div></details>
+      <details><summary>Do I need a trading account to invest in mutual funds?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>No. You don't need a trading account with Aikyam Capital to invest in mutual funds here. How your units are held: <mark class="ph" data-ph="mf-holding">to confirm</mark>.</p>
+        <p>Want to trade shares too? {{reg.capital.name}} opens trading and demat accounts on the <a href="/open-account/trading">Start Trading page</a>.</p>
+      </div></details>
+      <details><summary>How do I choose funds and start a SIP?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>You choose the schemes, from regular plans across equity, debt and hybrid categories. Invest a fixed amount regularly (a SIP) or all at once. Each scheme sets its own minimum amount, shown in its scheme documents.</p>
+        <p>Help with choosing: <mark class="ph" data-ph="mf-guidance">what we can offer, to confirm</mark>. How SIP instalments are collected: <mark class="ph" data-ph="sip-mandate">to confirm</mark>.</p>
+      </div></details>
+      <details><summary>I've done KYC before. Do I need to do it again?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>KYC is one time exercise while dealing in securities markets. Once KYC is done through a SEBI registered intermediary (Broker, DP, Mutual Fund etc.), you need not undergo the same process again when you approach another intermediary.</p>
+        <p>What our flow asks if your KYC is already done: <mark class="ph" data-ph="kyc-existing">to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can NRIs, joint holders or minors invest here?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>This page is for resident Indian individuals. NRI, joint, minor and HUF accounts: <mark class="ph" data-ph="account-types-wealth">to confirm</mark>.</p>
+      </div></details>
+      <details><summary>How do I raise a complaint?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Write to <mark class="ph" data-ph="wealth-grievance">email to confirm</mark>. If you are not satisfied with the response: <mark class="ph" data-ph="wealth-escalation">to confirm with compliance</mark>.</p>
+        <p>Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p><a href="/legal/grievance-redressal">How we handle complaints</a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Mutual fund investing account · {{reg.wealth.name}}</span>
+      <h2 class="d2 node" id="h-final">Invest at your own pace.</h2>
+      <p class="lead">Open your account on your phone or computer, then start a SIP or invest all at once.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="#s-open">Start with your mobile number<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/open-account/trading" data-event="switch_to_trading">Want to trade too? Start with Aikyam&nbsp;Capital</a>
+      </div>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+    </div>
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: investing account active">
+        <span class="ui-label">Investing account</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>KYC verified</span><svg class="i i--sm"><use href="#i-check"/></svg></div>
+        <div class="ui-row"><span>Bank account</span><span>XXXXXX4321</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: setting up a SIP">
+        <span class="ui-label">Start a SIP · Regular plan</span>
+        <span class="ui-big">Example Flexi Cap Fund</span>
+        <div class="ui-row"><span>Category</span><b>Equity: flexi cap</b></div>
+        <div class="ui-row"><span>Frequency</span><b>Monthly</b></div>
+        <div class="ui-row"><span>Amount</span><b>You choose</b></div>
+        <span class="ui-pill">Start SIP</span>
+      </div>
+      <p class="ui-caption">Illustrative screens. Example names, not real schemes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <a class="link link--wrap" href="/legal/disclosures">Disclosures and Investor <span class="link-tail">Charter<svg class="i"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="sending-otp" data-label="Get OTP pressed, sending (button loading)">
+<div class="form-card">
+  <h2 class="h3">Start with your mobile number</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st1-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st1-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+      <span class="fhelp">We'll send a one-time password (OTP) to this number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="otp-sent" data-label="OTP sent, resend timer running">
+<div class="form-card">
+  <h2 class="h3">Enter the OTP</h2>
+  <p class="small">We sent it to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+      <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
+    </div>
+    <p class="xs">Didn't get it? Resend in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="otp-resend-ready" data-label="Timer ended, resend available">
+<div class="form-card">
+  <h2 class="h3">Enter the OTP</h2>
+  <p class="small">We sent it to +91 98XXXXXX21. <a href="#s-open">Change number</a></p>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+    </div>
+    <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<div class="form-card">
+  <h2 class="h3">Start with your mobile number</h2>
+  <form>
+    <div class="fgroup is-error">
+      <label for="st4-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st4-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-invalid="true" aria-describedby="st4-err"></span>
+      <span class="fhelp" id="st4-err">Enter a 10-digit mobile number.</span>
+    </div>
+    <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<div class="form-card">
+  <h2 class="h3">Start with your mobile number</h2>
+  <form>
+    <div class="fgroup">
+      <label for="st5-mob">Mobile number</label>
+      <span class="field"><span class="pre">+91</span><input id="st5-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
+    </div>
+    <div class="fgroup is-error">
+      <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="st5-err"><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+      <span class="fhelp" id="st5-err">Tick the box to continue.</span>
+    </div>
+    <button class="btn btn--lg" type="submit">Get OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, to send your OTP and continue your application.</p>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="otp-wrong" data-label="Error: wrong or expired OTP">
+<div class="form-card">
+  <h2 class="h3">Enter the OTP</h2>
+  <div class="alert alert--err" role="alert"><svg class="i"><use href="#i-alert"/></svg><div><b>That OTP didn't match or has expired</b>Check the digits and try again, or ask for a new one.</div></div>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+    </div>
+    <p class="xs">Didn't get it? <a href="#s-open">Resend OTP</a> · <a href="#s-open">Change number</a></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </form>
+</div>
+</template>
+
+<template data-state="verified" data-label="Success: number verified; the tracker marks Mobile done and PAN active; next step is KYC">
+<div class="ui-stage ui-stage--panel open-stage">
+  <ol class="track" aria-label="Opening your investing account: step 2 of 4">
+    <li class="is-done"><svg class="i"><use href="#i-check"/></svg>Mobile</li>
+    <li class="is-on" aria-current="step">PAN</li>
+    <li>Aadhaar</li>
+    <li>Bank and <span>e-sign</span></li>
+  </ol>
+  <div class="form-card">
+    <h2 class="h3">Number verified</h2>
+    <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is verified</b>Next: your PAN and Aadhaar, with our KYC partner.</div></div>
+    <p class="fine">KYC partner: {{kyc.vendor}}, for {{reg.wealth.name}}.</p>
+    <a class="btn btn--lg" href="#s-open">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></a>
+    <div class="stack" style="--gap:0px">
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+      <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+    </div>
+  </div>
+</div>
+</template>
+
+<template data-state="verified-loading" data-label="Success: handing over to the KYC partner (button loading)">
+<div class="form-card">
+  <h2 class="h3">Number verified</h2>
+  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>+91 98XXXXXX21 is verified</b>Next: your PAN and Aadhaar, with our KYC partner.</div></div>
+  <p class="fine">KYC partner: {{kyc.vendor}}, for {{reg.wealth.name}}.</p>
+  <span class="btn btn--lg is-loading" aria-busy="true">Continue to KYC<svg class="i"><use href="#i-arrow"/></svg></span>
+  <div class="stack" style="--gap:0px">
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+    <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+  </div>
+</div>
+</template>
+
+<template data-state="existing-account" data-label="This number already has an Aikyam Wealth investing account">
+<div class="form-card">
+  <h2 class="h3">You already have an investing account</h2>
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number already has an Aikyam Wealth investing account.</b>Log in to see your investments, or use a different number.</div></div>
+  <p class="small">Log in at <mark class="ph" data-ph="wealth-login">investing login to confirm</mark></p>
+  <p class="xs"><a href="#s-open">Use a different number</a></p>
+</div>
+</template>
+
+<template data-state="has-trading-account" data-label="This number already has an Aikyam Capital trading account">
+<div class="form-card">
+  <h2 class="h3">You have a trading account with us</h2>
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number already has an Aikyam Capital trading account.</b>How to add an investing account: <mark class="ph" data-ph="one-flow">to confirm</mark></div></div>
+  <p class="xs"><a href="#s-open">Use a different number</a></p>
+</div>
+</template>

@@ -1,0 +1,10 @@
+{
+ "page": "42-sip-calculator",
+ "verdict": "pass",
+ "score": 90,
+ "must_fix": [],
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
+ "by": "orchestrator-carry",
+ "sha": "ddeb224386ee",
+ "date": "13-Oct-2026"
+}
