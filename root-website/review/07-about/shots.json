@@ -1,6 +1,6 @@
 {
  "file": "07-about.html",
- "sha": "4f111898ce04",
+ "sha": "37b11727f42a",
  "desktop": {
   "height": 7008,
   "slices": 5,
@@ -12,7 +12,7 @@
   "first_screen_ph": []
  },
  "mobile": {
-  "height": 12649,
+  "height": 12650,
   "slices": 7,
   "fonts_loaded": true,
   "overflow": false,
@@ -22,8 +22,8 @@
   "first_screen_ph": []
  },
  "states_board": {
-  "height": 1362,
-  "slices": 1,
+  "height": 1753,
+  "slices": 2,
   "fonts_loaded": false,
   "overflow": false,
   "offenders": [],

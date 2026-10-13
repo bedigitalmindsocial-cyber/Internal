@@ -3,8 +3,8 @@
  "verdict": "pass",
  "score": 87,
  "must_fix": [],
- "note": "v3 revision reviewer pass carried after curator CSS promotion / consent alignment; gate ok",
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
  "by": "orchestrator-carry",
- "sha": "de2abe6ba6cd",
- "date": "12-Oct-2026"
+ "sha": "51388a343243",
+ "date": "13-Oct-2026"
 }

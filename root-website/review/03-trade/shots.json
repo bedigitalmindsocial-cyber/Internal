@@ -1,6 +1,6 @@
 {
  "file": "03-trade.html",
- "sha": "721e2af4df8c",
+ "sha": "a0637743f5fd",
  "desktop": {
   "height": 8016,
   "slices": 5,
@@ -12,7 +12,7 @@
   "first_screen_ph": []
  },
  "mobile": {
-  "height": 13998,
+  "height": 13992,
   "slices": 8,
   "fonts_loaded": true,
   "overflow": false,

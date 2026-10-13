@@ -3,62 +3,19 @@
           "query": "portfolio management services",
           "lint_allow": []} -->
 <style data-page>
-/* 57 PMS v1 (golden, template H). Tokens only. Reusable pieces are named in memory section 7 for promotion. */
-
-/* hero under a breadcrumb: a tighter top so the bar sits higher in the first screen (as 03); the lead keeps the minimum on one line */
-.page-pms .hero{padding-top:40px}
+/* 57 PMS (golden, template H). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator, Wave 1
+   golden promotions: template H hero, label row, set-up stage, stacked rows, outcome cards, who does what card, product card with a
+   label, .nb, phone rules); only PMS-specific rules stay here. */
+/* the lead keeps the minimum on one line */
 .page-pms .hero-copy .lead{text-wrap:pretty}
-.nb{white-space:nowrap}
-
-/* Label row (candidate pattern, template H): the eyebrow naming the company and the Coming soon badge on one line
-   directly above the h1; the badge wraps under the eyebrow on narrow columns */
-.label-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
-
-/* Set-up stage (candidate pattern, template H): the hub hero's product stage with a set-up card in the phone's slot
-   (four label-value rows: how the product is set up) and two outcome cards (what the button does) at its top and foot */
-.hero-stage:has(> .setup-card){min-height:480px}
-.hero-stage:has(> .setup-card) .stage-cards{flex-basis:212px; padding-block:4px; justify-content:space-between}
-.hero-stage > .setup-card{position:relative; z-index:1; flex:none; width:328px; align-self:center; padding:24px; font-size:var(--fs-sm)}
-.setup-card .ui-head{padding-bottom:14px}
-.setup-card .ui-head .ui-label{padding-bottom:0}
-.setup-card .ui-big{font-size:1.25rem}
-/* rows stack a small grey label over a bold value, so long answers never wrap against a label */
-.setup-card .ui-row{flex-direction:column; align-items:flex-start; gap:2px; padding-block:11px}
-.setup-card .ui-row span{font-size:var(--fs-xs); color:var(--aub-60)}
-.setup-card .ui-row b{font-weight:600}
-/* Outcome cards (candidate pattern): label, bold status and a chip; no rows, so two fit side by side on phones */
-.outcome-card{gap:8px}
-.outcome-card .chip{align-self:flex-start}
-
-/* s-roles: identity facts left, the "Who does what" card right on the Mist band (no stage panel), centred */
-.split--roles{align-items:center}
-#s-roles .facts{gap:22px}
-.roles-card{gap:16px; padding:28px}
-.roles-card .kv-list--row dt{color:var(--aub-80)}
-.roles-card .kv-list--row dd{color:var(--aub); font-weight:600}
-.roles-card .fine{max-width:none}
-
 /* s-next: the h2 runs the full wrap width, so its last word does not sit alone (as 03 s-fo) */
 .page-pms #s-next .head{max-width:none}
-
 /* s-fit: the minimum tile's link sits at the foot of the tile */
 #s-fit .stat-tile .link{margin-top:auto; padding-top:6px}
+/* a label that wraps (tile 3 at 390) keeps air between its lines; from 641 px a placeholder in a tile sentence moves to the next line whole */
+#s-fit .stat-tile .label{line-height:1.4}
+@media (min-width: 641px){ #s-fit .stat-tile p .ph{white-space:nowrap} }
 #s-fit .info-card .link{margin-top:4px}
-
-/* s-today: label above the h3 (wrapped lines keep their air), the action and its risk line follow the copy */
-.today-card .label{margin-top:4px; line-height:1.4}
-.today-card .card-foot{display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding-top:8px}
-
-/* phones: full-width wrapping buttons (as 03), outcome cards side by side, risk box with the icon above the text */
-@media (max-width: 640px){
-  .page-pms .hero{padding-top:24px}
-  .hero-stage:has(> .setup-card){min-height:0}
-  .hero-stage:has(> .setup-card) .stage-cards{flex-basis:auto}
-  .hero-stage > .setup-card{width:min(320px, 100%)}
-  .page-pms main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
-  .roles-card{padding:20px}
-  .page-pms .risk-box{grid-template-columns:1fr; padding:20px}
-}
 </style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
@@ -128,24 +85,18 @@
     <div class="stack" style="--gap:24px">
       <h2 class="d2 node" id="h-roles">Who manages your money?</h2>
       <p class="lead">A SEBI-registered portfolio manager runs each strategy. Aikyam Wealth distributes it and helps you apply. It does not manage your portfolio or hold your money.</p>
-      <ul class="facts">
-        <li><span class="tile"><svg class="i"><use href="#i-pms"/></svg></span><div class="fact-text"><b>The portfolio manager</b><p>A third-party firm registered with SEBI. Your agreement is with this firm.</p>
-          <div class="links">
-            <a class="link link--wrap" href="https://www.sebi.gov.in/" rel="noopener">Check registrations on SEBI's <span class="link-tail">website<svg class="i"><use href="#i-ne"/></svg></span></a>
-          </div></div></li>
-        <li><span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span><div class="fact-text"><b>Aikyam Wealth</b><p>A distributor of PMS strategies, and part of Aikyam Capital Group.</p></div></li>
-        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span><div class="fact-text"><b>You</b><p>The investor, and the owner of the portfolio.</p></div></li>
-      </ul>
+      <a class="link link--wrap" href="https://www.sebi.gov.in/" rel="noopener">Check a portfolio manager's registration on SEBI's <span class="link-tail">website<svg class="i"><use href="#i-ne"/></svg></span></a>
     </div>
     <div class="info-card roles-card">
       <h3 class="h3">Who does what</h3>
       <dl class="kv-list kv-list--row">
         <div><dt>Picks and manages the investments</dt><dd>The portfolio manager</dd></div>
         <div><dt>Holds your shares and securities</dt><dd>A demat account in your name</dd></div>
+        <div><dt>Signs the PMS agreement with you</dt><dd>The portfolio manager</dd></div>
         <div><dt>Sets the fees and exit load</dt><dd>The portfolio manager, in your agreement</dd></div>
-        <div><dt>Chooses your strategy</dt><dd>You, after reading its disclosure document</dd></div>
-        <div><dt>Introduces strategies and helps you apply</dt><dd>Aikyam Wealth</dd></div>
         <div><dt>Reports on your portfolio</dt><dd>The portfolio manager</dd></div>
+        <div><dt>Introduces strategies and helps you apply</dt><dd>Aikyam Wealth</dd></div>
+        <div><dt>Chooses your strategy</dt><dd>You, after reading its disclosure document</dd></div>
       </dl>
       <p class="fine">When PMS is live, each strategy names its portfolio manager and SEBI registration number.</p>
     </div>
@@ -174,9 +125,9 @@
       </div>
       <div class="stat-tile">
         <span class="tile"><svg class="i"><use href="#i-cal"/></svg></span>
-        <span class="label">Exit load and lock-in · each strategy</span>
-        <div class="num"><mark class="ph" data-ph="pms-exit-load">to confirm</mark></div>
-        <p>What you pay to leave early, and any minimum period, from the strategy's disclosure document.</p>
+        <span class="label">Exit load and lock-in · each portfolio manager</span>
+        <div class="num num--word">Per strategy</div>
+        <p>What you pay to leave early, and any minimum period, stated in each strategy's disclosure document: <mark class="ph" data-ph="pms-exit-load">to confirm per strategy</mark>.</p>
       </div>
     </div>
     <div class="price-notes">

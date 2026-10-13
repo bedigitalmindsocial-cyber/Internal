@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- ROOT by Aikyam · page 10 of 75 · Start Investing · page · template D · entity Wealth
-     Built 12-Oct-2026 from pages/src/10-start-investing.html · page memory: memory/pages/10-start-investing.md
+     Built 13-Oct-2026 from pages/src/10-start-investing.html · page memory: memory/pages/10-start-investing.md
      DRAFT for design review and Figma import. Exchange advertisement filing: required before publication (not filed).
      Not for publication until Aikyam compliance approves. -->
 <html lang="en-IN">
@@ -1181,6 +1181,819 @@ main .ph.ph--block{border:0; border-radius:var(--r-card); padding:20px; backgrou
   .app .row .btn{width:100%; white-space:normal; text-align:center; line-height:1.25; padding:12px 16px; font-size:1rem}
   .final-stage .ui-card{width:100%}
 }
+
+/* ===== Wave 1 golden promotions (curated 12-Oct-2026 from 03 Trade, 07 About, 17 Grievance, 29 Scheme detail, 42 SIP calculator,
+   57 PMS, 62 Distributor partner, 65 Guide: getting started) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. A rule that would change the approved pages 01, 09 or 10 is scoped by template (body .tpl-x, set by the build)
+   or by component, so those pages render exactly as approved; the site-wide versions are proposals for the orchestrator. */
+
+/* --- Site and template rules --- */
+
+/* Hero under a breadcrumb, per template (each golden's values; one site value is a pending proposal).
+   A hubs and H products (03, 57): 40 px top, 24 at 640. P partners (62): 40 px top. E guides and F company pages (07, 65): 40/80,
+   32/56 at 640. B data heroes and C calculators carry theirs in .hero-grid--data and .hero--calc below; G (17) keeps the theme's */
+.tpl-a .hero,.tpl-h .hero,.tpl-p .hero{padding-top:40px}
+.tpl-e .hero,.tpl-f .hero{padding-block:40px 80px}
+@media (max-width: 640px){
+  .tpl-a .hero,.tpl-h .hero{padding-top:24px}
+  .tpl-e .hero,.tpl-f .hero{padding-block:32px 56px}
+}
+
+/* Phones: buttons in main go full width and wrap (01 Home, 03, 07, 57, 65). Scoped to those templates; as a site rule it would
+   also change 09 and 10 (approved), 17, 29, 42 and 62 */
+@media (max-width: 640px){
+  :is(.tpl-home,.tpl-a,.tpl-e,.tpl-f,.tpl-h) main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
+}
+
+/* Phones: risk and disclosure boxes put the icon above the text, an inset box keeps 18 px (01, 03, 10, 29, 42, 57, 65).
+   Scoped to the templates whose goldens use it, plus F and G (no box on their goldens); site-wide it would also change 09 and 62 */
+@media (max-width: 640px){
+  :is(.tpl-home,.tpl-a,.tpl-b,.tpl-c,.tpl-e,.tpl-f,.tpl-g,.tpl-h) .risk-box{grid-template-columns:1fr; padding:20px}
+  :is(.tpl-home,.tpl-a,.tpl-b,.tpl-c,.tpl-e,.tpl-f,.tpl-g,.tpl-h) .risk-box--inset{padding:18px}
+}
+
+/* Band CTA 20 px under the steps note (09, 10 and 62 carried it in their pages) */
+.steps-note + .band-cta{margin-top:20px}
+
+/* Dark band: a placeholder in on-dark fine print stays readable (from 29 and 42) */
+.band--dark .ph{color:var(--on-dark)}
+
+/* Utility: keeps a token value (a minimum amount) on one line in running copy (from 57) */
+.nb{white-space:nowrap}
+
+/* Chip row (from 10 and 29): static category labels inside a card, not links or filters; 6 px apart inside a .ui-card (42) */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px}
+.ui-card .chip-row{gap:6px}
+
+/* Card head in a hairline row card (from 03; 62's agreement card and 65's cards use it): tile + label head with no extra label
+   padding, a status chip pushed right */
+.ui-list .ui-head{padding-bottom:12px}
+.ui-list .ui-head .ui-label{padding-bottom:0}
+.ui-head .chip{margin-left:auto}
+
+/* Stacked rows (57's set-up card, 62's agreement card): each row stacks a small grey label over a bold value, so long answers never
+   wrap against a label; a registration code stays at mono 500. .ui-list--stack is the name for new cards */
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row span{font-size:var(--fs-xs); color:var(--aub-60)}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row b{font-weight:600}
+:is(.ui-list--stack,.setup-card,.agree-card) .ui-row b.mono{font-weight:500}
+
+/* Receipt rows stacked on phones (10 and 29): for receipts whose values are phrases, not amounts; 09's receipt keeps two columns */
+@media (max-width: 640px){
+  .ui-receipt--stack .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .ui-receipt--stack .ui-row span + span{text-align:left}
+}
+
+/* Staggered stage (03 explainer cards, 65 first-steps cards; the same rule as 09's .final-stage): two 22rem cards above the rings,
+   the second aligned right; full width at 640 */
+.explain-stage > .ui-card,.first-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.explain-stage > .ui-card + .ui-card,.first-stage > .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 640px){ .explain-stage > .ui-card,.first-stage > .ui-card{width:100%} }
+
+/* Rings bottom right behind a stage panel's cards (as 09's .open-stage): 62's money path, 17's route card */
+.money-stage > :not(.rings),.route-stage > :not(.rings){position:relative; z-index:1}
+.money-stage .rings,.route-stage .rings{top:auto; bottom:-40px; right:-96px}
+
+/* Info card with a foot button (from 03): the button hugs its label and pins to the card foot, so it lines up with a taller card
+   beside it; rate notes sit above it */
+.info-card .btn{align-self:flex-start; margin-top:auto}
+.info-card .price-notes{margin-top:0}
+/* Info card parts (from 29): an h4 sub-head and a plain bullet list */
+.info-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub); margin-top:6px}
+.info-card > ul:not([class]){display:flex; flex-direction:column; gap:4px; padding-left:20px; color:var(--aub-80)}
+
+/* Split family. 7/5 from 900 px: .split--75 is the name for new pages; --wide (65), --rows (03), --pay (62), --data (29) and
+   .clause-split (17) are the goldens' names for the same columns. Centred: --75, --wide, --rows (from 900 px); --mid (new pages),
+   --returns (29), --roles (57), --pay and --agree (62) at every width. .split--top top-aligns; .split--half is 6/6, top-aligned;
+   .split--stretch makes equal-height cards and pins the left card's .data-foot (29). .split--steps (01) stays separate */
+@media (min-width: 900px){
+  .split--75,.split--wide,.split--rows,.split--pay,.split--data,.clause-split{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
+  .split--75,.split--wide,.split--rows{align-items:center}
+  .split--half{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+.split--mid,.split--returns,.split--roles,.split--pay,.split--agree{align-items:center}
+.split--half{align-items:start}
+@media (min-width: 900px){
+  .split--top,.split--wide.split--top{align-items:start}
+  .split--stretch{align-items:stretch}
+  .split--stretch > .data-card > .data-foot{margin-top:auto}
+}
+
+/* Hero actions (07 About, 17 Grievance): a button and an on-page link in one row; at 640 the button goes full width and the link
+   sits under it. .hero-act stacks the actions (or one button, 65) over a fine line 12 px under it */
+.hero-actions{display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px}
+.hero-act{display:flex; flex-direction:column; align-items:flex-start; gap:12px}
+.hero-act > .hero-actions{align-self:stretch}
+@media (max-width: 640px){
+  .hero-actions{flex-direction:column; align-items:stretch; gap:16px}
+  .hero-actions .btn{width:100%}
+  .hero-actions .link{align-self:flex-start}
+}
+
+/* --- Template A: hubs (from 03 Trade) --- */
+
+/* Ticket stage (03 s-hero): the hub hero's product stage with an illustrative order ticket in the phone's slot. The stage keeps the
+   phone's height (540 px) and the two stage cards sit at its top and foot, staggered around the 300 px ticket; the ticket's Buy
+   .ui-pill keeps the library 38 px, so the real primary stays the largest ink button. 31, 35 to 38; 06 with the receipt as ticket */
+.hero-stage:has(> .ticket){min-height:540px}
+.hero-stage:has(> .ticket) .stage-cards{padding-block:0; justify-content:space-between}
+.hero-stage > .ticket{position:relative; z-index:1; flex:none; width:300px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.ticket .ui-row{padding-block:13px}
+.ticket .ui-row span{color:var(--aub-60)}
+.ticket .ui-row b{font-weight:600; font-variant-numeric:tabular-nums}
+.ticket-toggle{display:flex; gap:4px; padding:4px; margin-bottom:14px; border-radius:12px; background:var(--mist)}
+.ticket-toggle span{flex:1 1 0; padding:9px 0; border-radius:9px; text-align:center; font-weight:600; color:var(--aub-60)}
+.ticket-toggle .on{background:var(--aub); color:var(--paper)}
+.stage-cards .chip--gain{align-self:flex-start}
+@media (max-width: 640px){
+  .hero-stage:has(> .ticket){min-height:0}
+  .hero-stage > .ticket{width:min(320px, 100%)}
+  .stage-cards .chip--gain{margin-top:auto}
+}
+
+/* Rows plus explainer split (03 s-products): door rows left, two staggered explainer cards right (columns in the split family,
+   cards in the staggered stage) */
+.explain-card .ui-name{padding-bottom:10px}
+.explain-card .ui-row b{font-weight:600}
+
+/* --- Template F: company pages (from 07 About) --- */
+
+/* Hero · group stage (07 s-hero): the group map on a Mist stage panel beside the copy; rings top right; tighter branch cards;
+   branches 2 x 2 without lines while the map column is narrow (900 to 1199 px), as at 640. 12, 13 */
+.group-stage{align-self:stretch; padding:36px 24px 28px; overflow:visible}
+.group-stage > :not(.rings){position:relative; z-index:1}
+.group-stage .rings{top:-44px; right:-88px; width:260px}
+/* Group map on a stage panel: the "Group map on Mist" rules, extended to a Mist panel on a white band */
+.ui-stage--panel .is-on .gmap-card{background:var(--paper)}
+.ui-stage--panel .is-on .gmap-card .chip{background:var(--mist)}
+.group-stage .gmap-branches{gap:10px}
+.group-stage .gmap-card{padding:14px 8px; gap:4px}
+.group-stage .gmap-card > span:not(.chip){font-size:var(--fs-xs)}
+.group-stage .gmap-card .chip{margin-top:6px}
+.gmap-caption{margin-top:24px; text-align:center; font-size:var(--fs-sm); color:var(--aub-60); max-width:30rem; text-wrap:balance}
+@media (min-width: 900px) and (max-width: 1199px){
+  .group-stage .gmap-lines,.group-stage .gmap-dot{display:none}
+  .group-stage .gmap-root{margin-bottom:16px}
+  .group-stage .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
+}
+@media (max-width: 640px){
+  .group-stage{padding:20px 16px 18px}
+  .gmap-caption{margin-top:16px}
+}
+
+/* Proof sub-line (07 s-hero): span.cred-sub names whose licence it is, then the code as an inline .mono after a middle dot
+   (the theme sets every span in a cred to block). Any hero proof row: 01, 03, 09, 12 */
+.creds li .cred-sub .mono{display:inline; font-size:inherit; color:inherit}
+
+/* Entity doors · about variant (07 s-companies): question rows per company (label over a 1rem answer), 40 px Mist tiles (theme tiles
+   turn white on Mist bands and vanish in a white door), a "Coming soon" line inside a row, full-width fine print in the foot */
+.door-rows--about .tile{width:40px; height:40px; border-radius:10px; background:var(--mist)}
+.door-rows--about .tile .i{width:20px; height:20px}
+.door-rows--about .row-text{gap:6px}
+.door-rows--about .row-text p{font-size:1rem; color:var(--aub-80)}
+.door-rows--about .row-text .link{font-size:var(--fs-sm); margin-top:2px}
+.door-rows--about .row-text p.row-soon{margin-top:4px; font-size:var(--fs-xs); color:var(--aub-60)}
+.row-soon b{font-weight:600; color:var(--aub)}
+.door-rows--about ~ .door-foot .fine{max-width:none}
+/* a note under the doors: fine print (07) or small copy (65), 24 px below */
+.doors + .fine{margin-top:24px; max-width:none}
+.doors + .small{margin-top:24px; color:var(--aub-80)}
+
+/* Company registers (07 s-registers): how-to-check strip (Mist panel, three items with 40 px white tiles, three across from 900 px);
+   .ledger.register row lists as a 2/3 grid (dt left; mono value and a "Check on" link right; one column at 640); .ledger-side holds
+   the second register and a documents block; the stay-safe card full width with a links column behind a hairline. 12, 13, 15, 16 */
+.check-strip{list-style:none; display:grid; gap:20px 32px; padding:24px 28px; border-radius:var(--r-card); background:var(--mist); margin-bottom:clamp(40px, 5vw, 56px)}
+.check-strip li{display:flex; gap:14px; align-items:flex-start; min-width:0}
+.check-strip .tile{width:40px; height:40px; border-radius:10px; background:var(--paper)}
+.check-strip .tile .i{width:20px; height:20px}
+.check-strip b{display:block; color:var(--aub); font-weight:600}
+.check-strip p{font-size:var(--fs-sm); color:var(--aub-60)}
+@media (min-width: 900px){ .check-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.register .ledger-head{gap:6px; padding-bottom:4px}
+.register .kv-list--row > div{display:grid; grid-template-columns:minmax(0, 2fr) minmax(0, 3fr); gap:4px 24px; align-items:baseline; padding:14px 0}
+.register .kv-list--row dt{font-size:var(--fs-sm); color:var(--aub-80)}
+.register .kv-list--row dd{text-align:left; color:var(--aub)}
+.register .kv-list--row dd + dd{grid-column:2}
+.register dd.mono{font-size:var(--fs-sm); text-wrap:balance}
+.register dd .link{font-size:var(--fs-sm)}
+.register dd .link .i{width:16px; height:16px}
+.register > .fine{max-width:none}
+.safe-card{margin-top:clamp(40px, 5vw, 56px)}
+@media (min-width: 900px){
+  .safe-card{display:grid; grid-template-columns:auto minmax(0, 1fr) auto; gap:4px 24px; align-items:start; padding:28px 32px}
+  .safe-card .links{margin-top:0; padding-left:24px; border-left:1px solid var(--line)}
+}
+.safe-card p{color:var(--aub-80); max-width:62ch}
+.safe-card a[href^="tel:"]{white-space:nowrap}
+.ledger-side{display:flex; flex-direction:column; gap:clamp(40px, 5vw, 56px); min-width:0}
+.doc-block{display:flex; flex-direction:column; gap:12px}
+.doc-list{list-style:none; border-top:1px solid var(--line)}
+.doc-list li{padding:14px 0; border-bottom:1px solid var(--line)}
+@media (max-width: 899px){ .ledgers:has(.register){row-gap:48px} }
+@media (max-width: 640px){
+  .check-strip{padding:20px}
+  .register .kv-list--row > div{grid-template-columns:1fr; gap:2px}
+  .register .kv-list--row dd + dd{grid-column:auto; margin-top:4px}
+  .safe-card .links{padding-top:4px}
+}
+
+/* People cards · compact (07 s-people): white cards; an 88 px face slot (64 at 640) holds the leader's serif initials on the Mist
+   gradient until a portrait replaces them in the same slot; three columns from 1100 px, two from 641 px. 12, 13; 14 until the shoot */
+.people{list-style:none; display:grid; grid-template-columns:1fr; gap:16px}
+@media (min-width: 641px){ .people{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (min-width: 1100px){ .people{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.person{display:flex; gap:16px; align-items:center; padding:16px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
+.person .img-slot--face{flex:none; width:88px; padding:0; justify-content:center; align-items:center; border-radius:12px; background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%)}
+.person .img-slot--face .initials{font:400 1.75rem/1 var(--serif); color:var(--aub); letter-spacing:.02em}
+.person .stack{min-width:0}
+.person h3{font:600 1.0625rem/1.3 var(--sans); color:var(--aub)}
+.person p{color:var(--aub-60)}
+.people-note{margin-top:20px; color:var(--aub-60)}
+.people-links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:28px}
+@media (max-width: 640px){
+  .person{padding:12px}
+  .person .img-slot--face{width:64px}
+  .person .img-slot--face .initials{font-size:1.375rem}
+}
+
+/* Contact strip (07 s-contact): three labelled channels, a hairline above each, no card frame; three columns from 900 px. 15, 73 */
+.contact-strip{display:grid; grid-template-columns:1fr; gap:0 48px}
+@media (min-width: 900px){ .contact-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.contact-col{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding-block:28px; border-top:1px solid var(--line); min-width:0}
+.contact-col .tile{margin-bottom:8px}
+.contact-col .value{font:600 1.1875rem/1.35 var(--sans); color:var(--aub); text-decoration:none}
+.contact-col p{color:var(--aub-80); overflow-wrap:anywhere}
+.contact-col .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+@media (max-width: 640px){ .contact-col{padding-block:24px} }
+
+/* --- Template G: legal and help pages (from 17 Grievance Redressal) --- */
+
+/* Route card · where to complain (17 s-hero): white card on a Mist stage panel, columns centred; rows on a 1 px gold rail built
+   from real elements (.route-rail: .route-dot numeral in a gold ring over i.route-line), label rows (.route-group), two Mist
+   alternative tiles (.route-alts), a link under a hairline. Scoped by .route-steps: 65's guide route card shares the outer names */
+.hero-grid:has(> .hero-side > .route-stage){align-items:center}
+.route-card:has(> .route-steps){padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.route-card > .ui-label{padding-bottom:18px}
+.route-steps{list-style:none; display:flex; flex-direction:column}
+.route-steps li,.route-group{display:flex; gap:16px; align-items:stretch}
+.route-rail{flex:none; width:28px; display:flex; flex-direction:column; align-items:center}
+.route-dot{flex:none; width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); background:var(--paper); display:flex; align-items:center; justify-content:center; font:400 15px/1 var(--serif); color:var(--aub)}
+.route-rail .route-line{flex:1 1 auto; width:1px; min-height:8px; background:var(--gold)}
+.route-group .label{padding:2px 0 12px; font-size:11px}
+.route-steps .route-text{flex:1 1 auto; display:flex; flex-direction:column; gap:2px; min-width:0; padding:3px 0 22px}
+.route-steps:last-of-type li .route-text{padding-bottom:4px}
+.route-steps .route-text > a,.route-steps .route-text > b{font-weight:600; font-size:1rem; color:var(--aub); text-decoration:none}
+.route-steps .route-text > a:hover,.route-steps .route-text > a.is-hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.route-steps .route-text > span{color:var(--aub-60)}
+.route-alts{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:10px}
+.route-alt{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:14px; border-radius:var(--r-tile); background:var(--mist); color:var(--aub); text-decoration:none; line-height:1.35}
+.route-alt .tile{width:36px; height:36px; border-radius:10px; background:var(--paper)}
+.route-alt .tile .i{width:20px; height:20px}
+.route-alt b{font-weight:600}
+.route-alt small{display:block; font-size:var(--fs-xs); color:var(--aub-60)}
+.route-alt:hover,.route-alt.is-hover{background:var(--mist-2)}
+.route-alt.is-focus{outline:2px solid var(--aub); outline-offset:2px}
+.route-steps ~ .route-foot{margin-top:18px; padding-top:16px; border-top:1px solid var(--line)}
+.states-board .route-stage:has(.route-steps){max-width:30rem}
+@media (max-width: 640px){
+  .route-card:has(> .route-steps){padding:20px}
+  .route-alts{grid-template-columns:1fr}
+  .route-alt{flex-direction:row; align-items:center; gap:12px; padding:12px}
+}
+
+/* Clause split (17 s-contents): section.clause > .split.clause-split (7/5 from 900 px, in the split family), "Step N" eyebrow,
+   h3.d3.node on the spine, copy left, the step's working card right; a hairline and 48 to 80 px between clauses.
+   .clause-head (46rem) over a two-card row for a step whose answer is a choice; .head--wide (54rem) keeps a long h2 on one line */
+.clause + .clause{margin-top:clamp(48px, 6vw, 80px); padding-top:clamp(48px, 6vw, 80px); border-top:1px solid var(--line-2)}
+.clause-head{max-width:46rem}
+.head--wide{max-width:54rem}
+.clause .stack > p:not(.fine):not(.small){max-width:34rem}
+.clause-fine{margin-top:20px}
+/* Checklist (17): gain-green checks and ink text. 21 KYC documents, 23 */
+.checklist{list-style:none; display:flex; flex-direction:column; gap:10px}
+.checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--aub); line-height:1.45}
+.checklist .i{width:20px; height:20px; margin-top:1px; color:var(--gain)}
+
+/* Row list, two columns (17): dl.kv-list.kv-list--row.kv-list--cols, dt in a fixed column (--dt, default 9rem), dd left-aligned
+   beside it; stacked at 640. 13, 16, 20, 30 */
+.kv-list--cols > div{flex-wrap:nowrap; justify-content:flex-start}
+.kv-list--cols dt{flex:0 0 var(--dt, 9rem); font-size:var(--fs-sm)}
+.kv-list--cols dd{flex:1 1 auto; min-width:0; text-align:left}
+@media (max-width: 640px){
+  .kv-list--cols > div{flex-direction:column; gap:2px}
+  .kv-list--cols dt{flex:none}
+}
+
+/* Desk card (17 s-write): .info-card.desk-card, a label naming the company; ul.desk-rows (40 px tile + .desk-text: grey label,
+   bold link or value, hours line); .desk-next hairline block. .desk-action (button over two fine lines) sits in the copy column;
+   the button goes full width at 640. 15 Contact, 18, 08 Help Centre */
+.desk-rows{list-style:none; display:flex; flex-direction:column; gap:14px; padding-top:4px}
+.desk-rows li{display:flex; gap:14px; align-items:flex-start}
+.desk-rows .tile,.portal-top .tile{width:40px; height:40px}
+.desk-rows .tile .i,.portal-top .tile .i{width:20px; height:20px}
+.desk-card > .label,.portal-top .label{line-height:1.4; text-wrap:balance}
+.desk-text{display:flex; flex-direction:column; gap:2px; min-width:0}
+.desk-text > span{font-size:var(--fs-sm); color:var(--aub-60)}
+.desk-text a{font-weight:600; overflow-wrap:anywhere}
+.desk-action{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:4px}
+.desk-next{display:flex; flex-direction:column; gap:12px; margin-top:8px; padding-top:20px; border-top:1px solid var(--line)}
+@media (max-width: 640px){
+  .desk-action{align-items:stretch}
+  .desk-action .btn{width:100%}
+}
+
+/* Escalation ladder v2 (17 s-escalate): white stage panel; ol.ladder of two labelled groups, one counter per card.
+   li.ladder-start ("First contact"): a Mist bracket with quiet rungs (hollow dots, grey rail, white chips, roles at 500).
+   li.ladder-group ("Escalation"): no fill, gold rail, ink chips. Both share an 18 px side inset (14 at 640) so the dots stay in one
+   column, and both labels are inset 28 px (12 px rail + 16 px gap) into the rung-text column. 18 Escalation Matrix */
+.ui-stage--panel.ladder-stage{background:var(--paper); box-shadow:var(--shadow-1); padding:28px}
+.ladder,.ladder ol{list-style:none; display:flex; flex-direction:column}
+.ladder-start,.ladder-group{display:flex; flex-direction:column; gap:14px}
+.ladder-start{padding:18px 18px 2px; margin-bottom:22px; border-radius:var(--r-card); background:var(--mist)}
+.ladder-group{padding:0 18px}
+.ladder-start > .label,.ladder-group > .label{padding-left:28px; line-height:1.4}
+.rung{display:flex; gap:16px; align-items:stretch}
+.rung-rail{flex:none; width:12px; display:flex; flex-direction:column; align-items:center; padding-top:9px}
+.rung-dot{flex:none; width:11px; height:11px; border-radius:50%; background:var(--gold)}
+.rung-line{flex:1 1 auto; width:1px; margin-top:6px; background:var(--gold)}
+.ladder-start .rung-dot{background:var(--paper); border:1.5px solid var(--line-2)}
+.ladder-start .rung-line{background:var(--line-2)}
+.rung-text{flex:1 1 auto; display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; padding-bottom:22px}
+.rung-head{display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center}
+.rung-head b{color:var(--aub); font-weight:600}
+.ladder-group .rung:last-child .rung-text{padding-bottom:0}
+.rung-contact{display:flex; flex-wrap:wrap; gap:4px 16px; font-size:var(--fs-sm)}
+.rung-contact a{font-weight:500; overflow-wrap:anywhere}
+.rung-when{font-size:var(--fs-sm); color:var(--aub-60)}
+.ladder-start .chip{background:var(--paper)}
+.ladder-start .rung-head b{color:var(--aub-80); font-weight:500}
+.ladder-group .chip{background:var(--aub); color:var(--paper)}
+@media (max-width: 640px){
+  .ui-stage--panel.ladder-stage{padding:20px}
+  .ladder-start{padding:14px 14px 0}
+  .ladder-group{padding:0 14px}
+}
+
+/* Portal cards (17 s-scores-odr): two equal info cards (.portal-top tile + label, .portal-name h4 + mono address, row lists);
+   links pinned to the foot so the two "Go to" links align. 16, 22 */
+.portal-card{gap:14px}
+.portal-top{display:flex; align-items:center; gap:12px}
+.portal-name{display:flex; flex-direction:column; gap:2px}
+.portal-name .mono{font-size:var(--fs-sm); color:var(--aub-60)}
+.portal-card .links{margin-top:auto; padding-top:10px}
+.portal-card dd.mono{font-size:var(--fs-sm); overflow-wrap:anywhere}
+
+/* Document frame (17 s-policy): .doc-grid (4/8 from 1100 px) > aside.doc-rail (Mist card, sticky in the design: label, ol.toc
+   hairline links, .doc-file tile + name + PDF line, fine lines) + ol.clauses (numbered articles with compact client blocks).
+   s-contents of 16, 19, 21 to 25, 30 */
+.doc-grid{display:grid; gap:clamp(24px, 4vw, 56px); align-items:start}
+@media (min-width: 1100px){ .doc-grid{grid-template-columns:minmax(0, 4fr) minmax(0, 8fr)} }
+.doc-rail{display:flex; flex-direction:column; gap:16px; padding:24px; border-radius:var(--r-card); background:var(--mist)}
+.toc{list-style:none; display:flex; flex-direction:column}
+.toc a{display:block; padding:7px 0; border-bottom:1px solid var(--line-2); font-size:var(--fs-sm); font-weight:500; text-decoration:none}
+.toc a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.doc-file{display:flex; gap:14px; align-items:center}
+.doc-rail .tile{width:44px; height:44px; background:var(--paper)}
+.doc-file > div{display:flex; flex-direction:column; gap:4px; align-items:flex-start; min-width:0}
+.doc-file b{color:var(--aub); font-weight:600; line-height:1.3}
+.doc-file span{font-size:var(--fs-sm); color:var(--aub-60)}
+.clauses{list-style:none; display:flex; flex-direction:column; gap:24px}
+.clauses article{display:flex; flex-direction:column; gap:10px}
+main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding:14px 18px}
+.states-board .doc-rail{max-width:24rem}
+@media (max-width: 640px){ .doc-rail{padding:20px} }
+
+/* Product cards four across (17 s-related): .cards.cards--4, four from 1101 px, the theme's two and one below */
+@media (min-width: 1101px){ .cards--4{grid-template-columns:repeat(4, minmax(0,1fr))} }
+
+/* FAQ answer links (17): external links with i-ne in a wrapping row inside an answer (the FAQ side column's stack is below, 65) */
+.faq .faq-links{display:flex; flex-wrap:wrap; gap:6px 20px}
+.faq .faq-links .i{width:16px; height:16px}
+
+/* Mail card (17 states board): an illustrative prefilled email (label, To and Subject rows, body lines). 18, 23 */
+.mail-card{width:min(100%, 34rem); padding:22px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.mail-card .ui-row{justify-content:flex-start; padding:10px 0; border-top:1px solid var(--line)}
+.mail-card .ui-row > span:first-child{flex:0 0 5rem; color:var(--aub-60)}
+.mail-body{display:flex; flex-direction:column; gap:6px; padding-top:12px; border-top:1px solid var(--line)}
+
+/* --- Template B: data pages (from 29 Scheme detail) --- */
+
+/* Data hero (29 s-hero): DOM order copy, invest card, chart. Below 900 px the theme's one column gives that order; from 900 px the
+   chart sits under the copy (7) and the card spans both rows (5); 28 px under the breadcrumb (16 at 640). The item's name is the h1
+   at d2 size (.d1--name); .chip-row with .chip-risk (the theme riskometer scale in a chip); .nav-row: label and a 2.4rem serif
+   numeral on one baseline, hairline above, p.src under */
+.hero:has(> .hero-grid--data){padding-top:28px}
+@media (min-width: 900px){
+  .hero-grid--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); grid-template-areas:"copy side" "chart side"; grid-template-rows:auto 1fr; row-gap:28px; align-items:start}
+  .hero-grid--data > .hero-copy{grid-area:copy}
+  .hero-grid--data > .hero-side{grid-area:side}
+  .hero-grid--data > .hero-chart{grid-area:chart}
+}
+.hero-grid--data .hero-copy{gap:14px}
+.d1.d1--name{font-size:var(--fs-d2); line-height:1.12; letter-spacing:-.012em}
+.chip-risk .riskometer{width:56px}
+.chip-risk .scale{gap:2px}
+.chip-risk b{font-weight:600}
+.nav-row{display:flex; flex-direction:column; gap:4px; margin-top:4px; padding-top:14px; border-top:1px solid var(--line)}
+.nav-val{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px}
+.nav-val .num{font:400 2.4rem/1 var(--serif); color:var(--aub)}
+.nav-val .num .ph{font:500 var(--fs-sm)/1.4 var(--sans)}
+@media (max-width: 640px){ .hero:has(> .hero-grid--data){padding-top:16px} }
+
+/* Data card + data foot (29): one white card language for every block with numbers (shadow, no border); .data-foot stacks p.src
+   (as-on date and source), optional p.fine and p.illus 4 px apart */
+.src{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
+.data-foot{display:flex; flex-direction:column; gap:4px}
+.data-foot .fine + .fine{margin-top:0}
+.data-card{display:flex; flex-direction:column; gap:18px; margin:0; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
+.data-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+.states-board .chart-card,.states-board .data-card{max-width:44rem}
+@media (max-width: 640px){ .data-card{padding:20px} }
+
+/* NAV chart card (29 s-hero): figcaption label + range tabs, SVG line and area (paths only, non-scaling strokes), High and Low as
+   HTML at the right edge, months under. 39 Stock detail, 40 Markets */
+.hero-chart{display:flex; flex-direction:column; gap:10px; min-width:0}
+.chart-card{gap:14px; padding:20px 24px}
+.chart-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px 16px}
+.chart-top .tab{padding:8px 12px}
+.chart-plot{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px}
+.chart-plot svg{width:100%; height:200px; display:block}
+.chart-plot .chart-y{display:flex; flex-direction:column; justify-content:space-between; font-size:var(--fs-xs); line-height:1.4; color:var(--aub-60); white-space:nowrap}
+.chart-plot .chart-y b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
+.chart-plot .chart-x{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60)}
+@media (max-width: 899px){ .chart-plot svg{height:140px} }
+@media (max-width: 640px){ .chart-card{padding:16px} }
+
+/* Invest card (29): the scheme's terms as a row list above the mobile field; no one-word last line in the help line */
+.invest-card .kv-list--row > div{padding:10px 0}
+.invest-card .label{line-height:1.45}
+.invest-card .fhelp{text-wrap:pretty}
+
+/* Tabs above a band's content (29 s-returns) */
+.band-tabs{margin-bottom:24px}
+
+/* Legend keys (29, 42): .sw is a 12 px ink square; --bm, --2, --3, --4 are ink tints for data series; --line (2.5 px solid ink),
+   --dash (2 px dashed aub-60), --soft (2 px solid aub-60) and --bar (an 18 x 10 borderless wash bar) for chart lines and washes.
+   A key never looks like a control. An i or span: the kit's colour swatches are divs with the same class name */
+:where(i, span).sw{display:inline-block; width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
+.sw--line{height:0; width:18px; border-radius:0; background:none; border-top:2.5px solid var(--aub)}
+.sw--dash{height:0; width:18px; border-radius:0; background:none; border-top:2px dashed var(--aub-60)}
+.sw--soft{height:0; width:18px; border-radius:0; background:none; border-top:2px solid var(--aub-60)}
+.sw--bar{width:18px; height:10px; border-radius:2px; background:color-mix(in srgb, var(--aub) 8%, var(--mist))}
+
+/* Paired bars (29 s-returns): fund and benchmark per period on one scale from zero (--w), values as HTML text; label column 10rem,
+   one column at 640. Beside a reading card (.read-card) in a 7/5 split. 34, 27 */
+.pb-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.pb-legend > span{display:flex; gap:8px; align-items:baseline}
+.pb-legend .sw{align-self:center}
+.pb-rows{display:flex; flex-direction:column}
+.pb-row{display:grid; grid-template-columns:10rem minmax(0, 1fr); gap:8px 20px; align-items:center; padding:16px 0; border-top:1px solid var(--line)}
+.pb-row:last-child{border-bottom:1px solid var(--line)}
+.pb-label{font-weight:600; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.pb-label span{display:block; font-weight:400; font-size:var(--fs-xs); color:var(--aub-60)}
+.pb-bars{display:flex; flex-direction:column; gap:6px; min-width:0}
+.pb-bar{display:flex; align-items:center; gap:10px}
+.pb-bar i{display:block; flex:none; width:var(--w); height:14px; border-radius:0 4px 4px 0; background:var(--aub)}
+.pb-bar b{font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums; white-space:nowrap}
+.pb-bar--bm b{font-weight:500; color:var(--aub-80)}
+.sw--bm,.pb-bar--bm i{background:color-mix(in srgb, var(--aub) 28%, var(--paper))}
+.read-card p b{color:var(--aub)}
+@media (max-width: 640px){ .pb-row{grid-template-columns:1fr} }
+
+/* Riskometer dials (29 s-risk): two white dial cards on a Mist stage panel (two columns at every width); SVG arcs and needle, the
+   level as HTML text */
+.dial-stage{gap:18px}
+.dials{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px}
+.dial{margin:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding:24px 18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); text-align:center; min-width:0}
+.dial svg{width:100%; max-width:220px; height:auto}
+.dial figcaption{display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); color:var(--aub-60)}
+.dial figcaption b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+@media (max-width: 640px){ .dial{padding:18px 10px 14px} .dials{gap:10px} }
+
+/* Stat tiles on a Mist band (29): the icon tile stays Mist inside the white tile (the theme turns tiles white on Mist) */
+.stat-tile .tile{background:var(--mist)}
+
+/* Composition card (29 s-portfolio): a size split bar with real swatches (--w as unitless flex-grow, 3 px gaps, four ink tints),
+   then two columns of bar rows (each list on its own scale); facts card row list beside it */
+.mix{margin:0; display:flex; flex-direction:column; gap:14px}
+.mix .splitbar{height:14px; gap:3px; background:none; border-radius:0}
+.mix .splitbar i{flex:var(--w) 1 0px; border-radius:3px}
+.mix .splitbar i:nth-child(2),.sw--2{background:color-mix(in srgb, var(--aub) 62%, var(--paper))}
+.mix .splitbar i:nth-child(3),.sw--3{background:color-mix(in srgb, var(--aub) 36%, var(--paper))}
+.mix .splitbar i:nth-child(4),.sw--4{background:var(--line-2)}
+.mix-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.mix-legend span{display:flex; gap:8px; align-items:center}
+.mix-legend b{font-weight:600; font-variant-numeric:tabular-nums}
+.barcols{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px 32px; padding-top:20px; border-top:1px solid var(--line)}
+.barcols > div{display:flex; flex-direction:column; gap:14px; min-width:0}
+.barrows{list-style:none; display:flex; flex-direction:column; gap:14px}
+.barrows li{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px; font-size:var(--fs-sm); color:var(--aub); line-height:1.3}
+.barrows b{font-weight:600; font-variant-numeric:tabular-nums}
+.br-track{grid-column:1 / -1; height:6px; border-radius:6px; background:var(--mist)}
+.br-track i{display:block; width:var(--w); height:100%; border-radius:6px; background:var(--aub)}
+.facts-card .kv-list--row dd{max-width:64%}
+.facts-card .kv-list--row > div{padding:10px 0}
+@media (max-width: 640px){
+  .barcols{grid-template-columns:1fr}
+  .facts-card .kv-list--row dd{max-width:none; text-align:left}
+}
+
+/* --- Template C: calculators (from 42 SIP calculator; 43 to 50 inherit) --- */
+
+/* Calculator hero (42 s-hero): the inputs are the working action (left), the result stage is the product visual (right); two equal
+   columns from 900 px, centred; a shorter top under the breadcrumb */
+.hero--calc{padding-top:clamp(24px, 3vw, 40px)}
+@media (min-width: 900px){ .hero-grid--calc{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--calc .hero-copy{gap:20px}
+.states-board .calc-in,.states-board .calc-stage{max-width:36rem}
+@media (max-width: 640px){ .hero-grid--calc .hero-copy{gap:16px} }
+
+/* Field + slider rows (42): theme .calc-row with an editable .field.calc-field (11.5rem, 10 at 640; .pre or .calc-field--suf + .suf)
+   in place of the output chip; hairline rows; .calc-note help line; .is-focus draws the focus ring on the field and the thumb */
+.hero-grid--calc .calc-in{margin:0; padding:0; border:0; gap:0; min-width:0}
+.calc-in .calc-row{gap:12px; padding:16px 0; border-top:1px solid var(--line)}
+.calc-in .calc-row:last-child{border-bottom:1px solid var(--line)}
+.calc-in .calc-row .top{gap:16px}
+.calc-field{flex:none; width:11.5rem}
+.calc-field input{font:600 1.0625rem/1.2 var(--sans); font-variant-numeric:tabular-nums}
+.calc-field--suf input{text-align:right}
+.calc-field .suf{flex:none; padding-left:10px; border-left:1px solid var(--line); color:var(--aub-60); font-size:var(--fs-sm)}
+.calc-note{display:flex; gap:8px; align-items:flex-start; color:var(--aub-60)}
+.calc-note .i{margin-top:2px}
+.calc-row.is-focus .field{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+.calc-row.is-focus .range::-webkit-slider-thumb{box-shadow:0 0 0 1.5px var(--aub), 0 0 0 6px var(--aub-08)}
+@media (max-width: 640px){ .calc-field{width:10rem} }
+
+/* Result stage and card (42 #s-result): Mist stage panel (rings top right, hidden under 900); white card with the label h2,
+   .calc-total, dl.calc-split under a hairline, a caption, the full-width primary, fine lines 4 px apart */
+.calc-stage{gap:20px}
+.calc-stage > :not(.rings){position:relative; z-index:1}
+.calc-stage .rings{top:-44px; right:-104px}
+.calc-card{display:flex; flex-direction:column; gap:14px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.calc-card .calc-total{margin-top:-2px}
+.calc-split{margin:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; padding-top:14px; border-top:1px solid var(--line)}
+.calc-split > div{display:flex; flex-direction:column; gap:2px; min-width:0}
+.calc-split dt{display:flex; align-items:center; gap:8px; font-size:var(--fs-sm); color:var(--aub-60)}
+.calc-split dd{margin:0; font:600 1.1875rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-card .btn{width:100%; margin-top:4px}
+.calc-card .fine + .fine{margin-top:4px}
+@media (max-width: 899px){ .calc-stage .rings{display:none} }
+@media (max-width: 640px){
+  .calc-card{padding:20px}
+  .calc-split dd{font-size:1.0625rem}
+}
+
+/* Growth chart (42): SVG paths only (gridlines, wash, invested line, value curve, gold end dot); y, x and end labels are HTML.
+   The data area runs 5% to 95% of --plot-h, so labels of --plot-h / 10 line height sit on the gridlines; --inv places the invested
+   end label (0 top, 1 bottom); end labels move under the plot at 640. 43, 44, 49, 50 */
+.calc-chart{--plot-h:160px; margin:0; display:grid; grid-template-columns:auto minmax(0,1fr) auto; grid-template-areas:"y plot ends" ". x ."; gap:8px 12px; align-items:start}
+.calc-chart svg{grid-area:plot; width:100%; height:var(--plot-h)}
+.calc-chart .chart-y{grid-area:y; height:var(--plot-h); display:flex; flex-direction:column; justify-content:space-between; font-size:12px; line-height:calc(var(--plot-h) / 10); color:var(--aub-60); text-align:right; white-space:nowrap}
+.calc-chart .chart-x{grid-area:x; display:flex; justify-content:space-between; font-size:12px; line-height:1.3; color:var(--aub-60)}
+.chart-ends{grid-area:ends; height:var(--plot-h); display:grid; grid-template-rows:calc(var(--plot-h) * var(--inv, .5) - 18px) auto; align-content:start}
+.chart-end{display:flex; gap:8px; align-items:flex-start; font-size:var(--fs-xs); line-height:1.35; color:var(--aub-60)}
+.chart-end .sw{margin-top:8px}
+.chart-end b{display:block; font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
+@media (max-width: 640px){
+  .calc-chart{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"y plot" ". x" "ends ends"}
+  .chart-ends{height:auto; grid-template-rows:none; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; padding-top:6px}
+}
+
+/* Year-by-year disclosure (42): native details under the chart, closed by default (the open table is a state); then the stage foot
+   signposts (.calc-links), after the number, one row at 1440, a column at 640 */
+.calc-years{border-top:1px solid var(--line-2)}
+.calc-years summary{list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:14px; cursor:pointer; font:600 var(--fs-sm)/1.3 var(--sans); color:var(--aub)}
+.calc-years summary::-webkit-details-marker{display:none}
+.calc-years .pm{width:28px; height:28px; border-radius:50%; background:var(--paper); display:grid; place-items:center; flex:none}
+.calc-years[open] .pm{transform:rotate(45deg)}
+.calc-years .tablewrap{margin-top:14px}
+.calc-links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:-4px}
+table.calc-table{min-width:0}
+.calc-table th,.calc-table td{padding:10px 16px}
+.calc-table td{font-variant-numeric:tabular-nums}
+@media (max-width: 640px){ .calc-links{flex-direction:column; align-items:flex-start} }
+
+/* Smooth versus real (42 s-assume): facts with titles and text chips left (.split--75), a white stage on the Mist band with the
+   three-line illustration (SVG 600 x 300, non-scaling strokes), its key and a caption right. 43, 44, 49, 50 */
+.facts--chips{gap:22px}
+.fact-head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px}
+.fact-head b{color:var(--aub); font-weight:600}
+.facts--chips .chip{min-height:24px; font-size:12px}
+.facts-link{margin-top:-4px}
+.band--mist .assume-stage{background:var(--paper); box-shadow:var(--shadow-1)}
+.assume-art{margin:0; display:flex; flex-direction:column; gap:18px}
+.assume-art svg{width:100%; height:auto}
+.assume-key{display:flex; flex-direction:column; gap:8px; font-size:var(--fs-sm); color:var(--aub); line-height:1.4}
+.assume-key span{display:flex; align-items:center; gap:10px}
+
+/* Formula card + worked-example receipt (42 s-formula): the formula on a Mist strip (serif), its keys as a row list (serif dt);
+   receipt rows carry figures in ink, a bold total row, rows stacked at 640. 43 to 50; 45 reuses the receipt */
+.formula{padding:16px 18px; border-radius:var(--r-ctl); background:var(--mist); font:400 1.375rem/1.45 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums lining-nums; text-wrap:balance}
+.formula sup,.calc-receipt sup{font-size:.62em; line-height:0}
+.formula-keys dt{font:400 1.125rem/1.3 var(--serif); min-width:1.5rem}
+.formula-keys dd{max-width:80%}
+.calc-receipt .ui-row span + span{flex:0 1 auto; color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-receipt .ui-row.is-total span{font-weight:600; color:var(--aub)}
+.calc-receipt .link{margin-top:16px}
+@media (max-width: 640px){
+  .formula{font-size:1.125rem}
+  .calc-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .calc-receipt .ui-row span + span{text-align:left}
+}
+
+/* FAQ side links (42, 65): a short stack of links under the FAQ side column's image slot */
+.faq-side .faq-links{display:flex; flex-direction:column; align-items:flex-start; gap:10px}
+
+/* --- Template H: products (from 57 PMS) --- */
+
+/* Label row (57 s-hero): the eyebrow naming the company and the Coming soon badge on one line above the h1 (wraps on narrow columns) */
+.label-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+
+/* Set-up stage (57 s-hero): the hub hero's product stage with a 328 px set-up card (stacked rows, above) in the phone's slot and two
+   outcome cards (label, bold status, one chip; what the button does) at its top and foot; min-height 480 px. 51 to 60 */
+.hero-stage:has(> .setup-card){min-height:480px}
+.hero-stage:has(> .setup-card) .stage-cards{flex-basis:212px; padding-block:4px; justify-content:space-between}
+.hero-stage > .setup-card{position:relative; z-index:1; flex:none; width:328px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.setup-card .ui-head{padding-bottom:14px}
+.setup-card .ui-big{font-size:1.25rem}
+.outcome-card{gap:8px}
+.outcome-card .chip{align-self:flex-start}
+@media (max-width: 640px){
+  .hero-stage:has(> .setup-card){min-height:0}
+  .hero-stage:has(> .setup-card) .stage-cards{flex-basis:auto}
+  .hero-stage > .setup-card{width:min(320px, 100%)}
+}
+
+/* Who does what card (57 s-roles): h2, lead and a wrapping check link left; one white card right on the Mist band (no stage panel):
+   h3, a seven-row row list (task aub-80, party bold ink), full-width fine print. 58, 59 */
+.split--roles .link--wrap{justify-self:start}
+.roles-card{gap:16px; padding:28px}
+.roles-card .kv-list--row dt{color:var(--aub-80)}
+.roles-card .kv-list--row dd{color:var(--aub); font-weight:600}
+.roles-card .fine{max-width:none}
+@media (max-width: 640px){ .roles-card{padding:20px} }
+
+/* Product card with a label (57 s-today): tile, a label naming the company (wrapped lines keep their air), h3, copy, then the action
+   and its risk line */
+.today-card .label{margin-top:4px; line-height:1.4}
+.today-card .card-foot{display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding-top:8px}
+
+/* --- Template P: partner programmes (from 62 Distributor partner; 61, 63 inherit) --- */
+
+/* Path cards (62 s-paths): two info cards that fork the audience; requirements as ul.facts or an ordered path as ol.facts with
+   36 px Mist tiles; a short line; the card's link or links pinned to its foot so the pair lines up */
+.path-card{gap:16px}
+.path-card > .tile{margin-bottom:4px}
+.path-card .facts{gap:12px}
+.path-card .facts li{align-items:center}
+.path-card .facts .tile{width:36px; height:36px; border-radius:10px}
+.path-card .facts .tile .i{width:18px; height:18px}
+.path-card > p{color:var(--aub-80); font-size:var(--fs-sm)}
+.path-card > .link,.path-card > .links{margin-top:auto; padding-top:4px}
+
+/* Money path (62 s-payouts): ui-mini nodes stacked on a stage panel (rings bottom right, above), joined by one vertical gold
+   hairline at every width (i.path-line, 1 px, 24 px tall, 34 px in, through the tile centres; none after the last node); the last
+   node's tile is ink (the visitor); a balanced two-line caption clear of the rings. No arrows, no transforms */
+.money-stage{align-items:center; padding-block:32px 24px}
+.money-path{list-style:none; display:flex; flex-direction:column; width:min(100%, 24rem)}
+.money-path li{display:flex; flex-direction:column}
+.money-path .ui-mini{margin-top:0; gap:6px}
+.money-path .ui-head{align-items:flex-start}
+.money-path .path-text{display:flex; flex-direction:column; gap:3px; min-width:0}
+.money-path .path-text span:not(.ui-label){font-size:var(--fs-xs); color:var(--aub-60)}
+.money-path .chip{align-self:flex-start; margin-left:44px}
+.money-path li:last-child .ui-tile{background:var(--aub); color:var(--paper)}
+.path-line{display:block; width:1px; height:24px; margin-left:34px; background:var(--gold)}
+.money-stage .ui-caption{align-self:center; text-align:center; max-width:20rem; text-wrap:balance}
+
+/* Agreement card (62 s-agreement): a hairline row card on a stage panel with a doc tile head and stacked rows (above) */
+.agree-card{padding:22px; font-size:var(--fs-sm)}
+
+/* Always and Never lists (62 s-agreement): hairline rows inside two info cards (check and close tiles) in the right column of a
+   centred .split--agree, the client-text block and the regulator link under them */
+.agree-side > .cards--2{margin-top:0}
+.rule-list{list-style:none; display:flex; flex-direction:column}
+.rule-list li{padding:11px 0; border-top:1px solid var(--line); font-size:var(--fs-sm); color:var(--aub); line-height:1.45}
+.agree-side > .link{align-self:flex-start}
+
+/* --- Template E: guides (from 65 Guide: getting started; 64, 66 to 70, 72 inherit) --- */
+
+/* Route card · guide contents (65 s-hero): Mist stage panel (rings bottom right at 260 px), a centred 30rem card: .route-head (label
+   and read time), ol.route of jump links (.route-mark: span.dot serif numeral in a gold ring over i.route-line, a real 1.5 px
+   connector at .45 opacity, none on the last row; .route-text title and line), .route-foot (FAQ link, last updated).
+   States li.is-done and li.is-on take the gold fill of a reached spine node. Scoped by ol.route (17's route card shares names) */
+.route-stage:has(> .route-card > .route){align-self:stretch; padding:40px 32px}
+.route-stage:has(> .route-card > .route) .rings{bottom:-48px; right:-88px; width:260px}
+.route-card:has(> .route){width:min(100%, 30rem); align-self:center; gap:0; padding:24px 26px 22px; font-size:var(--fs-sm)}
+.route-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line)}
+.route-head .small{color:var(--aub-60)}
+.route{list-style:none; display:flex; flex-direction:column; padding-top:18px}
+.route a{display:flex; gap:14px; text-decoration:none; color:inherit}
+.route-mark{display:flex; flex-direction:column; align-items:center; flex:none; width:32px}
+.route .dot{width:32px; height:32px; flex:none; display:grid; place-items:center; border-radius:50%; border:1.5px solid var(--gold); background:var(--paper); font:400 1rem/1 var(--serif); color:var(--aub)}
+.route-mark .route-line{flex:1; width:1.5px; min-height:8px; background:var(--gold); opacity:.45}
+.route li:last-child .route-line{display:none}
+.route .route-text{display:flex; flex-direction:column; gap:2px; min-width:0; padding:4px 0 16px}
+.route li:last-child .route-text{padding-bottom:2px}
+.route .route-text b{font-weight:600; font-size:1rem; line-height:1.35; color:var(--aub)}
+.route .route-text span{color:var(--aub-60); line-height:1.4}
+.route a:hover b{text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px}
+.route ~ .route-foot{display:flex; flex-direction:column; align-items:flex-start; gap:8px; margin-top:16px; padding-top:16px; border-top:1px solid var(--line)}
+.route li.is-done .dot,.route li.is-on .dot{background:var(--gold)}
+.route li.is-done .dot .i{width:16px; height:16px; color:var(--aub)}
+.route li.is-on .route-text span{color:var(--aub)}
+@media (max-width: 640px){
+  .route-stage:has(> .route-card > .route){padding:16px}
+  .route-card:has(> .route){padding:20px 18px 18px}
+}
+
+/* Chapter head and prose (65): "Part N of M" label, the visitor's question as the h2, a 66ch lead, optional .prose (flex column,
+   gap 14, 66ch, aub-80; body size inside a chapter head). Every guide chapter band */
+.chapter-head{gap:12px; max-width:48rem}
+.chapter-head > p{max-width:66ch}
+.prose{display:flex; flex-direction:column; gap:14px; max-width:66ch; color:var(--aub-80)}
+.chapter-head .prose{margin-top:6px}
+.chapter-head .prose p{font-size:var(--fs-body); color:var(--aub-80)}
+
+/* Guide product cards (65 s-basics): theme pcard with a tile and an account chip on top, a "Start with" row pinned to the foot on a
+   hairline (every value holds two lines from 641 px, so the hairlines line up); not links, so no hover lift. 66, 69 */
+.guide-cards .pcard{display:flex; flex-direction:column; gap:12px}
+.guide-cards .pcard:hover{transform:none; box-shadow:var(--shadow-1)}
+.guide-cards .top{align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+.guide-cards .pcard p{color:var(--aub-80)}
+.start-with{margin:auto 0 0; display:flex; flex-direction:column; gap:6px; padding-top:14px; border-top:1px solid var(--line)}
+.start-with dd{margin:0; color:var(--aub); font-weight:500; line-height:1.45}
+@media (min-width: 641px){ .start-with dd{min-height:2.9em} }
+
+/* Callout family (65): notes and jargon, titled with the visitor's question; Mist on white bands, white with shadow-1 on Mist (the
+   tile inverts). .callout--term (book icon) is tighter inside a door; .callout--row puts the title beside a one-line note from 900 px;
+   .ask > ul.ask-list: three Mist tiles across inside a full-width callout (scoped by .callout: the import test uses .ask).
+   Tile over text at 640. Never the risk-box look */
+.callout{display:flex; gap:16px; align-items:flex-start; padding:22px 24px; border-radius:var(--r-card); background:var(--mist)}
+.band--mist .callout{background:var(--paper); box-shadow:var(--shadow-1)}
+.callout > .tile{width:40px; height:40px; border-radius:10px; background:var(--paper)}
+.band--mist .callout > .tile{background:var(--mist)}
+.callout > .tile .i{width:20px; height:20px}
+.callout-text{flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0}
+.callout-text > b{font-weight:600; font-size:1.0625rem; line-height:1.35; color:var(--aub)}
+.callout-text p{color:var(--aub-80); max-width:66ch}
+.callout-text .links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:6px}
+.cards + .callout{margin-top:24px}
+@media (min-width: 900px){
+  .callout--row{align-items:center}
+  .callout--row .callout-text{display:grid; grid-template-columns:minmax(0, 15rem) minmax(0, 1fr); gap:4px 32px; align-items:baseline}
+  .callout--row .callout-text p{max-width:none}
+}
+.door .callout{margin:6px 0 22px; padding:18px 20px; font-size:var(--fs-sm)}
+.door .callout-text > b{font-size:1rem}
+.door .callout .link{font-size:var(--fs-sm)}
+.callout .ask{display:flex; flex-direction:column; gap:10px; width:100%; margin-top:6px}
+.callout .ask > p{font-weight:600; color:var(--aub)}
+.ask-list{list-style:none; display:grid; gap:10px}
+@media (min-width: 900px){ .ask-list{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.ask-list li{padding:14px 16px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-weight:500; line-height:1.4}
+@media (max-width: 640px){
+  .callout{flex-direction:column; padding:18px; gap:12px}
+  .door .callout{padding:16px}
+}
+
+/* Costs card (65 s-costs): one info card, a labelled row list per company in the doors' order, fine print full width, beside the
+   receipt; at 640 every row stacks label over value, both left. 64, 66, 67, 69 */
+.cost-card .label{line-height:1.4; margin-top:6px}
+.cost-card .fine + .label{margin-top:18px}
+.cost-card .kv-list--row dd{max-width:60%}
+.cost-card .fine{max-width:none}
+@media (max-width: 640px){
+  .cost-card .kv-list--row > div{flex-direction:column; align-items:flex-start; gap:2px}
+  .cost-card .kv-list--row dd{max-width:none; text-align:left}
+}
+
+/* Documents strip on a white band (65 s-open): the strip turns Mist there, so its tiles go white; .docs--wide shares the panel in two
+   equal columns from 641 px, so four items read full width */
+.band:not(.band--mist) .docs--tiles li .tile{background:var(--paper)}
+@media (min-width: 641px){ .docs--tiles.docs--wide ul{grid-template-columns:repeat(2, minmax(0, 1fr))} }
+
+/* Open chapter (65 s-open): the band CTA with its two fine lines (58ch), then the other company's line 20 px under it */
+.open-cta .stack{max-width:58ch}
+.open-alt{margin-top:20px; color:var(--aub-80)}
+
+/* Light product stage (65 s-first): facts left (.first-split, 24 px apart), a plain stage on a Mist band (no panel), light rings
+   behind, two staggered cards (staggered stage, above) with a caption under; the light-band twin of 09's .final-stage; a callout
+   with an ask list 40 to 56 px under the split (.choose-callout) */
+.first-split .facts{gap:24px}
+.first-split .fact-text p + p{margin-top:6px}
+.choose-callout{margin-top:clamp(40px, 5vw, 56px)}
+.first-stage{align-items:flex-start; gap:20px; padding:28px 8px}
+.first-stage > :not(.rings){position:relative; z-index:1}
+.first-stage .rings{top:-12px; right:-24px; width:260px}
+.first-stage .ui-row > span{color:var(--aub-60)}
+.first-stage .ui-row b{font-weight:600; text-align:right}
+.first-stage .ui-caption{align-self:stretch}
+@media (max-width: 640px){ .first-stage{padding:0} }
+
+/* A registration code (or its placeholder) never breaks inside the mark in a door foot (65) */
+.door-foot .mono,.door-foot .mono .ph{white-space:nowrap}
 
 /* page: start-investing */
 /* 10 v3 page CSS (tokens only).

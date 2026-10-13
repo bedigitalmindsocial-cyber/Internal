@@ -1,6 +1,6 @@
 # Component markup library
 
-Canonical markup in `theme/components.html` (find a block by its `<!-- COMPONENT: name -->` comment; nested comments mark parts that also work alone); CSS in `theme/patterns.css`. Copy the block, keep class names, replace the copy. Verbatim compliance blocks stay in `rules/compliance-blocks.md`: blocks that need one hold a comment naming it. v3 blocks curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3. Start new pages from the v3 blocks; the legacy blocks stay only until 10 Start Investing is rebuilt on v3.
+Canonical markup in `theme/components.html` (find a block by its `<!-- COMPONENT: name -->` comment; nested comments mark parts that also work alone); CSS in `theme/patterns.css`. Copy the block, keep class names, replace the copy. Verbatim compliance blocks stay in `rules/compliance-blocks.md`: blocks that need one hold a comment naming it. v3 blocks curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3; Wave 1 blocks curated 12-Oct-2026 from the golden pages 03, 07, 17, 29, 42, 57, 62 and 65 (one kit per template). Start new pages from the v3 and Wave 1 blocks; no page uses the legacy blocks since 10 Start Investing was rebuilt on v3.
 
 ## v3 (canonical)
 - **Hero · product stage + inline bar form (v3 hub hero)**: `.hero-grid.hero-grid--stage` (two equal columns from 900 px) > `.hero-copy` (seed, eyebrow naming both companies, h1, lead, `form.hero-form`, `.hero-alt` door, `ul.creds.creds--row`) + `.hero-visual` (`.hero-stage`: rings, theme `.phone` 280 px, `.stage-cards` of two `.ui-card`; `p.illus`). Use for 01, 02, 03, 04, 11. Source 01 s-hero.
@@ -39,7 +39,73 @@ Canonical markup in `theme/components.html` (find a block by its `<!-- COMPONENT
 - **Closing CTA · light, two buttons**: `.final` > h2 naming the company + `.row` (primary, other company ghost; full width at 640) + `p.handoff`. Use when the page's one dark band is used elsewhere (10 today). Source 09 v2 s-final.
 - **Utility `.mono`**: Red Hat Mono 500 for registration codes outside `creds-wall` and `foot-reg` (no block; see the verify cards and creds). Source 01.
 
-## Legacy (v1 and v2 pilot; only until 10 is rebuilt on v3)
+## Wave 1 goldens (canonical per template; CSS in the "Wave 1 golden promotions" part of patterns.css)
+Template rules in patterns.css apply by body class (`.tpl-a` and so on, set by the build): hero top under the breadcrumb (A, H, P 40 px; E, F 40/80), full-width wrapping buttons in main at 640 (HOME, A, E, F, H), risk box icon above the text at 640 (all but D and P). Derivatives get them without page CSS.
+
+**A · hubs (03 Trade)**
+- **Hero · ticket stage (template A hub hero)**: the v3 hub hero with `.hero-stage` > `.ui-card.ui-list.ticket` (300 px, `.ticket-toggle` with `span.on`, rows, 38 px `.ui-pill`) + `.stage-cards`. Use for 31, 35 to 38; 06 with the receipt as the ticket. Source 03 s-hero.
+- **Rows plus explainer split**: `.split.split--rows` (7/5, centred) > `article.door` rows + `.ui-stage.explain-stage` (two staggered `.ui-card.ui-list.explain-card`, caption). Use for the product block of every A page. Source 03 s-products.
+- **Card head in a hairline row card**: `.ui-list .ui-head` (tile + label, no label padding) with a status `.chip` pushed right. Use for any `.ui-list` card with an icon and a status. Source 03.
+- **Info card with a foot button + receipt**: `.cards--2` > `.info-card` (tile, h3, `.price-notes`, ghost `.btn` pinned to the foot) + `.ui-receipt`. Use for hub cost cards beside a taller card. Source 03 s-charges.
+
+**F · company pages (07 About)**
+- **Hero · group stage (template F)**: `.hero-copy` (`.hero-act` > `.hero-actions` + `p.fine`; `ul.creds.creds--row` with `span.cred-sub` + inline `.mono`) + `.hero-visual` > `.ui-stage--panel.group-stage` (rings, `figure.gmap`, `figcaption.gmap-caption`). Use for 12, 13; 14, 15, 71, 73 keep the copy column. Source 07 s-hero.
+- **Hero actions + hero act**: `.hero-act` > `.hero-actions` (button + on-page link; full-width button, link under it at 640) + `p.fine` 12 px under. Use for any hero whose action is not a form (07, 17, 65). Source 07, 17.
+- **Proof row with company sub-lines**: `ul.creds.creds--row` > `li` with `span.cred-sub` ("Company · " + `span.mono` token, inline). Use for 01, 03, 09, 12 proof rows. Source 07.
+- **Entity doors · about variant**: `.doors` > `article.door` with `ul.door-rows.door-rows--about` (label over a 1rem answer, 40 px Mist tiles, `p.fine.row-soon`), foot with button and hand-off, `p.fine` under the doors. Use for 12, 13, 06 intro. Source 07 s-companies.
+- **Company registers**: `ol.check-strip` + `.ledgers` > `.ledger.register` (2/3 row grid, `dd.mono`, "Check on" link) + `.ledger-side` (`.doc-block` > `ul.doc-list`) + `.info-card.safe-card`. Use for 12, 13, 15, 16. Source 07 s-verify.
+- **People cards · compact**: `ul.people` > `li.person` (`figure.img-slot.img-slot--face` with `span.initials`; a portrait replaces them, no markup change) + `p.small.people-note` + `.people-links`. Use for 12, 13; 14 until the shoot. Source 07 s-people.
+- **Contact strip**: `.contact-strip` > `.contact-col` (tile, h3, `a.value`, lines, `.links`), hairline above, no frame. Use for 15, 73. Source 07 s-contact.
+
+**G · legal and help (17 Grievance)**
+- **Hero · route card (template G)**: d2 h1, `.hero-actions`, applies-to `p.fine`; `.hero-side` > `.ui-stage--panel.route-stage` > `nav.ui-card.route-card` (`p.route-group`, `ol.route-steps` rows with `.route-rail` > `.route-dot` + `i.route-line`, `.route-alts`, `.route-foot`). Columns centred. Use for 16, 18 to 25. Source 17 s-hero.
+- **Clause split · desk card**: `section.clause` > `.split.clause-split` (7/5): "Step N" eyebrow, `h3.d3.node`, copy, `.desk-action`; `.info-card.desk-card` (`ul.desk-rows`, `.desk-next` with a `.kv-list--cols` row list). Use for 21, 23, 15, 18, 08. Source 17 s-write.
+- **Escalation ladder v2**: `.ui-stage--panel.ladder-stage` > `ol.ladder` > `li.ladder-start` (Mist bracket, quiet rungs) + `li.ladder-group` (gold rail, ink chips), each a `span.label` and an `ol` of `.rung`. Use for 18 Escalation Matrix. Source 17 s-escalate.
+- **Portal cards · a step whose answer is a choice**: `.stack.clause-head` + `.cards--2` of `article.info-card.portal-card` (`.portal-top`, `.portal-name`, row lists, `.links` at the foot) + `p.fine.clause-fine`. Use for 16, 22. Source 17 s-scores-odr.
+- **Row list, two columns**: `dl.kv-list.kv-list--row.kv-list--cols` with `--dt` (dt fixed column, dd left beside it; stacked at 640). Use for 13, 16, 20, 30. Source 17 (inside the desk card).
+- **Checklist**: `ul.checklist` (gain-green check icons, ink text). Use for 21, 23. Source 17.
+- **Document frame**: `.doc-grid` (4/8 from 1100 px) > `aside.doc-rail[data-sticky]` (`ol.toc`, `.doc-file`) + `ol.clauses` (numbered articles, compact client `ph--block`). Use for 16, 19, 21 to 25, 30. Source 17 s-policy.
+- **FAQ answer links**: `p.faq-links` inside an answer: external links with `i-ne` in a wrapping row. Source 17 s-faq.
+- **Product cards four across**: `.cards.cards--4` of theme `article.pcard`. Use for 16's index, any related row of four. Source 17 s-related.
+- **Closing CTA · light, two buttons + fine-print pair**: `.final` > h2 + `.row` + `div.final-fine` (two `p.fine`, 6 px apart; no CSS). Use for any light closing CTA with a draft line plus a contact line. Source 17 s-final.
+- **Mail card (state)**: `.ui-card.mail-card` (To, Subject, `.mail-body`) + caption on the states board. Use for 18, 23. Source 17 states.
+
+**B · data pages (29 Scheme detail)**
+- **Hero · data hero (template B)**: `.hero-grid.hero-grid--data` (copy, `.hero-side` invest card, `.hero-chart`): `h1.d1.d1--name`, `.chip-row` with `.chip-risk`, `.nav-row`; `section.form-card.invest-card`; `figure.data-card.chart-card` (`.chart-top`, `.chart-plot` with `.chart-y`, `.chart-x`). Use for 34, 39, 27, 32, 33, 40. Source 29 s-hero.
+- **Paired bars + reading card**: `.tabs.band-tabs`, `.split--data.split--returns` > `figure.data-card.pairbars` (`.pb-legend` with `.sw` keys, `.pb-rows`, `.data-foot`) + `.info-card.read-card`. Use for 34, 27. Source 29 s-returns.
+- **Riskometer dials**: `.split--half` > `.ui-stage--panel.dial-stage` > `.dials` (two `figure.dial`) + `.data-foot`, beside an info card (bare `ul`, `h4.h4`). Source 29 s-riskometer.
+- **Costs · stat tiles + timing receipt (template B)**: `.stat-tiles--3`, `.data-foot.price-notes`, `.cards--2` (row list card + `.ui-card.ui-receipt.ui-receipt--stack` "When each cost applies", no amounts). Use for 34, 27. Source 29 s-costs.
+- **Composition card + facts card**: `.split--data.split--stretch` > `.data-card` (`figure.mix`, `.barcols` of `ol.barrows`, factsheet `a.link.link--wrap`, `.data-foot`) + `.info-card.facts-card`. Use for 34 financials, 39 shareholding. Source 29 s-portfolio.
+- **Data foot** (and the data card): `.data-card` (white, shadow-1, no border) and `.data-foot` (`p.src`, `p.fine`, `p.illus`, 4 px apart). Every block with numbers. Source 29 s-returns.
+
+**C · calculators (42 SIP calculator)**
+- **Hero · calculator (template C)**: `section.hero.hero--calc` > `.hero-grid--calc`: `fieldset.calc-in` (`.calc-row` with `.calc-field`, `input.range`, `.calc-note`) + `section.ui-stage--panel.calc-stage#s-result` (`.calc-card` with `dl.calc-split` and the primary; `figure.calc-chart`; `details.calc-years`; `.calc-links`). Use for 43 to 50. Source 42 s-hero.
+- **Smooth versus real**: `.split.split--75` > `ul.facts.facts--chips` (`.fact-head`) + `a.facts-link`; `.ui-stage--panel.assume-stage` > `figure.assume-art` (SVG, `figcaption.assume-key`) + caption. Use for 43, 44, 49, 50. Source 42 s-assume.
+- **Formula card + worked-example receipt**: `.cards--2` > `.info-card` (`p.formula`, `dl.kv-list--row.formula-keys`) + `.ui-card.ui-receipt.calc-receipt` (`.is-total`). Use for 43 to 50; 45 the receipt. Source 42 s-formula.
+- **FAQ side links**: `.stack.faq-side` with `h3.label` + `.faq-links` (10 px stack). Use for 42 to 50, 64 to 70. Source 42 s-faq.
+- **Legend keys** (inside Paired bars, the Composition card and the Result card): `.sw` (12 px square, ink tints `--bm`, `--2` to `--4`) and `--line`, `--dash`, `--soft`, `--bar` on an `i` or `span` (never a control look; the kit's colour swatches are `div.sw`). Source 29, 42.
+
+**H · products (57 PMS)**
+- **Hero · set-up stage (template H)**: `.label-row` (eyebrow + `span.soon`), lead with `.nb`, `div.notify#s-notify` > `form.hero-form` (notify bar), `.hero-alt`, proof row; `.hero-stage` > `.ui-card.ui-list.setup-card` (stacked rows) + `.stage-cards` of `.outcome-card`. Use for 51 to 60. Source 57 s-hero.
+- **Stacked rows**: `.ui-list--stack` (new cards), `.setup-card`, `.agree-card`: each row a small grey label over a bold value. Source 57, 62.
+- **Who does what card**: `.split.split--roles` > `.stack` (h2, lead, `a.link.link--wrap`) + `.info-card.roles-card` (row list, fine). Use for 58, 59. Source 57 s-roles.
+- **Product card with a label**: `.cards--2` of `.info-card.today-card` (tile, label naming the company, h3, copy, `.card-foot`). Use for "related live products" on every H page. Source 57 s-today.
+
+**P · partner programmes (62 Distributor partner)**
+- **Path cards**: `.cards.cards--2.path-cards` > `.info-card.path-card` (tile, h3, `ul.facts` or `ol.facts` with 36 px tiles, short line, link or `.links` at the foot). Use for 61, 63. Source 62 s-eligibility.
+- **Payout split + money path**: `.split.split--pay` (row lists) + `.ui-stage--panel.money-stage` > `ol.money-path` (`.ui-mini` nodes, `i.path-line`, ink last tile) + balanced caption. Use for 63. Source 62 s-payouts.
+- **Agreement split · agreement card + Always and Never lists**: `.split.split--agree` > `.ui-card.ui-list.agree-card` on a stage panel + `.stack.agree-side` (`.cards--2` of `ul.rule-list` cards, client `ph--block`, regulator link). Use for 63. Source 62 s-agreement.
+
+**E · guides (65 Guide: getting started)**
+- **Hero · guide route card (template E)**: `.hero-act` (one button + `p.fine`), `.hero-alt`; `.ui-stage--panel.route-stage` > `nav.ui-card.route-card` (`.route-head`, `ol.route` > `li` > `a` > `.route-mark` (`span.dot` + `i.route-line`) + `.route-text`, `.route-foot`). Use for 64, 66 to 70, 72. Source 65 s-hero.
+- **Route card · reading state**: `li.is-done` (gold dot with a check), `li.is-on` (`aria-current="location"`). Source 65 states.
+- **Chapter band · chapter head + guide product cards + row callout**: `div.head.chapter-head` ("Part N of M", question h2, 66ch lead), `.cards--2.guide-cards` of `article.pcard` (`dl.start-with` at the foot), `aside.callout.callout--row`. Use for 66, 69. Source 65 s-basics.
+- **Chapter band · prose + doors with a term callout**: `.chapter-head` with `.prose`; Entity doors v3 with `aside.callout.callout--term` in a door; `p.small` under the doors. Source 65 s-account.
+- **Costs card + receipt (template E)**: `.split--wide.split--top` > `.info-card.cost-card` (two company labels, two row lists, stacked rows at 640) + 09's receipt. Use for 64, 66, 67, 69. Source 65 s-costs.
+- **Open chapter · steps + wide documents strip + band CTA**: steps with mini screens on white, `.docs.docs--tiles.docs--wide`, `.band-cta.open-cta`, `p.small.open-alt`. Source 65 s-open.
+- **Light product stage + callout with an ask list**: `.split--wide.first-split` > facts + `.ui-stage.first-stage` (two staggered cards); `aside.callout.choose-callout` > `.ask` > `ul.ask-list`. Use for 66, 69. Source 65 s-first.
+
+## Legacy (v1 and v2 pilot; no page uses them since 10 was rebuilt on v3; kept for 06 and 75 until they decide)
 - **LEGACY v2 · Hero · form card (template D)**: form card with a step label, cost cred `li.cred-cost`. On 10 today; new pages use the onboarding stage hero. Source 09 v2.
 - **LEGACY v2 · Form card · cost line + side door**: `.form-card .cost-line` + `.side-door`. Only for a form card that must answer cost where you act (75). Source 01 v2.
 - **LEGACY v2 · Process steps + docs strips**: stacked `.docs` strips with a shared label column. On 10 today. Source 09 v2.

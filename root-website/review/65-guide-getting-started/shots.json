@@ -1,0 +1,35 @@
+{
+ "file": "65-guide-getting-started.html",
+ "sha": "ca4219d9456a",
+ "desktop": {
+  "height": 10631,
+  "slices": 7,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 514,
+  "primary_text": "Open free account",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 18081,
+  "slices": 11,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 444,
+  "primary_text": "Open free account",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 3294,
+  "slices": 3,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

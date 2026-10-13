@@ -1,0 +1,10 @@
+{
+ "page": "07-about",
+ "verdict": "pass",
+ "score": 86,
+ "must_fix": [],
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
+ "by": "orchestrator-carry",
+ "sha": "37b11727f42a",
+ "date": "13-Oct-2026"
+}

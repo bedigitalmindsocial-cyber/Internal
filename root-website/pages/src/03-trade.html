@@ -3,56 +3,13 @@
           "query": "online share trading",
           "lint_allow": []} -->
 <style data-page>
-/* 03 Trade v1 (golden, template A). Tokens only. Reusable pieces are named in memory section 7 for promotion. */
-
-/* hub hero under a breadcrumb: a tighter top so the bar sits higher in the first screen */
-.page-trade .hero{padding-top:40px}
-
-/* Ticket stage (candidate pattern): the hub hero's product stage with an illustrative order ticket in the phone's slot.
-   The stage keeps the phone's height (min 540 px) and the two cards sit at its top and foot, staggered around the ticket */
-.hero-stage:has(> .ticket){min-height:540px}
-.hero-stage:has(> .ticket) .stage-cards{padding-block:0; justify-content:space-between}
-.hero-stage > .ticket{position:relative; z-index:1; flex:none; width:300px; align-self:center; padding:24px; font-size:var(--fs-sm)}
-.ticket .ui-row{padding-block:13px}
-.ticket .ui-row span{color:var(--aub-60)}
-.ticket .ui-row b{font-weight:600; font-variant-numeric:tabular-nums}
-.ticket .ui-pill{min-height:44px}
-.ticket-toggle{display:flex; gap:4px; padding:4px; margin-bottom:14px; border-radius:12px; background:var(--mist)}
-.ticket-toggle span{flex:1 1 0; padding:9px 0; border-radius:9px; text-align:center; font-weight:600; color:var(--aub-60)}
-.ticket-toggle .on{background:var(--aub); color:var(--paper)}
-/* card head inside a hairline row card: the label keeps no extra padding, a status chip sits right */
-.ui-list .ui-head{padding-bottom:12px}
-.ui-list .ui-head .ui-label{padding-bottom:0}
-.ui-head .chip{margin-left:auto}
-.stage-cards .chip--gain{align-self:flex-start}
-
-/* Rows plus explainer split (candidate pattern): door rows left (7), two staggered explainer cards right (5), centred */
-@media (min-width: 900px){ .split--rows{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
-.explain-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
-.explain-stage > .ui-card + .ui-card{align-self:flex-end}
-.explain-card .ui-name{padding-bottom:10px}
-.explain-card .ui-row b{font-weight:600}
-
-/* hub info card: the rate notes sit above "See all charges", which hugs its label at the foot of the card;
-   the receipt beside it is a little tighter, so the two cards match with less air */
-.info-card .btn{align-self:flex-start; margin-top:auto}
-.info-card .price-notes{margin-top:0}
+/* 03 Trade (golden, template A). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator, Wave 1
+   golden promotions: template A hero, phone rules, Ticket stage, Rows plus explainer split, card head, info card foot button);
+   only Trade-specific rhythm stays here. */
+/* the receipt beside the rates card is a little tighter, so the two cards match with less air (09's receipt keeps 12 px rows) */
 .cards--2 .ui-receipt .ui-row{padding-block:9px}
-
 /* the F&O h2 runs the full wrap width, so its last word does not sit alone */
 .page-trade #s-fo .head{max-width:none}
-
-/* phones: full-width wrapping buttons (as Home), risk boxes with the icon above the text, cards full width */
-@media (max-width: 640px){
-  .page-trade .hero{padding-top:24px}
-  .hero-stage:has(> .ticket){min-height:0}
-  .hero-stage > .ticket{width:min(320px, 100%)}
-  .stage-cards .chip--gain{margin-top:auto}
-  .page-trade main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
-  .page-trade .risk-box{grid-template-columns:1fr; padding:20px}
-  .page-trade .risk-box--inset{padding:18px}
-  .explain-stage > .ui-card{width:100%}
-}
 </style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
@@ -145,7 +102,7 @@
           <div class="ui-row"><span>Hold for</span><b>As long as you like</b></div>
         </div>
         <div class="ui-card ui-list explain-card" role="img" aria-label="Illustrative screen: an intraday trade bought and sold the same day">
-          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-swap"/></svg></span><span class="ui-label">Intraday</span><span class="chip">Closed today</span></div>
+          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-swap"/></svg></span><span class="ui-label">Intraday</span><span class="chip">Same day</span></div>
           <b class="ui-name">Example Power Ltd</b>
           <div class="ui-row"><span>Bought</span><b>25 shares</b></div>
           <div class="ui-row"><span>Sold</span><b>25 shares, the same day</b></div>

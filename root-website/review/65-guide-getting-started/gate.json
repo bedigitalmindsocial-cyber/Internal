@@ -1,0 +1,17 @@
+{
+ "page": "65-guide-getting-started",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 1,
+ "overflow": false,
+ "slices": {
+  "desktop": 7,
+  "mobile": 11
+ },
+ "states": 7,
+ "placeholders": 15,
+ "notes": [],
+ "sha": "ca4219d9456a",
+ "first_screen_placeholders": []
+}

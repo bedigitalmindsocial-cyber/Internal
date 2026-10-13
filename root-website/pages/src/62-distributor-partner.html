@@ -4,59 +4,9 @@
           "lint_allow": [],
           "mbar": {"label": "Apply to partner", "href": "#s-apply"}} -->
 <style data-page>
-/* 62 Distributor Partner Programme v1 (golden, template P). Tokens only. Reusable pieces are named in memory section 7 for promotion. */
-
-/* hero under a breadcrumb: a tighter top so the application card sits higher in the first screen (as 03 and 57) */
-.page-distributor-partner .hero{padding-top:40px}
-/* band CTA 20 px under the steps note (as 09) */
-.steps-note + .band-cta{margin-top:20px}
-
-/* Path cards (candidate pattern, template P): two info cards that fork the audience; requirements as ul.facts or an ordered
-   path as ol.facts with 36 px Mist tiles; the card's link or links sit at its foot so the pair lines up */
-.path-card{gap:16px}
-.path-card > .tile{margin-bottom:4px}
-.path-card .facts{gap:12px}
-.path-card .facts li{align-items:center}
-.path-card .facts .tile{width:36px; height:36px; border-radius:10px}
-.path-card .facts .tile .i{width:18px; height:18px}
-.path-card > p{color:var(--aub-80); font-size:var(--fs-sm)}
-.path-card > .link,.path-card > .links{margin-top:auto; padding-top:4px}
-
-/* Payout split and agreement split (template P): centred columns; the payout split is 7/5 from 900 px */
-@media (min-width: 900px){ .split--pay{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)} }
-.split--pay,.split--agree{align-items:center}
-.agree-side > .cards--2{margin-top:0}
-
-/* Money path (candidate pattern, template P): four ui-mini nodes stacked on a stage panel, joined by one vertical gold hairline
-   at every width (a 1 px element under each node but the last, aligned with the tiles; no arrows, no transforms) */
-.money-stage{align-items:center; padding-block:32px 24px}
-.money-stage > :not(.rings){position:relative; z-index:1}
-.money-stage .rings{top:auto; bottom:-40px; right:-96px}
-.money-path{list-style:none; display:flex; flex-direction:column; width:min(100%, 24rem)}
-.money-path li{display:flex; flex-direction:column}
-.money-path .ui-mini{margin-top:0; gap:6px}
-.money-path .ui-head{align-items:flex-start}
-.money-path .path-text{display:flex; flex-direction:column; gap:3px; min-width:0}
-.money-path .path-text span:not(.ui-label){font-size:var(--fs-xs); color:var(--aub-60)}
-.money-path .chip{align-self:flex-start; margin-left:44px}
-.money-path li:last-child .ui-tile{background:var(--aub); color:var(--paper)}
-.path-line{display:block; width:1px; height:24px; margin-left:34px; background:var(--gold)}
-.money-stage .ui-caption{align-self:center; text-align:center}
-
-/* Agreement card (template P): rows stack a small grey label over a bold value (as 57's set-up card), on a stage panel */
-.agree-card{padding:22px; font-size:var(--fs-sm)}
-.agree-card .ui-head{padding-bottom:12px}
-.agree-card .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
-.agree-card .ui-row span{font-size:var(--fs-xs); color:var(--aub-60)}
-.agree-card .ui-row b{font-weight:600}
-.agree-card .ui-row b.mono{font-weight:500}
-
-/* Always and Never lists (candidate pattern, template P): hairline rows inside two info cards with check and close tiles */
-.rule-list{list-style:none; display:flex; flex-direction:column}
-.rule-list li{padding:11px 0; border-top:1px solid var(--line); font-size:var(--fs-sm); color:var(--aub); line-height:1.45}
-/* the client-text block and the AMFI link sit under the two cards, so the split stays balanced */
-.agree-side > .link{align-self:flex-start}
-
+/* 62 Distributor Partner Programme (golden, template P). Tokens only. Reusable blocks were promoted to theme/patterns.css on
+   12-Oct-2026 (curator, Wave 1 golden promotions: template P hero, band CTA spacing, path cards, payout and agreement splits,
+   money path, agreement card, Always and Never lists); only page-specific rules stay here. */
 /* documents strip: one item per line on phones (short labels such as PAN otherwise wrap beside a longer one) */
 @media (max-width: 640px){ #s-steps .docs--tiles ul{flex-direction:column; align-items:flex-start} }
 </style>
@@ -215,7 +165,7 @@
         <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: AMFI ARN verified"><div class="ui-row"><span class="ui-label">AMFI ARN</span><span class="chip chip--gain">Verified</span></div><b class="num">ARN-XXXXXX</b></div></li>
       <li><span class="dot">3</span><h3 class="h3">Sign your agreement</h3><p>Read and sign your partner agreement with Aikyam Wealth.</p>
         <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: partner agreement signed with Aikyam Wealth"><div class="ui-row"><span class="ui-label">Partner agreement</span><span class="chip chip--gain">Signed</span></div><b>Aikyam Wealth</b></div></li>
-      <li><span class="dot">4</span><h3 class="h3">Your first client invests</h3><p>Your client completes KYC and invests in a regular plan, with your ARN on the investment.</p>
+      <li><span class="dot">4</span><h3 class="h3">Your first client invests</h3><p data-draft="partner-model">Your client completes KYC and invests in a regular plan, with your ARN on the investment.</p>
         <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: example client with an active SIP in a regular plan"><div class="ui-row"><span class="ui-label">Example client</span><span class="chip chip--gain">SIP active</span></div><b>Regular plan</b></div></li>
     </ol>
     <p class="ui-caption">Illustrative screens. Steps are indicative and will be confirmed by Aikyam Wealth.</p>
@@ -297,11 +247,11 @@
     </div>
     <div class="faq">
       <details open><summary>Do my clients stay mine?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>Your clients' investments are always held in their own names.</p>
+        <p>Your clients' investments are always held in their own names, <span data-draft="partner-model">and your ARN is recorded on each one</span>.</p>
         <p><mark class="ph" data-ph="client-ownership">Who holds the client relationship, and whether Aikyam Wealth contacts your clients, to confirm</mark>.</p>
       </div></details>
       <details open><summary>What will my clients use to invest?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>Each client opens an investing account with Aikyam Wealth and completes KYC.</p>
+        <p data-draft="partner-model">Each client opens an investing account with Aikyam Wealth and completes KYC.</p>
         <p><mark class="ph" data-ph="client-platform">How your clients invest and log in on ROOT, and whether they see your name, to confirm</mark>.</p>
       </div></details>
       <details><summary>Can I bring my existing clients to ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">

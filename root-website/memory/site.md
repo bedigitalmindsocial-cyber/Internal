@@ -49,3 +49,14 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - Pilot revision requested on all four fronts: less compliance-heavy feel, hero and first screen, copy and tone, visual richness. Response: rules/design-direction.md (v3) and a revise run of 01, 09, 10 before Wave 1.
 - Consent wording master (draft, pending compliance): 09's form card, `data-draft="consent"` "I agree to the Privacy Policy and allow Aikyam Capital to call, SMS or WhatsApp me about this application." (Aikyam Wealth forms: same with Aikyam Wealth, `data-draft="consent-wealth"`). Every lead form copies it verbatim, so one approval covers all.
 - Gate 1b (12-Oct-2026, user): revised pilot approved (01, 09, 10 status approved). Wave 1 (golden pages 03, 07, 17, 29, 42, 57, 62, 65) approved to run.
+
+## Wave 1 (13-Oct-2026): golden-page defaults adopted (agents' recommendations; user may override at gate 2)
+- Hub heroes (template A): no phone mockup; floating product UI cards, the largest in the phone's slot. Phone mockup stays on Home and Get the App.
+- Hub F&O box (03 and A-family pages that promote F&O): its own F&O section after the products block, verbatim box first under the heading, above the dark band.
+- Company pages (F): a calm button to the account page plus "See our registrations", not a working mobile field; full registration register per company with check links; leaders as portrait cards with art-directed photo slots until the shoot.
+- Legal pages (G): grievance shows all four escalation levels (contacts for levels 1 and 2, compliance officer, CEO via email only); "Raise a complaint" jumps to step 1 on the page; contact card plus "what to include" checklist.
+- Data pages (B): realistic illustrative values with fictional names, captioned, each value tagged data-field for the data vendor; the invest card carries the mobile form; returns before the full risk block.
+- Calculators (C): outcome h1 ("See what your SIP could add up to.") with the tool name in the eyebrow; default example inputs ₹5,000 a month, 10 years, 12% a year assumed return, labelled as an assumption the visitor can change; a "Start a SIP" button to page 10 (no form on calculator pages).
+- Coming-soon pages (H): illustrative "how it is set up" card on the right with a notify bar; consent master with "about this request".
+- Partner pages (P): h1 "Grow your mutual fund practice with ROOT."; payouts before steps; apply form asks mobile + "Do you have an ARN from AMFI? (Yes / Not yet)" + consent.
+- Guides (E): outcome h1; a button plus an "In this guide" route card in the first screen (no inline form).

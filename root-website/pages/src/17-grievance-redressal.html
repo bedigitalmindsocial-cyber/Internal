@@ -4,145 +4,12 @@
           "lint_allow": [],
           "mbar": {"label": "Raise a complaint", "href": "#s-contents"}} -->
 <style data-page>
-/* 17 Grievance Redressal (template G golden). Tokens only. Proposed patterns for promotion: Route card, Clause split,
-   Desk card, Escalation ladder, Portal card, Document frame, Row list two columns, Product cards four across. */
-
-/* hero: copy left with a button + link row; the route card centred beside it */
-.hero-grid:has(> .hero-side > .route-stage){align-items:center}
-.hero-actions{display:flex; flex-wrap:wrap; gap:14px 28px; align-items:center}
-
-/* Route card (hero): white card on a Mist stage panel, rows on a 1 px gold rail built from real elements */
-.route-stage > :not(.rings){position:relative; z-index:1}
-.route-stage .rings{top:auto; bottom:-40px; right:-96px}
-.ui-card.route-card{padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
-.route-card > .ui-label{padding-bottom:18px}
-.route-steps{list-style:none; display:flex; flex-direction:column}
-.route-steps li,.route-group{display:flex; gap:16px; align-items:stretch}
-.route-rail{flex:none; width:28px; display:flex; flex-direction:column; align-items:center}
-.route-dot{flex:none; width:28px; height:28px; border-radius:50%; border:1.5px solid var(--gold); background:var(--paper); display:flex; align-items:center; justify-content:center; font:400 15px/1 var(--serif); color:var(--aub)}
-.route-line{flex:1 1 auto; width:1px; min-height:8px; background:var(--gold)}
-.route-group .label{padding:2px 0 12px; font-size:11px}
-.route-text{flex:1 1 auto; display:flex; flex-direction:column; gap:2px; min-width:0; padding:3px 0 22px}
-.route-steps:last-of-type li .route-text{padding-bottom:4px}
-.route-text > a,.route-text > b{font-weight:600; font-size:1rem; color:var(--aub); text-decoration:none}
-.route-text > a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
-.route-text > span{color:var(--aub-60)}
-.route-alts{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:10px}
-.route-alt{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:14px; border-radius:var(--r-tile); background:var(--mist); color:var(--aub); text-decoration:none; line-height:1.35}
-.route-alt .tile{width:36px; height:36px; border-radius:10px; background:var(--paper)}
-.route-alt .tile .i{width:20px; height:20px}
-.route-alt b{font-weight:600}
-.route-alt small{display:block; font-size:var(--fs-xs); color:var(--aub-60)}
-.route-alt:hover,.route-alt.is-hover{background:var(--mist-2)}
-.route-alt.is-focus{outline:2px solid var(--aub); outline-offset:2px}
-.route-text > a.is-hover{text-decoration:underline; text-decoration-color:var(--gold)}
-.route-foot{margin-top:18px; padding-top:16px; border-top:1px solid var(--line)}
-
-/* Clause split (s-contents): numbered steps on the Mist band, 7/5 from 900 px, a hairline between steps */
-.clause + .clause{margin-top:clamp(48px, 6vw, 80px); padding-top:clamp(48px, 6vw, 80px); border-top:1px solid var(--line-2)}
-@media (min-width: 900px){ .clause-split{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)} }
-.clause-head{max-width:46rem}
-.head--wide{max-width:54rem}
-.clause .stack > p:not(.fine):not(.small){max-width:34rem}
-.checklist{list-style:none; display:flex; flex-direction:column; gap:10px}
-.checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--aub); line-height:1.45}
-.checklist .i{width:20px; height:20px; margin-top:1px; color:var(--gain)}
-
-/* Row list, two columns: dt a fixed column, dd left-aligned beside it; stacked at 640 */
-.kv-list--cols > div{flex-wrap:nowrap; justify-content:flex-start}
-.kv-list--cols dt{flex:0 0 var(--dt, 9rem); font-size:var(--fs-sm)}
-.kv-list--cols dd{flex:1 1 auto; min-width:0; text-align:left}
-@media (max-width: 640px){
-  .kv-list--cols > div{flex-direction:column; gap:2px}
-  .kv-list--cols dt{flex:none}
-}
-
-/* Desk card (s-write): contact rows with tiles, the prefilled email button, "what happens next" rows */
-.desk-rows{list-style:none; display:flex; flex-direction:column; gap:14px; padding-top:4px}
-.desk-rows li{display:flex; gap:14px; align-items:flex-start}
-.desk-rows .tile,.portal-top .tile,.wealth-card .tile{width:40px; height:40px}
-.desk-rows .tile .i,.portal-top .tile .i,.wealth-card .tile .i{width:20px; height:20px}
-.desk-card > .label,.portal-top .label{line-height:1.4; text-wrap:balance}
-.desk-text{display:flex; flex-direction:column; gap:2px; min-width:0}
-.desk-text > span{font-size:var(--fs-sm); color:var(--aub-60)}
-.desk-text a{font-weight:600; overflow-wrap:anywhere}
-.desk-action{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:4px}
-.desk-next{display:flex; flex-direction:column; gap:12px; margin-top:8px; padding-top:20px; border-top:1px solid var(--line)}
-
-/* Escalation ladder (s-escalate): white stage panel; rungs on a gold rail; levels 1 and 2 in a quieter Mist bracket */
-.ui-stage--panel.ladder-stage{background:var(--paper); box-shadow:var(--shadow-1); padding:28px}
-.ladder,.ladder ol{list-style:none; display:flex; flex-direction:column}
-.ladder-start{display:flex; flex-direction:column; gap:14px; padding:18px 18px 2px; margin-bottom:22px; border-radius:var(--r-card); background:var(--mist)}
-.rung{display:flex; gap:16px; align-items:stretch}
-.rung-rail{flex:none; width:12px; display:flex; flex-direction:column; align-items:center; padding-top:9px}
-.rung-dot{flex:none; width:11px; height:11px; border-radius:50%; background:var(--gold)}
-.rung-line{flex:1 1 auto; width:1px; margin-top:6px; background:var(--gold)}
-.ladder-start .rung-dot{background:var(--paper); border:1.5px solid var(--line-2)}
-.ladder-start .rung-line{background:var(--line-2)}
-.rung-text{flex:1 1 auto; display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; padding-bottom:22px}
-.rung-head{display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center}
-.rung-head b{color:var(--aub); font-weight:600}
-.ladder > .rung:last-child .rung-text{padding-bottom:0}
-.rung-contact{display:flex; flex-wrap:wrap; gap:4px 16px; font-size:var(--fs-sm)}
-.rung-contact a{font-weight:500; overflow-wrap:anywhere}
-.rung-when{font-size:var(--fs-sm); color:var(--aub-60)}
-.ladder-start .chip{background:var(--paper)}
-.ladder-start .rung-head b{color:var(--aub-80); font-weight:500}
-.ladder > .rung .chip{background:var(--aub); color:var(--paper)}
-
-/* Portal cards (s-scores-odr): two equal cards, links pinned to the foot so the two "Go to" links align */
-.portal-card{gap:14px}
-.portal-top{display:flex; align-items:center; gap:12px}
-.portal-name{display:flex; flex-direction:column; gap:2px}
-.portal-name .mono{font-size:var(--fs-sm); color:var(--aub-60)}
-.portal-card .links{margin-top:auto; padding-top:10px}
-.portal-card dd.mono{font-size:var(--fs-sm); overflow-wrap:anywhere}
-.clause-fine{margin-top:20px}
-
-/* Document frame (s-policy): rail first (sticky in the design), numbered clauses with compact client blocks; 4/8 from 1100 px */
-.doc-grid{display:grid; gap:clamp(24px, 4vw, 56px); align-items:start}
-@media (min-width: 1100px){ .doc-grid{grid-template-columns:minmax(0, 4fr) minmax(0, 8fr)} }
-.doc-rail{display:flex; flex-direction:column; gap:16px; padding:24px; border-radius:var(--r-card); background:var(--mist)}
-.toc{list-style:none; display:flex; flex-direction:column}
-.toc a{display:block; padding:7px 0; border-bottom:1px solid var(--line-2); font-size:var(--fs-sm); font-weight:500; text-decoration:none}
-.toc a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
-.doc-file{display:flex; gap:14px; align-items:center}
-.doc-rail .tile{width:44px; height:44px; background:var(--paper)}
-.doc-file > div{display:flex; flex-direction:column; gap:4px; align-items:flex-start; min-width:0}
-.doc-file b{color:var(--aub); font-weight:600; line-height:1.3}
-.doc-file span{font-size:var(--fs-sm); color:var(--aub-60)}
-.clauses{list-style:none; display:flex; flex-direction:column; gap:24px}
-.clauses article{display:flex; flex-direction:column; gap:10px}
-main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding:14px 18px}
-
-/* Product cards four across (s-related): 4 from 1101 px, the theme's 2 and 1 below */
-@media (min-width: 1101px){ .cards--4{grid-template-columns:repeat(4, minmax(0,1fr))} }
-
-/* FAQ: external links in a wrapping row */
-.faq-links{display:flex; flex-wrap:wrap; gap:6px 20px}
-.faq-links .i{width:16px; height:16px}
-
-/* states board: frames at their real column widths; the illustrative compose card */
-.states-board .doc-rail{max-width:24rem}
-.states-board .route-stage{max-width:30rem}
-.mail-card{width:min(100%, 34rem); padding:22px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
-.mail-card .ui-row{justify-content:flex-start; padding:10px 0; border-top:1px solid var(--line)}
-.mail-card .ui-row > span:first-child{flex:0 0 5rem; color:var(--aub-60)}
-.mail-body{display:flex; flex-direction:column; gap:6px; padding-top:12px; border-top:1px solid var(--line)}
-
-@media (max-width: 640px){
-  .hero-actions{flex-direction:column; align-items:stretch}
-  .hero-actions .btn{width:100%}
-  .hero-actions .link{align-self:flex-start}
-  .desk-action{align-items:stretch}
-  .desk-action .btn{width:100%}
-  .ui-card.route-card{padding:20px}
-  .route-alts{grid-template-columns:1fr}
-  .route-alt{flex-direction:row; align-items:center; gap:12px; padding:12px}
-  .ui-stage--panel.ladder-stage{padding:20px}
-  .ladder-start{padding:14px 14px 0}
-  .doc-rail{padding:20px}
-}
+/* 17 Grievance Redressal (template G golden). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026
+   (curator, Wave 1 golden promotions: hero actions, route card, clause split, checklist, row list two columns, desk card,
+   escalation ladder, portal cards, document frame, product cards four across, FAQ answer links, mail card). */
+/* the Aikyam Wealth route card (s-wealth) uses the desk card's 40 px tiles */
+.wealth-card .tile{width:40px; height:40px}
+.wealth-card .tile .i{width:20px; height:20px}
 </style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
@@ -225,7 +92,7 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
           <span class="label">Grievance desk · {{reg.capital.name}}</span>
           <ul class="desk-rows">
             <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><div class="desk-text"><span>Complaints</span><a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a></div></li>
-            <li><span class="tile"><svg class="i"><use href="#i-lock"/></svg></span><div class="desk-text"><span>Demat (depository)</span><b>{{contact.dp_grievance_email}}</b></div></li>
+            <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><div class="desk-text"><span>Demat (depository)</span><b>{{contact.dp_grievance_email}}</b></div></li>
             <li><span class="tile"><svg class="i"><use href="#i-phone"/></svg></span><div class="desk-text"><span>Prefer to call? Help desk</span><a href="tel:{{contact.helpdesk_phone}}">{{contact.helpdesk_phone}}</a><span><mark class="ph" data-ph="contact-hours">Monday to Friday, 9:30 AM to 6:00 PM IST, to confirm</mark></span></div></li>
           </ul>
           <div class="desk-next">
@@ -234,7 +101,7 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
               <div><dt>We acknowledge it</dt><dd><mark class="ph" data-ph="complaint-ack">when and how, with a reference number, to confirm</mark></dd></div>
               <div><dt>We reply</dt><dd><mark class="ph" data-ph="complaint-reply-time">within a set number of days, to confirm</mark></dd></div>
               <div><dt>To follow up</dt><dd data-draft="followup">Reply to our acknowledgement quoting <mark class="ph" data-ph="complaint-followup">your complaint reference, to confirm</mark>, or call the help desk.</dd></div>
-              <div><dt>It costs you</dt><dd><mark class="ph" data-ph="complaint-fee">nothing, to confirm</mark></dd></div>
+              <div><dt>It costs you</dt><dd><mark class="ph" data-ph="complaint-fee">any charge, to confirm</mark></dd></div>
             </dl>
           </div>
         </div>
@@ -255,7 +122,7 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
         <div class="ui-stage ui-stage--panel ladder-stage">
           <ol class="ladder" aria-label="Escalation levels at Aikyam Capital">
             <li class="ladder-start">
-              <span class="label">Step 1 · where you start</span>
+              <span class="label">First contact</span>
               <ol>
                 <li class="rung"><span class="rung-rail"><i class="rung-dot"></i><i class="rung-line"></i></span>
                   <div class="rung-text">
@@ -267,22 +134,27 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
                   <div class="rung-text">
                     <div class="rung-head"><span class="chip">Level 2</span><b>Head of Customer Care</b></div>
                     <p class="rung-contact"><a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a><span><mark class="ph" data-ph="grievance-phone">phone to confirm</mark></span></p>
-                    <p class="rung-when" data-draft="ladder-when">Written complaints (step 1)</p>
+                    <p class="rung-when" data-draft="ladder-when">Written complaints, as in step 1</p>
                   </div></li>
               </ol>
             </li>
-            <li class="rung"><span class="rung-rail"><i class="rung-dot"></i><i class="rung-line"></i></span>
-              <div class="rung-text">
-                <div class="rung-head"><span class="chip">Level 3</span><b>Compliance Officer</b></div>
-                <p class="rung-contact"><span>{{officer.compliance}}</span></p>
-                <p class="rung-when" data-draft="ladder-when">If the grievance desk's reply doesn't settle it</p>
-              </div></li>
-            <li class="rung"><span class="rung-rail"><i class="rung-dot"></i></span>
-              <div class="rung-text">
-                <div class="rung-head"><span class="chip">Level 4</span><b>Chief Executive Officer</b></div>
-                <p class="rung-contact"><a href="/legal/escalation-matrix">Contact in the escalation matrix</a></p>
-                <p class="rung-when" data-draft="ladder-when">If it is still not settled</p>
-              </div></li>
+            <li class="ladder-group">
+              <span class="label">Escalation</span>
+              <ol>
+                <li class="rung"><span class="rung-rail"><i class="rung-dot"></i><i class="rung-line"></i></span>
+                  <div class="rung-text">
+                    <div class="rung-head"><span class="chip">Level 3</span><b>Compliance Officer</b></div>
+                    <p class="rung-contact"><span>{{officer.compliance}}</span></p>
+                    <p class="rung-when" data-draft="ladder-when">If the grievance desk's reply doesn't settle it</p>
+                  </div></li>
+                <li class="rung"><span class="rung-rail"><i class="rung-dot"></i></span>
+                  <div class="rung-text">
+                    <div class="rung-head"><span class="chip">Level 4</span><b>Chief Executive Officer</b></div>
+                    <p class="rung-contact"><a href="/legal/escalation-matrix">Contact in the escalation matrix</a></p>
+                    <p class="rung-when" data-draft="ladder-when">If it is still not settled</p>
+                  </div></li>
+              </ol>
+            </li>
           </ol>
         </div>
       </div>
@@ -402,7 +274,7 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
         <p>Tell us at <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a>, and see our <a href="/legal/notices">notices</a> and <a href="/legal/client-bank-accounts">client bank accounts</a>.</p>
       </div></details>
       <details><summary>Where can I see how many complaints Aikyam receives and resolves?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
-        <p>Our investor complaints data is on the <a href="/legal/disclosures#s-complaints">Disclosures page</a>, <mark class="ph" data-ph="complaints-data-update">updated monthly, to confirm</mark>.</p>
+        <p>Our investor complaints data is on the <a href="/legal/disclosures#s-complaints">Disclosures page</a>, <mark class="ph" data-ph="complaints-data-update">how often it is updated, to confirm</mark>.</p>
       </div></details>
     </div>
   </div>
@@ -411,7 +283,7 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
 <section class="band" id="s-related" aria-labelledby="h-related">
   <div class="wrap">
     <div class="head">
-      <h2 class="d2 node" id="h-related">Related documents.</h2>
+      <h2 class="d2 node" id="h-related">Related pages.</h2>
     </div>
     <div class="cards cards--4">
       <article class="pcard"><div class="top"><span class="tile"><svg class="i"><use href="#i-user"/></svg></span><svg class="i arrow"><use href="#i-arrow"/></svg></div><h3 class="h3"><a href="/legal/escalation-matrix">Escalation matrix and key managerial persons</a></h3><p>Names and contacts at every level.</p></article>
@@ -424,12 +296,15 @@ main .clauses .ph.ph--block{justify-content:flex-start; text-align:left; padding
 
 <section class="band band--mist" id="s-final" aria-labelledby="h-final">
   <div class="wrap final">
-    <h2 class="d2 node" id="h-final">Not sure where your complaint fits? Talk to us.</h2>
+    <h2 class="d2 node" id="h-final">Ready to raise your complaint?</h2>
     <div class="row">
-      <a class="btn btn--lg" href="tel:{{contact.helpdesk_phone}}"><svg class="i"><use href="#i-phone"/></svg>Call the help desk</a>
-      <a class="btn btn--ghost btn--lg" href="mailto:{{contact.grievance_email}}?subject=Complaint%20about%20my%20account&amp;body=Name:%0AClient%20code:%0ARegistered%20mobile%20or%20email:%0AWhat%20happened%20(dates%2C%20order%20or%20transaction%20numbers):%0AWhat%20I%27d%20like%20you%20to%20do:%0A%0APlease%20don%27t%20include%20your%20password%20or%20OTP." data-event="grievance_email_click" data-draft="complaint-email-template">Email the grievance desk</a>
+      <a class="btn btn--lg" href="mailto:{{contact.grievance_email}}?subject=Complaint%20about%20my%20account&amp;body=Name:%0AClient%20code:%0ARegistered%20mobile%20or%20email:%0AWhat%20happened%20(dates%2C%20order%20or%20transaction%20numbers):%0AWhat%20I%27d%20like%20you%20to%20do:%0A%0APlease%20don%27t%20include%20your%20password%20or%20OTP." data-event="grievance_email_click" data-draft="complaint-email-template">Email the grievance desk<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--lg" href="tel:{{contact.helpdesk_phone}}"><svg class="i"><use href="#i-phone"/></svg>Call the help desk</a>
     </div>
-    <p class="fine">Help desk: {{contact.helpdesk_phone}} · {{contact.helpdesk_email}}. Complaints about broking and depository services go to {{reg.capital.name}}.</p>
+    <div class="final-fine">
+      <p class="fine" data-draft="final-unsure">Not sure where your complaint fits? Call the help desk first. Mutual fund distribution complaints have <a href="#s-wealth">their own route</a>.</p>
+      <p class="fine">Help desk: {{contact.helpdesk_phone}} · {{contact.helpdesk_email}}. Complaints about broking and depository services go to {{reg.capital.name}}.</p>
+    </div>
   </div>
 </section>
 

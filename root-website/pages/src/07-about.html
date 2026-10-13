@@ -3,112 +3,10 @@
           "query": "Aikyam Capital Group",
           "lint_allow": []} -->
 <style data-page>
-/* 07 About (golden, template F). Tokens only. Reusable blocks are proposed for theme/patterns.css in memory section 7. */
-
-/* hero rhythm under the breadcrumb */
-.page-about .hero{padding-block:40px 80px}
-
-/* Hero · group stage (proposed): button row + one fine line; the group map on a Mist stage panel */
-.hero-actions{display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px}
-.hero-act{display:flex; flex-direction:column; gap:12px}
-.group-stage{align-self:stretch; padding:36px 24px 28px; overflow:visible}
-.group-stage > :not(.rings){position:relative; z-index:1}
-.group-stage .rings{top:-44px; right:-88px; width:260px}
-/* Group map on a stage panel: the "Group map on Mist" rules, extended to a Mist panel on a white band (proposed for patterns.css) */
-.ui-stage--panel .is-on .gmap-card{background:var(--paper)}
-.ui-stage--panel .is-on .gmap-card .chip{background:var(--mist)}
-.group-stage .gmap-branches{gap:10px}
-.group-stage .gmap-card{padding:14px 8px; gap:4px}
-.group-stage .gmap-card > span:not(.chip){font-size:var(--fs-xs)}
-.group-stage .gmap-card .chip{margin-top:6px}
-.gmap-caption{margin-top:24px; text-align:center; font-size:var(--fs-sm); color:var(--aub-60); max-width:30rem; text-wrap:balance}
-/* two hero columns but a narrow map column (900 to 1199 px): branches 2 x 2 without lines, as at 640 */
-@media (min-width: 900px) and (max-width: 1199px){
-  .group-stage .gmap-lines,.group-stage .gmap-dot{display:none}
-  .group-stage .gmap-root{margin-bottom:16px}
-  .group-stage .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
-}
-
-/* Entity doors · about variant: four question rows per company, label over answer */
-.door-rows--about .tile{width:40px; height:40px; border-radius:10px; background:var(--mist)}
-.door-rows--about .tile .i{width:20px; height:20px}
-.door-rows--about .row-text{gap:6px}
-.door-rows--about .row-text p{font-size:1rem; color:var(--aub-80)}
-.door-rows--about .row-text .link{font-size:var(--fs-sm); margin-top:2px}
-.door-rows--about .row-text p.row-soon{margin-top:4px; font-size:var(--fs-xs); color:var(--aub-60)}
-.row-soon b{font-weight:600; color:var(--aub)}
-.doors + .fine{margin-top:24px; max-width:none}
-.door-rows--about ~ .door-foot .fine{max-width:none}
-
-/* Company registers (proposed): how-to-check strip, two hairline ledgers, stay-safe card, documents row */
-.check-strip{list-style:none; display:grid; gap:20px 32px; padding:24px 28px; border-radius:var(--r-card); background:var(--mist); margin-bottom:clamp(40px, 5vw, 56px)}
-.check-strip li{display:flex; gap:14px; align-items:flex-start; min-width:0}
-.check-strip .tile{width:40px; height:40px; border-radius:10px; background:var(--paper)}
-.check-strip .tile .i{width:20px; height:20px}
-.check-strip b{display:block; color:var(--aub); font-weight:600}
-.check-strip p{font-size:var(--fs-sm); color:var(--aub-60)}
-@media (min-width: 900px){ .check-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
-.register .ledger-head{gap:6px; padding-bottom:4px}
-.register .kv-list--row > div{display:grid; grid-template-columns:minmax(0, 2fr) minmax(0, 3fr); gap:4px 24px; align-items:baseline; padding:14px 0}
-.register .kv-list--row dt{font-size:var(--fs-sm); color:var(--aub-80)}
-.register .kv-list--row dd{text-align:left; color:var(--aub)}
-.register .kv-list--row dd + dd{grid-column:2}
-.register dd.mono{font-size:var(--fs-sm); text-wrap:balance}
-.register dd .link{font-size:var(--fs-sm)}
-.register dd .link .i{width:16px; height:16px}
-.register > .fine{max-width:none}
-.safe-card{margin-top:clamp(40px, 5vw, 56px)}
-@media (min-width: 900px){
-  .safe-card{display:grid; grid-template-columns:auto minmax(0, 1fr) auto; gap:4px 24px; align-items:start; padding:28px 32px}
-  .safe-card .links{margin-top:0; padding-left:24px; border-left:1px solid var(--line)}
-}
-.safe-card p{color:var(--aub-80); max-width:62ch}
-.safe-card a[href^="tel:"]{white-space:nowrap}
-.ledger-side{display:flex; flex-direction:column; gap:clamp(40px, 5vw, 56px); min-width:0}
-.doc-block{display:flex; flex-direction:column; gap:12px}
-.doc-list{list-style:none; border-top:1px solid var(--line)}
-.doc-list li{padding:14px 0; border-bottom:1px solid var(--line)}
-@media (max-width: 899px){ .ledgers:has(.register){row-gap:48px} }
-
-/* People cards · compact (proposed): a face slot beside each name, three columns from 1100 px, two from 641 px */
+/* 07 About (golden, template F). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator, Wave 1
+   golden promotions: template F hero, hero actions, group stage, proof sub-line, about doors, company registers, people cards,
+   contact strip, phone buttons); only About-specific rhythm stays here. */
 #s-people .head p{max-width:44rem}
-.people{list-style:none; display:grid; grid-template-columns:1fr; gap:16px}
-@media (min-width: 641px){ .people{grid-template-columns:repeat(2, minmax(0,1fr))} }
-@media (min-width: 1100px){ .people{grid-template-columns:repeat(3, minmax(0,1fr))} }
-.person{display:flex; gap:16px; align-items:center; padding:16px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
-.person .img-slot--face{flex:none; width:88px; padding:0; justify-content:center; align-items:center; border-radius:12px; background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%)}
-.person .img-slot--face .i{margin:0; width:28px; height:28px}
-.person .stack{min-width:0}
-.person h3{font:600 1.0625rem/1.3 var(--sans); color:var(--aub)}
-.person p{color:var(--aub-60)}
-.people-note{margin-top:20px; color:var(--aub-60)}
-.people-links{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:28px}
-@media (max-width: 640px){ .person .img-slot--face{width:64px} }
-
-/* Contact strip (proposed): three labelled channels, hairline above each, no card frame */
-.contact-strip{display:grid; grid-template-columns:1fr; gap:0 48px}
-@media (min-width: 900px){ .contact-strip{grid-template-columns:repeat(3, minmax(0,1fr))} }
-.contact-col{display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding-block:28px; border-top:1px solid var(--line); min-width:0}
-.contact-col .tile{margin-bottom:8px}
-.contact-col .value{font:600 1.1875rem/1.35 var(--sans); color:var(--aub); text-decoration:none}
-.contact-col p{color:var(--aub-80); overflow-wrap:anywhere}
-.contact-col .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
-
-/* phones: wrapping full-width buttons in main (same rule as Home) */
-@media (max-width: 640px){
-  .page-about main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
-  .page-about .hero{padding-block:32px 56px}
-  .hero-actions{flex-direction:column; align-items:stretch; gap:16px}
-  .hero-actions .link{align-self:flex-start}
-  .group-stage{padding:20px 16px 18px}
-  .gmap-caption{margin-top:16px}
-  .check-strip{padding:20px}
-  .register .kv-list--row > div{grid-template-columns:1fr; gap:2px}
-  .register .kv-list--row dd + dd{grid-column:auto; margin-top:4px}
-  .safe-card .links{padding-top:4px}
-  .person{padding:12px}
-  .contact-col{padding-block:24px}
-}
 </style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
@@ -126,7 +24,7 @@
         <p class="fine">This opens your trading and demat account application with {{reg.capital.name}}. You start with your mobile number and an OTP.</p>
       </div>
       <ul class="creds creds--row">
-        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="mono">{{reg.capital.sebi}}</span></div></li>
+        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="cred-sub">Aikyam Capital · <span class="mono">{{reg.capital.sebi}}</span></span></div></li>
         <li><svg class="i"><use href="#i-chart"/></svg><div>Member of NSE, BSE, MCX and MSEI<span>Aikyam Capital</span></div></li>
         <li><svg class="i"><use href="#i-mf"/></svg><div>AMFI-registered mutual fund distributor<span>Aikyam Wealth</span></div></li>
       </ul>
@@ -263,15 +161,15 @@
   <div class="wrap">
     <div class="head">
       <h2 class="d2 node" id="h-people">Who leads the group behind ROOT?</h2>
-      <p>ROOT is new, so instead of numbers, meet the people who lead the group behind it.</p>
+      <p>ROOT is new. Here are the people who lead the group behind it.</p>
     </div>
     <ul class="people">
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Nilesh Choudhary</h3><p class="small">Founder and Director</p></div></li>
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Navnit Choudhary</h3><p class="small">Co-founder</p></div></li>
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Anand Mody</h3><p class="small">Group COO</p></div></li>
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Vishal Trehan</h3><p class="small">Head India Sales and COO Broking and Clearing</p></div></li>
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Manoj S Pawar</h3><p class="small">Chief Business Officer / Head Wealth Management</p></div></li>
-      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><svg class="i"><use href="#i-user"/></svg></figure><div class="stack" style="--gap:2px"><h3>Pallavi Desai</h3><p class="small">Head Client Relations</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">NC</span></figure><div class="stack" style="--gap:2px"><h3>Nilesh Choudhary</h3><p class="small">Founder and Director</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">NC</span></figure><div class="stack" style="--gap:2px"><h3>Navnit Choudhary</h3><p class="small">Co-founder</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">AM</span></figure><div class="stack" style="--gap:2px"><h3>Anand Mody</h3><p class="small">Group COO</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">VT</span></figure><div class="stack" style="--gap:2px"><h3>Vishal Trehan</h3><p class="small">Head India Sales and COO Broking and Clearing</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">MP</span></figure><div class="stack" style="--gap:2px"><h3>Manoj S Pawar</h3><p class="small">Chief Business Officer / Head Wealth Management</p></div></li>
+      <li class="person"><figure class="img-slot img-slot--face" style="--ar:1/1" aria-hidden="true"><span class="initials">PD</span></figure><div class="stack" style="--gap:2px"><h3>Pallavi Desai</h3><p class="small">Head Client Relations</p></div></li>
     </ul>
     <p class="small people-note">Portraits to come from one shoot: head and shoulders, office setting, natural light, 1:1.</p>
     <div class="people-links">
@@ -383,6 +281,23 @@
     <span class="fhelp" id="as2-err">Enter a 10-digit mobile number.</span>
   </div>
   <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="alt-hero-bar-consent" data-label="Alternative hero action, error: consent box not ticked (only if the inline bar is chosen and compliance makes the box required)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="as3-mob"><span class="pre">+91</span><input id="as3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg" type="submit">{{cta.primary}}<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <div class="fgroup is-error">
+    <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="as3-err"><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+    <span class="fhelp" id="as3-err">Tick the box to continue.</span>
+  </div>
   <div class="hero-fine">
     <p class="fine">Your number goes to {{reg.capital.name}}, SEBI registration {{reg.capital.sebi}}. It is used to send your OTP and continue your application.</p>
     <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>

@@ -3,125 +3,11 @@
           "query": "sip calculator",
           "lint_allow": []} -->
 <style data-page>
-/* 42 SIP Calculator v1 (golden, template C). Tokens only. Candidate patterns for template C (43 to 50) are named in memory section 7. */
-
-/* Calculator hero (candidate): the inputs are the working action (left), the result stage is the product visual (right);
-   two equal columns from 900 px, centred; a shorter top pad because the breadcrumb sits above */
-.hero--calc{padding-top:clamp(24px, 3vw, 40px)}
-@media (min-width: 900px){ .hero-grid--calc{grid-template-columns:repeat(2, minmax(0,1fr))} }
-.hero-grid--calc .hero-copy{gap:20px}
-
-/* Field + slider rows (candidate): theme .calc-row with an editable .field in place of the read-only output chip;
-   hairline rows give the input column its structure on white */
-.hero-grid--calc .calc-in{margin:0; padding:0; border:0; gap:0; min-width:0}
-.calc-in .calc-row{gap:12px; padding:16px 0; border-top:1px solid var(--line)}
-.calc-in .calc-row:last-child{border-bottom:1px solid var(--line)}
-.calc-row .top{gap:16px}
-.calc-field{flex:none; width:11.5rem}
-.calc-field input{font:600 1.0625rem/1.2 var(--sans); font-variant-numeric:tabular-nums}
-.calc-field--suf input{text-align:right}
-.calc-field .suf{flex:none; padding-left:10px; border-left:1px solid var(--line); color:var(--aub-60); font-size:var(--fs-sm)}
-.calc-note{display:flex; gap:8px; align-items:flex-start; color:var(--aub-60)}
-.calc-note .i{margin-top:2px}
-.calc-links{display:flex; flex-wrap:wrap; gap:8px 28px}
-/* focus state (slider-focus on the states board): the field and the thumb show the theme focus ring */
-.calc-row.is-focus .field{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
-.calc-row.is-focus .range::-webkit-slider-thumb{box-shadow:0 0 0 1.5px var(--aub), 0 0 0 6px var(--aub-08)}
-
-/* Result stage (candidate): Mist stage panel, white result card with the start action, growth chart and the year table under it */
-.calc-stage{gap:20px}
-.calc-stage > :not(.rings){position:relative; z-index:1}
-.calc-stage .rings{top:-44px; right:-104px}
-.calc-card{display:flex; flex-direction:column; gap:14px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
-.calc-card .calc-total{margin-top:-2px}
-.calc-split{margin:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; padding-top:14px; border-top:1px solid var(--line)}
-.calc-split > div{display:flex; flex-direction:column; gap:2px; min-width:0}
-.calc-split dt{display:flex; align-items:center; gap:8px; font-size:var(--fs-sm); color:var(--aub-60)}
-.calc-split dd{margin:0; font:600 1.1875rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
-.calc-card .btn{width:100%; margin-top:4px}
-.calc-card .fine + .fine{margin-top:4px}
-
-/* Legend swatches (from 29's .sw, extended): a square, a solid line, a dashed line and a wash, so no series is told by colour alone */
-.sw{display:inline-block; width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
-.sw--line{height:0; width:18px; border-radius:0; background:none; border-top:2.5px solid var(--aub)}
-.sw--dash{height:0; width:18px; border-radius:0; background:none; border-top:2px dashed var(--aub-60)}
-.sw--soft{height:0; width:18px; border-radius:0; background:none; border-top:2px solid var(--aub-60)}
-.sw--wash{background:color-mix(in srgb, var(--aub) 10%, var(--paper)); border:1px solid color-mix(in srgb, var(--aub) 28%, var(--paper))}
-
-/* Growth chart (candidate): SVG paths only (gridlines, wash, invested line, value curve, gold end dot); y labels, x labels and
-   end labels are HTML. The plot's data area runs 5% to 95% of its height, so labels of --plot-h / 10 line height sit on the gridlines;
-   --inv is where the invested line ends (0 top, 1 bottom) and places its end label */
-.calc-chart{--plot-h:160px; margin:0; display:grid; grid-template-columns:auto minmax(0,1fr) auto; grid-template-areas:"y plot ends" ". x ."; gap:8px 12px; align-items:start}
-.calc-chart svg{grid-area:plot; width:100%; height:var(--plot-h)}
-.chart-y{grid-area:y; height:var(--plot-h); display:flex; flex-direction:column; justify-content:space-between; font-size:12px; line-height:calc(var(--plot-h) / 10); color:var(--aub-60); text-align:right; white-space:nowrap}
-.chart-x{grid-area:x; display:flex; justify-content:space-between; font-size:12px; line-height:1.3; color:var(--aub-60)}
-.chart-ends{grid-area:ends; height:var(--plot-h); display:grid; grid-template-rows:calc(var(--plot-h) * var(--inv, .5) - 18px) auto; align-content:start}
-.chart-end{display:flex; gap:8px; align-items:flex-start; font-size:var(--fs-xs); line-height:1.35; color:var(--aub-60)}
-.chart-end .sw{margin-top:8px}
-.chart-end b{display:block; font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
-@media (max-width: 640px){
-  .calc-chart{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"y plot" ". x" "ends ends"}
-  .chart-ends{height:auto; grid-template-rows:none; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; padding-top:6px}
-}
-
-/* Year-by-year disclosure (candidate): native details under the chart, closed by default; the open table is the year-table state */
-.calc-years{border-top:1px solid var(--line-2)}
-.calc-years summary{list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:14px; cursor:pointer; font:600 var(--fs-sm)/1.3 var(--sans); color:var(--aub)}
-.calc-years summary::-webkit-details-marker{display:none}
-.calc-years .pm{width:28px; height:28px; border-radius:50%; background:var(--paper); display:grid; place-items:center; flex:none}
-.calc-years[open] .pm{transform:rotate(45deg)}
-.calc-years .tablewrap{margin-top:14px}
-table.calc-table{min-width:0}
-.calc-table th,.calc-table td{padding:10px 16px}
-.calc-table td{font-variant-numeric:tabular-nums}
-
-/* Assumptions (candidate "Smooth versus real"): facts with titles and text chips left (7), a white stage with the two-line
-   illustration right (5) */
-@media (min-width: 900px){ .split--75{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
-.facts--chips{gap:22px}
-.fact-head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px}
-.fact-head b{color:var(--aub); font-weight:600}
-.facts--chips .chip{min-height:24px; font-size:12px}
-.facts-link{margin-top:-4px}
-.band--mist .assume-stage{background:var(--paper); box-shadow:var(--shadow-1)}
-.assume-art{margin:0; display:flex; flex-direction:column; gap:18px}
-.assume-art svg{width:100%; height:auto}
-.assume-key{display:flex; flex-direction:column; gap:8px; font-size:var(--fs-sm); color:var(--aub); line-height:1.4}
-.assume-key span{display:flex; align-items:center; gap:10px}
-
-/* Formula card + worked-example receipt (candidate): the formula on a Mist strip, its keys as a row list; receipt rows carry figures */
-.formula{padding:16px 18px; border-radius:var(--r-ctl); background:var(--mist); font:400 1.375rem/1.45 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums lining-nums; text-wrap:balance}
-.formula sup,.calc-receipt sup{font-size:.62em; line-height:0}
-.formula-keys dt{font:400 1.125rem/1.3 var(--serif); min-width:1.5rem}
-.formula-keys dd{max-width:80%}
+/* 42 SIP Calculator (golden, template C). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026
+   (curator, Wave 1 golden promotions: calculator hero, field rows, result card, legend keys, growth chart, year table, signposts,
+   smooth versus real, formula card and receipt, FAQ side links, chip row, phone rules); only page rhythm stays here. */
+/* the h3 sits 4 px closer to the formula strip and the card copy under it */
 .info-card .h3 + p{margin-top:-4px}
-.calc-receipt .ui-row span + span{flex:0 1 auto; color:var(--aub); font-variant-numeric:tabular-nums}
-.calc-receipt .ui-row.is-total span{font-weight:600; color:var(--aub)}
-.calc-receipt .link{margin-top:16px}
-
-/* chip row (from 10 and 29): static category labels inside a card, not links or filters */
-.chip-row{display:flex; flex-wrap:wrap; gap:6px}
-
-/* FAQ side: the other calculators as a short link list under a label */
-.faq-links{display:flex; flex-direction:column; align-items:flex-start; gap:10px}
-
-/* a placeholder in fine print on the dark band stays readable (from 29) */
-.band--dark .ph{color:var(--on-dark)}
-
-/* states board: keep the calculator at its page width */
-.states-board .calc-in,.states-board .calc-stage{max-width:36rem}
-
-@media (max-width: 899px){ .calc-stage .rings{display:none} }
-@media (max-width: 640px){
-  .hero-grid--calc .hero-copy{gap:16px}
-  .calc-field{width:10rem}
-  .calc-card{padding:20px}
-  .calc-split dd{font-size:1.0625rem}
-  .formula{font-size:1.125rem}
-  .calc-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
-  .calc-receipt .ui-row span + span{text-align:left}
-  .page-sip-calculator .risk-box{grid-template-columns:1fr; padding:20px}
-}
 </style>
 
 <section class="hero hero--calc" id="s-hero" aria-labelledby="h-hero">
@@ -156,10 +42,6 @@ table.calc-table{min-width:0}
           <p class="small calc-note" id="f-rate-help"><svg class="i i--sm"><use href="#i-info"/></svg>Your assumption, not a forecast. The rate shown is only an example.</p>
         </div>
       </fieldset>
-      <div class="calc-links">
-        <a class="link" href="#s-assume">What this estimate assumes<svg class="i"><use href="#i-arrow"/></svg></a>
-        <a class="link" href="#s-formula">See the formula<svg class="i"><use href="#i-arrow"/></svg></a>
-      </div>
     </div>
 
     <section class="ui-stage ui-stage--panel calc-stage" id="s-result" aria-labelledby="h-result">
@@ -171,10 +53,10 @@ table.calc-table{min-width:0}
         </div>
         <dl class="calc-split">
           <div><dt><span class="sw sw--dash" aria-hidden="true"></span>You invest</dt><dd>₹6,00,000</dd></div>
-          <div><dt><span class="sw sw--wash" aria-hidden="true"></span>Estimated gains</dt><dd>₹5,61,695</dd></div>
+          <div><dt><span class="sw sw--bar" aria-hidden="true"></span>Estimated gains</dt><dd>₹5,61,695</dd></div>
         </dl>
         <p class="xs">Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
-        <a class="btn btn--lg" href="/open-account/investing" data-primary data-event="calc_start" data-params="tool=sip&amp;amount=5000&amp;years=10&amp;rate=12">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--lg" href="/open-account/investing" data-primary data-cta-location="sip-result" data-params="tool=sip&amp;amount=5000&amp;years=10&amp;rate=12">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
         <div>
           <p class="fine">Next, you open an investing account with {{reg.wealth.name}}, a mutual fund distributor (AMFI ARN {{reg.wealth.arn}}), starting with your mobile number.</p>
           <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
@@ -212,6 +94,10 @@ table.calc-table{min-width:0}
           </table>
         </div>
       </details>
+      <div class="calc-links">
+        <a class="link" href="#s-assume">What this estimate assumes<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="link" href="#s-formula">See the formula<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
     </section>
   </div>
 </section>
@@ -233,9 +119,10 @@ table.calc-table{min-width:0}
     </div>
     <div class="ui-stage ui-stage--panel assume-stage">
       <figure class="assume-art">
-        <svg viewBox="0 0 600 240" aria-hidden="true" focusable="false"><path fill="none" stroke="#5F5571" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M30.0 200.0 L57.0 204.2 L78.6 205.0 L100.2 213.7 L121.8 202.1 L143.4 202.4 L170.4 183.4 L192.0 185.2 L213.6 172.8 L240.6 152.9 L262.2 153.9 L289.2 133.3 L310.8 135.7 L332.4 113.8 L359.4 116.0 L381.0 95.4 L408.0 96.6 L429.6 97.1 L456.6 113.3 L478.2 120.9 L499.8 104.1 L521.4 116.8 L543.0 99.0 L570.0 90.0"/><path fill="none" stroke="#1C0F2F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" d="M30.0 200.0 L43.5 198.1 L57.0 196.2 L70.5 194.2 L84.0 192.2 L97.5 190.1 L111.0 187.9 L124.5 185.6 L138.0 183.3 L151.5 180.9 L165.0 178.4 L178.5 175.9 L192.0 173.2 L205.5 170.5 L219.0 167.6 L232.5 164.7 L246.0 161.7 L259.5 158.6 L273.0 155.3 L286.5 152.0 L300.0 148.6 L313.5 145.0 L327.0 141.3 L340.5 137.5 L354.0 133.6 L367.5 129.6 L381.0 125.4 L394.5 121.1 L408.0 116.6 L421.5 112.0 L435.0 107.2 L448.5 102.3 L462.0 97.2 L475.5 92.0 L489.0 86.5 L502.5 80.9 L516.0 75.1 L529.5 69.2 L543.0 63.0 L556.5 56.6 L570.0 50.0"/><circle cx="30" cy="200" r="5" fill="#1C0F2F"/><circle cx="570" cy="50" r="5" fill="#1C0F2F"/><circle cx="570" cy="90" r="5" fill="#5F5571"/></svg>
+        <svg viewBox="0 0 600 300" aria-hidden="true" focusable="false"><path fill="none" stroke="#5F5571" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M24 276 L576 145.8"/><path fill="none" stroke="#1C0F2F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M24.0 276.0 L37.8 272.7 L51.6 269.3 L65.4 265.7 L79.2 262.1 L93.0 258.4 L106.8 254.5 L120.6 250.5 L134.4 246.5 L148.2 242.2 L162.0 237.9 L175.8 233.4 L189.6 228.8 L203.4 224.1 L217.2 219.2 L231.0 214.1 L244.8 208.9 L258.6 203.6 L272.4 198.1 L286.2 192.4 L300.0 186.5 L313.8 180.5 L327.6 174.3 L341.4 167.9 L355.2 161.3 L369.0 154.5 L382.8 147.5 L396.6 140.3 L410.4 132.9 L424.2 125.2 L438.0 117.3 L451.8 109.2 L465.6 100.8 L479.4 92.2 L493.2 83.3 L507.0 74.1 L520.8 64.7 L534.6 55.0 L548.4 45.0 L562.2 34.6 L576.0 24.0"/><path fill="none" stroke="#5F5571" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M24.0 276.0 L46.1 267.9 L68.2 260.4 L90.2 257.9 L112.3 247.3 L134.4 245.8 L156.5 233.2 L178.6 224.3 L200.6 227.6 L222.7 213.5 L244.8 218.5 L266.9 231.1 L289.0 239.2 L311.0 228.1 L333.1 213.0 L355.2 191.6 L377.3 182.3 L399.4 175.2 L421.4 161.1 L443.5 166.1 L465.6 147.0 L487.7 136.9 L509.8 146.0 L531.8 124.3 L553.9 110.7 L576.0 99.6"/><circle cx="24" cy="276" r="6" fill="#1C0F2F"/><circle cx="576" cy="24.0" r="6" fill="#1C0F2F"/><circle cx="576" cy="99.6" r="5.5" fill="#5F5571"/></svg>
         <figcaption class="assume-key">
           <span><span class="sw sw--line" aria-hidden="true"></span>One steady rate: what the calculator assumes</span>
+          <span><span class="sw sw--dash" aria-hidden="true"></span>You invest: what you put in</span>
           <span><span class="sw sw--soft" aria-hidden="true"></span>Ups and downs: what fund values do</span>
         </figcaption>
       </figure>
@@ -305,7 +192,10 @@ table.calc-table{min-width:0}
         <h3 class="h3">Who sets up your SIP</h3>
         <p>{{reg.wealth.name}} is a mutual fund distributor, AMFI ARN {{reg.wealth.arn}}.</p>
         <p>SIPs through ROOT are in regular plans. The fund house pays Aikyam Wealth a commission, included in the plan's expense ratio.</p>
-        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+        <div class="links">
+          <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="link link--wrap" href="https://www.amfiindia.com/" rel="noopener">Check the ARN on AMFI's <span class="link-tail">website<svg class="i"><use href="#i-ne"/></svg></span></a>
+        </div>
       </div>
       <div class="info-card">
         <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
@@ -319,7 +209,7 @@ table.calc-table{min-width:0}
         <a class="link" href="/pricing">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
-    <div class="band-cta"><a class="btn btn--lg" href="/open-account/investing" data-event="calc_start" data-params="tool=sip&amp;location=s-next">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="band-cta"><a class="btn btn--lg" href="/open-account/investing" data-cta-location="sip-next">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a></div>
   </div>
 </section>
 
@@ -374,7 +264,7 @@ table.calc-table{min-width:0}
       <h2 class="d2 node" id="h-final">Your SIP starts with your mobile number.</h2>
       <p class="lead">Open your investing account on your phone or computer, then choose your funds and set up the SIP.</p>
       <div class="row">
-        <a class="btn btn--light btn--lg" href="/open-account/investing" data-event="calc_start" data-params="tool=sip&amp;location=s-final">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--light btn--lg" href="/open-account/investing" data-cta-location="sip-final">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
         <a class="btn btn--outline-light btn--lg" href="/tools/risk-profiler" data-event="tool_switch" data-params="to=risk-profiler">Check your risk profile</a>
       </div>
       <p class="fine">Already investing with ROOT? Set up a new SIP at <mark class="ph" data-ph="wealth-platform">where you invest, to confirm</mark>.</p>
@@ -443,7 +333,7 @@ table.calc-table{min-width:0}
       </div>
       <dl class="calc-split">
         <div><dt><span class="sw sw--dash" aria-hidden="true"></span>You invest</dt><dd>₹18,00,000</dd></div>
-        <div><dt><span class="sw sw--wash" aria-hidden="true"></span>Estimated gains</dt><dd>₹23,79,243</dd></div>
+        <div><dt><span class="sw sw--bar" aria-hidden="true"></span>Estimated gains</dt><dd>₹23,79,243</dd></div>
       </dl>
       <p class="xs">Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
       <a class="btn btn--lg" href="/open-account/investing">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
@@ -462,6 +352,10 @@ table.calc-table{min-width:0}
       <div class="chart-x" aria-hidden="true"><span>Now</span><span>5 years</span><span>10 years</span><span>15 years</span></div>
     </figure>
     <details class="calc-years"><summary>See it year by year<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary></details>
+    <div class="calc-links">
+      <a class="link" href="#s-assume">What this estimate assumes<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="link" href="#s-formula">See the formula<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
   </div>
 </div>
 </template>

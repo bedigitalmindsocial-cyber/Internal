@@ -1,0 +1,10 @@
+{
+ "page": "17-grievance-redressal",
+ "verdict": "pass",
+ "score": 87,
+ "must_fix": [],
+ "note": "Reviewer pass carried after curator pattern promotion (pixel-checked unchanged); gate ok",
+ "by": "orchestrator-carry",
+ "sha": "97dcb1a3f476",
+ "date": "13-Oct-2026"
+}

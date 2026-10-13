@@ -5,143 +5,15 @@
           "mbar": {"label": "Invest in this fund", "href": "#s-invest"},
           "lint_allow": []} -->
 <style data-page>
-/* 29 Scheme Detail v1 (golden, template B). Tokens only. Reusable pieces are named in memory section 7 for promotion.
-   Tints of ink for data marks: color-mix of --aub with --paper (no new colour tokens). */
-
-/* Data hero (candidate pattern): DOM order copy, invest card, chart. Below 900 px the theme's one column gives that order;
-   from 900 px the chart sits under the copy (7) and the card spans both rows (5) */
-.page-scheme-detail .hero{padding-top:28px}
-@media (min-width: 900px){
-  .hero-grid--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); grid-template-areas:"copy side" "chart side"; grid-template-rows:auto 1fr; row-gap:28px; align-items:start}
-  .hero-grid--data > .hero-copy{grid-area:copy}
-  .hero-grid--data > .hero-side{grid-area:side}
-  .hero-grid--data > .hero-chart{grid-area:chart}
-}
-.hero-grid--data .hero-copy{gap:14px}
-/* the item's name as the h1, at d2 size (template B data heroes) */
-.d1.d1--name{font-size:var(--fs-d2); line-height:1.12; letter-spacing:-.012em}
-/* chip row (from 10): static labels, not links; the risk chip holds the theme riskometer scale */
-.chip-row{display:flex; flex-wrap:wrap; gap:8px}
-.chip-risk .riskometer{width:56px}
-.chip-risk .scale{gap:2px}
-.chip-risk b{font-weight:600}
-/* NAV row: label and serif numeral on one baseline, source under, a hairline above */
-.nav-row{display:flex; flex-direction:column; gap:4px; margin-top:4px; padding-top:14px; border-top:1px solid var(--line)}
-.nav-val{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px}
-.nav-val .num{font:400 2.4rem/1 var(--serif); color:var(--aub)}
-.nav-val .num .ph{font:500 var(--fs-sm)/1.4 var(--sans)}
-/* data source line (as-on date + source) and the src + fine + illus stack under every block with numbers */
-.src{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
-.data-foot{display:flex; flex-direction:column; gap:4px}
-.data-foot .fine + .fine{margin-top:0}
-
-/* Data card (candidate pattern): one white card language for data blocks (shadow, no border) */
-.data-card{display:flex; flex-direction:column; gap:18px; margin:0; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
-
-/* NAV chart card: caption + range tabs, SVG line and area (paths only), High and Low as HTML at the right edge, months under */
-.hero-chart{display:flex; flex-direction:column; gap:10px; min-width:0}
-.chart-card{gap:14px; padding:20px 24px}
-.chart-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px 16px}
-.chart-top .tab{padding:8px 12px}
-.chart-plot{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px}
-.chart-plot svg{width:100%; height:200px; display:block}
-.chart-y{display:flex; flex-direction:column; justify-content:space-between; font-size:var(--fs-xs); line-height:1.4; color:var(--aub-60); white-space:nowrap}
-.chart-y b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
-.chart-x{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60)}
-@media (max-width: 899px){ .chart-plot svg{height:140px} }
-
-/* Invest card: the scheme's terms as a row list above the mobile field */
-.invest-card .kv-list--row > div{padding:10px 0}
-.invest-card .label{line-height:1.45}
-
-/* split variants: 7/5 for data + reading card, 6/6 for the dials */
-@media (min-width: 900px){
-  .split--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
-  .split--half{grid-template-columns:repeat(2, minmax(0, 1fr))}
-}
-.band-tabs{margin-bottom:24px}
-
-/* Paired bars (candidate pattern): fund and benchmark per period on one scale from zero, values as HTML text */
-.sw{width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
-.pb-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
-.pb-legend > span{display:flex; gap:8px; align-items:baseline}
-.pb-legend .sw{align-self:center}
-.pb-rows{display:flex; flex-direction:column}
-.pb-row{display:grid; grid-template-columns:10rem minmax(0, 1fr); gap:8px 20px; align-items:center; padding:16px 0; border-top:1px solid var(--line)}
-.pb-row:last-child{border-bottom:1px solid var(--line)}
-.pb-label{font-weight:600; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
-.pb-label span{display:block; font-weight:400; font-size:var(--fs-xs); color:var(--aub-60)}
-.pb-bars{display:flex; flex-direction:column; gap:6px; min-width:0}
-.pb-bar{display:flex; align-items:center; gap:10px}
-.pb-bar i{display:block; flex:none; width:var(--w); height:14px; border-radius:0 4px 4px 0; background:var(--aub)}
-.pb-bar b{font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums; white-space:nowrap}
-.pb-bar--bm b{font-weight:500; color:var(--aub-80)}
-.sw--bm,.pb-bar--bm i{background:color-mix(in srgb, var(--aub) 28%, var(--paper))}
-.split--returns,.split--half{align-items:center}
-.read-card p b{color:var(--aub)}
-@media (max-width: 640px){ .pb-row{grid-template-columns:1fr} }
-
-/* Riskometer dials (candidate pattern): two white dial cards on a Mist stage panel; SVG arcs and needle, the level as HTML text */
-.dial-stage{gap:18px}
-.dials{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px}
-.dial{margin:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding:24px 18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); text-align:center; min-width:0}
-.dial svg{width:100%; max-width:220px; height:auto}
-.dial figcaption{display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); color:var(--aub-60)}
-.dial figcaption b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
-.info-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub); margin-top:6px}
-.info-card ul{display:flex; flex-direction:column; gap:4px; padding-left:20px; color:var(--aub-80)}
-@media (max-width: 640px){ .dial{padding:18px 10px 14px} .dials{gap:10px} }
-
-/* stat tiles on a Mist band: the icon tile stays Mist inside the white tile (the theme turns tiles white on Mist) */
-.stat-tile .tile{background:var(--mist)}
-
-/* Composition card: size split bar with real swatches, two columns of bar rows */
-.mix{margin:0; display:flex; flex-direction:column; gap:14px}
-.mix .splitbar{height:14px; gap:3px; background:none; border-radius:0}
-.mix .splitbar i{flex:var(--w) 1 0px; border-radius:3px}
-.mix .splitbar i:nth-child(2),.sw--2{background:color-mix(in srgb, var(--aub) 62%, var(--paper))}
-.mix .splitbar i:nth-child(3),.sw--3{background:color-mix(in srgb, var(--aub) 36%, var(--paper))}
-.mix .splitbar i:nth-child(4),.sw--4{background:var(--line-2)}
-.mix-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
-.mix-legend span{display:flex; gap:8px; align-items:center}
-.mix-legend b{font-weight:600; font-variant-numeric:tabular-nums}
-.barcols{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px 32px; padding-top:20px; border-top:1px solid var(--line)}
-.barcols > div{display:flex; flex-direction:column; gap:14px; min-width:0}
-.data-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
-.barrows{list-style:none; display:flex; flex-direction:column; gap:14px}
-.barrows li{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px; font-size:var(--fs-sm); color:var(--aub); line-height:1.3}
-.barrows b{font-weight:600; font-variant-numeric:tabular-nums}
-.br-track{grid-column:1 / -1; height:6px; border-radius:6px; background:var(--mist)}
-.br-track i{display:block; width:var(--w); height:100%; border-radius:6px; background:var(--aub)}
-.facts-card .kv-list--row dd{max-width:64%}
-.facts-card .kv-list--row > div{padding:10px 0}
-@media (min-width: 900px){
-  .split--stretch{align-items:stretch}
-  .split--stretch > .data-card > .data-foot{margin-top:auto}
-}
-@media (max-width: 640px){
-  .barcols{grid-template-columns:1fr}
-  .facts-card .kv-list--row dd{max-width:none; text-align:left}
-}
-
+/* 29 Scheme Detail (golden, template B). Tokens only. Reusable blocks were promoted to theme/patterns.css on 12-Oct-2026 (curator,
+   Wave 1 golden promotions: data hero, data card, NAV chart, invest card, split family, paired bars, legend keys, dials,
+   composition card, stacked receipt rows, phone rules); only page-specific rules stay here. */
+/* no one-word last lines in the receipt's timing values */
+.page-scheme-detail .ui-receipt .ui-row span + span{text-wrap:pretty}
 /* closing h2 breaks into two even lines */
 #h-final{max-width:10em}
-/* a placeholder in fine print on the dark band stays readable */
-.band--dark .ph{color:var(--on-dark)}
-
-/* states board: keep cards at their page width */
-.states-board .chart-card,.states-board .data-card{max-width:44rem}
+/* states board: the hero copy at its page width */
 .states-board .hero-copy{max-width:40rem}
-
-/* phones (from 10): receipt rows stack, the disclosure box puts its icon above the text */
-@media (max-width: 640px){
-  .page-scheme-detail .hero{padding-top:16px}
-  .page-scheme-detail .ui-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
-  .page-scheme-detail .ui-receipt .ui-row span + span{text-align:left}
-  .page-scheme-detail .risk-box{grid-template-columns:1fr; padding:20px}
-  .data-card{padding:20px}
-  .chart-card{padding:16px}
-}
 </style>
 
 <section class="hero" id="s-hero" aria-labelledby="h-hero">
@@ -184,7 +56,7 @@
           <div class="fgroup">
             <label for="invest-mob">Mobile number</label>
             <span class="field"><span class="pre">+91</span><input id="invest-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="invest-mob-help" required></span>
-            <span class="fhelp" id="invest-mob-help">We'll send a one-time password (OTP) to this number.</span>
+            <span class="fhelp" id="invest-mob-help">We'll send a one-time password (OTP) to this number to open your investing account.</span>
           </div>
           <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
           <button class="btn btn--lg" type="submit" data-primary>Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
@@ -375,12 +247,11 @@
         <p class="small">The transaction charge is taken when you buy units, if it applies.</p>
         <a class="link" href="/pricing">See all charges<svg class="i"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="ui-card ui-receipt">
-        <span class="ui-label">Inside this plan's costs</span>
-        <div class="ui-row"><span>Expense ratio</span><span>Set by the fund house, within SEBI limits</span></div>
-        <div class="ui-row"><span>Distributor commission</span><span>Included in the expense ratio</span></div>
-        <div class="ui-row"><span>Exit load</span><span>Set by the fund house</span></div>
-        <div class="ui-row"><span>Stamp duty on purchases</span><span>Set by the government</span></div>
+      <div class="ui-card ui-receipt ui-receipt--stack">
+        <span class="ui-label">When each cost applies</span>
+        <div class="ui-row"><span>When you buy</span><span>Stamp duty, set by the government</span></div>
+        <div class="ui-row"><span>While you hold</span><span>Expense ratio, within SEBI limits, already in the NAV</span></div>
+        <div class="ui-row"><span>When you sell</span><span>Exit load if it applies, and tax on any gains</span></div>
         <p class="small">The scheme documents show every figure.</p>
       </div>
     </div>
@@ -428,6 +299,7 @@
             </ol>
           </div>
         </div>
+        <a class="link link--wrap" href="https://www.example.com/" rel="noopener" data-field="factsheet_url">See all holdings in the latest <span class="link-tail">factsheet<svg class="i"><use href="#i-ne"/></svg></span></a>
         <div class="data-foot">
           <p class="src">Portfolio as on <span data-field="portfolio_date">30-Sep-2026</span>, updated monthly · Source: <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark></p>
           <p class="illus">Illustrative data. Not real prices or returns.</p>
@@ -618,7 +490,7 @@
     <div class="fgroup">
       <label for="st3-mob">Mobile number</label>
       <span class="field"><span class="pre">+91</span><input id="st3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21"></span>
-      <span class="fhelp">We'll send a one-time password (OTP) to this number.</span>
+      <span class="fhelp">We'll send a one-time password (OTP) to this number to open your investing account.</span>
     </div>
     <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
     <button class="btn btn--lg is-loading" type="button" aria-busy="true">Invest in this fund<svg class="i"><use href="#i-arrow"/></svg></button>
