@@ -60,3 +60,4 @@ Append-only, newest last. Each entry: date, decision, reason, source. Page agent
 - Coming-soon pages (H): illustrative "how it is set up" card on the right with a notify bar; consent master with "about this request".
 - Partner pages (P): h1 "Grow your mutual fund practice with ROOT."; payouts before steps; apply form asks mobile + "Do you have an ARN from AMFI? (Yes / Not yet)" + consent.
 - Guides (E): outcome h1; a button plus an "In this guide" route card in the first screen (no inline form).
+- Gate 2 (13-Oct-2026, user): the Getting Started guide (65) launches with Phase 1 on 2 Nov; its links to Phase 2 pages fall back to hubs until 8 Dec. User asked to revise some golden pages before derivatives are built.

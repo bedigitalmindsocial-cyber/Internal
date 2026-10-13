@@ -70,7 +70,7 @@ brief: 64 · done: 8 · approved: 3
 | 62 | Distributor Partner Programme | P | 3 | golden | reviewed | y | y | y | pass | 88 |  | done |
 | 63 | Authorised Person Programme | P | 3 | derivative | - | n | n | - | - | - |  | brief |
 | 64 | Tax Saving | E | 3 | derivative | - | n | n | - | - | - |  | brief |
-| 65 | Guide: Getting Started | E | 3 | golden | reviewed | y | y | y | pass | 90 |  | done |
+| 65 | Guide: Getting Started | E | 1 | golden | reviewed | y | y | y | pass | 90 |  | done |
 | 66 | Guide: Mutual Funds | E | 3 | derivative | - | n | n | - | - | - |  | brief |
 | 67 | Guide: PMS | E | 3 | derivative | - | n | n | - | - | - |  | brief |
 | 68 | Guide: Insurance | E | 3 | derivative | - | n | n | - | - | - |  | brief |

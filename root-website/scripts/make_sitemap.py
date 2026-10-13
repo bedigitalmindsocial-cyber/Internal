@@ -99,6 +99,7 @@ OVERRIDES = {
  62: {"template": "P", "golden": True, "flags+": "regulated_numbers"},
  63: {"template": "P", "flags+": "fo_risk"},
  69: {"flags+": "fo_page"},
+ 65: {"phase": 1},  # gate 2 (13-Oct-2026): Getting Started guide launches with Phase 1 on 2 Nov
 }
 
 TEMPLATES = {
@@ -139,7 +140,7 @@ def cta_for(url, tpl, ent, flags):
 pages=[]
 for n,pid,title,url,tpl,ph,ent,nav,golden,aud,cta,flags in PAGES:
     o = OVERRIDES.get(n, {})
-    tpl = o.get("template", tpl); golden = o.get("golden", golden); cta = o.get("primary_cta", cta)
+    tpl = o.get("template", tpl); golden = o.get("golden", golden); cta = o.get("primary_cta", cta); ph = o.get("phase", ph)
     fl = flags.split() + [f for f in o.get("flags+", "").split() if f not in flags.split()]
     pages.append(dict(n=n,id=pid,file=f"{n:02d}-{pid}.html",title=title,url=url,template=tpl,phase=ph,
         entity=ent,nav=nav,mode="golden" if golden else "derivative",audiences=aud.split(),
