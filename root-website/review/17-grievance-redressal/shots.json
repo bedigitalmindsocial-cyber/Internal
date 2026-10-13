@@ -1,0 +1,37 @@
+{
+ "file": "17-grievance-redressal.html",
+ "sha": "4d4a98d25357",
+ "desktop": {
+  "height": 8158,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 590,
+  "primary_text": "Raise a complaint",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 13745,
+  "slices": 8,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 501,
+  "primary_text": "Raise a complaint",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 1642,
+  "slices": 2,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": [
+   "file size"
+  ]
+ },
+ "notes": []
+}

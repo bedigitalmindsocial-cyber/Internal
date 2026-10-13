@@ -1,0 +1,531 @@
+<!--page {"title": "SIP Calculator: what could your SIP add up to? | ROOT by Aikyam",
+          "description": "Use the SIP calculator to estimate what a monthly SIP could add up to. Change the amount, period and return, and see the formula with a worked example.",
+          "query": "sip calculator",
+          "lint_allow": []} -->
+<style data-page>
+/* 42 SIP Calculator v1 (golden, template C). Tokens only. Candidate patterns for template C (43 to 50) are named in memory section 7. */
+
+/* Calculator hero (candidate): the inputs are the working action (left), the result stage is the product visual (right);
+   two equal columns from 900 px, centred; a shorter top pad because the breadcrumb sits above */
+.hero--calc{padding-top:clamp(24px, 3vw, 40px)}
+@media (min-width: 900px){ .hero-grid--calc{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--calc .hero-copy{gap:20px}
+
+/* Field + slider rows (candidate): theme .calc-row with an editable .field in place of the read-only output chip;
+   hairline rows give the input column its structure on white */
+.hero-grid--calc .calc-in{margin:0; padding:0; border:0; gap:0; min-width:0}
+.calc-in .calc-row{gap:12px; padding:16px 0; border-top:1px solid var(--line)}
+.calc-in .calc-row:last-child{border-bottom:1px solid var(--line)}
+.calc-row .top{gap:16px}
+.calc-field{flex:none; width:11.5rem}
+.calc-field input{font:600 1.0625rem/1.2 var(--sans); font-variant-numeric:tabular-nums}
+.calc-field--suf input{text-align:right}
+.calc-field .suf{flex:none; padding-left:10px; border-left:1px solid var(--line); color:var(--aub-60); font-size:var(--fs-sm)}
+.calc-note{display:flex; gap:8px; align-items:flex-start; color:var(--aub-60)}
+.calc-note .i{margin-top:2px}
+.calc-links{display:flex; flex-wrap:wrap; gap:8px 28px}
+/* focus state (slider-focus on the states board): the field and the thumb show the theme focus ring */
+.calc-row.is-focus .field{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+.calc-row.is-focus .range::-webkit-slider-thumb{box-shadow:0 0 0 1.5px var(--aub), 0 0 0 6px var(--aub-08)}
+
+/* Result stage (candidate): Mist stage panel, white result card with the start action, growth chart and the year table under it */
+.calc-stage{gap:20px}
+.calc-stage > :not(.rings){position:relative; z-index:1}
+.calc-stage .rings{top:-44px; right:-104px}
+.calc-card{display:flex; flex-direction:column; gap:14px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.calc-card .calc-total{margin-top:-2px}
+.calc-split{margin:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; padding-top:14px; border-top:1px solid var(--line)}
+.calc-split > div{display:flex; flex-direction:column; gap:2px; min-width:0}
+.calc-split dt{display:flex; align-items:center; gap:8px; font-size:var(--fs-sm); color:var(--aub-60)}
+.calc-split dd{margin:0; font:600 1.1875rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-card .btn{width:100%; margin-top:4px}
+.calc-card .fine + .fine{margin-top:4px}
+
+/* Legend swatches (from 29's .sw, extended): a square, a solid line, a dashed line and a wash, so no series is told by colour alone */
+.sw{display:inline-block; width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
+.sw--line{height:0; width:18px; border-radius:0; background:none; border-top:2.5px solid var(--aub)}
+.sw--dash{height:0; width:18px; border-radius:0; background:none; border-top:2px dashed var(--aub-60)}
+.sw--soft{height:0; width:18px; border-radius:0; background:none; border-top:2px solid var(--aub-60)}
+.sw--wash{background:color-mix(in srgb, var(--aub) 10%, var(--paper)); border:1px solid color-mix(in srgb, var(--aub) 28%, var(--paper))}
+
+/* Growth chart (candidate): SVG paths only (gridlines, wash, invested line, value curve, gold end dot); y labels, x labels and
+   end labels are HTML. The plot's data area runs 5% to 95% of its height, so labels of --plot-h / 10 line height sit on the gridlines;
+   --inv is where the invested line ends (0 top, 1 bottom) and places its end label */
+.calc-chart{--plot-h:160px; margin:0; display:grid; grid-template-columns:auto minmax(0,1fr) auto; grid-template-areas:"y plot ends" ". x ."; gap:8px 12px; align-items:start}
+.calc-chart svg{grid-area:plot; width:100%; height:var(--plot-h)}
+.chart-y{grid-area:y; height:var(--plot-h); display:flex; flex-direction:column; justify-content:space-between; font-size:12px; line-height:calc(var(--plot-h) / 10); color:var(--aub-60); text-align:right; white-space:nowrap}
+.chart-x{grid-area:x; display:flex; justify-content:space-between; font-size:12px; line-height:1.3; color:var(--aub-60)}
+.chart-ends{grid-area:ends; height:var(--plot-h); display:grid; grid-template-rows:calc(var(--plot-h) * var(--inv, .5) - 18px) auto; align-content:start}
+.chart-end{display:flex; gap:8px; align-items:flex-start; font-size:var(--fs-xs); line-height:1.35; color:var(--aub-60)}
+.chart-end .sw{margin-top:8px}
+.chart-end b{display:block; font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
+@media (max-width: 640px){
+  .calc-chart{grid-template-columns:auto minmax(0,1fr); grid-template-areas:"y plot" ". x" "ends ends"}
+  .chart-ends{height:auto; grid-template-rows:none; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; padding-top:6px}
+}
+
+/* Year-by-year disclosure (candidate): native details under the chart, closed by default; the open table is the year-table state */
+.calc-years{border-top:1px solid var(--line-2)}
+.calc-years summary{list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:14px; cursor:pointer; font:600 var(--fs-sm)/1.3 var(--sans); color:var(--aub)}
+.calc-years summary::-webkit-details-marker{display:none}
+.calc-years .pm{width:28px; height:28px; border-radius:50%; background:var(--paper); display:grid; place-items:center; flex:none}
+.calc-years[open] .pm{transform:rotate(45deg)}
+.calc-years .tablewrap{margin-top:14px}
+table.calc-table{min-width:0}
+.calc-table th,.calc-table td{padding:10px 16px}
+.calc-table td{font-variant-numeric:tabular-nums}
+
+/* Assumptions (candidate "Smooth versus real"): facts with titles and text chips left (7), a white stage with the two-line
+   illustration right (5) */
+@media (min-width: 900px){ .split--75{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.facts--chips{gap:22px}
+.fact-head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px}
+.fact-head b{color:var(--aub); font-weight:600}
+.facts--chips .chip{min-height:24px; font-size:12px}
+.facts-link{margin-top:-4px}
+.band--mist .assume-stage{background:var(--paper); box-shadow:var(--shadow-1)}
+.assume-art{margin:0; display:flex; flex-direction:column; gap:18px}
+.assume-art svg{width:100%; height:auto}
+.assume-key{display:flex; flex-direction:column; gap:8px; font-size:var(--fs-sm); color:var(--aub); line-height:1.4}
+.assume-key span{display:flex; align-items:center; gap:10px}
+
+/* Formula card + worked-example receipt (candidate): the formula on a Mist strip, its keys as a row list; receipt rows carry figures */
+.formula{padding:16px 18px; border-radius:var(--r-ctl); background:var(--mist); font:400 1.375rem/1.45 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums lining-nums; text-wrap:balance}
+.formula sup,.calc-receipt sup{font-size:.62em; line-height:0}
+.formula-keys dt{font:400 1.125rem/1.3 var(--serif); min-width:1.5rem}
+.formula-keys dd{max-width:80%}
+.info-card .h3 + p{margin-top:-4px}
+.calc-receipt .ui-row span + span{flex:0 1 auto; color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-receipt .ui-row.is-total span{font-weight:600; color:var(--aub)}
+.calc-receipt .link{margin-top:16px}
+
+/* chip row (from 10 and 29): static category labels inside a card, not links or filters */
+.chip-row{display:flex; flex-wrap:wrap; gap:6px}
+
+/* FAQ side: the other calculators as a short link list under a label */
+.faq-links{display:flex; flex-direction:column; align-items:flex-start; gap:10px}
+
+/* a placeholder in fine print on the dark band stays readable (from 29) */
+.band--dark .ph{color:var(--on-dark)}
+
+/* states board: keep the calculator at its page width */
+.states-board .calc-in,.states-board .calc-stage{max-width:36rem}
+
+@media (max-width: 899px){ .calc-stage .rings{display:none} }
+@media (max-width: 640px){
+  .hero-grid--calc .hero-copy{gap:16px}
+  .calc-field{width:10rem}
+  .calc-card{padding:20px}
+  .calc-split dd{font-size:1.0625rem}
+  .formula{font-size:1.125rem}
+  .calc-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .calc-receipt .ui-row span + span{text-align:left}
+  .page-sip-calculator .risk-box{grid-template-columns:1fr; padding:20px}
+}
+</style>
+
+<section class="hero hero--calc" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--calc">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">SIP calculator</span>
+      <h1 class="d1" id="h-hero">See what your SIP <em>could add up to</em>.</h1>
+      <p class="lead">Set a monthly amount, a period and a return you assume, and see your estimate with no sign-up.</p>
+      <fieldset class="calc-in">
+        <legend class="sr-only">Your SIP</legend>
+        <div class="calc-row">
+          <div class="top">
+            <label class="flabel" id="l-amount" for="f-amount">Monthly SIP amount</label>
+            <span class="field calc-field"><span class="pre">₹</span><input id="f-amount" name="amount" type="text" inputmode="decimal" value="5,000" data-draft="calc-defaults"></span>
+          </div>
+          <input class="range" id="r-amount" type="range" min="500" max="100000" step="500" value="5000" style="--p:4.5%" aria-labelledby="l-amount" data-draft="calc-defaults">
+        </div>
+        <div class="calc-row">
+          <div class="top">
+            <label class="flabel" id="l-years" for="f-years">Time period</label>
+            <span class="field calc-field calc-field--suf"><input id="f-years" name="years" type="text" inputmode="decimal" value="10" data-draft="calc-defaults"><span class="suf">years</span></span>
+          </div>
+          <input class="range" id="r-years" type="range" min="1" max="30" step="1" value="10" style="--p:31%" aria-labelledby="l-years" data-draft="calc-defaults">
+        </div>
+        <div class="calc-row">
+          <div class="top">
+            <label class="flabel" id="l-rate" for="f-rate">Assumed return, per year</label>
+            <span class="field calc-field calc-field--suf"><input id="f-rate" name="rate" type="text" inputmode="decimal" value="12" aria-describedby="f-rate-help" data-draft="calc-defaults"><span class="suf">%</span></span>
+          </div>
+          <input class="range" id="r-rate" type="range" min="1" max="20" step="0.5" value="12" style="--p:58%" aria-labelledby="l-rate" data-draft="calc-defaults">
+          <p class="small calc-note" id="f-rate-help"><svg class="i i--sm"><use href="#i-info"/></svg>Your assumption, not a forecast. The rate shown is only an example.</p>
+        </div>
+      </fieldset>
+      <div class="calc-links">
+        <a class="link" href="#s-assume">What this estimate assumes<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="link" href="#s-formula">See the formula<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <section class="ui-stage ui-stage--panel calc-stage" id="s-result" aria-labelledby="h-result">
+      <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-calc"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".16" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-calc)"/></svg>
+      <div class="calc-card">
+        <div class="stack" style="--gap:10px" aria-live="polite">
+          <h2 class="label" id="h-result">Estimated value after 10 years</h2>
+          <p class="calc-total">₹11,61,695</p>
+        </div>
+        <dl class="calc-split">
+          <div><dt><span class="sw sw--dash" aria-hidden="true"></span>You invest</dt><dd>₹6,00,000</dd></div>
+          <div><dt><span class="sw sw--wash" aria-hidden="true"></span>Estimated gains</dt><dd>₹5,61,695</dd></div>
+        </dl>
+        <p class="xs">Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
+        <a class="btn btn--lg" href="/open-account/investing" data-primary data-event="calc_start" data-params="tool=sip&amp;amount=5000&amp;years=10&amp;rate=12">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+        <div>
+          <p class="fine">Next, you open an investing account with {{reg.wealth.name}}, a mutual fund distributor (AMFI ARN {{reg.wealth.arn}}), starting with your mobile number.</p>
+          <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        </div>
+      </div>
+
+      <figure class="calc-chart" style="--inv:.5" aria-label="Chart: what you invest and the estimated value, from now to 10 years">
+        <div class="chart-y" aria-hidden="true"><span>₹12 lakh</span><span>₹8 lakh</span><span>₹4 lakh</span><span>₹0</span></div>
+        <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 10H600M0 70H600M0 130H600" fill="none" stroke="#D1D6DD" stroke-width="1" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"/><path d="M0 190H600" fill="none" stroke="#D1D6DD" stroke-width="1" vector-effect="non-scaling-stroke"/><path fill="#1C0F2F" fill-opacity=".08" d="M0 190.0 L10 188.5 L20 186.9 L30 185.3 L39 183.7 L49 182.1 L59 180.4 L69 178.7 L79 176.9 L89 175.1 L99 173.3 L109 171.5 L118 169.6 L128 167.6 L138 165.7 L148 163.7 L158 161.6 L168 159.5 L178 157.4 L187 155.2 L197 153.0 L207 150.7 L217 148.4 L227 146.0 L237 143.6 L247 141.2 L257 138.7 L266 136.1 L276 133.5 L286 130.8 L296 128.1 L306 125.4 L316 122.5 L326 119.7 L335 116.7 L345 113.7 L355 110.7 L365 107.6 L375 104.4 L385 101.1 L395 97.8 L405 94.5 L414 91.0 L424 87.5 L434 83.9 L444 80.3 L454 76.5 L464 72.7 L474 68.9 L483 64.9 L493 60.9 L503 56.7 L513 52.5 L523 48.3 L533 43.9 L543 39.4 L553 34.9 L562 30.2 L572 25.5 L582 20.7 L592 15.7 L592 100.0Z"/><path fill="none" stroke="#5F5571" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0 190 L592 100.0"/><path fill="none" stroke="#1C0F2F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0 190.0 L10 188.5 L20 186.9 L30 185.3 L39 183.7 L49 182.1 L59 180.4 L69 178.7 L79 176.9 L89 175.1 L99 173.3 L109 171.5 L118 169.6 L128 167.6 L138 165.7 L148 163.7 L158 161.6 L168 159.5 L178 157.4 L187 155.2 L197 153.0 L207 150.7 L217 148.4 L227 146.0 L237 143.6 L247 141.2 L257 138.7 L266 136.1 L276 133.5 L286 130.8 L296 128.1 L306 125.4 L316 122.5 L326 119.7 L335 116.7 L345 113.7 L355 110.7 L365 107.6 L375 104.4 L385 101.1 L395 97.8 L405 94.5 L414 91.0 L424 87.5 L434 83.9 L444 80.3 L454 76.5 L464 72.7 L474 68.9 L483 64.9 L493 60.9 L503 56.7 L513 52.5 L523 48.3 L533 43.9 L543 39.4 L553 34.9 L562 30.2 L572 25.5 L582 20.7 L592 15.7"/><path fill="none" stroke="#C19C2F" stroke-width="9" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M592 15.7h0"/></svg>
+        <div class="chart-ends">
+          <p class="chart-end"><span class="sw sw--line" aria-hidden="true"></span><span>Estimated value<b>₹11,61,695</b></span></p>
+          <p class="chart-end"><span class="sw sw--dash" aria-hidden="true"></span><span>You invest<b>₹6,00,000</b></span></p>
+        </div>
+        <div class="chart-x" aria-hidden="true"><span>Now</span><span>5 years</span><span>10 years</span></div>
+      </figure>
+
+      <details class="calc-years">
+        <summary>See it year by year<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary>
+        <div class="tablewrap">
+          <table class="data calc-table">
+            <caption>₹5,000 a month at an assumed 12% a year, at the end of each year.</caption>
+            <thead><tr><th scope="col">Year</th><th scope="col" class="r">You invest</th><th scope="col" class="r">Estimated value</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td class="r">₹60,000</td><td class="r">₹64,047</td></tr>
+              <tr><td>2</td><td class="r">₹1,20,000</td><td class="r">₹1,36,216</td></tr>
+              <tr><td>3</td><td class="r">₹1,80,000</td><td class="r">₹2,17,538</td></tr>
+              <tr><td>4</td><td class="r">₹2,40,000</td><td class="r">₹3,09,174</td></tr>
+              <tr><td>5</td><td class="r">₹3,00,000</td><td class="r">₹4,12,432</td></tr>
+              <tr><td>6</td><td class="r">₹3,60,000</td><td class="r">₹5,28,785</td></tr>
+              <tr><td>7</td><td class="r">₹4,20,000</td><td class="r">₹6,59,895</td></tr>
+              <tr><td>8</td><td class="r">₹4,80,000</td><td class="r">₹8,07,633</td></tr>
+              <tr><td>9</td><td class="r">₹5,40,000</td><td class="r">₹9,74,108</td></tr>
+              <tr><td>10</td><td class="r">₹6,00,000</td><td class="r">₹11,61,695</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-assume" aria-labelledby="h-assume">
+  <div class="wrap split split--75">
+    <div class="stack" style="--gap:28px">
+      <div class="stack" style="--gap:14px">
+        <h2 class="d2 node" id="h-assume">What does this estimate assume?</h2>
+        <p class="lead">A calculator needs a few fixed rules. Here they are, and which ones you can change.</p>
+      </div>
+      <ul class="facts facts--chips">
+        <li><span class="tile"><svg class="i"><use href="#i-calc"/></svg></span><div class="fact-text"><div class="fact-head"><b>A return you choose</b><span class="chip chip--ink">You change this</span></div><p>You set it, after the fund's own costs. It is not a past return or a forecast.</p></div></li>
+        <li><span class="tile"><svg class="i"><use href="#i-chart"/></svg></span><div class="fact-text"><div class="fact-head"><b>The same return every year</b><span class="chip chip--line">Fixed here</span></div><p>Real returns rise and fall, and can be negative in some years.</p></div></li>
+        <li><span class="tile"><svg class="i"><use href="#i-cal"/></svg></span><div class="fact-text"><div class="fact-head"><b>Money in at the start of each month</b><span class="chip chip--line">Fixed here</span></div><p>Each instalment starts earning from the month you pay it.</p></div></li>
+        <li><span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span><div class="fact-text"><div class="fact-head"><b>Before tax and inflation</b><span class="chip chip--line">Not included</span></div><p>Tax on gains and rising prices are not taken off the estimate.</p></div></li>
+      </ul>
+      <a class="link facts-link" href="#f-rate">Change your assumed return<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="ui-stage ui-stage--panel assume-stage">
+      <figure class="assume-art">
+        <svg viewBox="0 0 600 240" aria-hidden="true" focusable="false"><path fill="none" stroke="#5F5571" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" d="M30.0 200.0 L57.0 204.2 L78.6 205.0 L100.2 213.7 L121.8 202.1 L143.4 202.4 L170.4 183.4 L192.0 185.2 L213.6 172.8 L240.6 152.9 L262.2 153.9 L289.2 133.3 L310.8 135.7 L332.4 113.8 L359.4 116.0 L381.0 95.4 L408.0 96.6 L429.6 97.1 L456.6 113.3 L478.2 120.9 L499.8 104.1 L521.4 116.8 L543.0 99.0 L570.0 90.0"/><path fill="none" stroke="#1C0F2F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" d="M30.0 200.0 L43.5 198.1 L57.0 196.2 L70.5 194.2 L84.0 192.2 L97.5 190.1 L111.0 187.9 L124.5 185.6 L138.0 183.3 L151.5 180.9 L165.0 178.4 L178.5 175.9 L192.0 173.2 L205.5 170.5 L219.0 167.6 L232.5 164.7 L246.0 161.7 L259.5 158.6 L273.0 155.3 L286.5 152.0 L300.0 148.6 L313.5 145.0 L327.0 141.3 L340.5 137.5 L354.0 133.6 L367.5 129.6 L381.0 125.4 L394.5 121.1 L408.0 116.6 L421.5 112.0 L435.0 107.2 L448.5 102.3 L462.0 97.2 L475.5 92.0 L489.0 86.5 L502.5 80.9 L516.0 75.1 L529.5 69.2 L543.0 63.0 L556.5 56.6 L570.0 50.0"/><circle cx="30" cy="200" r="5" fill="#1C0F2F"/><circle cx="570" cy="50" r="5" fill="#1C0F2F"/><circle cx="570" cy="90" r="5" fill="#5F5571"/></svg>
+        <figcaption class="assume-key">
+          <span><span class="sw sw--line" aria-hidden="true"></span>One steady rate: what the calculator assumes</span>
+          <span><span class="sw sw--soft" aria-hidden="true"></span>Ups and downs: what fund values do</span>
+        </figcaption>
+      </figure>
+      <p class="ui-caption">Illustration, not data. Your SIP's value can fall below what you have put in.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-formula" aria-labelledby="h-formula">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-formula">How is the estimate worked out?</h2>
+      <p>It's the future value of equal monthly instalments, each invested at the start of the month.</p>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-calc"/></svg></span>
+        <h3 class="h3">The formula</h3>
+        <p class="formula">M = P × ({(1 + i)<sup>n</sup> − 1} ÷ i) × (1 + i)</p>
+        <dl class="kv-list kv-list--row formula-keys">
+          <div><dt>M</dt><dd>Estimated value at the end</dd></div>
+          <div><dt>P</dt><dd>Your monthly instalment</dd></div>
+          <div><dt>i</dt><dd>Monthly rate: the yearly return ÷ 12 ÷ 100</dd></div>
+          <div><dt>n</dt><dd>Number of instalments: years × 12</dd></div>
+        </dl>
+        <h3 class="h3">Why the gap grows</h3>
+        <p>Each month's gains are added to your money and earn gains of their own. At a steady return, that is why estimated gains rise faster in later years.</p>
+      </div>
+      <div class="ui-card ui-receipt calc-receipt">
+        <span class="ui-label">Worked example</span>
+        <div class="ui-row"><span>Monthly instalment (P)</span><span>₹5,000</span></div>
+        <div class="ui-row"><span>Assumed return</span><span>12% a year</span></div>
+        <div class="ui-row"><span>Monthly rate (i)</span><span>12 ÷ 12 ÷ 100 = 0.01</span></div>
+        <div class="ui-row"><span>Instalments (n)</span><span>10 × 12 = 120</span></div>
+        <div class="ui-row"><span>(1 + i)<sup>n</sup></span><span>1.01<sup>120</sup> = 3.30039</span></div>
+        <div class="ui-row"><span>Growth factor</span><span>({3.30039 − 1} ÷ 0.01) × 1.01 = 232.339</span></div>
+        <div class="ui-row is-total"><span>Estimated value (M)</span><span>₹5,000 × 232.339 = ₹11,61,695</span></div>
+        <div class="ui-row"><span>You invest</span><span>₹5,000 × 120 = ₹6,00,000</span></div>
+        <div class="ui-row"><span>Estimated gains</span><span>₹11,61,695 − ₹6,00,000 = ₹5,61,695</span></div>
+        <p class="small">The calculator's starting example, line by line, rounded to the rupee.</p>
+        <a class="link" href="#s-hero">Try your own numbers<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-next" aria-labelledby="h-next">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-next">Turn your estimate into a SIP.</h2>
+      <p>This calculator doesn't ask for any details. When you're ready, start with your mobile number.</p>
+    </div>
+    <ol class="steps" style="--cols:3">
+      <li><span class="dot">1</span><h3 class="h3">Open your investing account</h3><p>Start with your mobile number and an OTP, then complete KYC on your phone or computer. No trading account needed. Your number goes to {{reg.wealth.name}}.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: mobile number verified"><div class="ui-row"><span class="ui-label">Mobile number</span><span class="chip chip--gain">Verified</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">Choose a fund category</h3><p>Equity, debt or hybrid: pick what suits your goal and the risk you can take. You choose the schemes.</p>
+        <a class="link" href="/tools/risk-profiler" data-event="tool_switch" data-params="to=risk-profiler">Check your risk profile<svg class="i"><use href="#i-arrow"/></svg></a>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: fund categories to choose from"><span class="ui-label">Fund category</span><div class="chip-row"><span class="chip">Equity</span><span class="chip">Debt</span><span class="chip">Hybrid</span></div></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Set up your SIP</h3><p>Choose your monthly amount. How instalments are collected: <mark class="ph" data-ph="sip-mandate">to confirm</mark>.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: a monthly SIP, amount of your choice"><div class="ui-row"><span class="ui-label">SIP · Monthly</span><span class="chip chip--ink">Regular plan</span></div><b class="num">Amount: you choose</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span>
+        <h3 class="h3">Who sets up your SIP</h3>
+        <p>{{reg.wealth.name}} is a mutual fund distributor, AMFI ARN {{reg.wealth.arn}}.</p>
+        <p>SIPs through ROOT are in regular plans. The fund house pays Aikyam Wealth a commission, included in the plan's expense ratio.</p>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <h3 class="h3">What you pay</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>This calculator</dt><dd>No charge, no sign-up</dd></div>
+          <div><dt>Opening your investing account</dt><dd><mark class="ph" data-ph="wealth-account-charge">charge to confirm</mark></dd></div>
+          <div><dt>Transaction charge</dt><dd><mark class="ph" data-ph="mf-transaction-charge">charge to confirm</mark></dd></div>
+          <div><dt>Fund's running costs (expense ratio)</dt><dd>Set by the fund house, already inside the NAV</dd></div>
+        </dl>
+        <a class="link" href="/pricing">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="band-cta"><a class="btn btn--lg" href="/open-account/investing" data-event="calc_start" data-params="tool=sip&amp;location=s-next">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions about SIPs and this calculator</h2>
+      <p class="lead">Can't find yours? <a href="/contact">Talk to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-user"/></svg><b>Photo: a couple in their early thirties at a dining table, working out a monthly SIP on a laptop</b><span>Art direction: warm evening light, candid, the screen not readable, 4:3</span></figure>
+      <h3 class="label">Other calculators</h3>
+      <div class="faq-links">
+        <a class="link" href="/tools/lumpsum-calculator">Lumpsum calculator<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="link" href="/tools/retirement-calculator">Retirement calculator<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="link" href="/plan/child-education">Child education planning<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="fine">For complaints about mutual fund distribution: <mark class="ph" data-ph="wealth-grievance">email to confirm</mark>. <a href="/legal/grievance-redressal">How we handle complaints</a></p>
+    </div>
+    <div class="faq">
+      <details open><summary>What return should I put in?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>ROOT doesn't suggest a rate or a fund. A scheme's past returns are in its factsheet, but past returns are not a forecast.</p>
+        <p>Try a lower and a higher rate to see how much the estimate depends on it.</p>
+      </div></details>
+      <details open><summary>Can I lose money in a SIP?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Yes. Mutual fund returns are not guaranteed. Your investment's value can go up or down, and can fall below what you put in.</p>
+      </div></details>
+      <details><summary>Does the estimate include tax and inflation?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>No. Tax on gains depends on the type of fund and how long you hold it, and tax rules can change. Current tax treatment: <mark class="ph" data-ph="mf-tax">to confirm with compliance</mark>.</p>
+        <p>Prices also rise over time, so a future amount buys less than it would today.</p>
+      </div></details>
+      <details><summary>How much do I need each month to reach a target?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Raise or lower the monthly amount until the estimated value reaches your target.</p>
+        <p>For a goal with a date, the <a href="/plan/retirement">retirement planner</a> and the <a href="/plan/child-education">child education planner</a> work back from the target.</p>
+      </div></details>
+      <details><summary>What is the minimum SIP amount?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Each scheme sets its own minimum SIP amount, shown in its scheme documents.</p>
+      </div></details>
+      <details><summary>Can I change, pause or stop my SIP later?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>SIPs can be stopped. How and when on ROOT: <mark class="ph" data-ph="sip-change">change, pause and stop options to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Who would set up my SIP, and how are they paid?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>{{reg.wealth.name}}, an AMFI-registered mutual fund distributor (ARN {{reg.wealth.arn}}), sets up SIPs on ROOT in regular plans. The fund house pays it a commission, included in the plan's expense ratio.</p>
+        <p>You can check the ARN yourself on <a href="https://www.amfiindia.com/" rel="noopener">AMFI's website</a>. <a href="/legal/distribution-commission">Read the commission disclosure</a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Mutual funds · {{reg.wealth.name}}</span>
+      <h2 class="d2 node" id="h-final">Your SIP starts with your mobile number.</h2>
+      <p class="lead">Open your investing account on your phone or computer, then choose your funds and set up the SIP.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="/open-account/investing" data-event="calc_start" data-params="tool=sip&amp;location=s-final">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/tools/risk-profiler" data-event="tool_switch" data-params="to=risk-profiler">Check your risk profile</a>
+      </div>
+      <p class="fine">Already investing with ROOT? Set up a new SIP at <mark class="ph" data-ph="wealth-platform">where you invest, to confirm</mark>.</p>
+    </div>
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: investing account active">
+        <span class="ui-label">Investing account</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>KYC verified</span><svg class="i i--sm"><use href="#i-check"/></svg></div>
+        <div class="ui-row"><span>Bank account</span><span>XXXXXX4321</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: setting up a SIP">
+        <span class="ui-label">Start a SIP · Regular plan</span>
+        <span class="ui-big">Monthly SIP</span>
+        <div class="ui-row"><span>Fund</span><b>You choose</b></div>
+        <div class="ui-row"><span>Amount</span><b>You choose</b></div>
+        <span class="ui-pill">Start SIP</span>
+      </div>
+      <p class="ui-caption">Illustrative screens.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p data-draft="calc-not-advice">This calculator gives estimates from the numbers you enter. It is not a recommendation to invest in any scheme.</p>
+        <a class="link" href="/legal/disclosures">All disclosures<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="edited" data-label="Another plan: ₹10,000 a month, 15 years, 10% (result, rows, chart and axis update together, no count-up)">
+<div class="hero-grid hero-grid--calc">
+  <div class="hero-copy">
+    <fieldset class="calc-in">
+      <legend class="sr-only">Your SIP</legend>
+      <div class="calc-row">
+        <div class="top"><label class="flabel" id="st1-l-amount" for="st1-amount">Monthly SIP amount</label><span class="field calc-field"><span class="pre">₹</span><input id="st1-amount" type="text" inputmode="decimal" value="10,000"></span></div>
+        <input class="range" type="range" min="500" max="100000" step="500" value="10000" style="--p:9.5%" aria-labelledby="st1-l-amount">
+      </div>
+      <div class="calc-row">
+        <div class="top"><label class="flabel" id="st1-l-years" for="st1-years">Time period</label><span class="field calc-field calc-field--suf"><input id="st1-years" type="text" inputmode="decimal" value="15"><span class="suf">years</span></span></div>
+        <input class="range" type="range" min="1" max="30" step="1" value="15" style="--p:48%" aria-labelledby="st1-l-years">
+      </div>
+      <div class="calc-row">
+        <div class="top"><label class="flabel" id="st1-l-rate" for="st1-rate">Assumed return, per year</label><span class="field calc-field calc-field--suf"><input id="st1-rate" type="text" inputmode="decimal" value="10"><span class="suf">%</span></span></div>
+        <input class="range" type="range" min="1" max="20" step="0.5" value="10" style="--p:47%" aria-labelledby="st1-l-rate">
+        <p class="small calc-note"><svg class="i i--sm"><use href="#i-info"/></svg>Your assumption, not a forecast. The rate shown is only an example.</p>
+      </div>
+    </fieldset>
+  </div>
+  <div class="ui-stage ui-stage--panel calc-stage">
+    <div class="calc-card">
+      <div class="stack" style="--gap:10px">
+        <p class="label">Estimated value after 15 years</p>
+        <p class="calc-total">₹41,79,243</p>
+      </div>
+      <dl class="calc-split">
+        <div><dt><span class="sw sw--dash" aria-hidden="true"></span>You invest</dt><dd>₹18,00,000</dd></div>
+        <div><dt><span class="sw sw--wash" aria-hidden="true"></span>Estimated gains</dt><dd>₹23,79,243</dd></div>
+      </dl>
+      <p class="xs">Illustrative. Assumes the return stays constant and contributions are made at the start of each month. Mutual fund returns are not guaranteed.</p>
+      <a class="btn btn--lg" href="/open-account/investing">Start a SIP<svg class="i"><use href="#i-arrow"/></svg></a>
+      <div>
+        <p class="fine">Next, you open an investing account with {{reg.wealth.name}}, a mutual fund distributor (AMFI ARN {{reg.wealth.arn}}), starting with your mobile number.</p>
+        <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+      </div>
+    </div>
+    <figure class="calc-chart" style="--inv:.59" aria-label="Chart: what you invest and the estimated value, from now to 15 years">
+      <div class="chart-y" aria-hidden="true"><span>₹45 lakh</span><span>₹30 lakh</span><span>₹15 lakh</span><span>₹0</span></div>
+      <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 10H600M0 70H600M0 130H600" fill="none" stroke="#D1D6DD" stroke-width="1" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"/><path d="M0 190H600" fill="none" stroke="#D1D6DD" stroke-width="1" vector-effect="non-scaling-stroke"/><path fill="#1C0F2F" fill-opacity=".08" d="M0 190.0 L10 188.8 L20 187.5 L30 186.2 L39 184.9 L49 183.6 L59 182.2 L69 180.8 L79 179.3 L89 177.8 L99 176.3 L109 174.8 L118 173.1 L128 171.5 L138 169.8 L148 168.1 L158 166.3 L168 164.5 L178 162.6 L187 160.7 L197 158.8 L207 156.8 L217 154.7 L227 152.6 L237 150.4 L247 148.2 L257 145.9 L266 143.6 L276 141.2 L286 138.8 L296 136.3 L306 133.7 L316 131.0 L326 128.3 L335 125.6 L345 122.7 L355 119.8 L365 116.8 L375 113.7 L385 110.6 L395 107.4 L405 104.1 L414 100.7 L424 97.2 L434 93.7 L444 90.0 L454 86.3 L464 82.4 L474 78.5 L483 74.5 L493 70.3 L503 66.1 L513 61.8 L523 57.3 L533 52.7 L543 48.1 L553 43.3 L562 38.3 L572 33.3 L582 28.1 L592 22.8 L592 118.0Z"/><path fill="none" stroke="#5F5571" stroke-width="2" stroke-dasharray="6 5" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0 190 L592 118.0"/><path fill="none" stroke="#1C0F2F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0 190.0 L10 188.8 L20 187.5 L30 186.2 L39 184.9 L49 183.6 L59 182.2 L69 180.8 L79 179.3 L89 177.8 L99 176.3 L109 174.8 L118 173.1 L128 171.5 L138 169.8 L148 168.1 L158 166.3 L168 164.5 L178 162.6 L187 160.7 L197 158.8 L207 156.8 L217 154.7 L227 152.6 L237 150.4 L247 148.2 L257 145.9 L266 143.6 L276 141.2 L286 138.8 L296 136.3 L306 133.7 L316 131.0 L326 128.3 L335 125.6 L345 122.7 L355 119.8 L365 116.8 L375 113.7 L385 110.6 L395 107.4 L405 104.1 L414 100.7 L424 97.2 L434 93.7 L444 90.0 L454 86.3 L464 82.4 L474 78.5 L483 74.5 L493 70.3 L503 66.1 L513 61.8 L523 57.3 L533 52.7 L543 48.1 L553 43.3 L562 38.3 L572 33.3 L582 28.1 L592 22.8"/><path fill="none" stroke="#C19C2F" stroke-width="9" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M592 22.8h0"/></svg>
+      <div class="chart-ends">
+        <p class="chart-end"><span class="sw sw--line" aria-hidden="true"></span><span>Estimated value<b>₹41,79,243</b></span></p>
+        <p class="chart-end"><span class="sw sw--dash" aria-hidden="true"></span><span>You invest<b>₹18,00,000</b></span></p>
+      </div>
+      <div class="chart-x" aria-hidden="true"><span>Now</span><span>5 years</span><span>10 years</span><span>15 years</span></div>
+    </figure>
+    <details class="calc-years"><summary>See it year by year<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary></details>
+  </div>
+</div>
+</template>
+
+<template data-state="year-table" data-label="Year by year, open (the native details under the chart; the accessible table view of the chart)">
+<div class="ui-stage ui-stage--panel calc-stage">
+  <details class="calc-years" open>
+    <summary>See it year by year<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary>
+    <div class="tablewrap">
+      <table class="data calc-table">
+        <caption>₹5,000 a month at an assumed 12% a year, at the end of each year.</caption>
+        <thead><tr><th scope="col">Year</th><th scope="col" class="r">You invest</th><th scope="col" class="r">Estimated value</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td class="r">₹60,000</td><td class="r">₹64,047</td></tr>
+          <tr><td>2</td><td class="r">₹1,20,000</td><td class="r">₹1,36,216</td></tr>
+          <tr><td>3</td><td class="r">₹1,80,000</td><td class="r">₹2,17,538</td></tr>
+          <tr><td>4</td><td class="r">₹2,40,000</td><td class="r">₹3,09,174</td></tr>
+          <tr><td>5</td><td class="r">₹3,00,000</td><td class="r">₹4,12,432</td></tr>
+          <tr><td>6</td><td class="r">₹3,60,000</td><td class="r">₹5,28,785</td></tr>
+          <tr><td>7</td><td class="r">₹4,20,000</td><td class="r">₹6,59,895</td></tr>
+          <tr><td>8</td><td class="r">₹4,80,000</td><td class="r">₹8,07,633</td></tr>
+          <tr><td>9</td><td class="r">₹5,40,000</td><td class="r">₹9,74,108</td></tr>
+          <tr><td>10</td><td class="r">₹6,00,000</td><td class="r">₹11,61,695</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+</template>
+
+<template data-state="amount-error" data-label="Error: amount outside the range (the result keeps the last valid estimate until the field is fixed)">
+<fieldset class="calc-in">
+  <legend class="sr-only">Your SIP</legend>
+  <div class="calc-row fgroup is-error">
+    <div class="top"><label class="flabel" id="st3-l-amount" for="st3-amount">Monthly SIP amount</label><span class="field calc-field"><span class="pre">₹</span><input id="st3-amount" type="text" inputmode="decimal" value="200" aria-invalid="true" aria-describedby="st3-err"></span></div>
+    <input class="range" type="range" min="500" max="100000" step="500" value="500" style="--p:0%" aria-labelledby="st3-l-amount">
+    <span class="fhelp" id="st3-err">Enter an amount between ₹500 and ₹1,00,000.</span>
+  </div>
+  <div class="calc-row">
+    <div class="top"><label class="flabel" id="st3-l-years" for="st3-years">Time period</label><span class="field calc-field calc-field--suf"><input id="st3-years" type="text" inputmode="decimal" value="10"><span class="suf">years</span></span></div>
+    <input class="range" type="range" min="1" max="30" step="1" value="10" style="--p:31%" aria-labelledby="st3-l-years">
+  </div>
+</fieldset>
+</template>
+
+<template data-state="rate-error" data-label="Error: assumed return outside the range">
+<fieldset class="calc-in">
+  <legend class="sr-only">Your SIP</legend>
+  <div class="calc-row fgroup is-error">
+    <div class="top"><label class="flabel" id="st4-l-rate" for="st4-rate">Assumed return, per year</label><span class="field calc-field calc-field--suf"><input id="st4-rate" type="text" inputmode="decimal" value="25" aria-invalid="true" aria-describedby="st4-err"><span class="suf">%</span></span></div>
+    <input class="range" type="range" min="1" max="20" step="0.5" value="20" style="--p:100%" aria-labelledby="st4-l-rate">
+    <span class="fhelp" id="st4-err">Enter a return between 1% and 20%.</span>
+    <p class="small calc-note"><svg class="i i--sm"><use href="#i-info"/></svg>Your assumption, not a forecast. The rate shown is only an example.</p>
+  </div>
+</fieldset>
+</template>
+
+<template data-state="slider-focus" data-label="Keyboard focus on the return slider: focus ring on the thumb, its field highlighted (arrow keys move 0.5 at a time)">
+<fieldset class="calc-in">
+  <legend class="sr-only">Your SIP</legend>
+  <div class="calc-row is-focus">
+    <div class="top"><label class="flabel" id="st5-l-rate" for="st5-rate">Assumed return, per year</label><span class="field calc-field calc-field--suf"><input id="st5-rate" type="text" inputmode="decimal" value="12.5"><span class="suf">%</span></span></div>
+    <input class="range" type="range" min="1" max="20" step="0.5" value="12.5" style="--p:60.5%" aria-labelledby="st5-l-rate">
+    <p class="small calc-note"><svg class="i i--sm"><use href="#i-info"/></svg>Your assumption, not a forecast. The rate shown is only an example.</p>
+  </div>
+</fieldset>
+</template>

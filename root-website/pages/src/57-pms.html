@@ -1,0 +1,386 @@
+<!--page {"title": "PMS: portfolio management services, coming soon | ROOT by Aikyam",
+          "description": "PMS strategies from third-party SEBI-registered portfolio managers, empanelled for distribution by Aikyam Wealth. SEBI minimum {{pms.minimum}}. Coming soon.",
+          "query": "portfolio management services",
+          "lint_allow": []} -->
+<style data-page>
+/* 57 PMS v1 (golden, template H). Tokens only. Reusable pieces are named in memory section 7 for promotion. */
+
+/* hero under a breadcrumb: a tighter top so the bar sits higher in the first screen (as 03); the lead keeps the minimum on one line */
+.page-pms .hero{padding-top:40px}
+.page-pms .hero-copy .lead{text-wrap:pretty}
+.nb{white-space:nowrap}
+
+/* Label row (candidate pattern, template H): the eyebrow naming the company and the Coming soon badge on one line
+   directly above the h1; the badge wraps under the eyebrow on narrow columns */
+.label-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px}
+
+/* Set-up stage (candidate pattern, template H): the hub hero's product stage with a set-up card in the phone's slot
+   (four label-value rows: how the product is set up) and two outcome cards (what the button does) at its top and foot */
+.hero-stage:has(> .setup-card){min-height:480px}
+.hero-stage:has(> .setup-card) .stage-cards{flex-basis:212px; padding-block:4px; justify-content:space-between}
+.hero-stage > .setup-card{position:relative; z-index:1; flex:none; width:328px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.setup-card .ui-head{padding-bottom:14px}
+.setup-card .ui-head .ui-label{padding-bottom:0}
+.setup-card .ui-big{font-size:1.25rem}
+/* rows stack a small grey label over a bold value, so long answers never wrap against a label */
+.setup-card .ui-row{flex-direction:column; align-items:flex-start; gap:2px; padding-block:11px}
+.setup-card .ui-row span{font-size:var(--fs-xs); color:var(--aub-60)}
+.setup-card .ui-row b{font-weight:600}
+/* Outcome cards (candidate pattern): label, bold status and a chip; no rows, so two fit side by side on phones */
+.outcome-card{gap:8px}
+.outcome-card .chip{align-self:flex-start}
+
+/* s-roles: identity facts left, the "Who does what" card right on the Mist band (no stage panel), centred */
+.split--roles{align-items:center}
+#s-roles .facts{gap:22px}
+.roles-card{gap:16px; padding:28px}
+.roles-card .kv-list--row dt{color:var(--aub-80)}
+.roles-card .kv-list--row dd{color:var(--aub); font-weight:600}
+.roles-card .fine{max-width:none}
+
+/* s-next: the h2 runs the full wrap width, so its last word does not sit alone (as 03 s-fo) */
+.page-pms #s-next .head{max-width:none}
+
+/* s-fit: the minimum tile's link sits at the foot of the tile */
+#s-fit .stat-tile .link{margin-top:auto; padding-top:6px}
+#s-fit .info-card .link{margin-top:4px}
+
+/* s-today: label above the h3 (wrapped lines keep their air), the action and its risk line follow the copy */
+.today-card .label{margin-top:4px; line-height:1.4}
+.today-card .card-foot{display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding-top:8px}
+
+/* phones: full-width wrapping buttons (as 03), outcome cards side by side, risk box with the icon above the text */
+@media (max-width: 640px){
+  .page-pms .hero{padding-top:24px}
+  .hero-stage:has(> .setup-card){min-height:0}
+  .hero-stage:has(> .setup-card) .stage-cards{flex-basis:auto}
+  .hero-stage > .setup-card{width:min(320px, 100%)}
+  .page-pms main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
+  .roles-card{padding:20px}
+  .page-pms .risk-box{grid-template-columns:1fr; padding:20px}
+}
+</style>
+
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--stage">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <div class="label-row">
+        <span class="eyebrow">Portfolio management services · {{reg.wealth.name}}</span>
+        <span class="soon">Coming soon</span>
+      </div>
+      <h1 class="d1" id="h-hero">Your own portfolio, <em>professionally managed.</em></h1>
+      <p class="lead">Strategies from third-party, SEBI-registered portfolio managers, empanelled for distribution on ROOT, for investments of <span class="nb">{{pms.minimum}}</span> or more.</p>
+      <div class="notify" id="s-notify">
+        <form class="hero-form" id="notify-form" method="post" data-event="notify_signup" data-product="pms" data-form-entity="Aikyam Wealth">
+          <div class="leadbar">
+            <label class="field" for="notify-mob"><span class="pre">+91</span><input id="notify-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" required></label>
+            <button class="btn btn--lg" type="submit" data-primary>Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></button>
+          </div>
+          <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth-request">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this request.</span></label>
+          <div class="hero-fine">
+            <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its wealth team can call you about PMS.</p>
+            <p class="fine">PMS is not yet available on ROOT. We will also tell you when it is live.</p>
+          </div>
+        </form>
+      </div>
+      <div class="hero-alt">
+        <a class="link" href="#s-fit">Is PMS right for you?<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="creds creds--row">
+        <li><svg class="i"><use href="#i-shield"/></svg><div>Third-party portfolio managers<span>Each registered with SEBI</span></div></li>
+        <li><svg class="i"><use href="#i-rupee"/></svg><div>Minimum {{pms.minimum}}<span>SEBI's minimum for PMS</span></div></li>
+        <li><svg class="i"><use href="#i-handshake"/></svg><div>Distributed by Aikyam Wealth<span>Part of Aikyam Capital Group</span></div></li>
+      </ul>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-stage" role="img" aria-label="Illustrative: how a PMS account is set up, and what happens when you ask for a call">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-hero"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-hero)"/></svg>
+        <div class="ui-card ui-list setup-card">
+          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-pms"/></svg></span><span class="ui-label">How your PMS account is set up</span></div>
+          <b class="ui-big">Example Equity Strategy</b>
+          <div class="ui-row"><span>Managed by</span><b>Example Portfolio Managers Ltd</b></div>
+          <div class="ui-row"><span>Held in</span><b>A demat account in your name</b></div>
+          <div class="ui-row"><span>Your agreement</span><b>With the portfolio manager</b></div>
+          <div class="ui-row"><span>Distributed by</span><b>Aikyam Wealth</b></div>
+        </div>
+        <div class="stage-cards">
+          <div class="ui-card outcome-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-phone"/></svg></span><span class="ui-label">Wealth team</span></div>
+            <b class="ui-name">Call requested</b>
+            <span class="chip chip--gain">Received</span>
+          </div>
+          <div class="ui-card outcome-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-bell"/></svg></span><span class="ui-label">PMS on ROOT</span></div>
+            <b class="ui-name">Launch alert on</b>
+            <span class="chip">Coming soon</span>
+          </div>
+        </div>
+      </div>
+      <p class="illus">Illustrative. Example names, not real portfolio managers or strategies.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-roles" aria-labelledby="h-roles">
+  <div class="wrap split split--roles">
+    <div class="stack" style="--gap:24px">
+      <h2 class="d2 node" id="h-roles">Who manages your money?</h2>
+      <p class="lead">A SEBI-registered portfolio manager runs each strategy. Aikyam Wealth distributes it and helps you apply. It does not manage your portfolio or hold your money.</p>
+      <ul class="facts">
+        <li><span class="tile"><svg class="i"><use href="#i-pms"/></svg></span><div class="fact-text"><b>The portfolio manager</b><p>A third-party firm registered with SEBI. Your agreement is with this firm.</p>
+          <div class="links">
+            <a class="link link--wrap" href="https://www.sebi.gov.in/" rel="noopener">Check registrations on SEBI's <span class="link-tail">website<svg class="i"><use href="#i-ne"/></svg></span></a>
+          </div></div></li>
+        <li><span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span><div class="fact-text"><b>Aikyam Wealth</b><p>A distributor of PMS strategies, and part of Aikyam Capital Group.</p></div></li>
+        <li><span class="tile"><svg class="i"><use href="#i-user"/></svg></span><div class="fact-text"><b>You</b><p>The investor, and the owner of the portfolio.</p></div></li>
+      </ul>
+    </div>
+    <div class="info-card roles-card">
+      <h3 class="h3">Who does what</h3>
+      <dl class="kv-list kv-list--row">
+        <div><dt>Picks and manages the investments</dt><dd>The portfolio manager</dd></div>
+        <div><dt>Holds your shares and securities</dt><dd>A demat account in your name</dd></div>
+        <div><dt>Sets the fees and exit load</dt><dd>The portfolio manager, in your agreement</dd></div>
+        <div><dt>Chooses your strategy</dt><dd>You, after reading its disclosure document</dd></div>
+        <div><dt>Introduces strategies and helps you apply</dt><dd>Aikyam Wealth</dd></div>
+        <div><dt>Reports on your portfolio</dt><dd>The portfolio manager</dd></div>
+      </dl>
+      <p class="fine">When PMS is live, each strategy names its portfolio manager and SEBI registration number.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-fit" aria-labelledby="h-fit">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-fit">Is PMS right for you?</h2>
+      <p>What to know before you talk to us.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <span class="label">Minimum investment · SEBI</span>
+        <div class="num">{{pms.minimum}}</div>
+        <p>The least you can invest with a portfolio manager.</p>
+        <a class="link" href="#s-today">Investing less? See what's open today<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>
+        <span class="label">Fees · each portfolio manager</span>
+        <div class="num num--word">In your agreement</div>
+        <p>Fixed, linked to performance, or both. Each strategy's fees: <mark class="ph" data-ph="pms-fees">to confirm per strategy</mark>.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-cal"/></svg></span>
+        <span class="label">Exit load and lock-in · each strategy</span>
+        <div class="num"><mark class="ph" data-ph="pms-exit-load">to confirm</mark></div>
+        <p>What you pay to leave early, and any minimum period, from the strategy's disclosure document.</p>
+      </div>
+    </div>
+    <div class="price-notes">
+      <p class="fine">Who can invest, in detail: <a href="/invest/pms/eligibility">PMS eligibility</a></p>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-info"/></svg></span>
+        <h3 class="h3">The risk</h3>
+        <p>PMS invests in shares and other securities. Your portfolio can fall in value as well as rise. Returns are not guaranteed.</p>
+        <p>Read each strategy's disclosure document before you invest.</p>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-handshake"/></svg></span>
+        <h3 class="h3">How Aikyam Wealth is paid</h3>
+        <p>The portfolio manager pays Aikyam Wealth for distributing its strategy. <mark class="ph" data-ph="pms-distributor-fee">How it is worked out and shown to you, to confirm</mark>.</p>
+        <a class="link" href="/legal/distribution-commission">Read the commission disclosure<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-next" aria-labelledby="h-next">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-next">What happens after you leave your number?</h2>
+      <p>PMS is coming soon to ROOT: <mark class="ph" data-ph="pms-launch">launch timing to confirm</mark>.</p>
+    </div>
+    <ol class="steps" style="--cols:3">
+      <li><span class="dot">1</span><h3 class="h3">We call you</h3><p>The Aikyam Wealth team calls to answer your questions about PMS.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: call requested from the wealth team, received"><div class="ui-row"><span class="ui-label">Wealth team</span><span class="chip chip--gain">Received</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">You hear when it is live</h3><p>We tell you by SMS or WhatsApp when PMS strategies open on ROOT.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: launch alert on for PMS on ROOT"><div class="ui-row"><span class="ui-label">PMS on ROOT</span><span class="chip">Coming soon</span></div><b>Launch alert on</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Read, choose and sign</h3><p>Read a strategy's disclosure document, choose, then sign your agreement with the portfolio manager and complete your KYC.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: a strategy's disclosure document, read"><div class="ui-row"><span class="ui-label">Disclosure document</span><span class="chip">Read</span></div><b>Example Equity Strategy</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps are indicative and will be confirmed when PMS opens on ROOT.</p>
+    <div class="band-cta"><a class="btn" href="#s-notify">Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-today" aria-labelledby="h-today">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-today">What can you do on ROOT today?</h2>
+      <p>While PMS is on its way, these are open now.</p>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card today-card">
+        <span class="tile"><svg class="i"><use href="#i-mf"/></svg></span>
+        <span class="label">Mutual funds · {{reg.wealth.name}}</span>
+        <h3 class="h3">Invest in mutual funds</h3>
+        <p>Regular plans across equity, debt and hybrid categories, with a SIP or all at once.</p>
+        <div class="card-foot">
+          <a class="btn btn--ghost" href="/open-account/investing" data-event="switch_to_investing">Start investing<svg class="i"><use href="#i-arrow"/></svg></a>
+          <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        </div>
+      </div>
+      <div class="info-card today-card">
+        <span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span>
+        <span class="label">Trading and demat · {{reg.capital.name}}</span>
+        <h3 class="h3">Buy shares, ETFs and IPOs</h3>
+        <p>Open a trading and demat account and invest on NSE and BSE.</p>
+        <div class="card-foot">
+          <a class="link" href="/trade">See what you can trade<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions about PMS.</h2>
+      <p class="lead">Can't find yours? <a href="#s-notify">Leave your number</a> and the wealth team will call you.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-doc"/></svg><b>Photo: a business owner in her late forties at her office desk, reading a printed disclosure document</b><span>Shot for ROOT with a model release. Daylight, calm, aubergine accents, crop 4:3. No charts, no trading screens, no luxury props.</span></figure>
+      <a class="link" href="/learn/guides/pms">Read the PMS guide<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+      <p class="fine">For complaints about distribution: <mark class="ph" data-ph="wealth-grievance">email to confirm</mark></p>
+    </div>
+    <div class="faq">
+      <details open><summary>Is this Aikyam's own PMS?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>No. {{reg.wealth.name}} distributes PMS strategies from third-party portfolio managers registered with SEBI, empanelled for distribution. It does not manage your portfolio.</p>
+        <p>How Aikyam Wealth chooses the managers it distributes: <mark class="ph" data-ph="pms-empanelment">to confirm</mark>.</p>
+      </div></details>
+      <details open><summary>How is PMS different from a mutual fund?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>In a mutual fund, you own units of a fund shared with other investors. In PMS, the shares are held in your own account, and the portfolio manager manages them for you.</p>
+        <p>PMS has a SEBI minimum of {{pms.minimum}}. A mutual fund's minimum is set by each scheme. Both carry market risk.</p>
+      </div></details>
+      <details><summary>Where is my money held, and do I need another account?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Your shares and other securities are held in a demat account in your name, and your agreement is with the portfolio manager.</p>
+        <p><mark class="ph" data-ph="pms-demat">Who opens the demat account, whether you need another account, and where you pay in, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Where can I see how a strategy has performed?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>ROOT does not show PMS returns on this page. <mark class="ph" data-ph="pms-performance-source">Where each portfolio manager's reported performance can be checked, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can I invest with shares I already hold?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>This depends on each strategy's terms: <mark class="ph" data-ph="pms-securities-in">whether shares are accepted instead of cash, and how they count towards the minimum, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can NRIs invest in PMS through ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>It depends on the strategy and on your residency: <mark class="ph" data-ph="pms-nri">to confirm</mark>.</p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:22px">
+      <span class="eyebrow">PMS · {{reg.wealth.name}}</span>
+      <h2 class="d2 node" id="h-final">Talk to the wealth team about PMS.</h2>
+      <p class="lead">Leave your number and we will call you, and tell you when PMS is live.</p>
+      <div class="final-actions">
+        <a class="btn btn--light btn--lg" href="#s-notify">Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/open-account/investing" data-event="switch_to_investing">Start investing</a>
+      </div>
+      <div class="hero-fine">
+        <p class="fine">PMS strategies are managed by third-party portfolio managers registered with SEBI and distributed by {{reg.wealth.name}}.</p>
+        <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+      </div>
+    </div>
+    <figure class="img-slot final-visual" style="--ar:4/5"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the Aikyam Wealth team on a call at the Mumbai office</b><span>Real Aikyam staff, after a shoot. Daylight, unhurried, notebook open; aubergine and white in frame. Crop 4:5.</span></figure>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
+        <p>PMS strategies on ROOT are empanelled for distribution by {{reg.wealth.name}} and managed by third-party portfolio managers registered with SEBI.</p>
+        <div class="ph ph--block" data-ph="pms-disclaimer">Client text: PMS risk statement and distributor disclosures from Aikyam compliance</div>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN {{reg.wealth.arn}}). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <a class="link" href="/legal/disclosures">See all disclosures<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<form class="hero-form">
+  <div class="fgroup is-error">
+    <div class="leadbar">
+      <label class="field" for="ps1-mob"><span class="pre">+91</span><input id="ps1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-label="Mobile number" aria-invalid="true" aria-describedby="ps1-err"></label>
+      <button class="btn btn--lg" type="submit">Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></button>
+    </div>
+    <span class="fhelp" id="ps1-err">Enter a 10-digit mobile number.</span>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth-request">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this request.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its wealth team can call you about PMS.</p>
+    <p class="fine">PMS is not yet available on ROOT. We will also tell you when it is live.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ps2-mob"><span class="pre">+91</span><input id="ps2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg" type="submit">Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <div class="fgroup is-error">
+    <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="ps2-err"><span data-draft="consent-wealth-request">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this request.</span></label>
+    <span class="fhelp" id="ps2-err">Tick the box so the wealth team can call you.</span>
+  </div>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its wealth team can call you about PMS.</p>
+    <p class="fine">PMS is not yet available on ROOT. We will also tell you when it is live.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="submitting" data-label="Button pressed, sending the request (button loading)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ps3-mob"><span class="pre">+91</span><input id="ps3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Talk to the wealth team<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent-wealth-request">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this request.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its wealth team can call you about PMS.</p>
+    <p class="fine">PMS is not yet available on ROOT. We will also tell you when it is live.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="success" data-label="Success: request received; the visitor stays on the page (no OTP); the bar is replaced by this message">
+<div class="hero-form">
+  <div class="alert alert--ok" role="status"><svg class="i"><use href="#i-check"/></svg><div><b>Thank you. The Aikyam Wealth team will call you on +91 98XXXXXX21.</b>We will also tell you when PMS is live on ROOT.</div></div>
+  <a class="link" href="/invest/mutual-funds">Meanwhile, see mutual funds<svg class="i"><use href="#i-arrow"/></svg></a>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.wealth.name}}, AMFI ARN {{reg.wealth.arn}}, so its wealth team can call you about PMS.</p>
+    <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+  </div>
+</div>
+</template>
+
+<template data-state="already-listed" data-label="This number is already on the list (a second request from the same number)">
+<div class="hero-form">
+  <div class="alert alert--info" role="status"><svg class="i"><use href="#i-info"/></svg><div><b>This number is already on our list.</b>The wealth team will be in touch.</div></div>
+  <a class="link" href="#s-notify">Use a different number<svg class="i"><use href="#i-arrow"/></svg></a>
+</div>
+</template>

@@ -1,0 +1,1847 @@
+<!doctype html>
+<!-- ROOT by Aikyam · page 29 of 75 · Scheme Detail (example) · page · template B · entity Wealth
+     Built 12-Oct-2026 from pages/src/29-scheme-detail.html · page memory: memory/pages/29-scheme-detail.md
+     DRAFT for design review and Figma import. Exchange advertisement filing: required before publication (not filed).
+     Not for publication until Aikyam compliance approves. -->
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Example Flexi Cap Fund: NAV, returns and risk | ROOT by Aikyam</title>
+<meta name="description" content="See Example Flexi Cap Fund&#x27;s NAV, returns against its benchmark, riskometer, costs and holdings. Invest through Aikyam Wealth, an AMFI-registered distributor.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Red+Hat+Mono:wght@500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
+<style>
+/* ROOT by Aikyam · website theme v1
+   Layout: a 1200px column on white and Mist bands; a 1px gold "root line" runs down the left gutter and every section heading sits on a node.
+   Single light world by decision (light and calm). Colours are set explicitly so the page reads the same on any host theme. */
+:root{
+  color-scheme: light;
+  /* colour: from the ROOT logo files */
+  --aub:#1C0F2F;          /* ink: every heading, button and icon */
+  --aub-80:#3A2E4B;       /* body copy */
+  --aub-60:#5F5571;       /* secondary copy, captions */
+  --aub-08:rgba(28,15,47,.08);
+  --aub-04:rgba(28,15,47,.04);
+  --teal:#0C2229;
+  --gold:#C19C2F;         /* spark only: mark, root line, nodes, one icon detail */
+  --gold-deep:#A38125;
+  --gold-wash:#F8F2E2;
+  --paper:#FFFFFF;
+  --mist:#F3F5F8;         /* section band, from logo grey #E2E8EF */
+  --mist-2:#E9EDF2;
+  --line:#E2E8EF;         /* hairlines, logo light grey */
+  --line-2:#D1D6DD;       /* control borders, logo mid grey */
+  --gain:#0B7A55; --gain-bg:#E6F4EE;
+  --loss:#B4352B; --loss-bg:#FBEDEB;
+  --warn:#7A5A0E; --warn-bg:#FBF4E2;
+  --info-bg:#EEF0F6;
+  --on-dark:#F4F1F7; --on-dark-2:#C9C1D4; --dark-line:rgba(226,232,239,.18);
+  --grad:linear-gradient(100deg,#1C0F2F 0%,#170C27 48%,#0C2229 100%);
+
+  /* type */
+  --serif:"Tiro Devanagari Hindi", "Noto Serif Devanagari", Georgia, "Times New Roman", serif;
+  --sans:"Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"Red Hat Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-d1:clamp(2.45rem, 1.35rem + 3.4vw, 4rem);
+  --fs-d2:clamp(1.9rem, 1.35rem + 1.7vw, 2.65rem);
+  --fs-d3:clamp(1.45rem, 1.2rem + .7vw, 1.75rem);
+  --fs-h3:1.2rem;
+  --fs-lead:1.2rem;
+  --fs-body:1.0625rem;
+  --fs-sm:.9375rem;
+  --fs-xs:.8125rem;
+
+  /* shape and depth */
+  --r-card:16px; --r-ctl:10px; --r-tile:12px; --r-pill:999px;
+  --shadow-1:0 1px 2px rgba(28,15,47,.05), 0 8px 24px -6px rgba(28,15,47,.10);
+  --shadow-2:0 2px 4px rgba(28,15,47,.06), 0 20px 44px -10px rgba(28,15,47,.20);
+  --shadow-pop:0 2px 6px rgba(28,15,47,.08), 0 24px 56px -12px rgba(28,15,47,.28);
+
+  /* space */
+  --gutter:clamp(20px, 5vw, 64px);
+  --wrap:min(1200px, 100% - 2 * var(--gutter));
+  --section-y:clamp(64px, 8.5vw, 112px);
+  --spine-x:calc((100% - var(--wrap)) / 2 - 36px);
+
+  /* motion */
+  --ease-state:cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter:cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:150ms; --t-base:200ms; --t-enter:450ms;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{margin:0; background:var(--paper); color:var(--aub-80); font:400 var(--fs-body)/1.6 var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+::selection{background:var(--gold-wash); color:var(--aub)}
+img,svg{display:block; max-width:100%}
+a{color:var(--aub); text-decoration-color:rgba(193,156,47,.6); text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{text-decoration-color:var(--aub)}
+:focus-visible{outline:2px solid var(--aub); outline-offset:3px; border-radius:6px}
+h1,h2,h3,h4{color:var(--aub); margin:0; text-wrap:balance}
+p{margin:0; text-wrap:pretty}
+ul,ol{margin:0; padding:0}
+button{font:inherit; color:inherit}
+html{scrollbar-color:var(--line-2) transparent}
+.num,.tnum{font-variant-numeric:tabular-nums lining-nums}
+.sr-only{position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* layout */
+.wrap{width:var(--wrap); margin-inline:auto}
+.band{padding-block:var(--section-y); position:relative}
+.band--mist{background:var(--mist)}
+.band--tight{padding-block:clamp(40px, 5vw, 64px)}
+.band--dark{background:var(--grad); color:var(--on-dark-2)}
+.band--dark h2,.band--dark h3{color:var(--on-dark)}
+.stack{display:grid; gap:var(--gap, 16px); align-content:start}
+.head{display:grid; gap:14px; max-width:46rem; margin-bottom:clamp(32px, 4vw, 48px)}
+.head p{font-size:var(--fs-lead); color:var(--aub-60); max-width:40rem}
+.split{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); gap:clamp(32px, 6vw, 96px); align-items:start}
+.split > *{min-width:0}
+
+/* type */
+.d1,.d2,.d3{color:var(--aub)}
+.d1{font:400 var(--fs-d1)/1.04 var(--serif); letter-spacing:-.018em}
+.d2{font:400 var(--fs-d2)/1.12 var(--serif); letter-spacing:-.012em}
+.d3{font:400 var(--fs-d3)/1.2 var(--serif); letter-spacing:-.008em}
+.d1 em,.d2 em{font-style:italic}
+.h3{font:600 var(--fs-h3)/1.3 var(--sans); color:var(--aub); letter-spacing:-.005em}
+.lead{font-size:var(--fs-lead); line-height:1.55; color:var(--aub-80)}
+.small{font-size:var(--fs-sm); line-height:1.5}
+.xs{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
+.label{font:600 .75rem/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60)}
+.illus{font-size:var(--fs-xs); color:var(--aub-60); display:flex; gap:6px; align-items:center}
+.illus::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--gold); flex:none}
+
+/* icons */
+.i{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex:none}
+.i .sp,.sp{fill:var(--gold); stroke:none}
+.i--sm{width:18px; height:18px}
+.i--lg{width:28px; height:28px}
+.tile{width:48px; height:48px; border-radius:var(--r-tile); background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.band--mist .tile{background:var(--paper)}
+
+/* root line spine */
+.spine{position:relative}
+.root-line{position:absolute; top:0; bottom:0; left:var(--spine-x); width:1px; pointer-events:none; z-index:3}
+.root-line::before{content:""; position:absolute; inset:0; background:rgba(193,156,47,.22)}
+.root-line i{position:absolute; inset:0; background:var(--gold); transform-origin:top; transform:scaleY(var(--grow, 1))}
+.root-seed{position:absolute; left:var(--spine-x); top:6px; width:22px; transform:translateX(-50%); z-index:4}
+.node{position:relative}
+.node::before{content:""; position:absolute; left:-36px; top:.5em; width:11px; height:11px; border-radius:50%; transform:translate(-50%, -50%); background:var(--paper); box-shadow:inset 0 0 0 1.5px var(--gold); transition:background-color var(--t-base) var(--ease-state); z-index:4}
+.band--mist .node::before{background:var(--mist)}
+.node.is-reached::before,.no-spine-motion .node::before{background:var(--gold)}
+.band--dark .node::before{background:#170C27}
+.band--dark .node.is-reached::before{background:var(--gold)}
+@media (max-width: 899px){
+  :root{--spine-x:8px}
+  .root-seed{display:none}
+  .node::before{left:calc(8px - var(--gutter)); width:7px; height:7px}
+}
+
+/* announcement */
+.announce{background:var(--mist); font-size:var(--fs-sm); color:var(--aub-80)}
+.announce .wrap{display:flex; gap:10px; align-items:center; justify-content:center; padding-block:9px; text-align:center}
+.announce svg{width:12px; flex:none}
+
+/* header */
+.site-head{position:sticky; top:env(safe-area-inset-top, 0px); z-index:40; background:rgba(255,255,255,.96); border-bottom:1px solid transparent; transition:border-color var(--t-base) var(--ease-state), box-shadow var(--t-base) var(--ease-state)}
+.site-head.is-stuck{border-bottom-color:var(--line); box-shadow:0 6px 24px -18px rgba(28,15,47,.4)}
+.site-head .wrap{display:flex; align-items:center; gap:28px; height:72px}
+.brand{display:block; width:104px; flex:none}
+.brand svg{width:100%; height:auto}
+.mainnav{display:flex; gap:2px; align-items:center; flex:1}
+.mainnav > div{position:relative}
+.navlink{display:inline-flex; align-items:center; gap:4px; padding:10px 12px; border:0; background:none; border-radius:8px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub); text-decoration:none; cursor:pointer; white-space:nowrap}
+.navlink .i{width:16px; height:16px; transition:transform var(--t-base) var(--ease-state)}
+.navlink:hover{background:var(--mist)}
+.navlink[aria-expanded="true"]{background:var(--mist)}
+.navlink[aria-expanded="true"] .i{transform:rotate(180deg)}
+.head-actions{display:flex; gap:10px; align-items:center; margin-left:auto}
+.iconbtn{width:42px; height:42px; display:grid; place-items:center; border-radius:var(--r-ctl); border:0; background:none; color:var(--aub); cursor:pointer}
+.iconbtn:hover{background:var(--mist)}
+.menu-btn{display:none}
+
+/* mega menu */
+.mega{position:absolute; left:0; top:calc(100% + 10px); width:min(720px, 80vw); background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-pop); padding:24px; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px 24px; opacity:0; visibility:hidden; transform:translateY(-4px) scale(.98); transform-origin:top left; transition:opacity 120ms var(--ease-state), transform 120ms var(--ease-state), visibility 0s linear 120ms}
+.mega.is-open{opacity:1; visibility:visible; transform:none; transition:opacity 180ms var(--ease-state), transform 180ms var(--ease-state), visibility 0s}
+.mega .mh{margin:0; font:600 .75rem/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60); padding:8px 10px 10px}
+.mega a{display:flex; gap:10px; align-items:center; padding:9px 10px; border-radius:var(--r-ctl); text-decoration:none; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.mega a:hover{background:var(--mist)}
+.mega a .i{width:20px; height:20px; color:var(--aub)}
+.mega .soon{margin-left:auto}
+.mega-foot{grid-column:1/-1; margin-top:10px; padding:14px 10px 2px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; align-items:center; font-size:var(--fs-sm)}
+
+/* buttons */
+.btn{--bg:var(--aub); --fg:#fff; display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 22px; border-radius:var(--r-ctl); border:1px solid transparent; background:var(--bg); color:var(--fg); font:600 1rem/1 var(--sans); text-decoration:none; cursor:pointer; white-space:nowrap; transition-property:background-color, border-color, color, box-shadow, scale; transition-duration:var(--t-fast); transition-timing-function:var(--ease-state)}
+.btn:hover{--bg:#2E1F45}
+.btn:active{scale:.96}
+.btn .i{width:18px; height:18px; margin-right:-4px}
+.btn--sm{min-height:40px; padding:0 16px; font-size:var(--fs-sm)}
+.btn--lg{min-height:56px; padding:0 28px; font-size:1.0625rem}
+.btn--ghost{--bg:transparent; --fg:var(--aub); border-color:var(--line-2)}
+.btn--ghost:hover{--bg:var(--mist); border-color:var(--aub-60)}
+.btn--soft{--bg:var(--mist); --fg:var(--aub)}
+.btn--soft:hover{--bg:var(--mist-2)}
+.btn--light{--bg:#fff; --fg:var(--aub)}
+.btn--light:hover{--bg:var(--mist)}
+.btn--outline-light{--bg:transparent; --fg:var(--on-dark); border-color:rgba(244,241,247,.4)}
+.btn--outline-light:hover{--bg:rgba(244,241,247,.08); border-color:var(--on-dark)}
+.btn[disabled],.btn[aria-disabled="true"]{--bg:var(--mist-2); --fg:var(--aub-60); cursor:not-allowed; scale:1}
+.btn.is-loading{color:transparent; position:relative}
+.btn.is-loading::after{content:""; position:absolute; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.link{display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--aub); text-decoration:none}
+.link .i{width:18px; height:18px; transition:transform var(--t-base) var(--ease-state)}
+.link:hover .i{transform:translateX(3px)}
+.link:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+
+/* chips and badges */
+.chip{display:inline-flex; align-items:center; gap:6px; min-height:28px; padding:0 11px; border-radius:var(--r-pill); font:500 .8125rem/1 var(--sans); background:var(--mist); color:var(--aub); white-space:nowrap}
+.chip--gold{background:var(--gold-wash); color:var(--warn)}
+.chip--gain{background:var(--gain-bg); color:var(--gain)}
+.chip--loss{background:var(--loss-bg); color:var(--loss)}
+.chip--line{background:transparent; box-shadow:inset 0 0 0 1px var(--line-2)}
+.chip--dark{background:rgba(244,241,247,.1); color:var(--on-dark)}
+.soon{display:inline-flex; align-items:center; gap:5px; padding:3px 8px; border-radius:var(--r-pill); background:var(--gold-wash); color:var(--warn); font:600 .75rem/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; white-space:nowrap}
+.soon::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--gold)}
+.chg{font-weight:600; font-variant-numeric:tabular-nums}
+.chg.up{color:var(--gain)} .chg.down{color:var(--loss)}
+
+/* hero */
+.hero{padding-block:clamp(40px, 6vw, 80px) clamp(48px, 6vw, 88px); overflow:hidden}
+.hero-grid{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(32px, 5vw, 72px); align-items:center}
+.hero-copy{display:grid; gap:22px; min-width:0}
+.hero-copy .lead{max-width:34rem}
+.creds{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 24px; padding:4px 0; max-width:560px}
+.creds li{list-style:none; display:flex; gap:10px; align-items:center; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.creds li span{display:block; color:var(--aub-60); font-size:var(--fs-xs)}
+.creds .i{color:var(--aub)}
+.leadbar{display:flex; gap:8px; padding:8px; background:var(--paper); border-radius:14px; box-shadow:var(--shadow-1), 0 0 0 1px var(--line); max-width:560px}
+.leadbar .field{flex:1; min-width:0}
+.handoff{font-size:var(--fs-xs); color:var(--aub-60); max-width:520px}
+.hero-alt{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center}
+
+/* fields */
+.field{position:relative; display:flex; align-items:center; gap:10px; min-height:48px; padding:0 14px; border-radius:var(--r-ctl); background:var(--paper); box-shadow:inset 0 0 0 1px var(--line-2); transition:box-shadow var(--t-fast) var(--ease-state)}
+.field:hover{box-shadow:inset 0 0 0 1px var(--aub-60)}
+.field:focus-within{box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+.field input,.field select{border:0; outline:0; background:transparent; font:400 1rem/1.2 var(--sans); color:var(--aub); width:100%; min-width:0; padding:12px 0}
+.field input::placeholder{color:#6E6680}
+.field .pre{font-weight:600; color:var(--aub); padding-right:10px; border-right:1px solid var(--line); font-variant-numeric:tabular-nums}
+.leadbar .field{box-shadow:none}
+.leadbar .field:focus-within{box-shadow:inset 0 0 0 1.5px var(--aub)}
+.fgroup{display:grid; gap:7px}
+.fgroup > label,.flabel{font:600 var(--fs-sm)/1.2 var(--sans); color:var(--aub)}
+.fhelp{font-size:var(--fs-xs); color:var(--aub-60)}
+.fgroup.is-error .field{box-shadow:inset 0 0 0 1.5px var(--loss)}
+.fgroup.is-error .fhelp{color:var(--loss)}
+.field select{appearance:none; cursor:pointer}
+.field--select::after{content:""; position:absolute; right:16px; top:50%; width:8px; height:8px; border-right:1.5px solid var(--aub); border-bottom:1.5px solid var(--aub); transform:translateY(-70%) rotate(45deg); pointer-events:none}
+.check{display:flex; gap:12px; align-items:flex-start; font-size:var(--fs-sm); line-height:1.45; cursor:pointer}
+.check input{appearance:none; width:20px; height:20px; margin:1px 0 0; border-radius:6px; box-shadow:inset 0 0 0 1.5px var(--line-2); background:#fff; flex:none; display:grid; place-items:center; cursor:pointer; transition:background-color var(--t-fast) var(--ease-state), box-shadow var(--t-fast) var(--ease-state)}
+.check input[type=radio]{border-radius:50%}
+.check input:checked{background:var(--aub); box-shadow:none}
+.check input[type=checkbox]:checked::after{content:""; width:10px; height:6px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:translateY(-1px) rotate(-45deg)}
+.check input[type=radio]:checked::after{content:""; width:8px; height:8px; border-radius:50%; background:#fff}
+.range{appearance:none; width:100%; height:24px; background:transparent; margin:0; cursor:pointer}
+.range::-webkit-slider-runnable-track{height:4px; border-radius:4px; background:linear-gradient(90deg, var(--aub) var(--p, 50%), var(--line-2) var(--p, 50%))}
+.range::-moz-range-track{height:4px; border-radius:4px; background:linear-gradient(90deg, var(--aub) var(--p, 50%), var(--line-2) var(--p, 50%))}
+.range::-webkit-slider-thumb{appearance:none; width:22px; height:22px; margin-top:-9px; border-radius:50%; background:#fff; box-shadow:0 0 0 1.5px var(--aub), 0 2px 6px rgba(28,15,47,.2)}
+.range::-moz-range-thumb{width:22px; height:22px; border:0; border-radius:50%; background:#fff; box-shadow:0 0 0 1.5px var(--aub), 0 2px 6px rgba(28,15,47,.2)}
+.otp{display:flex; gap:8px}
+.otp input{width:46px; height:52px; text-align:center; font:600 1.25rem/1 var(--sans); color:var(--aub); border:0; border-radius:var(--r-ctl); box-shadow:inset 0 0 0 1px var(--line-2); background:#fff}
+.otp input:focus{outline:0; box-shadow:inset 0 0 0 1.5px var(--aub), 0 0 0 4px var(--aub-08)}
+
+/* phone */
+.phone-stage{position:relative; display:grid; justify-items:start; min-width:0}
+.phone-stage .phone{margin-left:clamp(0px, 2vw, 24px)}
+.rings{position:absolute; width:204px; top:-16px; right:0; pointer-events:none}
+.app-phone{position:relative; justify-self:stretch; display:grid; justify-items:start}
+.app-phone .phone{margin-left:clamp(0px, 2vw, 24px)}
+.rings--dark{top:-24px}
+@media (max-width: 1199px){ .rings{display:none} }
+.phone{position:relative; width:min(300px, 100%); aspect-ratio:300/610; border-radius:42px; background:#fff; box-shadow:0 0 0 9px #241732, 0 0 0 10px #3a2d4b, var(--shadow-pop); overflow:hidden; display:flex; flex-direction:column; font-size:12px; color:var(--aub)}
+.phone::before{content:""; position:absolute; top:10px; left:50%; width:92px; height:26px; border-radius:20px; background:#1a1024; transform:translateX(-50%); z-index:2}
+.ph-status{display:flex; justify-content:space-between; padding:14px 24px 6px; font-weight:600; font-size:12px}
+.ph-top{display:flex; justify-content:space-between; align-items:center; padding:14px 18px 6px}
+.ph-top .wm{width:58px}
+.ph-body{padding:6px 16px 0; display:grid; gap:10px; flex:1; align-content:start}
+.ph-card{background:var(--mist); border-radius:14px; padding:12px 14px}
+.ph-val{font:600 1.5rem/1.1 var(--sans); font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.ph-seg{display:flex; gap:4px; margin-top:8px}
+.ph-seg span{flex:1; text-align:center; padding:4px 0; border-radius:6px; font-size:11px; color:var(--aub-60)}
+.ph-seg span.on{background:#fff; color:var(--aub); font-weight:600; box-shadow:0 1px 2px rgba(28,15,47,.08)}
+.ph-row{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:11.5px}
+.ph-row b{font-weight:600; font-variant-numeric:tabular-nums}
+.ph-bar{height:5px; border-radius:5px; background:var(--line); overflow:hidden; margin-top:4px}
+.ph-bar i{display:block; height:100%; width:var(--w); background:var(--aub); border-radius:5px}
+.ph-tabs{display:flex; justify-content:space-around; padding:10px 8px 18px; border-top:1px solid var(--line); font-size:11px; color:var(--aub-60)}
+.ph-tabs span{display:grid; justify-items:center; gap:3px}
+.ph-tabs span.on{color:var(--aub); font-weight:600}
+.ph-tabs .i{width:18px; height:18px}
+.ph-cap{margin-top:22px}
+
+/* ticker */
+.ticker{border-block:1px solid var(--line); background:var(--paper); overflow:hidden; position:relative}
+.ticker-inner{display:flex; align-items:center}
+.ticker-label{flex:none; padding:14px 18px 14px max(var(--gutter), (100% - 1200px) / 2); background:var(--paper); z-index:1; display:flex; gap:10px; align-items:center; box-shadow:12px 0 16px -8px #fff}
+.ticker-track{display:flex; width:max-content; animation:tick 70s linear infinite}
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
+.ticker ul{display:flex; list-style:none}
+.ticker li{display:flex; gap:10px; align-items:baseline; padding:14px 26px; border-left:1px solid var(--line); font-size:var(--fs-sm); white-space:nowrap}
+.ticker li b{font-weight:600; color:var(--aub)}
+.ticker li .num{color:var(--aub)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* trust pillars */
+.pillars{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); border-top:1px solid var(--line)}
+.pillar{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; padding:28px 24px 28px 0; border-bottom:1px solid var(--line)}
+.pillar:nth-child(odd){border-right:1px solid var(--line); padding-right:32px}
+.pillar:nth-child(even){padding-left:32px}
+.pillar > .i{grid-row:span 2; width:28px; height:28px; color:var(--aub); margin-top:2px}
+.pillar p{font-size:var(--fs-sm); color:var(--aub-60)}
+
+/* product cards */
+.cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px}
+.pcard{position:relative; display:grid; gap:14px; align-content:start; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); transition-property:transform, box-shadow; transition-duration:var(--t-base); transition-timing-function:var(--ease-state)}
+.pcard:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+.pcard h3 a{text-decoration:none; color:inherit}
+.pcard h3 a::after{content:""; position:absolute; inset:0; border-radius:inherit}
+.pcard h3 a:focus-visible{outline:0}
+.pcard:has(h3 a:focus-visible){outline:2px solid var(--aub); outline-offset:3px}
+.pcard .top{display:flex; justify-content:space-between; align-items:flex-start}
+.pcard .arrow{color:var(--aub-60); transition:transform var(--t-base) var(--ease-state), color var(--t-base) var(--ease-state)}
+.pcard:hover .arrow{transform:translate(2px, -2px); color:var(--aub)}
+.pcard p{font-size:var(--fs-sm); color:var(--aub-60)}
+.pcard .tile,.goal .tile{background:var(--mist)}
+.pcard .risk{position:relative; z-index:1; display:flex; gap:8px; align-items:flex-start; padding:10px 12px; border-radius:var(--r-ctl); background:var(--warn-bg); color:var(--warn); font-size:var(--fs-xs); line-height:1.4}
+.pcard .risk .i{width:16px; height:16px; margin-top:1px}
+.soon-row{margin-top:20px; display:grid; grid-template-columns:auto repeat(4, minmax(0,1fr)); gap:12px; align-items:stretch}
+.soon-row > p{align-self:center; font-weight:600; color:var(--aub); padding-right:12px}
+.soon-tile{display:flex; gap:12px; align-items:center; padding:14px 16px; border-radius:var(--r-card); box-shadow:inset 0 0 0 1px var(--line-2); color:var(--aub); font-weight:500; font-size:var(--fs-sm)}
+.soon-tile .soon{margin-left:auto}
+.band-cta{margin-top:clamp(32px, 4vw, 48px); display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center}
+
+/* pricing */
+.price-grid{display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 8fr); gap:clamp(24px, 4vw, 56px); align-items:stretch}
+.zero{background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1); padding:28px; display:grid; align-content:space-between; gap:24px}
+.zero .big{font:400 clamp(4.5rem, 3rem + 4vw, 6rem)/0.9 var(--serif); color:var(--aub); letter-spacing:-.02em; display:flex; align-items:flex-start; gap:4px}
+.zero .big sup{font-size:.42em; line-height:1; margin-top:.18em}
+.tablewrap{overflow-x:auto; background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1)}
+table.data{border-collapse:collapse; width:100%; min-width:560px; font-size:var(--fs-sm)}
+.data th,.data td{text-align:left; padding:15px 20px; border-bottom:1px solid var(--line); vertical-align:middle}
+.data thead th{font:600 .75rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60); background:var(--paper)}
+.data tbody tr:last-child td{border-bottom:0}
+.data tbody tr:hover td{background:#FAFBFC}
+.data td:first-child{color:var(--aub); font-weight:500}
+.data .r{text-align:right}
+.tbc{display:inline-flex; align-items:center; gap:6px; color:var(--aub-60); font-style:normal}
+.tbc::before{content:""; width:14px; height:1.5px; background:var(--line-2)}
+
+/* steps */
+.steps{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px; list-style:none; position:relative; counter-reset:st}
+.steps::before{content:""; position:absolute; top:22px; left:22px; right:calc(25% - 22px); height:1px; background:linear-gradient(90deg, var(--gold), rgba(193,156,47,.25))}
+.steps li{position:relative; display:grid; gap:10px; align-content:start}
+.steps .dot{width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:var(--paper); box-shadow:inset 0 0 0 1.5px var(--gold); font:400 1.25rem/1 var(--serif); color:var(--aub); position:relative}
+.steps li p{font-size:var(--fs-sm); color:var(--aub-60)}
+.docs{margin-top:40px; display:grid; grid-template-columns:auto 1fr; gap:20px 40px; align-items:center; padding:24px 28px; border-radius:var(--r-card); background:var(--mist)}
+.band--mist .docs{background:var(--paper)}
+.docs ul{display:flex; flex-wrap:wrap; gap:10px 28px; list-style:none}
+.docs li{display:flex; gap:8px; align-items:center; color:var(--aub); font-weight:500}
+.docs li .i{width:18px; height:18px; color:var(--gain)}
+
+/* goals */
+.goals{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px}
+.goal{display:grid; gap:12px; align-content:start; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-height:236px; transition-property:transform, box-shadow; transition-duration:var(--t-base); transition-timing-function:var(--ease-state)}
+.goal:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+.goal-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.goal-top .i{width:30px; height:30px; color:var(--aub)}
+.goal p{font-size:var(--fs-sm); color:var(--aub-60)}
+.goal .link{margin-top:auto; font-size:var(--fs-sm)}
+
+/* calculator */
+.calc{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 7fr); background:var(--paper); border-radius:20px; box-shadow:var(--shadow-1); overflow:hidden}
+.calc-in{padding:clamp(24px, 3vw, 36px); display:grid; gap:26px; border-right:1px solid var(--line)}
+.calc-row{display:grid; gap:10px}
+.calc-row .top{display:flex; justify-content:space-between; align-items:center; gap:12px}
+.calc-row output{min-width:120px; text-align:right; padding:8px 12px; border-radius:8px; background:var(--mist); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums}
+.calc-out{padding:clamp(24px, 3vw, 36px); display:grid; gap:22px; align-content:start; background:linear-gradient(180deg, #fff, #FAFBFC)}
+.calc-total{font:400 clamp(2.4rem, 1.8rem + 2vw, 3.4rem)/1 var(--serif); color:var(--aub); font-variant-numeric:tabular-nums}
+.splitbar{display:flex; height:12px; border-radius:12px; overflow:hidden; background:var(--line)}
+.splitbar i{display:block; background:var(--aub); transition:flex-grow 0s}
+.splitbar i + i{background:var(--gold)}
+.legend{display:flex; flex-wrap:wrap; gap:10px 28px; font-size:var(--fs-sm)}
+.legend span{display:flex; gap:8px; align-items:center}
+.legend span::before{content:""; width:10px; height:10px; border-radius:3px; background:var(--c, var(--aub))}
+.legend b{color:var(--aub); font-variant-numeric:tabular-nums}
+.bars{display:flex; align-items:flex-end; gap:4px; height:132px; padding-top:8px; border-bottom:1px solid var(--line)}
+.bars i{flex:1; background:linear-gradient(180deg, var(--gold) 0 var(--r, 0%), var(--aub) var(--r, 0%)); border-radius:3px 3px 0 0; min-height:2px}
+.bars-axis{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60); margin-top:6px}
+
+/* tabs */
+.tabs{display:flex; gap:4px; padding:4px; border-radius:12px; background:var(--mist); width:max-content; max-width:100%; overflow-x:auto; position:relative}
+.band--mist .tabs{background:var(--paper)}
+.tab{position:relative; z-index:1; border:0; background:none; padding:9px 16px; border-radius:9px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub-60); cursor:pointer; white-space:nowrap; transition:color var(--t-fast) var(--ease-state)}
+.tab[aria-selected="true"]{color:var(--aub)}
+.tab:hover{color:var(--aub)}
+.tab-ind{position:absolute; z-index:0; top:4px; bottom:4px; left:0; width:0; border-radius:9px; background:var(--paper); box-shadow:0 1px 2px rgba(28,15,47,.08), 0 2px 8px -2px rgba(28,15,47,.10); transition:transform 250ms var(--ease-state)}
+.band--mist .tab-ind{background:var(--mist)}
+.feature{display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); gap:clamp(32px, 5vw, 80px); align-items:center}
+.flist{display:grid; gap:4px; list-style:none; margin-top:28px}
+.flist button{width:100%; display:grid; grid-template-columns:auto 1fr; gap:4px 16px; text-align:left; padding:16px 18px; border:0; border-radius:var(--r-card); background:none; cursor:pointer; transition:background-color var(--t-fast) var(--ease-state)}
+.flist button:hover{background:rgba(255,255,255,.6)}
+.flist button[aria-selected="true"]{background:var(--paper); box-shadow:var(--shadow-1)}
+.flist .tile{grid-row:span 2; width:44px; height:44px}
+.flist b{font-weight:600; color:var(--aub); font-size:1.0625rem}
+.flist span{font-size:var(--fs-sm); color:var(--aub-60)}
+.fpanel{background:var(--paper); border-radius:20px; box-shadow:var(--shadow-1); padding:clamp(20px, 3vw, 32px); min-height:380px; display:grid; align-content:start; gap:16px}
+.fpanel[hidden]{display:none}
+.fpanel.is-in{animation:fadeup var(--t-enter) var(--ease-enter) both}
+@keyframes fadeup{from{opacity:0; transform:translateY(8px); filter:blur(4px)} to{opacity:1; transform:none; filter:none}}
+.mini{display:grid; gap:12px}
+.mini-row{display:flex; justify-content:space-between; gap:12px; align-items:center; padding:12px 14px; border-radius:var(--r-ctl); background:var(--mist); font-size:var(--fs-sm)}
+.mini-row b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
+.ring{--v:62; width:132px; height:132px; border-radius:50%; background:conic-gradient(var(--aub) calc(var(--v) * 1%), var(--line) 0); display:grid; place-items:center}
+.ring::before{content:attr(data-label); width:104px; height:104px; border-radius:50%; background:#fff; display:grid; place-items:center; font:400 1.75rem/1 var(--serif); color:var(--aub)}
+
+/* markets */
+.mkt-head{display:flex; flex-wrap:wrap; gap:16px 24px; justify-content:space-between; align-items:flex-end; margin-bottom:28px}
+.idx-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px}
+.idx{padding:18px 18px 14px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); display:grid; gap:4px}
+.idx .nm{font-size:var(--fs-sm); color:var(--aub-60); font-weight:500}
+.idx .px{font:600 1.375rem/1.2 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.idx svg{margin-top:8px; width:100%; height:44px}
+.ipo-list{display:grid; gap:12px}
+.ipo{display:grid; grid-template-columns:minmax(0, 2.2fr) repeat(3, minmax(0,1fr)) auto; gap:16px; align-items:center; padding:18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ipo .co{display:flex; gap:12px; align-items:center}
+.ipo .lg{width:40px; height:40px; border-radius:10px; background:var(--mist); display:grid; place-items:center; font:600 .8125rem/1 var(--sans); color:var(--aub)}
+.ipo b{display:block; color:var(--aub); font-weight:600}
+.ipo .k{color:var(--aub-60); font-size:var(--fs-xs)}
+.fund-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
+.fund{padding:20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); display:grid; gap:14px}
+.fund .fn{font-weight:600; color:var(--aub); line-height:1.3}
+.fund .meta{display:flex; flex-wrap:wrap; gap:6px}
+.fund .kv{display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:var(--fs-xs); color:var(--aub-60)}
+.fund .kv b{display:block; font:600 1.0625rem/1.3 var(--sans); color:var(--aub); font-variant-numeric:tabular-nums}
+.riskometer{display:grid; gap:6px}
+.riskometer .scale{display:grid; grid-template-columns:repeat(6, 1fr); gap:3px}
+.riskometer .scale i{height:6px; border-radius:3px; background:var(--line)}
+.riskometer .scale i.on{background:var(--aub)}
+.riskometer .scale i.on.top{background:var(--gold)}
+
+/* group and credentials */
+.group-map{width:100%; height:auto}
+.group-map text{font-family:var(--sans)}
+.creds-wall{margin-top:clamp(40px, 5vw, 64px); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line)}
+.cred{padding:18px 20px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; gap:6px}
+.cred dt{font:600 .75rem/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60)}
+.cred dd{margin:0; font:500 .95rem/1.4 var(--mono); color:var(--aub); letter-spacing:.01em}
+
+/* learn */
+.posts{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px}
+.post{display:grid; gap:14px; align-content:start; text-decoration:none; color:inherit}
+.thumb{aspect-ratio:16/10; border-radius:var(--r-card); background:var(--grad); position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:var(--on-dark); transition:transform var(--t-base) var(--ease-state)}
+.thumb .t{font:400 1.45rem/1.15 var(--serif); max-width:15ch; position:relative}
+.thumb .ringart{position:absolute; right:-18%; top:-26%; width:72%; opacity:.9}
+.thumb.v2{background:linear-gradient(100deg, #0C2229, #13302F 60%, #1C0F2F)}
+.thumb.v3{background:var(--paper); color:var(--aub); box-shadow:inset 0 0 0 1px var(--line)}
+.post:hover .thumb{transform:translateY(-2px)}
+.post h3{font:600 1.125rem/1.35 var(--sans); color:var(--aub)}
+.post:hover h3{text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:4px}
+.post .meta{display:flex; gap:10px; align-items:center; font-size:var(--fs-xs); color:var(--aub-60)}
+
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none; display:flex; justify-content:space-between; gap:20px; align-items:center; padding:20px 4px; cursor:pointer; font:600 1.0625rem/1.4 var(--sans); color:var(--aub)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{width:28px; height:28px; border-radius:50%; background:var(--mist); display:grid; place-items:center; flex:none; transition:transform var(--t-base) var(--ease-state)}
+.faq details[open] summary .pm{transform:rotate(45deg)}
+.faq .ans{padding:0 4px 22px; max-width:62ch; color:var(--aub-80)}
+.faq .ans p + p{margin-top:10px}
+
+/* app band */
+.app{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(32px, 5vw, 80px); align-items:center}
+.app .stores{display:flex; flex-wrap:wrap; gap:12px; margin-top:8px}
+.store{display:flex; gap:12px; align-items:center; padding:10px 18px 10px 14px; border-radius:12px; background:rgba(244,241,247,.08); box-shadow:inset 0 0 0 1px var(--dark-line); color:var(--on-dark); min-width:200px}
+.store small{display:block; font-size:.6875rem; color:var(--on-dark-2); letter-spacing:.06em; text-transform:uppercase}
+.store b{font-weight:600; font-size:1rem}
+.qr{display:flex; gap:16px; align-items:center; margin-top:8px; font-size:var(--fs-sm)}
+.qr .box{width:84px; height:84px; border-radius:12px; display:grid; place-items:center; box-shadow:inset 0 0 0 1.5px var(--dark-line); color:var(--on-dark-2)}
+.appicon{display:block; width:72px}
+.appicon svg{width:100%; height:auto; border-radius:16px; box-shadow:0 10px 30px -8px rgba(0,0,0,.5)}
+.app-phone .phone{box-shadow:0 0 0 9px #0f0819, 0 0 0 10px #3a2d4b, 0 40px 80px -20px rgba(0,0,0,.6)}
+
+/* final cta */
+.final{display:grid; justify-items:start; gap:22px}
+.final .row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+
+/* risk */
+.risk-box{display:grid; grid-template-columns:auto 1fr; gap:16px 20px; padding:24px 28px; border-radius:var(--r-card); background:var(--paper); box-shadow:inset 0 0 0 1px var(--line-2)}
+.risk-box ul{display:grid; gap:6px; padding-left:18px; color:var(--aub-80)}
+.risk-box .i{color:var(--warn)}
+
+/* footer */
+.site-foot{background:var(--mist); color:var(--aub-80); font-size:var(--fs-sm); padding-block:64px 40px; border-top:1px solid var(--line)}
+.site-foot a{color:var(--aub); text-decoration:none}
+.site-foot a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.foot-top{display:grid; grid-template-columns:minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap:32px}
+.foot-top h3{font:600 .75rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub-60); margin-bottom:16px}
+.foot-top ul{list-style:none; display:grid; gap:10px}
+.foot-brand{display:grid; gap:18px; align-content:start}
+.foot-brand .lockup{width:150px}
+.foot-reg{margin-top:48px; padding-top:28px; border-top:1px solid var(--line-2); display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px 32px}
+.foot-reg dt{font:600 .75rem/1.2 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub-60)}
+.foot-reg dd{margin:4px 0 0; font:500 .875rem/1.45 var(--mono); color:var(--aub)}
+.foot-legal{margin-top:36px; display:grid; gap:24px}
+.foot-legal h3{font:600 .75rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--aub); margin-bottom:10px}
+.foot-legal ul{display:grid; gap:6px; padding-left:16px; max-width:110ch; line-height:1.55}
+.foot-base{margin-top:36px; padding-top:20px; border-top:1px solid var(--line-2); color:var(--aub-60); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px}
+
+/* mobile menu drawer */
+dialog.drawer{margin:0 0 0 auto; height:100%; max-height:100%; width:min(420px, 100%); border:0; padding:0; background:var(--paper); color:var(--aub-80); box-shadow:var(--shadow-pop)}
+dialog.drawer::backdrop{background:rgba(28,15,47,.45)}
+dialog.drawer[open]{animation:drawer-in 240ms var(--ease-state)}
+@keyframes drawer-in{from{transform:translateX(24px); opacity:0} to{transform:none; opacity:1}}
+.drawer-in{display:flex; flex-direction:column; min-height:100%; padding:16px var(--gutter) calc(24px + env(safe-area-inset-bottom, 0px))}
+.drawer-top{display:flex; justify-content:space-between; align-items:center; height:56px}
+.drawer-top .brand{width:96px}
+.drawer nav{display:grid; margin-top:8px; border-top:1px solid var(--line)}
+.drawer details{border-bottom:1px solid var(--line)}
+.drawer summary{list-style:none; display:flex; justify-content:space-between; align-items:center; padding:16px 2px; font:600 1.0625rem/1.2 var(--sans); color:var(--aub); cursor:pointer}
+.drawer summary::-webkit-details-marker{display:none}
+.drawer summary .i{transition:transform var(--t-base) var(--ease-state)}
+.drawer details[open] summary .i{transform:rotate(180deg)}
+.drawer details a{display:block; padding:10px 2px 10px 12px; color:var(--aub-80); text-decoration:none}
+.drawer details > div{padding-bottom:12px}
+.drawer nav > a{display:block; padding:16px 2px; border-bottom:1px solid var(--line); font:600 1.0625rem/1.2 var(--sans); color:var(--aub); text-decoration:none}
+.drawer-cta{margin-top:auto; padding-top:24px; display:grid; gap:10px}
+
+/* mobile sticky cta */
+.mbar{display:none}
+
+/* modal and toast */
+dialog.modal{border:0; padding:0; border-radius:20px; width:min(460px, calc(100% - 32px)); box-shadow:var(--shadow-pop); color:var(--aub-80)}
+dialog.modal::backdrop{background:rgba(28,15,47,.45)}
+dialog.modal[open]{animation:modal-in 220ms var(--ease-state)}
+@keyframes modal-in{from{opacity:0; transform:translateY(6px) scale(.98)} to{opacity:1; transform:none}}
+.modal-in{padding:28px; display:grid; gap:18px}
+.modal-head{display:flex; justify-content:space-between; gap:16px; align-items:flex-start}
+.toast{position:fixed; left:50%; bottom:calc(84px + env(safe-area-inset-bottom, 0px)); z-index:60; display:flex; gap:12px; align-items:center; padding:12px 16px 12px 14px; border-radius:12px; background:var(--aub); color:var(--on-dark); box-shadow:var(--shadow-pop); font-size:var(--fs-sm); transform:translate(-50%, 12px); opacity:0; visibility:hidden; transition:opacity 200ms var(--ease-state), transform 200ms var(--ease-state), visibility 0s linear 200ms}
+.toast.is-on{opacity:1; visibility:visible; transform:translate(-50%, 0); transition:opacity 200ms var(--ease-state), transform 200ms var(--ease-state), visibility 0s}
+.toast .i{color:var(--gold)}
+
+/* entrance: one orchestrated moment on the hero */
+@media (prefers-reduced-motion: no-preference){
+  .enter > *{animation:fadeup var(--t-enter) var(--ease-enter) backwards; animation-delay:calc(var(--n, 0) * 90ms + 60ms)}
+  .phone-stage{animation:fadeup 700ms var(--ease-enter) 320ms backwards}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .ticker-track{width:auto}
+  .ticker .dupe{display:none}
+  .ticker-track{overflow-x:auto}
+}
+
+/* ===================== STATES AND SMALL COMPONENTS ===================== */
+.alert{display:grid; grid-template-columns:auto 1fr; gap:4px 14px; padding:16px 18px; border-radius:var(--r-card); font-size:var(--fs-sm); line-height:1.5}
+.alert b{color:inherit; font-weight:600; display:block}
+.alert--info{background:var(--info-bg); color:var(--aub)}
+.alert--ok{background:var(--gain-bg); color:#0A5E42}
+.alert--warn{background:var(--warn-bg); color:var(--warn)}
+.alert--err{background:var(--loss-bg); color:#8E2A22}
+.alert .i{margin-top:1px}
+.skel{display:grid; gap:10px}
+.skel i{display:block; height:12px; border-radius:6px; background:linear-gradient(90deg, var(--mist) 0%, var(--mist-2) 40%, var(--mist) 80%); background-size:300% 100%; animation:shim 1.4s var(--ease-state) infinite}
+@keyframes shim{from{background-position:100% 0} to{background-position:0 0}}
+.empty{display:grid; justify-items:center; text-align:center; gap:12px; padding:20px 8px}
+.empty .i{width:36px; height:36px; color:var(--aub-60)}
+.crumbs{display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:var(--fs-sm); list-style:none}
+.crumbs li{display:flex; gap:8px; align-items:center}
+.crumbs li + li::before{content:""; width:6px; height:6px; border-right:1.5px solid var(--aub-60); border-top:1.5px solid var(--aub-60); transform:rotate(45deg)}
+.crumbs a{color:var(--aub-60)}
+.crumbs [aria-current]{color:var(--aub); font-weight:500}
+.pager{display:flex; gap:6px; list-style:none}
+.pager a{display:grid; place-items:center; width:40px; height:40px; border-radius:10px; text-decoration:none; color:var(--aub); font-weight:500; font-variant-numeric:tabular-nums}
+.pager a:hover{background:var(--mist)}
+.pager a[aria-current]{background:var(--aub); color:#fff}
+.seg{display:inline-flex; justify-self:start; padding:3px; border-radius:10px; box-shadow:inset 0 0 0 1px var(--line-2)}
+.seg button{border:0; background:none; padding:7px 14px; border-radius:8px; font:500 var(--fs-sm)/1 var(--sans); color:var(--aub-60); cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--aub); color:#fff}
+.tip{position:relative; display:inline-flex; margin-top:56px}
+.tip .tip-bubble{position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%); width:max-content; max-width:240px; padding:8px 12px; border-radius:8px; background:var(--aub); color:var(--on-dark); font-size:var(--fs-xs); line-height:1.4; box-shadow:var(--shadow-1)}
+.tip .tip-bubble::after{content:""; position:absolute; top:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-top-color:var(--aub)}
+
+/* responsive */
+@media (max-width: 1100px){
+  .mainnav{display:none}
+  .menu-btn{display:grid}
+  .head-actions .btn--ghost{display:none}
+  .cards,.fund-grid,.posts{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .goals,.idx-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .soon-row{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .soon-row > p{grid-column:1/-1}
+  .foot-top{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .foot-brand{grid-column:1/-1}
+  .ipo{grid-template-columns:minmax(0,1.6fr) repeat(2, minmax(0,1fr)) auto}
+  .ipo .hide-md{display:none}
+}
+@media (max-width: 899px){
+  .hero-grid,.split,.price-grid,.calc,.feature,.app{grid-template-columns:1fr}
+  .calc-in{border-right:0; border-bottom:1px solid var(--line)}
+  .pillars{grid-template-columns:1fr}
+  .pillar:nth-child(odd){border-right:0; padding-right:0}
+  .pillar:nth-child(even){padding-left:0}
+  .steps{grid-template-columns:repeat(2, minmax(0,1fr)); row-gap:32px}
+  .steps::before{display:none}
+  .creds-wall,.foot-reg{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .phone-stage{margin-top:12px; justify-items:center}
+  .phone-stage .phone,.app-phone .phone{margin-inline:auto}
+  .app-phone{justify-items:center}
+  .docs{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  :root{--fs-body:1rem}
+  .cards,.goals,.fund-grid,.posts,.idx-grid,.soon-row,.creds-wall,.foot-reg,.foot-top{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .leadbar{flex-direction:column; padding:10px}
+  .leadbar .field{box-shadow:inset 0 0 0 1px var(--line-2)}
+  .leadbar .btn{width:100%}
+  .head-actions .btn{display:none}
+  .creds{grid-template-columns:1fr}
+  .announce a{display:none}
+  .ipo{grid-template-columns:1fr 1fr; row-gap:10px}
+  .ipo .co{grid-column:1/-1}
+  .mbar{display:flex; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:45; padding:10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); background:rgba(255,255,255,.97); box-shadow:0 -1px 0 var(--line), 0 -10px 30px -18px rgba(28,15,47,.4)}
+  .mbar .btn{flex:1}
+  table.data--fluid{min-width:0}
+  .group-map text{font-size:22px}
+  .rings{display:none}
+  .data--fluid th,.data--fluid td{padding:12px 12px}
+  .data--fluid th:last-child,.data--fluid td:last-child{display:none}
+  body{padding-bottom:72px}
+  .zero .big{font-size:5rem}
+}
+
+/* ROOT theme v1 · extensions for the 75-page build
+   Rules: tokens only (no raw hex), one block per pattern, a comment naming the page that introduced it.
+   Golden pages may add patterns here; derivative pages reuse them and do not add new ones without a memory note. */
+
+/* shell: current nav item (build marks it from sitemap.json "nav") */
+.navlink.is-current{background:var(--mist)}
+
+/* shell: minimal header for template D (logo, help, login) */
+.site-head--min .wrap{justify-content:space-between}
+.site-head--min .head-help{display:inline-flex; gap:6px}
+
+/* shell: short footer for template D */
+.site-foot--min{padding-block:40px 32px}
+.foot-links{display:flex; flex-wrap:wrap; gap:8px 24px; padding-bottom:24px; border-bottom:1px solid var(--line-2)}
+.site-foot--min .foot-reg{margin-top:24px; padding-top:0; border-top:0}
+.foot-note{margin-top:24px; font-size:var(--fs-xs); color:var(--aub-60)}
+
+/* placeholder: a value Aikyam must confirm. Visible on purpose, so it is never shipped by mistake */
+.ph{display:inline; white-space:nowrap; padding:1px 7px; border-radius:6px; background:var(--gold-wash); color:var(--warn); box-shadow:inset 0 0 0 1px rgba(193,156,47,.45); font:inherit; font-weight:500}
+.ph--block{display:flex; align-items:center; justify-content:center; text-align:center; aspect-ratio:var(--ar, auto); padding:14px 16px; border-radius:var(--r-ctl); border:1.5px dashed rgba(193,156,47,.6); box-shadow:none; background:var(--gold-wash); color:var(--warn); font-size:var(--fs-sm)}
+/* placeholders wrap where a one-line chip would overflow: block placeholders, chips inside form cards, risk boxes and docs strips,
+   and every chip in main below 900 px (each line keeps its padding and corners). Fix from 01 Home and 09 Start Trading */
+.ph--block,.form-card .ph,.risk-box .ph,.docs .ph{white-space:normal}
+@media (max-width: 899px){ main .ph{white-space:normal; -webkit-box-decoration-break:clone; box-decoration-break:clone} }
+
+/* static capture for Figma import: no motion, spine nodes drawn as reached, hidden overlays stay hidden */
+.is-static *, .is-static *::before, .is-static *::after{animation:none !important; transition:none !important}
+.is-static .node::before{background:var(--gold)}
+.is-static .band--mist .node::before{background:var(--gold)}
+
+/* shell: breadcrumb bar under the header (build renders it from front-matter "breadcrumb") */
+.crumbs-bar{padding-top:20px}
+
+/* ===== Figma-import mode (body.is-static). Red-team round 1, 12-Oct-2026 =====
+   The browser view is unchanged in spirit; these rules make the imported layer tree clean:
+   one-direction stacks become flex (auto layout), outlines become real borders (not inner shadows),
+   type sizes are whole pixels, line breaks are the browser's natural ones (Figma wraps the same way),
+   JS-only visuals get static equivalents, sticky/fixed bars sit in flow. */
+
+/* stacks: grid with one column -> flex column (imports as vertical auto layout) */
+.is-static :is(.stack,.head,.hero-copy,.fgroup,.pcard,.goal,.post,.fund,.idx,.calc-in,.calc-out,.calc-row,.mini,.fpanel,.foot-brand,.foot-legal,.modal-in,.drawer-cta,.steps li,.panel){display:flex; flex-direction:column; justify-content:flex-start}
+.is-static .final{display:flex; flex-direction:column; align-items:flex-start}
+.is-static .zero{display:flex; flex-direction:column; justify-content:space-between}
+.is-static .goal .link{margin-top:auto}
+
+/* outlines as borders, not inset shadows */
+.is-static .field{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .leadbar .field{border-color:transparent}
+.is-static .otp input{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .risk-box{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .chip--line{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .soon-tile{box-shadow:none; border:1px solid var(--line-2)}
+.is-static .steps .dot{box-shadow:none; border:1.5px solid var(--gold)}
+.is-static .check input{box-shadow:none; border:1.5px solid var(--line-2)}
+.is-static .thumb.v3{box-shadow:none; border:1px solid var(--line)}
+.is-static .ph{box-shadow:none; border:1px solid rgba(193,156,47,.45)}
+.is-static .leadbar{box-shadow:var(--shadow-1); border:1px solid var(--line)}
+
+/* whole-pixel type at the two capture widths; natural wrapping */
+@media (min-width: 1100px){ .is-static{--fs-d1:64px; --fs-d2:42px; --fs-d3:28px; --fs-h3:19px; --fs-lead:19px} }
+@media (max-width: 640px){ .is-static{--fs-d1:40px; --fs-d2:30px; --fs-d3:23px; --fs-h3:19px; --fs-lead:18px} }
+.is-static :is(h1,h2,h3,h4,p){text-wrap:wrap}
+
+/* spine nodes as real elements (build inserts <i class="node-dot">) */
+.is-static .node::before{display:none}
+.node-dot{position:absolute; left:-36px; top:.5em; width:11px; height:11px; border-radius:50%; transform:translate(-50%,-50%); background:var(--gold); z-index:4}
+@media (max-width: 899px){ .node-dot{left:calc(8px - var(--gutter)); width:7px; height:7px} }
+
+/* JS-only visuals: static equivalents */
+.is-static .tab-ind{display:none}
+.is-static .tab[aria-selected="true"]{background:var(--paper); box-shadow:0 1px 2px rgba(28,15,47,.08), 0 2px 8px -2px rgba(28,15,47,.10); border-radius:9px}
+.is-static .band--mist .tab[aria-selected="true"]{background:var(--mist)}
+.is-static .pcard h3 a::after{display:none}
+.is-static .ticker-track{animation:none}
+
+/* steps: --cols sets the column count from 900 px up only, so the theme's 2-column (899) and 1-column (640) rules still apply.
+   Fix from 01 Home and 09 Start Trading (unscoped, these rules kept four squeezed columns at 390) */
+@media (min-width: 900px){
+  .steps{grid-template-columns:repeat(var(--cols, 4), minmax(0,1fr))}
+  .steps::before{right:calc(100% / var(--cols, 4) - 22px)}
+}
+
+/* fixed and sticky bars sit in flow (the designer re-applies stickiness); data-sticky marks them */
+.is-static .mbar{position:static; box-shadow:0 -1px 0 var(--line)}
+@media (max-width: 640px){ .is-static{padding-bottom:0} }
+.is-static .site-head{position:relative}
+
+/* minimal header keeps Login on phones (template D has no mobile bar) */
+@media (max-width: 640px){
+  .site-head--min .head-actions .btn{display:inline-flex}
+  .site-head--min .head-help{display:none}
+}
+
+/* tables that stack on phones: <table class="data data--stack"> with <span class="td-label"> in each cell */
+.td-label{display:none}
+@media (max-width: 640px){
+  table.data--stack{min-width:0}
+  .data--stack thead{display:none}
+  .data--stack tr{display:block; padding:12px 16px; border-bottom:1px solid var(--line)}
+  .data--stack td{display:flex; justify-content:space-between; gap:12px; padding:5px 0; border:0; text-align:right}
+  .data--stack td:first-child{text-align:left}
+  .data--stack .td-label{display:block; color:var(--aub-60); font-size:var(--fs-xs); text-align:left}
+}
+
+/* states board (figma/NN-id.states.html): one labelled frame per interaction state */
+.state-frame{padding-block:40px; border-bottom:1px dashed var(--line-2)}
+.state-label{font:500 .8125rem/1.4 var(--mono); color:var(--aub-60); margin-bottom:20px}
+.state-label b{color:var(--aub); font-weight:600}
+
+/* ===== Golden wave promotions (curated 12-Oct-2026 from 01 Home and 09 Start Trading) =====
+   Moved out of the pages' <style data-page>; canonical markup for each block is in theme/components.html. */
+
+/* utility: registration codes outside creds-wall and foot-reg (from 01 Home) */
+.mono{font-family:var(--mono); font-weight:500; letter-spacing:.01em}
+
+/* theme hero: the root seed sits inside .hero-copy (the theme reference set this with inline styles). From 01 and 09 */
+.hero-copy{position:relative}
+.hero-copy > .root-seed{left:-36px; top:2px}
+
+/* Hero with form card (template D, from 09 Start Trading; 01 Home reuses it): .hero-side holds the form card and the side door */
+.hero-grid:has(> .hero-side){align-items:start}
+.hero-side{display:flex; flex-direction:column; gap:18px; min-width:0}
+.form-card{display:flex; flex-direction:column; gap:18px; padding:28px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow-1)}
+.form-card form{display:flex; flex-direction:column; gap:16px}
+.form-card .btn{width:100%}
+.form-card .fhelp a{font-weight:600}
+.states-board .form-card{max-width:30rem}
+/* consent box inside an error .fgroup keeps body type (.fgroup > label is the bold field label). From 01 and 09 */
+.fgroup > label.check{font:400 var(--fs-sm)/1.45 var(--sans); color:var(--aub-80)}
+/* cost line at the foot of a form card: charge + "See all charges" (from 01 Home) */
+.form-card .cost-line{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; padding-top:16px; border-top:1px solid var(--line); color:var(--aub)}
+.form-card .cost-line a{font-weight:600}
+/* side door under the form card: the other company's link plus one line (from 01 Home) */
+.side-door{display:flex; flex-direction:column; gap:6px}
+@media (max-width: 640px){ .form-card{padding:20px} }
+
+/* wide cred: a cred with a long value spans both cred columns. .cred-wide is the v3 name (09 v3); .cred-cost is the v2 name
+   for a charge plus a link (09 v2, still used by 10) */
+.creds .cred-cost,.creds .cred-wide{grid-column:1/-1}
+.creds .cost-line{display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px}
+
+/* wrapping link: inline, so the arrow follows the last word; .link-tail keeps the last word and the icon together (from 09; 01 reuses it) */
+.link--wrap{display:inline}
+.link--wrap .i{display:inline-block; vertical-align:-4px; margin-left:6px}
+.link--wrap .link-tail{white-space:nowrap}
+
+/* docs strips, stacked: 16 px apart and one shared label column from 900 px up; a .stack of copy + ph--block on the right (from 09) */
+.docs + .docs{margin-top:16px}
+.docs .stack p{color:var(--aub)}
+@media (min-width: 900px){ .docs:has(+ .docs),.docs + .docs{grid-template-columns:17rem minmax(0,1fr)} }
+.steps-note{margin-top:24px; max-width:46rem}
+
+/* charges block (from 09 Start Trading): an unconfirmed value in the numeral slot renders at body size and wraps; fee lines stack;
+   .zero--top groups the card's content at the top instead of stretching it to the table's height */
+.zero .big .ph{font:500 var(--fs-sm)/1.4 var(--sans); white-space:normal; letter-spacing:0}
+.zero .fees{display:flex; flex-direction:column; gap:8px}
+.zero.zero--top{align-self:start; justify-content:flex-start}
+/* visible table caption above a data table (from 01 and 09) */
+.data caption{caption-side:top; text-align:left; padding:18px 20px 6px; font-size:var(--fs-sm); color:var(--aub-60)}
+/* two-column stacked table in a charges block: the first cell is the row title on phones (from 09) */
+@media (max-width: 640px){ .price-grid .data--stack td:first-child{font-weight:600; color:var(--aub)} }
+
+/* info card: a white card with an h3, copy or a ph--block, and a stack of links (from 09 s-fo) */
+.info-card{display:flex; flex-direction:column; gap:12px; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.info-card .links{display:flex; flex-direction:column; gap:10px; margin-top:4px}
+@media (max-width: 640px){ .info-card{padding:20px} }
+
+/* FAQ on a Mist band: the plus button stays visible (from 09) */
+.band--mist .faq summary .pm{background:var(--paper)}
+
+/* closing CTA: both buttons full width when stacked on phones (from 09) */
+@media (max-width: 640px){
+  .final .row{flex-direction:column; align-items:stretch; align-self:stretch; width:100%}
+  .final .row .btn{width:100%}
+}
+
+/* dark band: copy, links, fine print, eyebrow and the illustrative labels in on-dark colours (theme ink is invisible on the gradient).
+   From 01 Home; .fine, .eyebrow from 01 v3 and 09 v3, .ui-caption and .fine a from 09 v3 */
+.band--dark .lead,.band--dark .handoff,.band--dark .illus{color:var(--on-dark-2)}
+.band--dark .link{color:var(--on-dark)}
+.band--dark .fine,.band--dark .eyebrow,.band--dark .ui-caption{color:var(--on-dark-2)}
+.band--dark .fine a{color:var(--on-dark)}
+
+/* disclosure band with the info icon (mutual fund and distribution disclosures): the risk-box pattern in ink, not warn (from 01) */
+.risk-box .i[data-icon="i-info"]{color:var(--aub)}
+
+/* Entity doors (from 01 Home s-products): one panel per Aikyam company; the company is the structure, not a chip */
+.doors{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px; align-items:stretch}
+.door{display:flex; flex-direction:column; padding:clamp(22px, 2.6vw, 32px); border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2)}
+.door-head{display:flex; flex-direction:column; gap:6px; padding-bottom:20px}
+.door-reg{font-size:var(--fs-sm); color:var(--aub-60)}
+.door-reg .mono{color:var(--aub)}
+.door-rows{list-style:none; display:flex; flex-direction:column}
+.door-rows li{display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid var(--line)}
+.row-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.row-text > a{font-weight:600; font-size:1.0625rem; color:var(--aub); text-decoration:none}
+.row-text > a:hover{text-decoration:underline; text-decoration-color:var(--gold)}
+.row-text p{font-size:var(--fs-sm); color:var(--aub-60)}
+.door .risk{display:flex; gap:8px; align-items:flex-start; margin-top:6px; padding:10px 12px; border-radius:var(--r-ctl); background:var(--warn-bg); color:var(--warn); font-size:var(--fs-xs); line-height:1.4}
+.door .risk a{color:inherit; font-weight:600}
+.door .risk .i{width:16px; height:16px; margin-top:1px}
+.door-foot{margin-top:auto; display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding-top:22px; border-top:1px solid var(--line)}
+.door-foot .xs{max-width:34rem}
+@media (max-width: 899px){ .doors{grid-template-columns:1fr} }
+
+/* Two ledgers (from 01 Home s-pricing): 7/5 columns, one per company; a two-column data table whose rows become one line on phones,
+   and a dl.kv-list card for terms that are not tabular */
+.ledgers{display:grid; grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); gap:clamp(24px, 4vw, 48px); align-items:start}
+.ledger{display:flex; flex-direction:column; gap:16px; min-width:0}
+.ledger-head{display:flex; flex-direction:column; gap:4px}
+.ledger table.data{min-width:0}
+.kv-list{margin:0; padding:4px 24px; background:var(--paper); border-radius:var(--r-card); box-shadow:var(--shadow-1)}
+.kv-list > div{display:flex; flex-direction:column; gap:4px; padding:16px 0; border-bottom:1px solid var(--line)}
+.kv-list > div:last-child{border-bottom:0}
+.kv-list dt{font-size:var(--fs-sm); color:var(--aub-60)}
+.kv-list dd{margin:0; color:var(--aub); font-weight:500}
+@media (max-width: 899px){ .ledgers{grid-template-columns:1fr} }
+@media (max-width: 640px){
+  .ledger .data--stack tr{display:flex; justify-content:space-between; align-items:center; gap:12px}
+  .ledger .data--stack td{padding:0}
+  .ledger .data--stack td:first-child{flex:1 1 0; min-width:0; text-align:left}
+  .ledger .data--stack td + td{flex:0 0 auto; max-width:58%; justify-content:flex-end; text-align:left}
+}
+
+/* Facts list (from 01 Home s-group): icon + one checkable line; the claim-free replacement for the theme pillars */
+.facts{list-style:none; display:flex; flex-direction:column; gap:14px}
+.facts li{display:flex; gap:12px; align-items:flex-start; color:var(--aub); font-weight:500; line-height:1.45}
+.facts li a{font-weight:600}
+
+/* Group map (from 01 Home s-group): HTML root node, four SVG paths with non-scaling strokes, HTML branch cards (.is-on = on ROOT).
+   Labels stay editable text in Figma; 2 x 2 cards with no lines or dots at 640 */
+.gmap{margin:0; display:flex; flex-direction:column; align-items:center; min-width:0}
+.gmap-root{display:flex; flex-direction:column; align-items:center; gap:6px; padding:18px 32px; border-radius:var(--r-card); background:var(--paper); border:1px solid var(--line-2); box-shadow:var(--shadow-1); text-align:center}
+.gmap-root b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+.gmap-lines{width:100%; height:72px}
+.gmap-branches{list-style:none; width:100%; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px}
+.gmap-branches li{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; min-width:0}
+.gmap-dot{width:11px; height:11px; border-radius:50%; border:1.5px solid var(--line-2); background:var(--paper)}
+.gmap-branches .is-on .gmap-dot{background:var(--gold); border-color:var(--gold)}
+.gmap-card{display:flex; flex-direction:column; align-items:center; gap:6px; width:100%; padding:14px 10px; border-radius:var(--r-ctl); font-size:var(--fs-sm); color:var(--aub-60); line-height:1.35}
+.gmap-card b{color:var(--aub-60); font-weight:500}
+.is-on .gmap-card{background:var(--mist)}
+.is-on .gmap-card b{color:var(--aub); font-weight:600}
+.is-on .gmap-card .chip{background:var(--paper)}
+@media (max-width: 640px){
+  .gmap-lines,.gmap-dot{display:none}
+  .gmap-root{margin-bottom:16px}
+  .gmap-branches{grid-template-columns:repeat(2, minmax(0,1fr))}
+}
+
+/* Check it yourself ledger (from 01 Home s-group): company + role, registration code (.mono), regulator link; stacks at 640 */
+.verify{margin-top:clamp(40px, 5vw, 64px); display:flex; flex-direction:column; gap:16px}
+.verify-list{margin:0; border-top:1px solid var(--line)}
+.verify-row{display:grid; grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, .8fr); gap:8px 32px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line)}
+.verify-row dt{display:flex; flex-direction:column; gap:2px}
+.verify-row dt a{font-weight:600; color:var(--aub)}
+.verify-row dt span{font-size:var(--fs-sm); color:var(--aub-60)}
+.verify-row dd{margin:0; color:var(--aub)}
+@media (max-width: 640px){ .verify-row{grid-template-columns:1fr; gap:6px} }
+
+/* ===== Design direction v3 (pilot feedback, 12-Oct-2026): quieter compliance, richer visuals ===== */
+
+/* placeholders: a quiet dashed underline instead of a filled chip; still impossible to miss on review */
+main .ph{background:transparent; border:0; box-shadow:none; border-bottom:1.5px dashed var(--gold); border-radius:0; padding:0 1px; color:var(--warn); white-space:normal; font-weight:500}
+.is-static main .ph{border:0; border-bottom:1.5px dashed var(--gold)}
+main .ph.ph--block{border:0; border-radius:var(--r-card); padding:20px; background:var(--gold-wash); color:var(--warn)}
+
+/* fine print: one-line disclosures under an action (MF risk line, hand-off, receiver line) */
+.fine{font-size:var(--fs-xs); line-height:1.5; color:var(--aub-60); max-width:62ch}
+.fine + .fine{margin-top:6px}
+.fine a{color:var(--aub-60)}
+.eyebrow{font:600 .75rem/1.2 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--aub-60)}
+
+/* art-directed image slot: where a real photo or illustration will go */
+.img-slot{display:flex; flex-direction:column; justify-content:flex-end; gap:6px; aspect-ratio:var(--ar, 4/3); margin:0; padding:20px; border-radius:var(--r-card); background:linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%); color:var(--aub-60); overflow:hidden}
+.img-slot .i{width:28px; height:28px; color:var(--aub-60); margin-bottom:auto}
+.img-slot b{color:var(--aub); font-weight:600; font-size:var(--fs-sm); line-height:1.35}
+.img-slot span{font-size:var(--fs-xs); line-height:1.45}
+.band--mist .img-slot{background:linear-gradient(160deg, var(--paper) 0%, var(--mist-2) 100%)}
+
+/* floating product UI card (illustrative app panel built from theme parts) */
+.ui-card{background:var(--paper); border-radius:20px; box-shadow:var(--shadow-pop); padding:16px 18px; display:flex; flex-direction:column; gap:10px; font-size:13px; color:var(--aub); min-width:0}
+.ui-card .ui-label{font:600 11px/1.2 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--aub-60)}
+.ui-card .ui-big{font:600 1.375rem/1.15 var(--sans); font-variant-numeric:tabular-nums}
+.ui-card .ui-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.ui-stage{position:relative; display:flex; flex-direction:column; gap:16px; padding:8px}
+.ui-caption{font-size:var(--fs-xs); color:var(--aub-60); display:flex; gap:6px; align-items:center}
+
+/* stat tiles: compact cost or fact summary on Home and hubs */
+.stat-tiles{display:flex; flex-wrap:wrap; gap:16px}
+.stat-tile{flex:1 1 200px; display:flex; flex-direction:column; gap:6px; padding:20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.stat-tile .num{font:400 2rem/1.05 var(--serif); color:var(--aub)}
+.stat-tile p{font-size:var(--fs-sm); color:var(--aub-60)}
+
+/* calm inset risk panel (F&O box in context): same verbatim text, quieter frame */
+.risk-box--inset{background:var(--warn-bg); border:0; padding:18px 20px; gap:12px 16px}
+.is-static .risk-box--inset{border:0}
+.risk-box--inset ul{font-size:var(--fs-sm)}
+
+/* hero balance: centre the columns */
+.hero-grid{align-items:center}
+
+/* ===== v3 golden promotions (curated 12-Oct-2026 from 01 Home v3 and 09 Start Trading v3) =====
+   Moved out of the pages' <style data-page>; canonical markup in theme/components.html (index: theme/components.md).
+   Tokens only. Scoped where 01 and 09 use different conventions, so neither page changes. */
+
+/* Hero · product stage (from 01 Home s-hero): two equal columns from 900 px; inline bar form left, illustrative screens right */
+@media (min-width: 900px){ .hero-grid--stage{grid-template-columns:repeat(2, minmax(0,1fr))} }
+.hero-grid--stage .hero-copy{gap:16px}
+.hero-visual{display:flex; flex-direction:column; align-items:center; gap:22px; min-width:0}
+.hero-stage{position:relative; display:flex; gap:24px; align-items:stretch; justify-content:center; width:100%}
+.hero-stage .rings{width:300px; top:-28px; right:0}
+.hero-stage .phone{flex:none; width:280px}
+.stage-cards{position:relative; z-index:1; flex:0 1 236px; min-width:0; display:flex; flex-direction:column; justify-content:space-around; gap:24px; padding-block:48px}
+/* stage card rows: label in aub-60, value bold and right-aligned (09's illustrative rows keep ink labels) */
+.stage-cards .ui-row span{color:var(--aub-60)}
+.stage-cards .ui-row b{font-weight:600; font-variant-numeric:tabular-nums; text-align:right}
+/* theme phone, Home screen parts at 280 px (theme .phone clips its tab bar below 256 px) */
+.hero-stage .ph-card .chg{font-size:11px}
+.hero-stage .ph-spark{margin-top:6px}
+.ph-hold{display:flex; flex-direction:column; gap:8px; padding:2px 2px 0}
+.ph-sip{padding:0 2px}
+.ph-sip .xs{display:block}
+@media (max-width: 640px){
+  .hero-stage{flex-direction:column; align-items:center; gap:20px}
+  .hero-stage .phone{width:256px}
+  .hero-stage .ph-spark{height:40px}
+  .hero-stage .ph-body{gap:8px}
+  .stage-cards{flex-direction:row; align-items:stretch; padding:0; width:100%; flex:none; gap:12px}
+  .stage-cards .ui-card{flex:1 1 0; padding:14px}
+  .stage-cards .ui-row{flex-direction:column; align-items:flex-start; gap:0}
+  .stage-cards .ui-row b{text-align:left}
+}
+
+/* Hero inline bar form (from 01 Home s-hero): theme .leadbar + consent + receiver and hand-off lines 6 px apart.
+   Error states wrap the bar or the consent box in .fgroup.is-error: the bar takes the red outline, the field drops its own */
+.hero-form{display:flex; flex-direction:column; gap:12px; max-width:560px}
+.hero-fine{display:flex; flex-direction:column; gap:6px}
+.hero-fine .fine + .fine{margin-top:0}
+.hero-form .leadbar{max-width:none}
+.hero-form .check{color:var(--aub-80)}
+.hero-form .check a{font-weight:600}
+.hero-form .fine{max-width:58ch}
+.hero-form .is-error .leadbar{border-color:var(--loss); box-shadow:var(--shadow-1), 0 0 0 1px var(--loss)}
+.hero-form .is-error .leadbar .field{box-shadow:none}
+.hero-form .is-error .check input{border-color:var(--loss)}
+/* the other company's door under the form, inside .hero-copy: link above its fine print */
+.hero-copy .hero-alt{flex-direction:column; align-items:flex-start; gap:4px}
+.hero-alt .fine{max-width:none}
+
+/* Proof row (from 01 Home s-hero): ul.creds.creds--row, three across from 900 px under a hairline, icon top-aligned */
+.creds--row{max-width:none; gap:14px 20px; padding-top:14px; border-top:1px solid var(--line)}
+.creds--row li{align-items:flex-start}
+.creds--row li > .i{margin-top:2px}
+@media (min-width: 900px){ .creds--row{grid-template-columns:repeat(3, minmax(0,1fr))} }
+
+/* Hero helper (from 09 v3): a link directly under the creds hugs its text instead of spanning the column */
+.hero-copy > .link{justify-self:start; align-self:flex-start}
+
+/* Hero with the onboarding stage (from 09 v3 s-hero): centre the columns. Outranks .hero-grid:has(> .hero-side){align-items:start},
+   which stays for the v2 form-card hero still used by 10 */
+.hero-grid:has(> .hero-side > .open-stage){align-items:center}
+
+/* Stage panel (from 09 v3): a Mist panel that holds a form card or illustrative UI on a white band */
+.ui-stage--panel{padding:24px; border-radius:24px; background:var(--mist)}
+@media (max-width: 640px){ .ui-stage--panel{padding:16px} }
+
+/* Onboarding stage + step tracker (from 09 v3 s-hero and the "verified" state): rings bottom right behind the card,
+   every other child above them. ol.track: four li segments, a 3 px top border plus a label; li.is-on gold (aria-current="step"),
+   li.is-done ink with an inline check; a span keeps "e-sign" together */
+.open-stage > :not(.rings){position:relative; z-index:1}
+.open-stage .rings{top:auto; bottom:-40px; right:-96px}
+.track{list-style:none; display:flex; gap:6px}
+.track li{flex:1 1 0; min-width:0; padding-top:8px; border-top:3px solid var(--line-2); font:500 var(--fs-xs)/1.3 var(--sans); color:var(--aub-60)}
+.track li.is-on{border-top-color:var(--gold); color:var(--aub); font-weight:600}
+.track li.is-done{border-top-color:var(--aub); color:var(--aub)}
+.track li .i{display:inline-block; vertical-align:-3px; margin-right:4px; width:15px; height:15px; color:var(--gain)}
+.track li span{white-space:nowrap}
+.states-board .open-stage{max-width:32rem}
+
+/* Parts for illustrative cards (01 v3 and 09 v3).
+   Small status chips inside .ui-card (09); .ui-cta keeps the full chip size as the card's action (01); ink chip; check icons in gain green */
+.ui-card .chip{min-height:22px; padding:0 9px; font-size:11px}
+.chip--ink{background:var(--aub); color:var(--paper)}
+.ui-row .i{color:var(--gain)}
+/* card head (01): 34 px icon tile + label, then a bold name */
+.ui-card .ui-head{display:flex; align-items:center; gap:10px}
+.ui-card .ui-tile{width:34px; height:34px; border-radius:10px; background:var(--mist); display:grid; place-items:center; color:var(--aub); flex:none}
+.ui-card .ui-tile .i{width:18px; height:18px}
+.ui-card .ui-name{font-weight:600; font-size:.9375rem; line-height:1.3}
+/* actions: .ui-cta an ink chip (01, a span, not a button); .ui-pill a full-width 38 px ink bar (09, a span, not a button) */
+.ui-card .ui-cta{min-height:28px; padding:0 11px; font-size:.8125rem; justify-content:center; background:var(--aub); color:var(--paper); font-weight:600}
+.ui-card .ui-pill{display:flex; justify-content:center; align-items:center; min-height:38px; border-radius:10px; background:var(--aub); color:var(--paper); font-weight:600; font-size:var(--fs-sm)}
+/* form-like parts (01 KYC card): a field with label and mono value, a gain-green "done" row */
+.ui-field{display:flex; flex-direction:column; gap:4px; padding:10px 14px; border-radius:var(--r-ctl); border:1px solid var(--line-2)}
+.ui-field .ui-flabel{font-size:11px; color:var(--aub-60)}
+.ui-field .ui-fval{font:500 15px/1.2 var(--mono); letter-spacing:.06em; color:var(--aub)}
+.ui-card .ui-ok{justify-content:flex-start; gap:8px; color:var(--gain); font-weight:500}
+.ui-card .ui-ok .i{width:16px; height:16px}
+.ui-card .ui-ok span{color:var(--gain)}
+
+/* Hairline row card (from 09 v3): .ui-card.ui-list, rows split by 1 px lines (segments, account status, order ticket) */
+.ui-card.ui-list{gap:0}
+.ui-list .ui-label{padding-bottom:10px}
+.ui-list .ui-big{padding-bottom:12px}
+.ui-list .ui-row{padding:11px 0; border-top:1px solid var(--line)}
+.ui-list .ui-pill{margin-top:12px}
+
+/* Receipt card (from 09 v3 s-charges): .ui-card.ui-receipt, a contract-note look for charges without figures */
+.ui-card.ui-receipt{padding:24px; gap:0; border-radius:var(--r-card); box-shadow:var(--shadow-1); font-size:var(--fs-sm)}
+.ui-receipt .ui-label{padding-bottom:12px}
+.ui-receipt .ui-row{padding:12px 0; border-top:1px dashed var(--line-2); align-items:baseline}
+.ui-receipt .ui-row span + span{flex:none; color:var(--aub-60); text-align:right}
+.ui-receipt .small{padding-top:14px; border-top:1px dashed var(--line-2); color:var(--aub-60)}
+
+/* KYC step card (from 01 Home s-steps): .ui-stage.kyc-stage, a Mist panel with a taller top, holding .ui-card.kyc-card */
+.kyc-stage{align-items:center; padding:48px 32px 28px; border-radius:24px; background:var(--mist)}
+.kyc-card{width:min(340px, 100%); gap:14px; padding:22px}
+.kyc-progress{display:flex; gap:6px}
+.kyc-progress i{flex:1; height:4px; border-radius:4px; background:var(--line)}
+.kyc-progress i.on{background:var(--aub)}
+@media (max-width: 640px){ .kyc-stage{padding:28px 16px 20px} }
+
+/* Steps split (from 01 Home s-steps): steps 2 x 2, the docs strip (heading above a two-column list from 900 px) and the band CTA left (7),
+   a product visual right (5) */
+@media (min-width: 900px){ .split--steps{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.split--steps .docs{margin-top:36px; grid-template-columns:1fr; gap:14px}
+@media (min-width: 900px){ .split--steps .docs ul{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 24px} }
+.split--steps .band-cta{margin-top:32px}
+
+/* Step mini screens (from 09 v3 s-steps): .ui-card.ui-mini under each step, pinned to the foot of the row so all four line up */
+.steps li:has(.ui-mini){display:flex; flex-direction:column}
+.ui-card.ui-mini{margin-top:auto; padding:14px 16px; gap:8px; border-radius:14px; box-shadow:var(--shadow-1)}
+.ui-mini b{font-size:var(--fs-sm); font-weight:600; color:var(--aub)}
+.steps + .ui-caption{margin-top:28px}
+
+/* Documents strip with icon tiles (from 09 v3 s-steps): .docs.docs--tiles, 40 px Mist tiles; from 641 px the list is two
+   max-content columns, so four items read 2 x 2 */
+.docs--tiles li .tile{width:40px; height:40px; background:var(--mist)}
+.docs--tiles li .tile .i{width:20px; height:20px; color:var(--aub)}
+.docs--tiles ul{gap:12px 28px}
+@media (min-width: 641px){ .docs--tiles ul{display:grid; grid-template-columns:repeat(2, minmax(0, max-content)); column-gap:48px} }
+
+/* Info card tile (fix from 09 v3): the theme makes tiles white on Mist bands, which vanish inside white info cards */
+.info-card .tile{background:var(--mist)}
+
+/* Two-card row (from 09 v3): .cards.cards--2, two columns from 641 px, one below, 16 px under the block before it */
+.cards--2{margin-top:16px}
+@media (min-width: 641px){ .cards--2{grid-template-columns:repeat(2, minmax(0,1fr))} }
+
+/* F&O section (from 09 v3 s-fo): link 16 px under the inset risk box; a centred split below it; facts with a title;
+   the segments card centred on a stage panel */
+.risk-more{margin-top:16px}
+.fo-split{margin-top:clamp(40px, 5vw, 64px); align-items:center}
+.fo-split .facts{gap:24px}
+.fact-text{display:flex; flex-direction:column; gap:4px; min-width:0}
+.fact-text p{font-weight:400; color:var(--aub-80)}
+.fact-text .links{display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-top:8px}
+.seg-card{width:min(100%, 26rem); align-self:center; padding:20px 22px; font-size:var(--fs-sm)}
+.seg-card .chip{min-height:24px; font-size:12px}
+.seg-stage .ui-caption{align-self:center}
+
+/* Inset risk box inside a product door (from 01 Home s-products): icon and bullets in ink, an h4 under the door's h3.
+   09 keeps the warn icon in a stand-alone inset box */
+.door .risk-box--inset{margin:6px 0 2px}
+.door .risk-box--inset .i{color:var(--aub)}
+.door .risk-box--inset ul{color:var(--aub); line-height:1.5}
+.risk-box--inset .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+
+/* Door rows, wide text and goal chips (from 01 Home s-products): fine print inside a row; 2 x 2 Mist goal tiles, not links */
+.row-text--wide{flex:1}
+.row-text .fine{margin-top:4px; font-size:var(--fs-xs)}
+.door-foot .fine{max-width:52ch}
+.goal-chips{list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px}
+.goal-chips li{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding:22px 18px; border-radius:var(--r-ctl); background:var(--mist); color:var(--aub); font-size:var(--fs-sm); font-weight:600; line-height:1.3}
+.goal-chips .i{width:24px; height:24px}
+@media (max-width: 640px){ .goal-chips li{padding:14px 12px; gap:8px} }
+
+/* Coming-soon card (from 01 Home s-products): the right column of .doors stacks the second door and a hairline card that fills
+   the rest; one item per line with a small icon, no badges or links, outside the door so no company is implied */
+.doors-side{display:flex; flex-direction:column; gap:24px; min-width:0}
+.soon-card{flex:1; display:flex; flex-direction:column; gap:14px; padding:22px 28px; border-radius:var(--r-card); border:1px solid var(--line-2); color:var(--aub-80); font-size:var(--fs-sm)}
+.soon-card .label{color:var(--aub)}
+.soon-list{list-style:none; display:flex; flex-direction:column; gap:12px}
+.soon-item{display:flex; gap:10px; align-items:flex-start; line-height:1.4}
+.soon-item .i{flex:none; width:18px; height:18px; margin-top:1px; color:var(--aub-60)}
+@media (max-width: 640px){
+  .soon-card{padding:18px 20px}
+  .soon-list{gap:10px}
+}
+
+/* Stat tiles (01 v3 and 09 v3): an unconfirmed value sits at body size in a slot of numeral height (2rem x 1.05),
+   so a confirmed serif value fills it with no layout shift; .stat-tiles--3 adds an icon tile and roomier tiles; .num--word for a word */
+.stat-tile .num{display:flex; align-items:center; min-height:2.1rem}
+.stat-tile .num .ph{font:500 var(--fs-sm)/1.4 var(--sans); letter-spacing:0}
+.stat-tile .num--word{font-size:1.625rem; line-height:1.2}
+.stat-tile .tile{margin-bottom:10px}
+.stat-tile .link{margin-top:6px}
+.stat-tiles--3 .stat-tile{flex:1 1 260px; gap:8px; padding:26px}
+.price-notes{margin-top:24px}
+
+/* Row list (from 09 v3 s-charges): dl.kv-list.kv-list--row, no card frame, hairlines above the first and below the last row;
+   dt ink left, dd right at fs-sm; rows wrap on phones */
+.kv-list--row{padding:0; background:none; box-shadow:none; border-radius:0; border-top:1px solid var(--line)}
+.kv-list--row > div{flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px; padding:12px 0}
+.kv-list--row > div:last-child{border-bottom:1px solid var(--line)}
+.kv-list--row dt{color:var(--aub)}
+.kv-list--row dd{font-size:var(--fs-sm); text-align:right}
+
+/* Group map on a Mist band, and off-group branches with a hairline shell (they still read as branches at 640). From 01 v3 */
+.band--mist .is-on .gmap-card{background:var(--paper)}
+.band--mist .is-on .gmap-card .chip{background:var(--mist)}
+.gmap-branches li:not(.is-on) .gmap-card{border:1px solid var(--line-2)}
+
+/* Verify cards (from 01 Home s-group): the check-it-yourself ledger as three white cards; tile, bold role, company link,
+   .mono code above a hairline (balanced break at the middle dot), regulator link pinned to the foot; one column at 899 */
+.verify-head{display:flex; flex-direction:column; gap:6px}
+.verify-head p{color:var(--aub-60)}
+.verify-list--cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; border-top:0}
+.verify-list--cards .verify-row{display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:24px; border-bottom:0; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1)}
+.verify-list--cards dt{gap:4px}
+.verify-list--cards dt .tile{margin-bottom:10px; background:var(--mist); color:var(--aub)}
+.verify-list--cards dt b{font-weight:600; color:var(--aub)}
+.verify-list--cards dt a{font-weight:500; font-size:var(--fs-sm)}
+.verify-list--cards dd.mono{padding-top:12px; border-top:1px solid var(--line); align-self:stretch; text-wrap:balance}
+.verify-list--cards dd:last-child{margin-top:auto}
+@media (max-width: 899px){ .verify-list--cards{grid-template-columns:1fr} }
+@media (max-width: 640px){ .verify-list--cards .verify-row{padding:20px} }
+
+/* FAQ split, left column (from 01 Home s-faq): the image slot gets a little air in the 18 px stack */
+.faq-side .img-slot{margin-block:4px}
+
+/* Dark closing band (01 v3 and 09 v3; on-dark copy colours are in the dark band block above).
+   01: buttons in a row, an app-soon block, a translucent image slot right. 09: a column of equal-width buttons, product cards right */
+.final-actions{display:flex; flex-wrap:wrap; gap:12px}
+.app-soon{display:flex; flex-direction:column; align-items:flex-start; gap:14px; padding-top:22px; border-top:1px solid var(--dark-line)}
+.app-soon p{color:var(--on-dark)}
+.final-visual{justify-self:end; width:min(420px, 100%)}
+.band--dark .img-slot{background:linear-gradient(160deg, rgba(244,241,247,.16) 0%, rgba(244,241,247,.05) 100%); border:1px solid var(--dark-line); color:var(--on-dark-2)}
+.band--dark .img-slot b{color:var(--on-dark)}
+.band--dark .img-slot .i{color:var(--on-dark-2)}
+.app .row{display:flex; flex-direction:column; align-items:stretch; gap:12px; width:max-content; max-width:100%}
+.final-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.final-stage .ui-card + .ui-card{align-self:flex-end}
+@media (max-width: 899px){
+  .final-visual{justify-self:stretch; width:100%; max-width:420px}
+  .final-stage{padding:0}
+}
+@media (max-width: 640px){
+  .app-soon .stores{flex-wrap:nowrap; align-self:stretch}
+  .app-soon .store{flex:1 1 0; min-width:0; gap:10px; padding:10px 12px}
+  .app-soon .store b{white-space:nowrap}
+  .app .row{width:100%}
+  .app .row .btn{width:100%; white-space:normal; text-align:center; line-height:1.25; padding:12px 16px; font-size:1rem}
+  .final-stage .ui-card{width:100%}
+}
+
+/* page: scheme-detail */
+/* 29 Scheme Detail v1 (golden, template B). Tokens only. Reusable pieces are named in memory section 7 for promotion.
+   Tints of ink for data marks: color-mix of --aub with --paper (no new colour tokens). */
+
+/* Data hero (candidate pattern): DOM order copy, invest card, chart. Below 900 px the theme's one column gives that order;
+   from 900 px the chart sits under the copy (7) and the card spans both rows (5) */
+.page-scheme-detail .hero{padding-top:28px}
+@media (min-width: 900px){
+  .hero-grid--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); grid-template-areas:"copy side" "chart side"; grid-template-rows:auto 1fr; row-gap:28px; align-items:start}
+  .hero-grid--data > .hero-copy{grid-area:copy}
+  .hero-grid--data > .hero-side{grid-area:side}
+  .hero-grid--data > .hero-chart{grid-area:chart}
+}
+.hero-grid--data .hero-copy{gap:14px}
+/* the item's name as the h1, at d2 size (template B data heroes) */
+.d1.d1--name{font-size:var(--fs-d2); line-height:1.12; letter-spacing:-.012em}
+/* chip row (from 10): static labels, not links; the risk chip holds the theme riskometer scale */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px}
+.chip-risk .riskometer{width:56px}
+.chip-risk .scale{gap:2px}
+.chip-risk b{font-weight:600}
+/* NAV row: label and serif numeral on one baseline, source under, a hairline above */
+.nav-row{display:flex; flex-direction:column; gap:4px; margin-top:4px; padding-top:14px; border-top:1px solid var(--line)}
+.nav-val{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px}
+.nav-val .num{font:400 2.4rem/1 var(--serif); color:var(--aub)}
+.nav-val .num .ph{font:500 var(--fs-sm)/1.4 var(--sans)}
+/* data source line (as-on date + source) and the src + fine + illus stack under every block with numbers */
+.src{font-size:var(--fs-xs); line-height:1.45; color:var(--aub-60)}
+.data-foot{display:flex; flex-direction:column; gap:4px}
+.data-foot .fine + .fine{margin-top:0}
+
+/* Data card (candidate pattern): one white card language for data blocks (shadow, no border) */
+.data-card{display:flex; flex-direction:column; gap:18px; margin:0; padding:24px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); min-width:0}
+
+/* NAV chart card: caption + range tabs, SVG line and area (paths only), High and Low as HTML at the right edge, months under */
+.hero-chart{display:flex; flex-direction:column; gap:10px; min-width:0}
+.chart-card{gap:14px; padding:20px 24px}
+.chart-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px 16px}
+.chart-top .tab{padding:8px 12px}
+.chart-plot{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px}
+.chart-plot svg{width:100%; height:200px; display:block}
+.chart-y{display:flex; flex-direction:column; justify-content:space-between; font-size:var(--fs-xs); line-height:1.4; color:var(--aub-60); white-space:nowrap}
+.chart-y b{color:var(--aub); font-weight:600; font-variant-numeric:tabular-nums}
+.chart-x{display:flex; justify-content:space-between; font-size:var(--fs-xs); color:var(--aub-60)}
+@media (max-width: 899px){ .chart-plot svg{height:140px} }
+
+/* Invest card: the scheme's terms as a row list above the mobile field */
+.invest-card .kv-list--row > div{padding:10px 0}
+.invest-card .label{line-height:1.45}
+
+/* split variants: 7/5 for data + reading card, 6/6 for the dials */
+@media (min-width: 900px){
+  .split--data{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr)}
+  .split--half{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+.band-tabs{margin-bottom:24px}
+
+/* Paired bars (candidate pattern): fund and benchmark per period on one scale from zero, values as HTML text */
+.sw{width:12px; height:12px; border-radius:3px; background:var(--aub); flex:none}
+.pb-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.pb-legend > span{display:flex; gap:8px; align-items:baseline}
+.pb-legend .sw{align-self:center}
+.pb-rows{display:flex; flex-direction:column}
+.pb-row{display:grid; grid-template-columns:10rem minmax(0, 1fr); gap:8px 20px; align-items:center; padding:16px 0; border-top:1px solid var(--line)}
+.pb-row:last-child{border-bottom:1px solid var(--line)}
+.pb-label{font-weight:600; font-size:var(--fs-sm); color:var(--aub); line-height:1.35}
+.pb-label span{display:block; font-weight:400; font-size:var(--fs-xs); color:var(--aub-60)}
+.pb-bars{display:flex; flex-direction:column; gap:6px; min-width:0}
+.pb-bar{display:flex; align-items:center; gap:10px}
+.pb-bar i{display:block; flex:none; width:var(--w); height:14px; border-radius:0 4px 4px 0; background:var(--aub)}
+.pb-bar b{font-size:var(--fs-sm); font-weight:600; color:var(--aub); font-variant-numeric:tabular-nums; white-space:nowrap}
+.pb-bar--bm b{font-weight:500; color:var(--aub-80)}
+.sw--bm,.pb-bar--bm i{background:color-mix(in srgb, var(--aub) 28%, var(--paper))}
+.split--returns,.split--half{align-items:center}
+.read-card p b{color:var(--aub)}
+@media (max-width: 640px){ .pb-row{grid-template-columns:1fr} }
+
+/* Riskometer dials (candidate pattern): two white dial cards on a Mist stage panel; SVG arcs and needle, the level as HTML text */
+.dial-stage{gap:18px}
+.dials{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px}
+.dial{margin:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding:24px 18px 20px; border-radius:var(--r-card); background:var(--paper); box-shadow:var(--shadow-1); text-align:center; min-width:0}
+.dial svg{width:100%; max-width:220px; height:auto}
+.dial figcaption{display:flex; flex-direction:column; gap:2px; font-size:var(--fs-sm); color:var(--aub-60)}
+.dial figcaption b{font:400 var(--fs-d3)/1.2 var(--serif); color:var(--aub)}
+.info-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub); margin-top:6px}
+.info-card ul{display:flex; flex-direction:column; gap:4px; padding-left:20px; color:var(--aub-80)}
+@media (max-width: 640px){ .dial{padding:18px 10px 14px} .dials{gap:10px} }
+
+/* stat tiles on a Mist band: the icon tile stays Mist inside the white tile (the theme turns tiles white on Mist) */
+.stat-tile .tile{background:var(--mist)}
+
+/* Composition card: size split bar with real swatches, two columns of bar rows */
+.mix{margin:0; display:flex; flex-direction:column; gap:14px}
+.mix .splitbar{height:14px; gap:3px; background:none; border-radius:0}
+.mix .splitbar i{flex:var(--w) 1 0px; border-radius:3px}
+.mix .splitbar i:nth-child(2),.sw--2{background:color-mix(in srgb, var(--aub) 62%, var(--paper))}
+.mix .splitbar i:nth-child(3),.sw--3{background:color-mix(in srgb, var(--aub) 36%, var(--paper))}
+.mix .splitbar i:nth-child(4),.sw--4{background:var(--line-2)}
+.mix-legend{display:flex; flex-wrap:wrap; gap:8px 24px; font-size:var(--fs-sm); color:var(--aub)}
+.mix-legend span{display:flex; gap:8px; align-items:center}
+.mix-legend b{font-weight:600; font-variant-numeric:tabular-nums}
+.barcols{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px 32px; padding-top:20px; border-top:1px solid var(--line)}
+.barcols > div{display:flex; flex-direction:column; gap:14px; min-width:0}
+.data-card .h4{font:600 1rem/1.3 var(--sans); color:var(--aub)}
+.barrows{list-style:none; display:flex; flex-direction:column; gap:14px}
+.barrows li{display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 12px; font-size:var(--fs-sm); color:var(--aub); line-height:1.3}
+.barrows b{font-weight:600; font-variant-numeric:tabular-nums}
+.br-track{grid-column:1 / -1; height:6px; border-radius:6px; background:var(--mist)}
+.br-track i{display:block; width:var(--w); height:100%; border-radius:6px; background:var(--aub)}
+.facts-card .kv-list--row dd{max-width:64%}
+.facts-card .kv-list--row > div{padding:10px 0}
+@media (min-width: 900px){
+  .split--stretch{align-items:stretch}
+  .split--stretch > .data-card > .data-foot{margin-top:auto}
+}
+@media (max-width: 640px){
+  .barcols{grid-template-columns:1fr}
+  .facts-card .kv-list--row dd{max-width:none; text-align:left}
+}
+
+/* closing h2 breaks into two even lines */
+#h-final{max-width:10em}
+/* a placeholder in fine print on the dark band stays readable */
+.band--dark .ph{color:var(--on-dark)}
+
+/* states board: keep cards at their page width */
+.states-board .chart-card,.states-board .data-card{max-width:44rem}
+.states-board .hero-copy{max-width:40rem}
+
+/* phones (from 10): receipt rows stack, the disclosure box puts its icon above the text */
+@media (max-width: 640px){
+  .page-scheme-detail .hero{padding-top:16px}
+  .page-scheme-detail .ui-receipt .ui-row{flex-direction:column; align-items:flex-start; gap:2px}
+  .page-scheme-detail .ui-receipt .ui-row span + span{text-align:left}
+  .page-scheme-detail .risk-box{grid-template-columns:1fr; padding:20px}
+  .data-card{padding:20px}
+  .chart-card{padding:16px}
+}
+</style>
+</head>
+<body class="is-static no-spine-motion page-scheme-detail tpl-b">
+<div class="announce" id="top">
+  <div class="wrap"><svg aria-hidden="true" focusable="false" width="12" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg><span>Account opening is live. The ROOT app for iOS and Android is coming soon.</span><a href="09-start-trading.html">Open a free account</a></div>
+</div>
+<header class="site-head" id="sitehead">
+  <div class="wrap">
+    <a class="brand" href="01-home.html" aria-label="ROOT by Aikyam, home"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 214.53 72.18"><g><g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></a>
+    <nav class="mainnav" aria-label="Main">
+      <div>
+        <button class="navlink is-current" data-nav="invest" aria-expanded="false" aria-controls="mega-invest">Invest<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chev" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 9.5 5.5 5.5 5.5-5.5"/></svg></button>
+        <div class="mega" id="mega-invest" role="region" aria-label="Invest">
+          <div><p class="mh">Mutual funds</p>
+            <a href="26-mutual-funds.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-mf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path class="sp" fill="#C19C2F" stroke="none" d="M12 12V3.5A8.5 8.5 0 0 1 20.5 12z"/><path d="M12 3.5V12h8.5"/></svg>Mutual Funds</a>
+            <a href="27-fund-explorer.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-search" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>Fund Explorer</a>
+            <a href="28-sip.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-cal" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle class="sp" fill="#C19C2F" stroke="none" cx="15.8" cy="15.2" r="1.5"/></svg>SIP</a>
+          </div>
+          <div><p class="mh">IPOs</p>
+            <a href="32-upcoming-ipos.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ipo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 21V3.5"/><path d="M5.5 4h12l-2.5 4.5 2.5 4.5h-12"/><circle class="sp" fill="#C19C2F" stroke="none" cx="18.5" cy="18.5" r="1.9"/></svg>Upcoming IPOs</a>
+            <a href="33-ipo-calendar.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-cal" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle class="sp" fill="#C19C2F" stroke="none" cx="15.8" cy="15.2" r="1.5"/></svg>IPO Calendar &amp; Allotment</a>
+            <a href="35-equity.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-etf" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 3.5 8 12 12.5 20.5 8z"/><path d="M3.5 12.2 12 16.7l8.5-4.5"/><path d="M3.5 16.2 12 20.7l8.5-4.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="8" r="1.5"/></svg>ETFs</a>
+          </div>
+          <div><p class="mh">Coming soon</p>
+            <a href="51-insurance.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-shield" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5.2c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V6z"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="11.5" r="1.8"/></svg>Insurance<span class="soon">Soon</span></a>
+            <a href="55-bonds.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-bond" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="13.5" rx="2"/><path d="M7 9.5h7M7 13h4.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16.5" cy="14" r="1.8"/></svg>Bonds &amp; Fixed Income<span class="soon">Soon</span></a>
+            <a href="56-nps.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-nps" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5a9 9 0 0 1 18 0z"/><path d="M12 12.5v6a2 2 0 0 1-4 0"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="3.2" r="1.3"/></svg>NPS<span class="soon">Soon</span></a>
+            <a href="57-pms.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-pms" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="2"/><path d="M9 7.5V5.5h6v2"/><path d="M3.5 12.5h17"/><rect class="sp" fill="#C19C2F" stroke="none" x="10.8" y="11.3" width="2.4" height="2.4" rx=".6"/></svg>PMS<span class="soon">Soon</span></a>
+          </div>
+          <div class="mega-foot"><span>Not sure where to start? Try a goal.</span><a class="link" href="04-plan-and-tools.html">Plan by goal<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div>
+        <button class="navlink" data-nav="trade" aria-expanded="false" aria-controls="mega-trade">Trade<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chev" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 9.5 5.5 5.5 5.5-5.5"/></svg></button>
+        <div class="mega" id="mega-trade" role="region" aria-label="Trade">
+          <div><p class="mh">Equity</p>
+            <a href="35-equity.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg>Equity</a>
+            <a href="36-intraday-delivery.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-swap" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3.5-3.5"/><path d="M20 16H6l3.5 3.5"/></svg>Intraday &amp; Delivery</a>
+          </div>
+          <div><p class="mh">Derivatives</p>
+            <a href="37-futures-options.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-fo" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4v15"/><path d="M4 15.5 7.5 19l3.5-3.5"/><path d="M16.5 20V5"/><path d="M13 8.5 16.5 5 20 8.5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="12" r="1.7"/></svg>Futures &amp; Options</a>
+            <a href="38-currency-commodity.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-commodity" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 19h17l-3.2-7.5H6.7z"/><path class="sp" fill="#C19C2F" stroke="none" d="M9.3 11.5 10.6 6.5h2.8l1.3 5z"/><path d="M9.3 11.5 10.6 6.5h2.8l1.3 5"/></svg>Currency &amp; Commodity</a>
+          </div>
+          <div><p class="mh">Markets</p>
+            <a href="40-markets.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chart" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16.5h16.5"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>Markets &amp; Indices</a>
+            <a href="39-stock-detail.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-stocks" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M4 16l4.5-4.5 3.5 3 7.5-8"/><circle class="sp" fill="#C19C2F" stroke="none" cx="19.5" cy="6.5" r="1.9"/></svg>Stock pages</a>
+          </div>
+          <div class="mega-foot"><span>9 out of 10 individual traders in equity F&amp;O incurred net losses.</span><a class="link" href="22-risk-disclosure.html">Read the risk disclosure<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div>
+        <button class="navlink" data-nav="plan" aria-expanded="false" aria-controls="mega-plan">Plan &amp; Tools<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chev" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 9.5 5.5 5.5 5.5-5.5"/></svg></button>
+        <div class="mega" id="mega-plan" role="region" aria-label="Plan and tools">
+          <div><p class="mh">Calculators</p>
+            <a href="42-sip-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>SIP</a>
+            <a href="43-lumpsum-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>Lumpsum</a>
+            <a href="45-brokerage-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>Brokerage</a>
+          </div>
+          <div><p class="mh">&nbsp;</p>
+            <a href="44-retirement-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>Retirement</a>
+            <a href="46-margin-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>Margin</a>
+            <a href="47-span-calculator.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-calc" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><rect x="7.5" y="6" width="9" height="3.5" rx=".8"/><path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/><circle class="sp" fill="#C19C2F" stroke="none" cx="16" cy="17" r="1.3"/></svg>SPAN</a>
+          </div>
+          <div><p class="mh">Planning</p>
+            <a href="48-risk-profiler.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chart" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16.5h16.5"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>Risk Profiler</a>
+            <a href="49-retirement-planning.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-sun" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18.5h18"/><path d="M6.8 18.5a5.2 5.2 0 0 1 10.4 0"/><path d="M12 6.5v2M5.8 9.8l1.4 1.4M18.2 9.8l-1.4 1.4"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12" cy="15.6" r="1.5"/></svg>Retirement Planning</a>
+            <a href="50-child-education-planning.html"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-cap" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.6c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3V11"/><path d="M21.5 9v5"/><circle class="sp" fill="#C19C2F" stroke="none" cx="21.5" cy="15.6" r="1.3"/></svg>Child Education Planning</a>
+          </div>
+        </div>
+      </div>
+      <div><a class="navlink" data-nav="learn" href="05-learn.html">Learn</a></div>
+      <div><a class="navlink" data-nav="pricing" href="06-pricing.html">Pricing</a></div>
+      <div><a class="navlink" data-nav="about" href="07-about.html">About</a></div>
+      <div><a class="navlink" data-nav="help" href="08-help-centre.html">Help</a></div>
+    </nav>
+    <div class="head-actions">
+      <button class="iconbtn" aria-label="Search"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-search" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
+      <a class="btn btn--ghost btn--sm" href="74-login.html">Login</a>
+      <a class="btn btn--sm" href="10-start-investing.html">Open free account</a>
+      <button class="iconbtn menu-btn" aria-label="Open menu" aria-controls="mnav" aria-haspopup="dialog"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-menu" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main class="spine" id="main">
+<div class="root-line" aria-hidden="true"><i></i></div>
+<nav class="wrap crumbs-bar" aria-label="Breadcrumb"><ol class="crumbs"><li><a href="01-home.html">Home</a></li><li><a href="02-invest.html">Invest</a></li><li><a href="26-mutual-funds.html">Mutual Funds</a></li><li><span aria-current="page">Example Flexi Cap Fund</span></li></ol></nav>
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--data">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Managed by <span data-field="amc_name">Example Mutual Fund</span></span>
+      <h1 class="d1 d1--name" id="h-hero" data-field="scheme_name">Example Flexi Cap Fund</h1>
+      <div class="chip-row">
+        <span class="chip">Equity</span>
+        <span class="chip">Flexi cap</span>
+        <span class="chip">Regular plan</span>
+        <span class="chip">Growth</span>
+        <span class="chip chip-risk"><span class="riskometer" aria-hidden="true"><span class="scale"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on top"></i></span></span><span>Riskometer: <b data-field="riskometer">Very high</b></span></span>
+      </div>
+      <p class="lead" data-draft="category-line">Puts at least 65% in company shares, large, mid or small, in a mix its fund manager chooses.</p>
+      <div class="nav-row">
+        <div class="nav-val"><span class="label">NAV (price of one unit)</span><b class="num" data-field="nav">₹58.42</b></div>
+        <p class="src">NAV as on <span data-field="nav_date">09-Oct-2026</span> · Source: AMFI</p>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <section class="form-card invest-card" id="s-invest" aria-labelledby="h-invest">
+        <span class="label">Regular plan · distributed by Aikyam Wealth Private Limited</span>
+        <h2 class="h3" id="h-invest">Start a SIP or invest once</h2>
+        <div class="stack" style="--gap:10px">
+          <dl class="kv-list kv-list--row">
+            <div><dt>Minimum SIP</dt><dd data-field="min_sip">₹500 a month</dd></div>
+            <div><dt>Minimum one-time</dt><dd data-field="min_lumpsum">₹1,000</dd></div>
+            <div><dt>Exit load (if you sell early)</dt><dd data-field="exit_load">1% within 1 year</dd></div>
+          </dl>
+          <div class="data-foot">
+            <p class="src">Scheme terms as on <span data-field="terms_date">30-Sep-2026</span> · Source: the fund house</p>
+            <p class="illus">Illustrative data. Not real prices or returns.</p>
+          </div>
+        </div>
+        <form id="invest-form" action="/open-account/investing" method="post" data-event="account_start" data-form-entity="Aikyam Wealth">
+          <input type="hidden" name="scheme" value="example-flexi-cap-fund" data-field="scheme_code">
+          <div class="fgroup">
+            <label for="invest-mob">Mobile number</label>
+            <span class="field"><span class="pre">+91</span><input id="invest-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-describedby="invest-mob-help" required></span>
+            <span class="fhelp" id="invest-mob-help">We'll send a one-time password (OTP) to this number.</span>
+          </div>
+          <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent-wealth">I agree to the <a href="25-privacy.html">Privacy Policy</a> and allow Aikyam Wealth to call, SMS or WhatsApp me about this application.</span></label>
+          <button class="btn btn--lg" type="submit" data-primary>Invest in this fund<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></button>
+          <div class="stack" style="--gap:0px">
+            <p class="fine">Your number goes to Aikyam Wealth Private Limited, AMFI ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>, to send your OTP and continue your application.</p>
+            <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification <mark class="ph" data-ph="wealth-activation">and other checks, to confirm</mark>.</p>
+            <p class="fine">Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+          </div>
+        </form>
+      </section>
+      <div class="hero-alt"><a class="link" href="#s-costs">See what you pay<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+    </div>
+
+    <div class="hero-chart">
+      <figure class="data-card chart-card" aria-labelledby="chart-cap">
+        <div class="chart-top">
+          <figcaption class="label" id="chart-cap">NAV over the last year</figcaption>
+          <div class="tabs" role="tablist" aria-label="NAV range">
+            <button class="tab" type="button" role="tab" aria-selected="false">1M</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">6M</button>
+            <button class="tab" type="button" role="tab" aria-selected="true">1Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">3Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">5Y</button>
+            <button class="tab" type="button" role="tab" aria-selected="false">All</button>
+          </div>
+        </div>
+        <div class="chart-plot">
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="nav-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C0F2F" stop-opacity=".14"/><stop offset="1" stop-color="#1C0F2F" stop-opacity="0"/></linearGradient></defs><path d="M0 8H600M0 192H600" fill="none" stroke="#D1D6DD" stroke-width="1" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/><path fill="url(#nav-fill)" d="M0.0 111.3 L11.5 106.3 L23.1 99.0 L34.6 94.5 L46.2 89.3 L57.7 96.4 L69.2 100.6 L80.8 107.1 L92.3 100.5 L103.8 87.0 L115.4 78.5 L126.9 82.1 L138.5 92.8 L150.0 101.2 L161.5 110.9 L173.1 124.9 L184.6 130.8 L196.2 141.1 L207.7 146.6 L219.2 137.3 L230.8 132.8 L242.3 147.1 L253.8 166.3 L265.4 192.0 L276.9 184.6 L288.5 173.0 L300.0 162.4 L311.5 154.4 L323.1 142.8 L334.6 138.7 L346.2 146.5 L357.7 152.5 L369.2 143.9 L380.8 126.8 L392.3 117.0 L403.8 108.9 L415.4 106.5 L426.9 103.2 L438.5 108.9 L450.0 115.0 L461.5 104.0 L473.1 94.9 L484.6 83.4 L496.2 72.2 L507.7 67.6 L519.2 71.7 L530.8 79.5 L542.3 65.9 L553.8 49.9 L565.4 42.8 L576.9 34.1 L588.5 24.2 L600.0 8.0 L600 200 L0 200 Z"/><path fill="none" stroke="#1C0F2F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" d="M0.0 111.3 L11.5 106.3 L23.1 99.0 L34.6 94.5 L46.2 89.3 L57.7 96.4 L69.2 100.6 L80.8 107.1 L92.3 100.5 L103.8 87.0 L115.4 78.5 L126.9 82.1 L138.5 92.8 L150.0 101.2 L161.5 110.9 L173.1 124.9 L184.6 130.8 L196.2 141.1 L207.7 146.6 L219.2 137.3 L230.8 132.8 L242.3 147.1 L253.8 166.3 L265.4 192.0 L276.9 184.6 L288.5 173.0 L300.0 162.4 L311.5 154.4 L323.1 142.8 L334.6 138.7 L346.2 146.5 L357.7 152.5 L369.2 143.9 L380.8 126.8 L392.3 117.0 L403.8 108.9 L415.4 106.5 L426.9 103.2 L438.5 108.9 L450.0 115.0 L461.5 104.0 L473.1 94.9 L484.6 83.4 L496.2 72.2 L507.7 67.6 L519.2 71.7 L530.8 79.5 L542.3 65.9 L553.8 49.9 L565.4 42.8 L576.9 34.1 L588.5 24.2 L600.0 8.0"/></svg>
+          <div class="chart-y"><span>High <b data-field="nav_high">₹58.42</b></span><span>Low <b data-field="nav_low">₹49.10</b></span></div>
+          <div class="chart-x"><span>Oct 2025</span><span>Oct 2026</span></div>
+        </div>
+      </figure>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-returns" aria-labelledby="h-returns">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-returns"><i class="node-dot" aria-hidden="true"></i>How has it done?</h2>
+      <p>Past returns of this plan, next to its benchmark. Past returns are not a forecast.</p>
+    </div>
+    <div class="tabs band-tabs" role="tablist" aria-label="Return type">
+      <button class="tab" type="button" role="tab" aria-selected="true">One-time investment</button>
+      <button class="tab" type="button" role="tab" aria-selected="false">SIP</button>
+    </div>
+    <div class="split split--data split--returns">
+      <figure class="data-card pairbars" aria-labelledby="pb-cap">
+        <figcaption class="pb-legend" id="pb-cap">
+          <span><i class="sw" aria-hidden="true"></i><span>This fund (Regular, Growth)</span></span>
+          <span><i class="sw sw--bm" aria-hidden="true"></i><span>Benchmark: <span data-field="benchmark_name">Example Broad Market Index (TRI)</span></span></span>
+        </figcaption>
+        <div class="pb-rows">
+          <div class="pb-row">
+            <span class="pb-label">1 year</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:40.3%"></i><b data-field="return_1y"><span class="sr-only">This fund: </span>9.84%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:43.5%"></i><b data-field="bm_return_1y"><span class="sr-only">Benchmark: </span>10.62%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">3 years</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:64%"></i><b data-field="return_3y"><span class="sr-only">This fund: </span>15.61%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:61.1%"></i><b data-field="bm_return_3y"><span class="sr-only">Benchmark: </span>14.90%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">5 years</span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:70.2%"></i><b data-field="return_5y"><span class="sr-only">This fund: </span>17.12%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:71.5%"></i><b data-field="bm_return_5y"><span class="sr-only">Benchmark: </span>17.45%</b></div>
+            </div>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Since launch<span data-field="launch_date">14-Jan-2013</span></span>
+            <div class="pb-bars">
+              <div class="pb-bar"><i style="--w:56.2%"></i><b data-field="return_since_launch"><span class="sr-only">This fund: </span>13.71%</b></div>
+              <div class="pb-bar pb-bar--bm"><i style="--w:52.3%"></i><b data-field="bm_return_since_launch"><span class="sr-only">Benchmark: </span>12.76%</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="data-foot">
+          <p class="src">Returns as on <span data-field="returns_date">09-Oct-2026</span>, worked out from daily NAVs by <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark>.</p>
+          <p class="fine">Past performance does not guarantee future returns.</p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </figure>
+      <div class="info-card read-card">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-book" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2 2 0 0 1 6 3.5h13.5v15H6a2 2 0 0 0-2 2z"/><path d="M4 20.5a2 2 0 0 1 2-2h13.5V21H6a2 2 0 0 1-2-.5"/><path d="M8.5 8h7"/></svg></span>
+        <h3 class="h3">How to read this</h3>
+        <p><b>CAGR:</b> the average yearly growth rate over the period. Returns for 1 year are a simple change.</p>
+        <p><b>Benchmark:</b> the index this fund measures itself against.</p>
+        <p><b>Since launch:</b> the CAGR from the day the fund started.</p>
+        <p><b>Regular plan:</b> its costs include the distributor's commission.</p>
+        <div class="links"><a class="link" href="27-fund-explorer.html" data-query="category=flexi-cap" data-event="explore_funds">Compare flexi cap funds<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-riskometer" aria-labelledby="h-riskometer">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-riskometer"><i class="node-dot" aria-hidden="true"></i>How much risk does it carry?</h2>
+      <p>Every scheme sits on one of six risk levels, from Low to Very high.</p>
+    </div>
+    <div class="split split--half">
+      <div class="ui-stage ui-stage--panel dial-stage">
+        <div class="dials">
+          <figure class="dial">
+            <svg viewBox="0 0 200 108" aria-hidden="true" focusable="false"><path fill="#D6D4DA" d="M10.00 100.00A90 90 0 0 1 21.44 56.09L49.37 71.70A58 58 0 0 0 42.00 100.00Z"/><path fill="#B6B2BC" d="M22.69 53.92A90 90 0 0 1 53.92 22.69L70.30 50.18A58 58 0 0 0 50.18 70.30Z"/><path fill="#97919F" d="M56.09 21.44A90 90 0 0 1 98.74 10.01L99.19 42.01A58 58 0 0 0 71.70 49.37Z"/><path fill="#726A7E" d="M101.26 10.01A90 90 0 0 1 143.91 21.44L128.30 49.37A58 58 0 0 0 100.81 42.01Z"/><path fill="#493F59" d="M146.08 22.69A90 90 0 0 1 177.31 53.92L149.82 70.30A58 58 0 0 0 129.70 50.18Z"/><path fill="#1C0F2F" d="M178.56 56.09A90 90 0 0 1 190.00 100.00L158.00 100.00A58 58 0 0 0 150.63 71.70Z"/><path fill="#1C0F2F" d="M98.71 95.17L175.34 79.81L101.29 104.83Z"/><circle cx="100" cy="100" r="7" fill="#1C0F2F"/><circle cx="100" cy="100" r="3" fill="#C19C2F"/></svg>
+            <figcaption>This fund<b data-field="riskometer">Very high</b></figcaption>
+          </figure>
+          <figure class="dial">
+            <svg viewBox="0 0 200 108" aria-hidden="true" focusable="false"><path fill="#D6D4DA" d="M10.00 100.00A90 90 0 0 1 21.44 56.09L49.37 71.70A58 58 0 0 0 42.00 100.00Z"/><path fill="#B6B2BC" d="M22.69 53.92A90 90 0 0 1 53.92 22.69L70.30 50.18A58 58 0 0 0 50.18 70.30Z"/><path fill="#97919F" d="M56.09 21.44A90 90 0 0 1 98.74 10.01L99.19 42.01A58 58 0 0 0 71.70 49.37Z"/><path fill="#726A7E" d="M101.26 10.01A90 90 0 0 1 143.91 21.44L128.30 49.37A58 58 0 0 0 100.81 42.01Z"/><path fill="#493F59" d="M146.08 22.69A90 90 0 0 1 177.31 53.92L149.82 70.30A58 58 0 0 0 129.70 50.18Z"/><path fill="#1C0F2F" d="M178.56 56.09A90 90 0 0 1 190.00 100.00L158.00 100.00A58 58 0 0 0 150.63 71.70Z"/><path fill="#1C0F2F" d="M98.71 95.17L175.34 79.81L101.29 104.83Z"/><circle cx="100" cy="100" r="7" fill="#1C0F2F"/><circle cx="100" cy="100" r="3" fill="#C19C2F"/></svg>
+            <figcaption>Its benchmark<b data-field="bm_riskometer">Very high</b></figcaption>
+          </figure>
+        </div>
+        <p class="small">Levels: Low, Low to moderate, Moderate, Moderately high, High, Very high.</p>
+        <div class="data-foot">
+          <p class="src">Riskometer as on <span data-field="riskometer_date">30-Sep-2026</span> · Source: the fund house</p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-info" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.7v.2"/></svg></span>
+        <h3 class="h3">What Very high means</h3>
+        <p data-draft="risk-level">The value of your investment can rise and fall a lot, especially over short periods.</p>
+        <p>The fund house says it suits investors seeking:</p>
+        <ul data-field="product_label">
+          <li>Long-term capital growth</li>
+          <li>Investment mainly in shares of companies of all sizes</li>
+        </ul>
+        <p>You decide if it suits you.</p>
+        <h4 class="h4">Read the scheme documents first</h4>
+        <div class="links">
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="sid_url">Scheme Information Document (SID)<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a>
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="kim_url">Key Information Memorandum (KIM)<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a>
+          <a class="link" href="https://www.example.com/" rel="noopener" data-field="factsheet_url">Latest factsheet<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-ne" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/></svg></a>
+          <a class="link" href="48-risk-profiler.html">Not sure? Check your risk profile<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-costs" aria-labelledby="h-costs">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-costs"><i class="node-dot" aria-hidden="true"></i>What will I pay?</h2>
+      <p>The fund's own costs come out of its NAV. Here's what they are, and how Aikyam Wealth is paid.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-chart" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16.5h16.5"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg></span>
+        <span class="label">Expense ratio · this plan</span>
+        <div class="num" data-field="ter">1.68%</div>
+        <p>The fund's yearly running cost, taken from its assets, so it's already in the NAV.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-swap" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3.5-3.5"/><path d="M20 16H6l3.5 3.5"/></svg></span>
+        <span class="label">Exit load</span>
+        <div class="num" data-field="exit_load">1%</div>
+        <p>If you sell units within 1 year of buying. Nil after that.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-handshake" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 7 7.5l4 1.5 2-1.5 4 .5 4 3.5"/><path d="M7 7.5v6l4.5 4a1.5 1.5 0 0 0 2.2-.1l3.8-4.4"/><path d="M11 9l-2 2.2a1.4 1.4 0 0 0 2 2l2.5-2.4"/></svg></span>
+        <span class="label">How Aikyam Wealth is paid</span>
+        <div class="num num--word">Commission</div>
+        <p>From the fund house, included in this plan's expense ratio.</p>
+        <a class="link" href="30-distribution-commission.html">Read the commission disclosure<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <div class="data-foot price-notes">
+      <p class="src">Expense ratio and exit load as on <span data-field="terms_date">30-Sep-2026</span> · Source: the fund house</p>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-rupee" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10M7 8.5h10"/><path d="M8.5 4.5c4.5 0 6 2 6 4s-2 4-6 4H7l7.5 7"/></svg></span>
+        <h3 class="h3">Buying through ROOT</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Opening your investing account</dt><dd><mark class="ph" data-ph="wealth-account-charge">charge to confirm</mark></dd></div>
+          <div><dt>Transaction charge</dt><dd><mark class="ph" data-ph="mf-transaction-charge">charge to confirm</mark></dd></div>
+        </dl>
+        <p class="small">The transaction charge is taken when you buy units, if it applies.</p>
+        <a class="link" href="06-pricing.html">See all charges<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="ui-card ui-receipt">
+        <span class="ui-label">Inside this plan's costs</span>
+        <div class="ui-row"><span>Expense ratio</span><span>Set by the fund house, within SEBI limits</span></div>
+        <div class="ui-row"><span>Distributor commission</span><span>Included in the expense ratio</span></div>
+        <div class="ui-row"><span>Exit load</span><span>Set by the fund house</span></div>
+        <div class="ui-row"><span>Stamp duty on purchases</span><span>Set by the government</span></div>
+        <p class="small">The scheme documents show every figure.</p>
+      </div>
+    </div>
+    <div class="band-cta"><a class="link" href="#s-invest">Invest in this fund<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-portfolio" aria-labelledby="h-portfolio">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-portfolio"><i class="node-dot" aria-hidden="true"></i>What does it own?</h2>
+      <p>The mix changes as the fund manager buys and sells.</p>
+    </div>
+    <div class="split split--data split--stretch">
+      <div class="data-card">
+        <figure class="mix" aria-labelledby="mix-cap">
+          <h3 class="h4" id="mix-cap">By company size</h3>
+          <div class="splitbar" aria-hidden="true" data-field="mcap_split"><i style="--w:62"></i><i style="--w:21"></i><i style="--w:11"></i><i style="--w:6"></i></div>
+          <figcaption class="mix-legend">
+            <span><i class="sw" aria-hidden="true"></i>Large <b>62.0%</b></span>
+            <span><i class="sw sw--2" aria-hidden="true"></i>Mid <b>21.0%</b></span>
+            <span><i class="sw sw--3" aria-hidden="true"></i>Small <b>11.0%</b></span>
+            <span><i class="sw sw--4" aria-hidden="true"></i>Cash and others <b>6.0%</b></span>
+          </figcaption>
+        </figure>
+        <div class="barcols">
+          <div>
+            <h3 class="h4">Top 5 holdings</h3>
+            <ol class="barrows" data-field="holdings">
+              <li><span>Example Bank Ltd</span><b>8.4%</b><span class="br-track" aria-hidden="true"><i style="--w:84%"></i></span></li>
+              <li><span>Sample Software Ltd</span><b>6.1%</b><span class="br-track" aria-hidden="true"><i style="--w:61%"></i></span></li>
+              <li><span>Demo Energy Ltd</span><b>5.2%</b><span class="br-track" aria-hidden="true"><i style="--w:52%"></i></span></li>
+              <li><span>Example Consumer Ltd</span><b>4.0%</b><span class="br-track" aria-hidden="true"><i style="--w:40%"></i></span></li>
+              <li><span>Sample Pharma Ltd</span><b>3.3%</b><span class="br-track" aria-hidden="true"><i style="--w:33%"></i></span></li>
+            </ol>
+          </div>
+          <div>
+            <h3 class="h4">Top 5 sectors</h3>
+            <ol class="barrows" data-field="sectors">
+              <li><span>Financial services</span><b>31.2%</b><span class="br-track" aria-hidden="true"><i style="--w:78%"></i></span></li>
+              <li><span>Information technology</span><b>12.4%</b><span class="br-track" aria-hidden="true"><i style="--w:31%"></i></span></li>
+              <li><span>Energy</span><b>9.1%</b><span class="br-track" aria-hidden="true"><i style="--w:22.8%"></i></span></li>
+              <li><span>Consumer goods</span><b>8.3%</b><span class="br-track" aria-hidden="true"><i style="--w:20.8%"></i></span></li>
+              <li><span>Healthcare</span><b>7.0%</b><span class="br-track" aria-hidden="true"><i style="--w:17.5%"></i></span></li>
+            </ol>
+          </div>
+        </div>
+        <div class="data-foot">
+          <p class="src">Portfolio as on <span data-field="portfolio_date">30-Sep-2026</span>, updated monthly · Source: <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark></p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+      <div class="info-card facts-card">
+        <h3 class="h3">Fund facts</h3>
+        <dl class="kv-list kv-list--row">
+          <div><dt>Fund house</dt><dd data-field="amc_name">Example Mutual Fund (manages this scheme)</dd></div>
+          <div><dt>Fund managers</dt><dd data-field="managers">A. Example (since Apr 2019), B. Sample (since Jul 2022)</dd></div>
+          <div><dt>Launched</dt><dd data-field="launch_date">14-Jan-2013</dd></div>
+          <div><dt>Fund size (money it manages)</dt><dd data-field="aum">₹12,480 Cr</dd></div>
+          <div><dt>Benchmark</dt><dd data-field="benchmark_name">Example Broad Market Index (TRI)</dd></div>
+          <div><dt>Plan and option</dt><dd>Regular plan, Growth</dd></div>
+          <div><dt>Lock-in</dt><dd data-field="lock_in">None</dd></div>
+        </dl>
+        <p>Aikyam Wealth distributes this fund. The fund house manages it.</p>
+        <div class="data-foot">
+          <p class="src">Fund facts as on <span data-field="facts_date">30-Sep-2026</span> · Source: <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark></p>
+          <p class="illus">Illustrative data. Not real prices or returns.</p>
+        </div>
+      </div>
+    </div>
+    <div class="band-cta"><a class="link" href="#s-invest">Invest in this fund<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq"><i class="node-dot" aria-hidden="true"></i>Questions about this fund.</h2>
+      <p class="lead">Can't find yours? <a href="15-contact.html">Talk to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-support" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13" width="4" height="6" rx="1.5"/><rect x="16.5" y="13" width="4" height="6" rx="1.5"/><path d="M18.5 19c0 1.4-1.8 2.3-4.8 2.3"/><circle class="sp" fill="#C19C2F" stroke="none" cx="12.6" cy="21.3" r="1.2"/></svg><b>Photo: a member of the ROOT support team on a call at their desk</b><span>Art direction: real Aikyam staff (shoot to come), warm daylight, relaxed and attentive, eye level, 4:3</span></figure>
+      <a class="link" href="08-help-centre.html">Visit the Help Centre<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+    </div>
+    <div class="faq">
+      <details open><summary>Is this a regular plan, and what does Aikyam Wealth earn?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>Yes. ROOT offers regular plans, sold through Aikyam Wealth Private Limited as your mutual fund distributor. The fund house pays Aikyam Wealth a commission, which is included in this plan's expense ratio.</p>
+        <p>Its ARN (AMFI registration number) is <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>. You can check it yourself on <a href="https://www.amfiindia.com/" rel="noopener">AMFI's website</a>.</p>
+        <p><a class="link" href="30-distribution-commission.html">Read the commission disclosure<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a></p>
+      </div></details>
+      <details><summary>Which NAV will I get if I invest today?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>You get the NAV of the business day on which your money reaches the fund house before the cut-off time SEBI sets.</p>
+        <p>Order times on ROOT: <mark class="ph" data-ph="nav-cutoff">to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Growth or IDCW: what's the difference?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>This page shows the Growth option: the fund reinvests what it earns, and that shows in the NAV.</p>
+        <p>With IDCW (income distribution cum capital withdrawal), the fund may pay out part of the NAV, which can include your own capital. The NAV falls by the amount paid out, and payouts are not guaranteed.</p>
+      </div></details>
+      <details><summary>How are my gains taxed?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>Gains on mutual fund units are taxed as capital gains when you sell. The rate depends on the type of fund and how long you held the units, and tax rules can change.</p>
+        <p>Current tax treatment: <mark class="ph" data-ph="mf-tax">to confirm with compliance</mark>.</p>
+      </div></details>
+      <details><summary>How do I raise a complaint?<span class="pm"><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-plus" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5v13M5.5 12h13"/></svg></span></summary><div class="ans">
+        <p>Write to <mark class="ph" data-ph="wealth-grievance">email to confirm</mark>. If you are not satisfied with the response: <mark class="ph" data-ph="wealth-escalation">to confirm with compliance</mark>.</p>
+        <p>Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p><a href="17-grievance-redressal.html">How we handle complaints</a></p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:20px">
+      <span class="eyebrow">Regular plan · Aikyam Wealth Private Limited</span>
+      <h2 class="d2 node" id="h-final"><i class="node-dot" aria-hidden="true"></i>Invest in this fund at your own pace.</h2>
+      <p class="lead">Open your investing account on your phone or computer, then start a SIP or invest all at once.</p>
+      <div class="row">
+        <a class="btn btn--light btn--lg" href="#s-invest">Invest in this fund<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="27-fund-explorer.html" data-query="category=flexi-cap" data-event="explore_funds">Compare flexi cap funds</a>
+      </div>
+      <p class="fine">Already investing with ROOT? Choose this fund at <mark class="ph" data-ph="wealth-platform">where you invest, to confirm</mark>.</p>
+    </div>
+    <div class="ui-stage final-stage">
+      <svg class="rings rings--dark" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-final"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#E2E8EF" stroke-opacity=".22" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-final)"/></svg>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: investing account active">
+        <span class="ui-label">Investing account</span>
+        <span class="ui-big">Active</span>
+        <div class="ui-row"><span>KYC verified</span><svg class="i i--sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-check" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+        <div class="ui-row"><span>Bank account</span><span>XXXXXX4321</span></div>
+      </div>
+      <div class="ui-card ui-list" role="img" aria-label="Illustrative screen: setting up a SIP in Example Flexi Cap Fund">
+        <span class="ui-label">Start a SIP · Regular plan</span>
+        <span class="ui-big">Example Flexi Cap Fund</span>
+        <div class="ui-row"><span>Category</span><b>Equity: flexi cap</b></div>
+        <div class="ui-row"><span>Frequency</span><b>Monthly</b></div>
+        <div class="ui-row"><span>Amount</span><b>You choose</b></div>
+        <span class="ui-pill">Start SIP</span>
+      </div>
+      <p class="ui-caption">Illustrative screens. Example names, not real schemes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-info" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.7v.2"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you invest</h2>
+        <p>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Mutual funds, IPOs and bonds are not exchange traded products. Aikyam Wealth Private Limited acts only as a distributor (AMFI ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark>). Disputes arising from distribution activity do not have access to the exchange investor redressal forum or arbitration mechanism.</p>
+        <p>Scheme data: NAV from AMFI; returns, portfolio, riskometer and costs from <mark class="ph" data-ph="mf-data-vendor">data provider to confirm</mark> and the fund house, as on the dates shown with each figure. Past performance does not guarantee future returns.</p>
+        <p data-draft="not-advice">These are facts about the scheme from the fund house and our data provider. They are not a recommendation: you decide which funds to invest in.</p>
+        <a class="link link--wrap" href="16-disclosures.html">Disclosures and Investor <span class="link-tail">Charter<svg class="i" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-icon="i-arrow" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15"/><path d="m13.5 6 6 6-6 6"/></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot" aria-label="Site footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><span class="lockup"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215.06 90.91"><g><g><g><path fill="#1c0f2f" d="M109.69,84.37c0,.71-.34,1.39-1.2,1.77,1.08.33,1.47,1.47,1.47,2.05,0,2.05-1.54,2.71-3.44,2.71h-4.36v-9.2h4.36c1.81,0,3.17.81,3.17,2.67ZM103.87,85.39h2.66c1.09,0,1.45-.46,1.45-.99,0-.42-.34-1.13-1.45-1.13h-2.66v2.12ZM103.87,89.29h2.66c.71,0,1.72-.24,1.72-1.1s-1.01-1.26-1.72-1.26h-2.66v2.37Z"/><path fill="#1c0f2f" d="M119.76,85.5l2.45-3.8h2.09v.08l-3.67,5.32v3.8h-1.73v-3.8l-3.54-5.32v-.08h2.06l2.34,3.8Z"/><path fill="#1c0f2f" d="M144.75,89.17h-4.81l-.79,1.74h-1.88l4.13-9.2h1.89l4.13,9.2h-1.89l-.78-1.74ZM142.35,83.63l-1.71,3.92h3.42l-1.71-3.92Z"/><path fill="#1c0f2f" d="M153.33,90.9v-9.2h1.72v9.2h-1.72Z"/><path fill="#1c0f2f" d="M169.32,81.75l-4.09,4.4,4.43,4.64v.11h-2.14l-3.85-4.08v4.08h-1.74v-9.2h1.74v3.89l3.5-3.89h2.16v.05Z"/><path fill="#1c0f2f" d="M179.67,85.5l2.45-3.8h2.09v.08l-3.67,5.32v3.8h-1.73v-3.8l-3.54-5.32v-.08h2.06l2.34,3.8Z"/><path fill="#1c0f2f" d="M196.75,89.17h-4.81l-.79,1.74h-1.88l4.13-9.2h1.89l4.13,9.2h-1.89l-.78-1.74ZM194.34,83.63l-1.71,3.92h3.42l-1.71-3.92Z"/><path fill="#1c0f2f" d="M213.33,84.24l-3,4h-.34l-2.93-4.01v6.69h-1.74v-9.2h2l2.88,3.96,2.88-3.96h1.98v9.2h-1.74v-6.68Z"/></g><path fill="#1c0f2f" d="M105.91,7.44c15.83,0,28.71,12.88,28.71,28.71s-12.88,28.71-28.71,28.71-28.71-12.88-28.71-28.71,12.88-28.71,28.71-28.71M105.91.3c-19.8,0-35.86,16.05-35.86,35.86s16.05,35.86,35.86,35.86,35.86-16.05,35.86-35.86S125.71.3,105.91.3h0ZM144.73,20.35c9.43,0,17.1,7.67,17.1,17.1s-7.67,17.1-17.1,17.1c-6.64,0-12.41-3.81-15.24-9.35-1.19-2.33,2.85-7.75,2.85-7.75,0,0-3.66-6.73-1.87-9.44,3.07-4.61,8.31-7.66,14.25-7.66M144.73,13.21c-13.39,0-24.24,10.85-24.24,24.24s10.85,24.24,24.24,24.24,24.24-10.85,24.24-24.24-10.85-24.24-24.24-24.24h0ZM62.19,72.18h-13.49l-21.93-24.92h-15.24v24.92H0V0c3.71,0,9.3.02,16.78.05,7.48.03,13.08.05,16.78.05,7.96,0,14.19,2.32,18.69,6.95,4.5,4.63,6.74,10.18,6.74,16.63,0,5.7-1.6,10.62-4.79,14.78-3.19,4.15-8.12,6.71-14.78,7.67l21.52,23.99,1.24,2.06ZM11.53,10.61v26.15h21.93c4.53,0,7.96-1.24,10.3-3.71,2.33-2.47,3.5-5.53,3.5-9.16s-1.17-6.68-3.5-9.32c-2.33-2.64-5.73-3.96-10.19-3.96H11.53ZM197.74,3.08v14.72h14.83v9.16h-14.93v24.2c0,5.56,2.44,8.34,7.31,8.34,1.99,0,4.15-.58,6.49-1.75l3.09,9.06c-3.43,1.51-6.83,2.27-10.19,2.27-5.56.14-9.83-1.32-12.82-4.38-2.99-3.05-4.48-7.57-4.48-13.54v-24.2h-9.78v-9.16h9.78V4.22l10.71-1.13Z"/><path fill="#c19c2f" d="M144.74,13.17c-3.48,0-6.76.75-9.74,2.08-4.08-5.66-9.75-10.1-16.38-12.63l-4.25,11.18c9.02,3.45,15.48,12.14,15.48,22.36,0,7.41-3.44,13.95-8.73,18.36v.02s9.06,8,9.06,8c7.12-6.56,11.6-15.94,11.6-26.38,0-3.52-.56-6.9-1.51-10.11,1.4-.56,2.87-.96,4.47-.96,4.48,0,8.37,2.42,10.54,6l9.74-6.95c-4.34-6.6-11.79-10.98-20.29-10.98Z"/></g></g></svg></span><p>Where your wealth begins.</p><p class="small">For any grievance or complaint about securities broking:<br><a href="mailto:grievances@aikyamcap.com">grievances@aikyamcap.com</a></p></div>
+      <div><h3>Invest and trade</h3><ul><li><a href="26-mutual-funds.html">Mutual Funds</a></li><li><a href="28-sip.html">SIP</a></li><li><a href="31-ipo.html">IPOs</a></li><li><a href="35-equity.html">Stocks and ETFs</a></li><li><a href="37-futures-options.html">F&amp;O</a></li><li><a href="38-currency-commodity.html">Currency and Commodity</a></li><li><a href="06-pricing.html">Pricing</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="07-about.html">About ROOT</a></li><li><a href="12-aikyam-capital.html">Aikyam Capital</a></li><li><a href="13-aikyam-wealth.html">Aikyam Wealth</a></li><li><a href="14-leadership.html">Leadership</a></li><li><a href="61-partner.html">Partner with ROOT</a></li><li><a href="72-press.html">Press and Media</a></li><li><a href="71-careers.html">Careers</a></li></ul></div>
+      <div><h3>Support</h3><ul><li><a href="08-help-centre.html">Help Centre</a></li><li><a href="73-raise-ticket.html">Raise a Ticket</a></li><li><a href="15-contact.html">Contact Us</a></li><li><a href="17-grievance-redressal.html">Grievance Redressal</a></li><li><a href="17-grievance-redressal.html">SCORES and ODR</a></li><li><a href="18-escalation-matrix.html">Escalation Matrix</a></li><li><a href="05-learn.html">Learn</a></li><li><a href="41-calculators.html">Calculators</a></li></ul></div>
+      <div><h3>Important links</h3><ul><li><a href="16-disclosures.html">Disclosures and Investor Charter</a></li><li><a href="https://nsdl.co.in/investor/investor-charter">Investor Charter (DP)</a></li><li><a href="16-disclosures.html#s-complaints">Investor Complaints Data</a></li><li><a href="21-kyc-documents.html">Standard KYC Documents</a></li><li><a href="20-client-bank-accounts.html">Client Bank Accounts</a></li><li><a href="19-policies.html">Policies</a></li><li><a href="30-distribution-commission.html">Commission Disclosure</a></li><li><a href="22-risk-disclosure.html">Risk Disclosure</a></li><li><a href="23-notices.html">Notices</a></li><li><a href="24-terms.html">Terms</a> · <a href="25-privacy.html">Privacy</a></li></ul></div>
+    </div>
+    <dl class="foot-reg">
+      <div><dt>Entity</dt><dd>Aikyam Capital Private Limited</dd></div>
+      <div><dt>SEBI registration</dt><dd>INZ000321232</dd></div>
+      <div><dt>CIN</dt><dd>U67100MH2022PTC394087</dd></div>
+      <div><dt>Depository participant</dt><dd>IN-DP-854-2026 · NSDL DP IN305066</dd></div>
+      <div><dt>Exchange membership</dt><dd>BSE 6899 · NSE 90419 · MCX 8136 · MSEI 80750</dd></div>
+      <div><dt>Clearing membership</dt><dd>BSECL 6899 · NCL M70106 · MCXCCL 8135</dd></div>
+      <div><dt>GST</dt><dd>27AAXCA9480C1Z5</dd></div>
+      <div><dt>Mutual fund distribution</dt><dd>Aikyam Wealth Private Limited · ARN <mark class="ph" data-ph="reg.wealth.arn">to confirm</mark></dd></div>
+      <div><dt>Aikyam Wealth CIN</dt><dd><mark class="ph" data-ph="reg.wealth.cin">to confirm</mark></dd></div>
+    </dl>
+    <div class="foot-legal">
+      <div><h3>Attention investor</h3><ul>
+        <li>Prevent unauthorised transactions in your account. Update your mobile numbers/email IDs with your stock brokers. Receive information of your transactions directly from Exchange on your mobile/email at the end of the day.</li>
+        <li>KYC is one time exercise while dealing in securities markets. Once KYC is done through a SEBI registered intermediary (Broker, DP, Mutual Fund etc.), you need not undergo the same process again when you approach another intermediary.</li>
+        <li>No need to issue cheques by investors while subscribing to IPO. Just write the bank account number and sign in the application form to authorize your bank to make payment in case of allotment.</li>
+      </ul></div>
+      <div><h3>Disclaimer</h3><ul>
+        <li>This website is owned and maintained by Aikyam and the content contained on this website is provided for general information only and should not be used as a basis for making business/commercial decisions.</li>
+        <li>The Content on this website should not be regarded as an offer, solicitation, invitation, advice or recommendation to buy or sell investments, securities or any other instrument or financial products / schemes of Aikyam, or any of its subsidiaries/affiliates.</li>
+        <li>"Investment in securities market are subject to market risks, read all the related documents carefully before investing."</li>
+      </ul></div>
+      <div><h3>Caution notice for public</h3><ul>
+        <li>Aikyam Capital cautions the public against unknown or fraudulent persons falsely claiming to be associated with Aikyam Capital Private Limited through WhatsApp groups, social media channels, websites or other platforms.</li>
+        <li>All receipts of funds are made only in the name of Aikyam Capital Private Limited in designated bank accounts.</li>
+      </ul></div>
+    </div>
+    <div class="foot-base"><span>© 2026 Aikyam Capital Private Limited. ROOT is a product of Aikyam Capital Group.</span><span>Footer content awaits Aikyam compliance confirmation.</span></div>
+  </div>
+</footer>
+
+<div class="mbar" data-sticky="bottom" aria-label="Mobile action bar"><a class="btn btn--ghost" href="74-login.html">Login</a><a class="btn" href="#s-invest">Invest in this fund</a></div>
+</body>
+</html>

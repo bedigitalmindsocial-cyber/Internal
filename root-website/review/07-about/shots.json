@@ -1,0 +1,35 @@
+{
+ "file": "07-about.html",
+ "sha": "e25177032b44",
+ "desktop": {
+  "height": 7008,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 520,
+  "primary_text": "Open free account",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 12649,
+  "slices": 7,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 486,
+  "primary_text": "Open free account",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 1362,
+  "slices": 1,
+  "fonts_loaded": false,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

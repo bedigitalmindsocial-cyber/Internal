@@ -1,0 +1,35 @@
+{
+ "file": "57-pms.html",
+ "sha": "6d8911a0a742",
+ "desktop": {
+  "height": 7626,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 562,
+  "primary_text": "Talk to the wealth team",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 13568,
+  "slices": 8,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 613,
+  "primary_text": "Talk to the wealth team",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 1598,
+  "slices": 2,
+  "fonts_loaded": false,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

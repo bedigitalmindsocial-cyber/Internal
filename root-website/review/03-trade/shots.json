@@ -1,0 +1,35 @@
+{
+ "file": "03-trade.html",
+ "sha": "d468bba8cc3e",
+ "desktop": {
+  "height": 8016,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 529,
+  "primary_text": "Start trading",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 13998,
+  "slices": 8,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 559,
+  "primary_text": "Start trading",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 1667,
+  "slices": 2,
+  "fonts_loaded": false,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

@@ -1,0 +1,35 @@
+{
+ "file": "42-sip-calculator.html",
+ "sha": "2970c8b1c1f5",
+ "desktop": {
+  "height": 7308,
+  "slices": 5,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 476,
+  "primary_text": "Start a SIP",
+  "first_screen_ph": []
+ },
+ "mobile": {
+  "height": 13449,
+  "slices": 8,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": 1213,
+  "primary_text": "Start a SIP",
+  "first_screen_ph": []
+ },
+ "states_board": {
+  "height": 2859,
+  "slices": 3,
+  "fonts_loaded": true,
+  "overflow": false,
+  "offenders": [],
+  "primary_top": null,
+  "primary_text": null,
+  "first_screen_ph": []
+ },
+ "notes": []
+}

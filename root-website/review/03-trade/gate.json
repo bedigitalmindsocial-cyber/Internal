@@ -1,0 +1,17 @@
+{
+ "page": "03-trade",
+ "ok": true,
+ "build_ok": true,
+ "lint_errors": [],
+ "lint_reviews": 0,
+ "overflow": false,
+ "slices": {
+  "desktop": 5,
+  "mobile": 8
+ },
+ "states": 4,
+ "placeholders": 9,
+ "notes": [],
+ "sha": "d468bba8cc3e",
+ "first_screen_placeholders": []
+}

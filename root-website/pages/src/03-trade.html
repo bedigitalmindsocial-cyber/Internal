@@ -1,0 +1,411 @@
+<!--page {"title": "Online share trading: stocks, ETFs and IPOs | ROOT by Aikyam",
+          "description": "Trade shares and ETFs on NSE and BSE, and apply for IPOs, with Aikyam Capital, a SEBI-registered stock broker. See what you pay before you start.",
+          "query": "online share trading",
+          "lint_allow": []} -->
+<style data-page>
+/* 03 Trade v1 (golden, template A). Tokens only. Reusable pieces are named in memory section 7 for promotion. */
+
+/* hub hero under a breadcrumb: a tighter top so the bar sits higher in the first screen */
+.page-trade .hero{padding-top:40px}
+
+/* Ticket stage (candidate pattern): the hub hero's product stage with an illustrative order ticket in the phone's slot.
+   The stage keeps the phone's height (min 540 px) and the two cards sit at its top and foot, staggered around the ticket */
+.hero-stage:has(> .ticket){min-height:540px}
+.hero-stage:has(> .ticket) .stage-cards{padding-block:0; justify-content:space-between}
+.hero-stage > .ticket{position:relative; z-index:1; flex:none; width:300px; align-self:center; padding:24px; font-size:var(--fs-sm)}
+.ticket .ui-row{padding-block:13px}
+.ticket .ui-row span{color:var(--aub-60)}
+.ticket .ui-row b{font-weight:600; font-variant-numeric:tabular-nums}
+.ticket .ui-pill{min-height:44px}
+.ticket-toggle{display:flex; gap:4px; padding:4px; margin-bottom:14px; border-radius:12px; background:var(--mist)}
+.ticket-toggle span{flex:1 1 0; padding:9px 0; border-radius:9px; text-align:center; font-weight:600; color:var(--aub-60)}
+.ticket-toggle .on{background:var(--aub); color:var(--paper)}
+/* card head inside a hairline row card: the label keeps no extra padding, a status chip sits right */
+.ui-list .ui-head{padding-bottom:12px}
+.ui-list .ui-head .ui-label{padding-bottom:0}
+.ui-head .chip{margin-left:auto}
+.stage-cards .chip--gain{align-self:flex-start}
+
+/* Rows plus explainer split (candidate pattern): door rows left (7), two staggered explainer cards right (5), centred */
+@media (min-width: 900px){ .split--rows{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr); align-items:center} }
+.explain-stage > .ui-card{position:relative; z-index:1; width:min(100%, 22rem)}
+.explain-stage > .ui-card + .ui-card{align-self:flex-end}
+.explain-card .ui-name{padding-bottom:10px}
+.explain-card .ui-row b{font-weight:600}
+
+/* hub info card: the rate notes sit above "See all charges", which hugs its label at the foot of the card;
+   the receipt beside it is a little tighter, so the two cards match with less air */
+.info-card .btn{align-self:flex-start; margin-top:auto}
+.info-card .price-notes{margin-top:0}
+.cards--2 .ui-receipt .ui-row{padding-block:9px}
+
+/* the F&O h2 runs the full wrap width, so its last word does not sit alone */
+.page-trade #s-fo .head{max-width:none}
+
+/* phones: full-width wrapping buttons (as Home), risk boxes with the icon above the text, cards full width */
+@media (max-width: 640px){
+  .page-trade .hero{padding-top:24px}
+  .hero-stage:has(> .ticket){min-height:0}
+  .hero-stage > .ticket{width:min(320px, 100%)}
+  .stage-cards .chip--gain{margin-top:auto}
+  .page-trade main .btn{white-space:normal; text-align:center; line-height:1.25; padding-block:12px; width:100%}
+  .page-trade .risk-box{grid-template-columns:1fr; padding:20px}
+  .page-trade .risk-box--inset{padding:18px}
+  .explain-stage > .ui-card{width:100%}
+}
+</style>
+
+<section class="hero" id="s-hero" aria-labelledby="h-hero">
+  <div class="wrap hero-grid hero-grid--stage">
+    <div class="hero-copy">
+      <span class="root-seed" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.8 49.46"><g><path fill="#c19c2f" d="M25.06,8.71c-2.87,0-5.58.62-8.04,1.72C13.66,5.75,8.98,2.08,3.5,0L0,9.23c7.45,2.85,12.77,10.02,12.77,18.46,0,6.11-2.84,11.52-7.2,15.15v.02s7.47,6.6,7.47,6.6c5.87-5.42,9.57-13.15,9.57-21.77,0-2.91-.46-5.69-1.24-8.34,1.15-.46,2.37-.79,3.69-.79,3.7,0,6.91,2,8.7,4.95l8.04-5.73c-3.58-5.45-9.73-9.06-16.74-9.06Z"/></g></svg></span>
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h1 class="d1" id="h-hero">Trade shares and ETFs, <em>apply for IPOs.</em></h1>
+      <p class="lead">Buy to hold or trade for the day on NSE and BSE, and add more segments when you're ready.</p>
+      <form class="hero-form" id="trade-form" action="/open-account/trading" method="post" data-event="account_start" data-form-entity="Aikyam Capital">
+        <div class="leadbar">
+          <label class="field" for="trade-mob"><span class="pre">+91</span><input id="trade-mob" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit mobile number" aria-label="Mobile number" required></label>
+          <button class="btn btn--lg" type="submit" data-primary>Start trading<svg class="i"><use href="#i-arrow"/></svg></button>
+        </div>
+        <label class="check"><input type="checkbox" name="consent" required><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+        <div class="hero-fine">
+          <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+          <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+        </div>
+      </form>
+      <div class="hero-alt">
+        <a class="link" href="#s-charges">See what you pay<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="creds creds--row">
+        <li><svg class="i"><use href="#i-shield"/></svg><div>SEBI-registered stock broker<span class="mono">{{reg.capital.sebi}}</span></div></li>
+        <li><svg class="i"><use href="#i-chart"/></svg><div>Member of NSE, BSE, MCX and MSEI<span>Member codes in the footer</span></div></li>
+        <li><svg class="i"><use href="#i-lock"/></svg><div>NSDL depository participant<span class="mono">{{reg.capital.dp}}</span></div></li>
+      </ul>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-stage" role="img" aria-label="Illustrative ROOT screens: an order ticket, holdings and an IPO application">
+        <svg class="rings" viewBox="0 0 240 220" aria-hidden="true"><defs><clipPath id="ring-hero"><circle cx="100" cy="120" r="86"/></clipPath></defs><circle cx="100" cy="120" r="86" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#1C0F2F" stroke-opacity=".14" stroke-width="1.5"/><circle cx="172" cy="96" r="58" fill="none" stroke="#C19C2F" stroke-width="2" clip-path="url(#ring-hero)"/></svg>
+        <div class="ui-card ui-list ticket">
+          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-stocks"/></svg></span><span class="ui-label">Buy · NSE</span></div>
+          <b class="ui-big">Example Industries Ltd</b>
+          <div class="ticket-toggle"><span class="on">Delivery</span><span>Intraday</span></div>
+          <div class="ui-row"><span>Quantity</span><b>10</b></div>
+          <div class="ui-row"><span>Order type</span><b>Limit</b></div>
+          <div class="ui-row"><span>Price</span><b>₹1,245.50</b></div>
+          <span class="ui-pill">Buy</span>
+        </div>
+        <div class="stage-cards">
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-chart"/></svg></span><span class="ui-label">Holdings</span></div>
+            <div class="ui-row"><span>Example Industries Ltd</span><b>10 shares</b></div>
+            <div class="ui-row"><span>Example Index ETF</span><b>40 units</b></div>
+            <span class="chip chip--gain">In your demat</span>
+          </div>
+          <div class="ui-card">
+            <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-ipo"/></svg></span><span class="ui-label">IPO</span></div>
+            <b class="ui-name">Example Technologies Ltd</b>
+            <div class="ui-row"><span>Price band</span><b>₹412 to ₹433</b></div>
+            <div class="ui-row"><span>Pay with</span><b>UPI</b></div>
+            <span class="chip ui-cta">Apply</span>
+          </div>
+        </div>
+      </div>
+      <p class="illus">Illustrative data. Not real prices or returns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-products" aria-labelledby="h-products">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-products">What can I trade?</h2>
+      <p>Start with shares, ETFs and IPOs. Add more segments when you're ready.</p>
+    </div>
+    <div class="split split--rows">
+      <article class="door" aria-label="Trade with {{reg.capital.name}}">
+        <div class="door-head">
+          <span class="label">Trade · {{reg.capital.name}}</span>
+        </div>
+        <ul class="door-rows">
+          <li><span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span><div class="row-text"><a href="/trade/equity">Shares and ETFs</a><p>Buy shares and ETFs on NSE and BSE, and hold them in your demat account.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-swap"/></svg></span><div class="row-text"><a href="/trade/intraday-delivery">Intraday</a><p>Buy and sell the same share on the same day.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-ipo"/></svg></span><div class="row-text"><a href="/ipo">IPOs</a><p>Apply for open IPOs from your account, and pay with UPI.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-plus"/></svg></span><div class="row-text"><a href="#s-fo">More segments</a><p>Add more when you're ready. See what each needs, and the risks, first.</p></div></li>
+        </ul>
+        <div class="door-foot">
+          <a class="btn" href="/open-account/trading">Start trading<svg class="i"><use href="#i-arrow"/></svg></a>
+        </div>
+      </article>
+      <div class="ui-stage explain-stage">
+        <div class="ui-card ui-list explain-card" role="img" aria-label="Illustrative screen: a delivery purchase held in the demat account">
+          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-stocks"/></svg></span><span class="ui-label">Delivery</span><span class="chip chip--gain">In your demat</span></div>
+          <b class="ui-name">Example Industries Ltd</b>
+          <div class="ui-row"><span>Bought</span><b>10 shares</b></div>
+          <div class="ui-row"><span>Hold for</span><b>As long as you like</b></div>
+        </div>
+        <div class="ui-card ui-list explain-card" role="img" aria-label="Illustrative screen: an intraday trade bought and sold the same day">
+          <div class="ui-head"><span class="ui-tile"><svg class="i"><use href="#i-swap"/></svg></span><span class="ui-label">Intraday</span><span class="chip">Closed today</span></div>
+          <b class="ui-name">Example Power Ltd</b>
+          <div class="ui-row"><span>Bought</span><b>25 shares</b></div>
+          <div class="ui-row"><span>Sold</span><b>25 shares, the same day</b></div>
+        </div>
+        <p class="ui-caption">Illustrative screens. Example names, not real securities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="s-charges" aria-labelledby="h-charges">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-charges">What will I pay to trade?</h2>
+      <p>Our charges are listed on one public page, so you can check what you pay before you trade.</p>
+    </div>
+    <div class="stat-tiles stat-tiles--3">
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-rupee"/></svg></span>
+        <span class="label">Account opening · Aikyam Capital</span>
+        <div class="num">{{pricing.account_opening}}</div>
+        <p>To open your trading and demat account.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-stocks"/></svg></span>
+        <span class="label">Equity delivery · Aikyam Capital</span>
+        <div class="num">{{pricing.delivery}}</div>
+        <p>Brokerage when you buy shares or ETFs to hold.</p>
+      </div>
+      <div class="stat-tile">
+        <span class="tile"><svg class="i"><use href="#i-swap"/></svg></span>
+        <span class="label">Intraday · Aikyam Capital</span>
+        <div class="num">{{pricing.intraday}}</div>
+        <p>Brokerage when you buy and sell on the same day.</p>
+      </div>
+    </div>
+    <div class="cards cards--2">
+      <div class="info-card">
+        <span class="tile"><svg class="i"><use href="#i-doc"/></svg></span>
+        <h3 class="h3">What gets added to brokerage</h3>
+        <p>Statutory and exchange charges are set by the government, the exchanges and SEBI, and show on your contract note.</p>
+        <div class="price-notes">
+          <p class="fine">Brokerage will never exceed the limits prescribed by SEBI.</p>
+          <p class="fine">Rates for other segments, the AMC and the DP charge are on the Pricing page.</p>
+        </div>
+        <a class="btn btn--ghost" href="/pricing" data-event="view_charges">See all charges<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="ui-card ui-receipt">
+        <span class="ui-label">On your contract note</span>
+        <div class="ui-row"><span>Brokerage</span><span>Aikyam Capital</span></div>
+        <div class="ui-row"><span>Securities transaction tax (STT)</span><span>Government</span></div>
+        <div class="ui-row"><span>Exchange transaction charges</span><span>Exchanges</span></div>
+        <div class="ui-row"><span>SEBI turnover fees</span><span>SEBI</span></div>
+        <div class="ui-row"><span>Stamp duty</span><span>Government</span></div>
+        <div class="ui-row"><span>GST</span><span>Government</span></div>
+        <p class="small">Amounts depend on your trades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-steps" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-steps">From sign-up to your first trade.</h2>
+      <p>Open your account on the web today. The ROOT app is coming soon.</p>
+    </div>
+    <ol class="steps" style="--cols:3">
+      <li><span class="dot">1</span><h3 class="h3">Open your account</h3><p>Your mobile number, PAN, Aadhaar and bank, online.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: mobile number verified"><div class="ui-row"><span class="ui-label">Mobile number</span><span class="chip chip--gain">Verified</span></div><b class="num">+91 98XXXXXX21</b></div></li>
+      <li><span class="dot">2</span><h3 class="h3">Get activated</h3><p>Your account is ready once your KYC is verified and the exchanges approve it.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: trading and demat account active"><div class="ui-row"><span class="ui-label">Account status</span><span class="chip chip--gain">Active</span></div><b>Trading and demat account</b></div></li>
+      <li><span class="dot">3</span><h3 class="h3">Log in and place your order</h3><p>Trade on the web at <a href="https://{{url.login}}">{{url.login}}</a>.</p>
+        <div class="ui-card ui-mini" role="img" aria-label="Illustrative screen: a buy order placed"><div class="ui-row"><span class="ui-label">Order placed</span><span class="chip">Buy</span></div><b>Example Industries Ltd · 10 shares</b></div></li>
+    </ol>
+    <p class="ui-caption">Illustrative screens. Steps shown are indicative and will be confirmed with the KYC partner's live flow.</p>
+    <div class="band-cta"><a class="btn" href="/open-account/trading">Start trading<svg class="i"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<section class="band" id="s-fo" aria-labelledby="h-fo">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="d2 node" id="h-fo">Derivatives are optional. Know the risks first.</h2>
+    </div>
+    <!-- compliance block: fo_risk (rules/compliance-blocks.md), verbatim, never collapsed; inset placement before every F&O mention -->
+    <div class="risk-box risk-box--inset" id="s-risk" role="note" aria-labelledby="h-risk">
+      <svg class="i i--lg"><use href="#i-alert"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h3 class="h3" id="h-risk">Risk disclosures on derivatives</h3>
+        <ul>
+          <li>9 out of 10 individual traders in equity Futures and Options Segment incurred net losses.</li>
+          <li>On an average, loss makers registered net trading loss close to Rs. 50,000.</li>
+          <li>Over and above net trading losses, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
+          <li>Those making net trading profits incurred between 15% to 50% of such profit as transaction cost.</li>
+        </ul>
+        <p class="xs">Source: {{fo.risk_source}}. <mark class="ph" data-ph="fo-risk-current">current SEBI text to confirm</mark></p>
+      </div>
+    </div>
+    <div class="risk-more"><a class="link" href="/legal/risk-disclosure">Read the full risk disclosure<svg class="i"><use href="#i-arrow"/></svg></a></div>
+
+    <div class="split fo-split">
+      <div class="stack" style="--gap:28px">
+        <p class="lead">Add futures and options (F&amp;O) <mark class="ph" data-ph="fo-activation-when">while you open your account or later, to confirm</mark>, once you share one proof of income.</p>
+        <ul class="facts">
+          <li><span class="tile"><svg class="i"><use href="#i-doc"/></svg></span><div class="fact-text"><b>Proof of income</b><p>One recent document, such as <mark class="ph" data-ph="fo-income-proofs">a bank statement, ITR, salary slip or Form 16 (list to confirm)</mark>.</p></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-chart"/></svg></span><div class="fact-text"><b>Lot sizes, margins and expiry dates</b><p>These change often, so check the current figures on the exchange.</p>
+            <div class="links">
+              <a class="link link--wrap" href="https://www.nseindia.com/" rel="noopener">NSE: contract specifications and expiry <span class="link-tail">calendar<svg class="i"><use href="#i-ne"/></svg></span></a>
+              <a class="link link--wrap" href="https://www.mcxindia.com/" rel="noopener">MCX: commodity contract <span class="link-tail">details<svg class="i"><use href="#i-ne"/></svg></span></a>
+            </div></div></li>
+          <li><span class="tile"><svg class="i"><use href="#i-commodity"/></svg></span><div class="fact-text"><b>Currency and commodity</b><p>Currency contracts, and commodities such as gold and silver on MCX.</p></div></li>
+        </ul>
+        <p class="fine">Brokerage for futures, options, currency and commodity is on the <a href="/pricing">Pricing page</a>.</p>
+      </div>
+      <div class="ui-stage ui-stage--panel seg-stage">
+        <div class="ui-card ui-list seg-card" role="img" aria-label="Illustrative screen: account segments, shares and ETFs on, others to add">
+          <span class="ui-label">Your segments</span>
+          <div class="ui-row"><span>Shares and ETFs</span><span class="chip chip--gain">On</span></div>
+          <div class="ui-row"><span>Futures and options</span><span class="chip">Add with proof of income</span></div>
+          <div class="ui-row"><span>Currency</span><span class="chip">Add</span></div>
+          <div class="ui-row"><span>Commodity</span><span class="chip">Add</span></div>
+        </div>
+        <p class="ui-caption">Illustrative screen</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--mist" id="s-faq" aria-labelledby="h-faq">
+  <div class="wrap split">
+    <div class="stack faq-side" style="--gap:18px">
+      <h2 class="d2 node" id="h-faq">Questions before you trade.</h2>
+      <p class="lead">Can't find yours? <a href="/contact">Write to us</a> and a real person replies.</p>
+      <figure class="img-slot" style="--ar:4/3"><svg class="i"><use href="#i-support"/></svg><b>Photo: a member of the ROOT support team on a call at the Mumbai office</b><span>Real Aikyam staff, after a shoot. Daylight, candid, headset on, laptop open; aubergine and white in frame. Crop 4:3.</span></figure>
+      <a class="link" href="/help">Visit the Help Centre<svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="link link--wrap" href="/about">About ROOT and the Aikyam <span class="link-tail">Group<svg class="i"><use href="#i-arrow"/></svg></span></a>
+      <p class="fine">For complaints about securities broking: <a href="mailto:{{contact.grievance_email}}">{{contact.grievance_email}}</a></p>
+    </div>
+    <div class="faq">
+      <details open><summary>Which company opens my account, and can I check it?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>{{reg.capital.name}} opens and holds your trading and demat account. ROOT by Aikyam is its brand for investors. You can check its registration yourself on the <a href="https://www.sebi.gov.in/" rel="noopener">SEBI website</a>.</p>
+      </div></details>
+      <details open><summary>Where are my shares and money kept?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Your shares sit in your own demat account at NSDL, opened through {{reg.capital.name}} as a depository participant.</p>
+        <p>Pay only into the {{reg.capital.name}} bank accounts listed on the <a href="/legal/client-bank-accounts">Client bank accounts page</a>.</p>
+      </div></details>
+      <details><summary>Does applying for an IPO cost anything?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Charges for applying: <mark class="ph" data-ph="ipo-charge">to confirm</mark>. Your bid amount is blocked in your bank account through your UPI mandate, and is debited only if you get an allotment.</p>
+      </div></details>
+      <details><summary>I already trade with another broker. Can I open ROOT too?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>Yes. Opening an account with Aikyam Capital does not need you to close an account elsewhere.</p>
+        <p>To move shares you already hold: <mark class="ph" data-ph="share-transfer">how to transfer shares into your ROOT demat account, to confirm</mark>.</p>
+      </div></details>
+      <details><summary>Can NRIs trade on ROOT?<span class="pm"><svg class="i i--sm"><use href="#i-plus"/></svg></span></summary><div class="ans">
+        <p>This page is for resident Indian individuals. NRI accounts are not available on ROOT yet.</p>
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark" id="s-final" aria-labelledby="h-final">
+  <div class="wrap app">
+    <div class="stack" style="--gap:22px">
+      <span class="eyebrow">Trading and demat account · {{reg.capital.name}}</span>
+      <h2 class="d2 node" id="h-final">Start trading with your mobile number.</h2>
+      <div class="final-actions">
+        <a class="btn btn--light btn--lg" href="/open-account/trading">Start trading<svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline-light btn--lg" href="/pricing" data-event="view_charges">See all charges</a>
+      </div>
+      <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar.</p>
+      <div class="app-soon">
+        <p>The ROOT app for iOS and Android is coming soon.</p>
+        <div class="stores">
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>App Store</b></span></span>
+          <span class="store" aria-disabled="true"><svg class="i"><use href="#i-store"/></svg><span><small>Coming soon</small><b>Google Play</b></span></span>
+        </div>
+        <a class="link" href="/app">Tell me when it is live<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <figure class="img-slot final-visual" style="--ar:4/5"><svg class="i"><use href="#i-user"/></svg><b>Photo: a 34-year-old professional at a desk at home in the morning, laptop open and phone beside it, reading calmly</b><span>Shot for ROOT. Screen turned away, or showing the illustrative ROOT screen only. Daylight, aubergine accents, crop 4:5. No trading terminals, no charts, no second monitor.</span></figure>
+  </div>
+</section>
+
+<section class="band band--mist band--tight" id="s-disclosures" aria-labelledby="h-disclosures">
+  <div class="wrap">
+    <div class="risk-box">
+      <svg class="i i--lg"><use href="#i-info"/></svg>
+      <div class="stack" style="--gap:10px">
+        <h2 class="h3" id="h-disclosures">Before you trade</h2>
+        <p>{{reg.capital.name}} is engaged in client based and proprietary trading on various exchanges.</p>
+        <p><mark class="ph" data-ph="ipo-distributor-line">IPO distributor line from Aikyam compliance</mark></p>
+        <a class="link" href="/legal/disclosures">See all disclosures<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<template data-state="invalid-number" data-label="Error: number is not 10 digits">
+<form class="hero-form">
+  <div class="fgroup is-error">
+    <div class="leadbar">
+      <label class="field" for="ts1-mob"><span class="pre">+91</span><input id="ts1-mob" type="tel" inputmode="numeric" maxlength="10" value="98765" aria-label="Mobile number" aria-invalid="true" aria-describedby="ts1-err"></label>
+      <button class="btn btn--lg" type="submit">Start trading<svg class="i"><use href="#i-arrow"/></svg></button>
+    </div>
+    <span class="fhelp" id="ts1-err">Enter a 10-digit mobile number.</span>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="consent-missing" data-label="Error: consent box not ticked (keep only if compliance makes the box required)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ts2-mob"><span class="pre">+91</span><input id="ts2-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg" type="submit">Start trading<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <div class="fgroup is-error">
+    <label class="check"><input type="checkbox" aria-invalid="true" aria-describedby="ts2-err"><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+    <span class="fhelp" id="ts2-err">Tick the box to continue.</span>
+  </div>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="submitting" data-label="Button pressed, sending the number to Start Trading (button loading)">
+<form class="hero-form">
+  <div class="leadbar">
+    <label class="field" for="ts3-mob"><span class="pre">+91</span><input id="ts3-mob" type="tel" inputmode="numeric" maxlength="10" value="98XXXXXX21" aria-label="Mobile number"></label>
+    <button class="btn btn--lg is-loading" type="button" aria-busy="true">Start trading<svg class="i"><use href="#i-arrow"/></svg></button>
+  </div>
+  <label class="check"><input type="checkbox" checked><span data-draft="consent">I agree to the <a href="/legal/privacy">Privacy Policy</a> and allow Aikyam Capital to call, SMS or WhatsApp me about this application.</span></label>
+  <div class="hero-fine">
+    <p class="fine">Your number goes to {{reg.capital.name}} to send your OTP and continue your application.</p>
+    <p class="fine">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </div>
+</form>
+</template>
+
+<template data-state="success-otp-sent" data-label="Success: Start Trading (/open-account/trading) opens in its OTP-sent state with the number and consent carried over; resend timer running">
+<div class="form-card">
+  <span class="label">Step 1 of 4 · Trading and demat account</span>
+  <h2 class="h3">Enter the OTP</h2>
+  <p class="small">We sent a one-time password to +91 98XXXXXX21. <a href="/open-account/trading">Change number</a></p>
+  <form>
+    <div class="fgroup">
+      <span class="flabel">One-time password</span>
+      <div class="otp" role="group" aria-label="One-time password"><input aria-label="Digit 1" maxlength="1" inputmode="numeric"><input aria-label="Digit 2" maxlength="1" inputmode="numeric"><input aria-label="Digit 3" maxlength="1" inputmode="numeric"><input aria-label="Digit 4" maxlength="1" inputmode="numeric"><input aria-label="Digit 5" maxlength="1" inputmode="numeric"><input aria-label="Digit 6" maxlength="1" inputmode="numeric"></div>
+      <span class="fhelp">Number of digits: <mark class="ph" data-ph="otp-length">OTP length to confirm</mark></span>
+    </div>
+    <p class="xs">Didn't get it? Resend OTP in <mark class="ph" data-ph="otp-resend">timer to confirm</mark></p>
+    <button class="btn btn--lg" type="submit">Verify OTP<svg class="i"><use href="#i-arrow"/></svg></button>
+    <p class="handoff">You will continue to our secure KYC partner to verify your PAN and Aadhaar. Activation is subject to KYC verification and exchange approval.</p>
+  </form>
+</div>
+</template>
